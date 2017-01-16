@@ -56,8 +56,11 @@ function attributen(){
 
 function load_custom_wp_admin_style($hook) {
 
-    wp_enqueue_style( 'autotrack_admin_css', plugins_url('css/style.css', __FILE__) );
-    wp_enqueue_script( 'autotrack_admin_js', plugins_url('js/autotrack.js', __FILE__), array('jquery'), '', true );
+    wp_enqueue_style( 'autotrack_admin_css', plugins_url('admin/css/style.css', __FILE__) );
+    wp_enqueue_style( 'autotrack_admin_bootstrap', plugins_url('admin/css/bootstrap.css', __FILE__) );
+    wp_enqueue_style( 'autotrack_admin_bootstrap-theme', plugins_url('admin/css/bootstrap-theme.css', __FILE__) );
+    wp_enqueue_script( 'autotrack_admin_js', plugins_url('admin/js/autotrack.js', __FILE__), array('jquery'), '', true );
+    wp_enqueue_script( 'autotrack_admin_bootstrap_js', plugins_url('admin/js/bootstrap.js', __FILE__), array('jquery'), '', true );
 }
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
