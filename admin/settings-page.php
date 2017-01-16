@@ -7,6 +7,7 @@
         <?php settings_fields( 'autotrack-settings-fields' ); ?>
         <?php do_settings_sections( 'autotrack-settings-fields' ); ?>
 
+
         <label for="new_option_name">New Option Name</label>
         <input type="text" name="new_option_name" value="<?php echo esc_attr( get_option('new_option_name') ); ?>" />
 
