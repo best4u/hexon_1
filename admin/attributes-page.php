@@ -48,13 +48,11 @@
                         <option value="0">Nee</option>
                     </select>
                 </th>
-
             </tr>
             </thead>
                 <input type="submit" class="hidden">
             </form>
             <tbody>
-
                 <tr>
                     <td style="width: 200px;"></td>
                     <td>Selecteer / deselecteer alles:</td>
@@ -74,8 +72,6 @@
 
             </tbody>
         </table>
-
-
     <div class="table-responsive">
     <table class="table table-bordered">
         <thead>

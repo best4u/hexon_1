@@ -40,7 +40,6 @@ class AjaxRequests{
         }
 
         $conn->close();
-
     }
 
     function attr_filter($category,$attr_name,$home_page,$overview,$summary_detail,$details_total)
@@ -123,7 +122,6 @@ class AjaxRequests{
             <td colspan='6' style='text-align: center'>Er zijn geen resultaten gevonden.</td>
         </tr>";
         }
-
         $conn->close();
     }
 
