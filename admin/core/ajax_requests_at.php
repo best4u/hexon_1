@@ -120,7 +120,7 @@ class AjaxRequests{
             }
         }else {
             echo " <tr>
-            <td colspan='6' style='text-align: center'>sdv d</td>
+            <td colspan='6' style='text-align: center'>There aren't attributes </td>
         </tr>";
         }
 
