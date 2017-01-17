@@ -1,40 +1,40 @@
 $=jQuery;
 $(document).ready(function(){
 
-$(".checkField").click(function(){
-    var url = $(".urlAjax").text();
-    var id = $(this).attr('data-id');
-    var name = $(this).attr('name');
-    var val_point = "0";
-    if($(this).is(":checked"))
-    {
-        val_point = "1";
-        var data = {
-            action: 'test_response',
-            id: id,
-            name: name,
-            val_point: val_point
-        };
-        $.post(url,data, function(response) {
+    $("#allAttr").on('click','.checkField',function(){
+        var url = $(".urlAjax").text();
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('name');
+        var val_point = "0";
+        if($(this).is(":checked"))
+        {
+            val_point = "1";
+            var data = {
+                action: 'test_response',
+                id: id,
+                name: name,
+                val_point: val_point
+            };
+            $.post(url,data, function(response) {
 
-        });
-        console.log(val_point);
+            });
+            console.log(val_point);
 
-    }else
-    {
-        val_point = "0";
-        var data = {
-            action: 'test_response',
-            id: id,
-            name: name,
-            val_point: val_point
-        };
-        $.post(url,data, function(response) {
+        }else
+        {
+            val_point = "0";
+            var data = {
+                action: 'test_response',
+                id: id,
+                name: name,
+                val_point: val_point
+            };
+            $.post(url,data, function(response) {
 
-        });
-        console.log(val_point);
-    }
-});
+            });
+            console.log(val_point);
+        }
+    });
 
 
     $(".selectUnselectField").click(function(){
