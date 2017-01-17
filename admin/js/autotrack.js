@@ -67,39 +67,6 @@ $(document).ready(function(){
         }
     });
 
-//    Attr filter
-
-    //$("#categoryFilter").change(function(){
-    //    if($(this).val() != "")
-    //    {
-    //        var cat_val = $(this).val();
-    //        $("#allAttr tr").each(function(){
-    //            if($(this).find('.category').text() == cat_val)
-    //            {
-    //                $(this).show();
-    //            }else
-    //            {
-    //                $(this).hide();
-    //            }
-    //        });
-    //    }else
-    //    {
-    //        $("#allAttr tr").each(function(){
-    //              $(this).show();
-    //        });
-    //    }
-    //});
-    //
-    //$(".attribute").keyup(function(){
-    //    if($(this).val() != "")
-    //    {
-    //
-    //    }else
-    //    {
-    //
-    //    }
-    //});
-
     function filter_attr(category,attr_name,home_page,overview,summary_detail,details_total)
     {
         var url = $(".urlAjax").text();
