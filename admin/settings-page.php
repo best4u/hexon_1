@@ -283,6 +283,8 @@
                 $sidebar_blocks = object_to_array($sidebar_blocks);
             }
             ?>
+
+
             <input id="block_ordering" type="hidden" value='<?php echo json_encode($sidebar_blocks); ?>' name="at_sidebar_blocks">
             <div class="row">
                 <div class="col-sm-6">
