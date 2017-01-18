@@ -6,11 +6,38 @@ tbody
 {
     background: #ffffff;
 }
-td
+#attr_page td
 {
     text-align: center;
     font-size: 12px;
 }
+.transparentColor
+{
+    border-bottom: none !important;
+    border-top: none !important;
+}
+#wpwrap
+{
+    font-size: 13px !important;
+    background: #ffffff !important;
+}
+#wpwrap input[type="text"]
+{
+    font-size: 13px !important;
+    height: 35px !important;
+
+}
+#wpwrap input[type="password"]
+{
+    font-size: 13px !important;
+    height: 35px !important;
+}
+#wpwrap select
+{
+    font-size: 13px !important;
+    height: 35px !important;
+}
+
 .atribute
 {
     background: #CCCCCC;

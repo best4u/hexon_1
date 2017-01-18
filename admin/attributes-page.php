@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" id="attr_page">
     <h1>Attributen</h1>
     <?php
     include_once(plugin_dir_path(__FILE__).'/core/attributtes_functions.php');
