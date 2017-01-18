@@ -35,6 +35,10 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_details_view_mode' );
 //    Detail page / sortable sidebar blocks
     register_setting( 'autotrack-settings-fields', 'at_sidebar_blocks' );
+//    Emails to receive the message
+    register_setting( 'autotrack-settings-fields', 'receiver_emails' );
+//    Social media
+    register_setting( 'autotrack-settings-fields', 'at_social_icons' );
 
 }
 

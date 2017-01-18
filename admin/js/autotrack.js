@@ -33,6 +33,78 @@ $(document).ready(function(){
 
     $( "#sortable_details" ).disableSelection();
 
+
+    $(document).on('click', '.erButton', function(){
+        container = $(this).closest('.eMailsRepeater');
+        last_row = container.find('.eRow:last').index();
+        this_row = $(this).parent().index();
+
+        if(this_row == last_row && this_row != 0){
+            console.log('last');
+
+                $(this).parent().remove();
+
+        }else{
+            console.log('not last');
+            this_line = $(this).parent();
+            new_row = this_line.clone();
+            new_row.find('input').val('');
+            new_row.insertAfter(this_line);
+
+        }
+    });
+
+
+    var custom_uploader;
+    $(document).on('click', '.uploadSocialIcon', function(e){
+        e.preventDefault();
+        click_elem = $(this);
+        this_row = click_elem.closest('.atSIRow');
+
+        //target = $('.wrap input[name="logo"]');
+        console.log('click');
+        //If the uploader object has already been created, reopen the dialog
+        if (custom_uploader) {
+            custom_uploader.open();
+            return;
+        }
+        //Extend the wp.media object
+        custom_uploader = wp.media.frames.file_frame = wp.media({
+            title: 'Choose Image',
+            button: {
+                text: 'Choose Image'
+            },
+            multiple: false
+        });
+        //When a file is selected, grab the URL and set it as the text field's value
+        custom_uploader.on('select', function() {
+            //console.log('heeelloo1');
+            attachment = custom_uploader.state().get('selection').first().toJSON();
+            //console.log('heeelloo2');
+            this_row.find('.iconHolder').html('<img src="'+attachment.url +'">');
+            $('#at_social_icons').val(build_socials());
+            //target.attr('value', attachment.url);
+            //target.attr('type', 'file');
+            //console.log(build_socials());
+        });
+        //Open the uploader dialog
+        custom_uploader.open();
+    });
+
+    function build_socials(){
+        socials = [];
+        $('.atSocialIcons .atSIRow').each(function(){
+            socials.push({
+                name: $(this).find('.atSIName').text(),
+                url:$(this).find('.atSIinput').val(),
+                icon_url: $(this).find('.iconHolder img').attr('src')
+            });
+        });
+        return JSON.stringify(socials);
+    }
+
+
+
     $('.lbSwither input[type="checkbox"]').switchButton({
         on_label: '',
         off_label: '',

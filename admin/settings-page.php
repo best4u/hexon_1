@@ -93,7 +93,7 @@
 
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
@@ -210,7 +210,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
@@ -229,7 +229,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
@@ -275,9 +275,6 @@
                     ]
 
                 ];
-                echo '<pre>';
-                echo json_encode($sidebar_blocks);
-                echo '</pre><div class="json"></div>';
             }else{
                 $sidebar_blocks = json_decode($sidebar_blocks);
                 $sidebar_blocks = object_to_array($sidebar_blocks);
@@ -303,11 +300,94 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
             <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>
+            <?php $receivers = get_option('receiver_emails'); ?>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="eMailsRepeater">
+                        <?php
+                        if (empty($receivers)): ?>
+                            <div class="eRow">
+                                <div class="erInput">
+                                    <input type="email" class="form-control" name="receiver_emails[]">
+                                </div>
+                                <div class="erButton"></div>
+                            </div>
+                            <?php
+                        else:
+                            foreach ($receivers as $receiver): ?>
+                                <div class="eRow">
+                                    <div class="erInput">
+                                        <input type="email" class="form-control" name="receiver_emails[]"
+                                               value="<?= $receiver ?>">
+                                    </div>
+                                    <div class="erButton"></div>
+                                </div>
+                            <?php endforeach; endif; ?>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>Geef hier de openingstijden in van bedrijf / locatie.</p>
+
+            <div class="geef">
+                <div class="gRow">
+                    <div class="gDay">Maandag</div>
+                    <div class="gOrar1">
+                        <input type="text" class="from" placeholder="Van..">
+                        <input type="text" class="to" placeholder="Tot ..">
+                        <div class="gButton"></div>
+                    </div>
+                    <div class="gOrar2">
+                        <input type="text" class="from" placeholder="Van..">
+                        <input type="text" class="to" placeholder="Tot ..">
+                        <div class="gButton"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>Geef hieronder per social media de locatie op, indien deze niet getoond moet worden laat het veld dan leeg.</p>
+            <?php $socials = get_option('at_social_icons');
+//            default socials
+//            [{"name":"Mail","url":"wordpress@best4u.nl"},{"name":"Facebook","url":"http://facebook.com"},{"name":"Linkedin","url":"http://linkedin.com"},{"name":"Twitter","url":"http://twitter.com"},{"name":"Google Plus","url":"http://plus.google.com"},{"name":"Pinterest","url":"http://pinterest.com"},{"name":"INstagram","url":"http://instagram.com"}]
+            ?>
+            <input type="hidden" name="at_social_icons" id="at_social_icons" value='<?=$socials ?>'>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="atSocialIcons">
+                        <?php $social_rows = json_decode($socials);
+                        foreach($social_rows as $row): ?>
+                            <div class="atSIRow">
+                                <div class="atSIName"><?=$row->name ?></div>
+                                <div class="atSIurl">
+                                    <input type="text" class="atSIinput form-control" value="<?=$row->url ?>">
+                                </div>
+                                <div class="smIcon">
+                                    <div class="iconHolder"><?php if(isset($row->icon_url)) echo '<img src="'.$row->icon_url.'" alt="'.$row->name.'">' ?></div>
+                                </div>
+                                <div class="smButton">
+                                    <button class="button uploadSocialIcon button-primary">Nieuwe afbeelding uploaden</button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
 

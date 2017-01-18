@@ -128,3 +128,116 @@ tbody
 #sortable_details li:last-child{
     border-bottom: none;
 }
+
+
+.eMailsRepeater{
+
+}
+.eRow{
+    display: block;
+    width: 100%;
+    float: left;
+    border: solid 1px #bbb;
+    margin-top: -1px;
+}
+.eRow .erButton{
+    background: #ddd url("../../images/add.png") no-repeat center;
+    background-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    width: 42px;
+}
+.eRow:last-child .erButton{
+    background: #ddd url("../../images/remove.png") no-repeat center;
+    background-size: 20px;
+}
+.eRow:first-child .erButton{
+    background: #ddd url("../../images/add.png") no-repeat center;
+    background-size: 20px;
+}
+.erInput{
+    float: left;
+    width: calc(100% - 42px);
+
+}
+
+.atSocialIcon{
+    width: 100%;
+}
+
+.erInput input{
+    border: 0;
+    box-shadow: none;
+}
+.erButton{
+    position: relative;
+    float: left;
+    background-color: #eee;
+    height: 42px;
+    width: 42px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.atSIRow{
+    float: left;
+    width: 100%;
+}
+.atSIName{
+    float: left;
+    width: 20%;
+    line-height: 50px;
+    text-align: center;
+    background-color: #eee;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.atSIurl{
+    float: left;
+    width: 50%;
+    border: solid 1px #bbb;
+    border-left: 0;
+    height: 52px;
+    margin-right: 10px;
+}
+#wpwrap .atSIurl input[type="text"]{
+    border: 0 !important;
+    box-shadow: none !important;
+    height: 50px !important;
+}
+.smIcon{
+    /*width: 50px;*/
+    /*max-width: 60px;*/
+    /*padding: 5px;*/
+    float: left;
+    box-sizing: content-box;
+}
+.smIcon .iconHolder{
+    border: solid 1px #bbb;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+.smIcon .iconHolder img{
+    position: relative;
+    top: 6%;
+    left: 6%;
+    width: 88%;
+    height: 88%;
+    object-fit: cover;
+}
+.smButton{
+    float: left;
+    width: 20%;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.atSIinput{
+    width: 100%;
+}

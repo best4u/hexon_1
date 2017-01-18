@@ -8,7 +8,7 @@ Author: Best4u
 Author URI: http://best4u.nl
 Text Domain: atBest4u
 */
-require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-config.php' );
+//require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-config.php' );
 add_action('admin_menu', 'autotrack_menu');
 
 function autotrack_menu() {
@@ -68,6 +68,9 @@ function load_custom_wp_admin_style($hook) {
     wp_enqueue_script( 'jquery-ui', plugins_url('admin/js/jquery-ui.min.js', __FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'swithc-button', plugins_url('admin/js/jquery.switchButton.js', __FILE__), array('jquery'), '', true );
 //    wp_enqueue_script( 'autotrack_admin_colorpicker_spectrum', plugins_url('admin/js/spectrum.js', __FILE__), array('jquery'), '', true ); //temporar deconectat, vedem ce canta IE
+
+    wp_enqueue_media();
+
 }
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
