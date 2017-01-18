@@ -9,10 +9,37 @@ tbody
 td
 {
     text-align: center;
+    font-size: 12px;
 }
 .atribute
 {
     background: #CCCCCC;
+}
+
+.transparentColor
+{
+    color: transparent;
+}
+
+.selectUnselect th
+{
+    border: none;
+}
+
+.selectUnselect td
+{
+    border-top: none !important;
+    border-bottom:none !important;
+}
+
+.filterFields select{
+    height: 28px !important;
+    font-size: 12px !important;
+}
+
+.filterFields input{
+    height: 28px !important;
+    font-size: 12px !important;
 }
 
 .fieldGroup{
