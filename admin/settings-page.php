@@ -137,7 +137,7 @@
             <div class="fieldGroupName">Homepage</div>
             <p>Welke advertenties dienen er op de home-page getoond worden?</p>
             <?php $at_home_cars = get_option('at_home_cars'); ?>
-            <div class="row">
+                <div class="row">
                 <div class="col-sm-2">
 
                     <label class="radio-inline">
