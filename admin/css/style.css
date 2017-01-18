@@ -14,3 +14,63 @@ td
 {
     background: #CCCCCC;
 }
+
+.fieldGroup{
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+}
+
+.fieldGroupName{
+    font-size: 28px;
+    line-height: normal;
+    margin-bottom: 20px;
+
+}
+
+.form-control{
+    height: 42px;
+}
+.shortDelimeter{
+    border-bottom: solid 1px #ccc;
+    margin: 20px 0;
+}
+.lbText{
+    float: left;
+    padding-left: 15px;
+}
+.lbIcon{
+    float: right;
+    padding: 0 6px;
+}
+.lbIcon img{
+    width: 30px;
+    opacity: 0.5;
+}
+
+.lbSwither{
+    float: right;
+    background-color: #fff;
+    padding: 6px 0;
+    border-right: solid 1px #bbb;
+    border-left: solid 1px #bbb;
+}
+#sortable_details {
+    border: solid 1px #bbb;
+    float: left;
+    width: 100%;
+}
+#sortable_details li{
+    box-sizing: content-box;
+    float: left;
+    width: 100%;
+    background-color: #ddd;
+    border: solid 1px #bbb;
+    margin: -1px -1px 0 -1px;
+    line-height: 45px;
+    /*padding: 10px 0;*/
+}
+
+#sortable_details li:last-child{
+    border-bottom: none;
+}
