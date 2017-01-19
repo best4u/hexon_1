@@ -104,6 +104,40 @@ $(document).ready(function(){
     }
 
 
+    //orar
+
+    function build_shedule(){
+        shedule = [];
+
+        $('.geef .gRow').each(function(){
+            shedule.push({
+                day: $(this).find('.gDay').text(),
+                time1: ($(this).find('.gOrar1 .from').val() && $(this).find('.gOrar1 .to').val()) ? {
+                    from:   $(this).find('.gOrar1 .from').val(),
+                    to:     $(this).find('.gOrar1 .to').val()
+                }: undefined,
+
+                time2: ($(this).find('.gOrar2 .from').val() && $(this).find('.gOrar2 .to').val()) ? {
+                    from:   $(this).find('.gOrar2 .from').val(),
+                    to:     $(this).find('.gOrar2 .to').val()
+                } : undefined
+            })
+        });
+        return shedule;
+    }
+    $(document).on('change, keypress, keyup', '.gRow input', function(){
+        $('#shedule').val(JSON.stringify(build_shedule()));
+        console.log('changes');
+    });
+
+    $(document).on('click', '.gOrar1 .gButton', function(){
+        $(this).closest('.gRow').find('.gOrar2').css('visibility', 'visible');
+    });
+
+    $(document).on('click', '.gOrar2 .gButton', function(){
+        $(this).siblings().val('');
+    });
+
 
     $('.lbSwither input[type="checkbox"]').switchButton({
         on_label: '',

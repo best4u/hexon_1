@@ -79,6 +79,7 @@ require_once('admin/core/db_create.php');
 register_activation_hook( __FILE__, 'drop_tables' );
 register_activation_hook( __FILE__, 'db_install' );
 register_activation_hook( __FILE__, 'insert_data_attr' );
+register_activation_hook( __FILE__, 'insert_data_settings' );
 
 
 

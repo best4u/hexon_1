@@ -39,6 +39,12 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'receiver_emails' );
 //    Social media
     register_setting( 'autotrack-settings-fields', 'at_social_icons' );
+//    Shedule
+    register_setting( 'autotrack-settings-fields', 'at_shedule' );
+//    contact information
+    register_setting( 'autotrack-settings-fields', 'at_contact_info' );
+//    thankyou text
+    register_setting( 'autotrack-settings-fields', 'at_thank_you_text' );
 
 }
 
@@ -70,4 +76,32 @@ function object_to_array($data)
         return $result;
     }
     return $data;
+}
+
+function insert_data_settings(){
+
+//  theme colors
+    add_option( 'at_font_color', '#444444' );
+    add_option( 'at_attribute_label', '#777777' );
+    add_option( 'at_attribute_value', '#444444');
+    add_option( 'at_header_color', '#5021ff' );
+    add_option( 'at_button_color', '#f7a404' );
+    add_option( 'at_price_color', '#ff0000' );
+//    home cars
+    add_option( 'at_home_cars', 'at_expensive_cars' );
+//    sort by
+    add_option( 'at_sort_by', 'at_sort_brand' );
+//    sort orientation
+    add_option( 'at_sort_by_orientation', 'at_sort_desc' );
+//    layout mode list / table
+    add_option( 'at_overview_layoutmode', 'at_layout_overview_list' );
+//    details mode : list / tabs
+    add_option( 'at_details_view_mode', 'at_details_view_tabs' );
+//    sidebar blocks
+    add_option( 'at_sidebar_blocks', '[{"name":"Contactformulier","state":"1"},{"name":"Contactinformatie","state":"1"},{"name":"Openingstijden","state":"1"},{"name":"Social Media Informatie","state":"0"}]' );
+    //    shedule
+    add_option('at_shedule', '[{"day":"Maandag"},{"day":"Dinsdag"},{"day":"Woensdag"},{"day":"Donderdag"},{"day":"Vrijdag"},{"day":"Zaterdag"},{"day":"Zondag"}]');
+//    social media icons
+    add_option( 'at_social_icons', '[{"name":"Mail","url":"wordpress@best4u.nl"},{"name":"Facebook","url":"http://facebook.com"},{"name":"Linkedin","url":"http://linkedin.com"},{"name":"Twitter","url":"http://twitter.com"},{"name":"Google Plus","url":"http://plus.google.com"},{"name":"Pinterest","url":"http://pinterest.com"},{"name":"Instagram","url":"http://instagram.com"}]' );
+
 }

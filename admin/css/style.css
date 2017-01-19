@@ -184,6 +184,7 @@ tbody
 .atSIRow{
     float: left;
     width: 100%;
+    margin-bottom: 3px;
 }
 .atSIName{
     float: left;
@@ -240,4 +241,56 @@ tbody
 
 .atSIinput{
     width: 100%;
+}
+.geef{
+    width: 100%;
+    float: left;
+}
+.gRow{
+    float: left;
+    width: 100%;
+    line-height: 42px;
+
+
+}
+#wpwrap .gRow input[type="text"]{
+    width: 100px;
+    height: 44px !important;
+    box-shadow: none !important;
+    border-color: #bbb !important;
+}
+.gDay{
+    background-color: #eee;
+    float: left;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    width: 160px;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    border-right: 0;
+}
+.gOrar1, .gOrar2{
+    float: left;
+}
+.gOrar2{
+    visibility: hidden;
+    margin-left: -1px;
+}
+.gButton{
+    float: right;
+    cursor: pointer;
+    height: 44px;
+    background-color: #eee;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    width: 40px;
+    text-align: center;
+    margin-left: -1px;
+}
+.gButton img{
+    vertical-align: top;
+    margin: 10px auto 0;
+    width: 20px;
+
 }
