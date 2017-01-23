@@ -53,21 +53,24 @@
             <div class="fieldGroupName">Opmaak</div>
             <p>Welk template dient gebruikt te worden?</p>
 
-            <?php $theme = get_option('at_theme'); ?>
+            <?php
+            $theme = wp_get_theme();
+            $theme = $theme->get('Name');
+            ?>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme1" class="disabled" disabled <?php echo $theme == 'theme1' ? 'checked="checked"' : '' ?>> Template naam 1.
+                        <input type="radio" name="at_theme" value="theme1" class="disabled" disabled <?php echo $theme == 'Theme1' ? 'checked="checked"' : '' ?>> Template naam 1.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme2" class="disabled" disabled <?php echo $theme == 'theme2' ? 'checked="checked"' : '' ?>> Template naam 2.
+                        <input type="radio" name="at_theme" value="theme2" class="disabled" disabled <?php echo $theme == 'Theme2' ? 'checked="checked"' : '' ?>> Template naam 2.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme3" class="disabled" disabled <?php echo $theme == 'theme3' ? 'checked="checked"' : '' ?>> Template naam 3.
+                        <input type="radio" name="at_theme" value="theme3" class="disabled" disabled <?php echo $theme == 'Theme3' ? 'checked="checked"' : '' ?>> Template naam 3.
                     </label>
                 </div>
             </div>
@@ -75,17 +78,17 @@
                 <div class="col-sm-2">
 
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme4" class="disabled" disabled <?php echo $theme == 'theme4' ? 'checked="checked"' : '' ?>> Template naam 4.
+                        <input type="radio" name="at_theme" value="theme4" class="disabled" disabled <?php echo $theme == 'Theme4' ? 'checked="checked"' : '' ?>> Template naam 4.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme5" class="disabled" disabled <?php echo $theme == 'theme5' ? 'checked="checked"' : '' ?>> Template naam 5.
+                        <input type="radio" name="at_theme" value="theme5" class="disabled" disabled <?php echo $theme == 'Theme5' ? 'checked="checked"' : '' ?>> Template naam 5.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme6" class="disabled" disabled <?php echo $theme == 'theme6' ? 'checked="checked"' : '' ?>> Template naam 6.
+                        <input type="radio" name="at_theme" value="theme6" class="disabled" disabled <?php echo $theme == 'Theme6' ? 'checked="checked"' : '' ?>> Template naam 6.
                     </label>
                 </div>
             </div>
@@ -93,7 +96,7 @@
 
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
@@ -136,7 +139,9 @@
         <div class="fieldGroup">
             <div class="fieldGroupName">Homepage</div>
             <p>Welke advertenties dienen er op de home-page getoond worden?</p>
-            <?php $at_home_cars = get_option('at_home_cars'); ?>
+            <?php $at_home_cars = get_option('at_home_cars');
+
+            ?>
             <div class="row">
                 <div class="col-sm-2">
 
@@ -160,7 +165,8 @@
         <div class="fieldGroup">
             <div class="fieldGroupName">Occasions</div>
             <p>Hoe dienen de occasions standaart gesorteerd te zijn? Kies een waarde en vervolgens van hoog naar laag of laag naar hoog.</p>
-            <?php $at_sort_by  = get_option('at_sort_by');  ?>
+            <?php $at_sort_by  = get_option('at_sort_by');
+            ?>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
@@ -191,12 +197,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
             <p>Van laag naar hoog of hoog naar laag:</p>
-            <?php $at_sort_by_orientation = get_option('at_sort_by_orientation');  ?>
+            <?php $at_sort_by_orientation = get_option('at_sort_by_orientation');
+            ?>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
@@ -210,13 +217,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
             <p>Hoe moet het overzicht weergegeven worden aan de bezoekers? Als eenlijst of juist als tabel?</p>
             <div class="row">
-                <?php $at_overview_layoutmode = get_option('at_overview_layoutmode') ?>
+                <?php $at_overview_layoutmode = get_option('at_overview_layoutmode');
+                ?>
                 <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="at_overview_layoutmode" value="at_layout_overview_list" <?php echo $at_overview_layoutmode == 'at_layout_overview_list' ? 'checked="checked"' : '' ?>> List.
@@ -229,13 +237,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
             <p>Geef aan hoe de volledige van de occasion getoond dienen te worden aan de bezoeker.</p>
             <div class="row">
-                <?php $at_details_view_mode = get_option('at_details_view_mode') ?>
+                <?php $at_details_view_mode = get_option('at_details_view_mode');
+                ?>
                 <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="at_details_view_mode" value="at_details_view_list" <?php echo $at_details_view_mode == 'at_details_view_list' ? 'checked="checked"' : '' ?>> Als een grote lijst; one-page.
@@ -255,33 +264,8 @@
             <p>Beheer de volgorde van het contactformulier, de social media informatie en contactinformatie of schakel deze desgewenst uit.</p>
             <?php
             $sidebar_blocks = get_option('at_sidebar_blocks');
-            if(!$sidebar_blocks){
-                $sidebar_blocks = [
-                    0=>[
-                        'name'  => 'Contactformulier',
-                        'state' => 1
-                    ],
-                    1=>[
-                        'name'  => 'Social Media Informatie',
-                        'state' => 1
-                    ],
-                    2=>[
-                        'name'  => 'Contactinformatie',
-                        'state' => 1
-                    ],
-                    3=>[
-                        'name'  => 'Openingstijden',
-                        'state' => 0
-                    ]
-
-                ];
-                echo '<pre>';
-                echo json_encode($sidebar_blocks);
-                echo '</pre><div class="json"></div>';
-            }else{
-                $sidebar_blocks = json_decode($sidebar_blocks);
-                $sidebar_blocks = object_to_array($sidebar_blocks);
-            }
+            $sidebar_blocks = json_decode($sidebar_blocks);
+            $sidebar_blocks = object_to_array($sidebar_blocks);
             ?>
 
 
@@ -303,11 +287,136 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
             <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>
+            <?php $receivers = get_option('receiver_emails'); ?>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="eMailsRepeater">
+                        <?php
+                        if (empty($receivers)): ?>
+                            <div class="eRow">
+                                <div class="erInput">
+                                    <input type="email" class="form-control" name="receiver_emails[]">
+                                </div>
+                                <div class="erButton"></div>
+                            </div>
+                            <?php
+                        else:
+                            foreach ($receivers as $receiver): ?>
+                                <div class="eRow">
+                                    <div class="erInput">
+                                        <input type="email" class="form-control" name="receiver_emails[]"
+                                               value="<?= $receiver ?>">
+                                    </div>
+                                    <div class="erButton"></div>
+                                </div>
+                            <?php endforeach; endif; ?>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>Geef hier de openingstijden in van bedrijf / locatie.</p>
+            <?php $shedule = get_option('at_shedule');
+            ?>
+            <input type="hidden" id="shedule" value='<?=$shedule ?>' name="at_shedule">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="geef">
+                        <?php
+                        $shedule_days = json_decode($shedule);
+                        foreach($shedule_days as $day): ?>
+                        <div class="gRow">
+                            <div class="gDay"><?=$day->day ?></div>
+                            <div class="gOrar1">
+                                <input type="text" class="from" placeholder="Van.." value="<?=isset($day->time1)? $day->time1->from : '' ?>">
+                                <input type="text" class="to" placeholder="Tot .." value="<?=isset($day->time1)? $day->time1->to : '' ?>">
+                                <div class="gButton">
+                                    <img src="<?php echo plugins_url('/autotrack/images/add.png') ?>" alt="add">
+                                </div>
+                            </div>
+                            <div class="gOrar2" <?php echo isset($day->time2) ? 'style="visibility: visible"' : '' ?> >
+                                <input type="text" class="from" placeholder="Van.." value="<?=isset($day->time2)? $day->time2->from : '' ?>">
+                                <input type="text" class="to" placeholder="Tot .." value="<?=isset($day->time2)? $day->time2->to : '' ?>">
+                                <div class="gButton">
+                                    <img src="<?php echo plugins_url('/autotrack/images/remove.png') ?>" alt="remove">
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>Geef hieronder per social media de locatie op, indien deze niet getoond moet worden laat het veld dan leeg.</p>
+            <?php $socials = get_option('at_social_icons');
+            ?>
+            <input type="hidden" name="at_social_icons" id="at_social_icons" value='<?=$socials ?>'>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="atSocialIcons">
+                        <?php $social_rows = json_decode($socials);
+                        foreach($social_rows as $row): ?>
+                            <div class="atSIRow">
+                                <div class="atSIName"><?=$row->name ?></div>
+                                <div class="atSIurl">
+                                    <input type="text" class="atSIinput form-control" value="<?=$row->url ?>">
+                                </div>
+                                <div class="smIcon">
+                                    <div class="iconHolder"><?php if(isset($row->icon_url)) echo '<img src="'.$row->icon_url.'" alt="'.$row->name.'">' ?></div>
+                                </div>
+                                <div class="smButton">
+                                    <button class="button uploadSocialIcon button-primary">Nieuwe afbeelding uploaden</button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>In get gebied hieronder is de contactinformatie te beheren.</p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php $contact_info = get_option('at_contact_info') ?>
+                    <?php wp_editor($contact_info, 'contcat_info', array(
+                        'textarea_name' => 'at_contact_info',
+                        'editor_height' => 150
+                    )) ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+            <p>Geef hier de tekst op van de bedankpagina, de URL hiervan kan niet worden gewijzigd.</p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php $thank_you_text = get_option('at_thank_you_text') ?>
+                    <?php wp_editor($thank_you_text, 'thank_you_text', array(
+                        'textarea_name' => 'at_thank_you_text',
+                        'editor_height' => 150
+                    )) ?>
+                </div>
+            </div>
+
+
         </div>
 
 
