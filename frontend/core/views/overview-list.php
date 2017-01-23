@@ -1,7 +1,7 @@
 <?php
 //
 //echo "<pre>";
-//var_dump($all_occasions);
+//var_dump($number_of_page);
 //echo "</pre>";
 //?>
 <div class="overview_gridWrapp">
@@ -59,39 +59,18 @@
                                             <div class="carOverallDetails">
                                                 <div class="leftPartDetail">
                                                     <?php
-                                                    foreach($ocassions_obj->get_home_attr($occasion) as $key => $option)
+                                                    foreach($ocassions_obj->get_overview_attr($occasion) as $key => $option)
                                                     {
                                                         foreach($option as $type =>  $car_option)
                                                         {
                                                             ?>
-                                                            <p><?php echo $type; ?>:</p>
+                                                            <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
                                                             <?php
                                                         }
-
                                                     }
                                                     ?>
                                                 </div>
-                                                <div class="rightPartDetail">
-                                                    <?php
-                                                    foreach($ocassions_obj->get_home_attr($occasion) as $key => $option)
-                                                    {
-                                                        foreach($option as $type =>  $car_option)
-                                                        {
-                                                            $timestamp = strtotime($car_option);
-                                                            if($timestamp){
-                                                                ?>
-                                                                <p><?php echo date('d/m/Y',strtotime($car_option)); ?></p>
-                                                                <?php
-                                                            }else{
-                                                                ?>
-                                                                <p><?php echo $car_option ?></p>
-                                                                <?php
-                                                            }
-                                                        }
 
-                                                    }
-                                                    ?>
-                                                </div>
                                             </div>
 
                                             <div class="rightButtonandLogo">
@@ -121,12 +100,42 @@
                 <div class="bottomNPaginationWrapp">
                     <div class="centerDiv">
                         <ul class="ulPagination">
-                            <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
-                            <li class="activePage"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li class="nextPage"><a href="#">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+
+                            <?php
+                            if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
+                                ?>
+                                <li class="prevPage"><a href="?pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                <?php
+                            }else{
+
+                                ?>
+                                <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                <?php
+                            }
+                            if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
+                                ?>
+                                <li><a href="?pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
+                                <?php
+                            }
+                            foreach($pagination as $page){
+                            ?>
+                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+                            <?php
+                            }
+                            if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
+                                ?>
+                                <li><a href="?pagina=<?php echo $_GET['pagina']+3; ?>">...</a></li>
+                                <li class="nextPage"><a href="?pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+
+                                <?php
+                            }elseif(!isset($_GET['pagina'])){
+                                ?>
+                                <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
+                                <li class="nextPage"><a href="?pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                <?php
+                            }
+                            ?>
+
                         </ul>
                     </div>
                 </div>

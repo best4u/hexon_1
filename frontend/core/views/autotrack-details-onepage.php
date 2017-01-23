@@ -1,5 +1,5 @@
 <pre>
-    <?php var_dump($ocassion); ?>
+<!--    --><?php //var_dump($ocassion); ?>
 </pre>
         <div class="overview_gridWrapp">
 			<div class="breadCrumbWrapp">
@@ -42,34 +42,14 @@
         							<div class="detailDesc">
         								<div class="leftDetailDesc">
                                             <?php
+
                                             foreach($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $option)
                                             {
                                                 foreach($option as $type =>  $car_option)
                                                 {
                                                     ?>
-                                                    <p><?php echo $type; ?>:</p>
+                                                    <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
                                                     <?php
-                                                }
-
-                                            }
-                                            ?>
-        								</div>
-        								<div class="rightDetailDesc">
-                                            <?php
-                                            foreach($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $option)
-                                            {
-                                                foreach($option as $type =>  $car_option)
-                                                {
-                                                    $timestamp = strtotime($car_option);
-                                                    if($timestamp){
-                                                        ?>
-                                                        <p><?php echo date('d/m/Y',strtotime($car_option)); ?></p>
-                                                        <?php
-                                                    }else{
-                                                        ?>
-                                                        <p><?php echo $car_option ?></p>
-                                                        <?php
-                                                    }
                                                 }
 
                                             }
@@ -86,36 +66,12 @@
 								</div>
 								<div class="descOms commDesc">
                                         <?php
+                                        echo str_replace(".",".<br>",$ocassion->mededelingen);
                                         $description = explode(".",$ocassion->mededelingen);
-
-                                       foreach($description as $text){
-                                           ?>
-                                               <p>
-                                                    <?php
-                                                    if(strpos($text,"##") > 0){
-                                                        $options = explode("*",$text);
-                                                        foreach($options as $option){
-                                                            ?>
-                                                                <p>
-                                                                    * <?php echo $option; ?>
-                                                                </p>
-                                                            <?php
-                                                        }
-
-                                                    }else{
-                                                        echo $text;
-                                                    }
-
-                                                    ?>.
-                                                </p>
-                                           <?php
-                                       }
                                         ?>
 								</div>
 							</div>
 
-
-							
 							<hr class="lineAll">
 
 							<div class="optionsAccesories">
@@ -124,79 +80,126 @@
 								</div>
 
 								<div class="descOptAcc">
-									<div class="optieAccItem">
-										<div class="titleOptieAcc commTitleBlue">
-											Veiligheid
-										</div>
+                                <!--    Veiligheid category-->
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",$ocassion);
+                                    if(count($options_accessories) > 0){
+                                        ?>
+                                    <div class="optieAccItem">
+                                        <div class="titleOptieAcc commTitleBlue">
+                                            Veiligheid
+                                        </div>
+                                        <ul class="commList commDesc">
+                                            <?php
+                                            foreach($options_accessories as $option){
+                                                ?>
+                                                <li><?php echo $option; ?></li>
+                                                <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    </div>
 
-										<ul class="commList commDesc">
-											<li>ABS</li>
-											<li>Airbags</li>
-											<li>Alarmsysteem</li>
-											<li>Centrale deurvergrendeling</li>
-											<li>Getint glas</li>
-											<li>Startonderbreker</li>
-											<li>Stuurbekrachtiging</li>
-											<li>Toerenteller</li>
-										</ul>
+                                        <?php
+                                    }
+                                    ?>
 
-										<div class="titleOptieAcc commTitleBlue">
-											Audio / Telefonie
-										</div>
+                                <!--       Exterieur category      -->
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a",$ocassion);
+                                    if(count($options_accessories) > 0){
+                                        ?>
+                                        <div class="optieAccItem">
+                                            <div class="titleOptieAcc commTitleBlue">
+                                                Exterieur
+                                            </div>
+                                            <ul class="commList commDesc">
+                                                <?php
+                                                foreach($options_accessories as $option){
+                                                    ?>
+                                                    <li><?php echo $option; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
 
-										<ul class="commList commDesc">
-											<li>Audio installatie MP3</li>
-											<li>Audio installatie radio CD</li>
-											<li>Radio-voorbereiding</li>
-										</ul>
-									</div>
+                                        <?php
+                                    }
+                                    ?>
 
-									<div class="optieAccItem">
-										<div class="titleOptieAcc commTitleBlue">
-											Exterieur
-										</div>
+                                    <!--       Veiligheid en Techniek category      -->
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92",$ocassion);
+                                    if(count($options_accessories) > 0){
+                                        ?>
+                                        <div class="optieAccItem">
+                                            <div class="titleOptieAcc commTitleBlue">
+                                                Veiligheid en Techniek
+                                            </div>
+                                            <ul class="commList commDesc">
+                                                <?php
+                                                foreach($options_accessories as $option){
+                                                    ?>
+                                                    <li><?php echo $option; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
 
-										<ul class="commList commDesc">
-											<li>ABS</li>
-											<li>Airbags</li>
-											<li>Alarmsysteem</li>
-											<li>Centrale deurvergrendeling</li>
-											<li>Getint glas</li>
-											<li>Startonderbreker</li>
-											<li>Stuurbekrachtiging</li>
-											<li>Toerenteller</li>
-										</ul>
+                                        <?php
+                                    }
+                                    ?>
 
-										<div class="titleOptieAcc commTitleBlue">
-											Verlichting
-										</div>
+                                    <!--       Audio / Telefonie category      -->
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",$ocassion);
+                                    if(count($options_accessories) > 0){
+                                        ?>
+                                        <div class="optieAccItem">
+                                            <div class="titleOptieAcc commTitleBlue">
+                                                Audio / Telefonie
+                                            </div>
+                                            <ul class="commList commDesc">
+                                                <?php
+                                                foreach($options_accessories as $option){
+                                                    ?>
+                                                    <li><?php echo $option; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
 
-										<ul class="commList commDesc">
-											<li>Xenon Verlichting</li>
-											<li>Derde remlicht</li>
-											<li>Ledverlichting voor en achter</li>
-										</ul>
-									</div>
+                                        <?php
+                                    }
+                                    ?>
 
-									<div class="optieAccItem">
-										<div class="titleOptieAcc commTitleBlue">
-											Veiligheid en Techniek
-										</div>
+                                    <!--       Interieur en Comfort      -->
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",$ocassion);
+                                    if(count($options_accessories) > 0){
+                                        ?>
+                                        <div class="optieAccItem">
+                                            <div class="titleOptieAcc commTitleBlue">
+                                                Interieur en Comfort
+                                            </div>
+                                            <ul class="commList commDesc">
+                                                <?php
+                                                foreach($options_accessories as $option){
+                                                    ?>
+                                                    <li><?php echo $option; ?></li>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </ul>
+                                        </div>
 
-										<ul class="commList commDesc">
-											<li>Airbags Bestuurder en Passagier</li>
-											<li>Airbags voor en side</li>
-											<li>Alarmsysteem</li>
-											<li>Alarmsysteem 1</li>
-											<li>Antiblokkeersysteem (ABS)</li>
-											<li>Centrale deurvergrendeling met afstandsbediening</li>
-											<li>Getint glas</li>
-											<li>Start / stop systeem</li>
-											<li>Startblokkering</li>
-											<li>Stuurbekrachting</li>
-										</ul>
+                                        <?php
+                                    }
+                                    ?>
 
-									</div>
 								</div>
 							</div>
 
@@ -206,285 +209,82 @@
 								<div class="titleSpecificaties commTitle26">
 									Specificaties
 								</div>
+                                <div class="descSpecificaties">
+                                    <div class="algemenTitle commTitleBlue">
 
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Algemeen
-									</div>
+                                    </div>
 
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-											<p>Transmissie</p>
-											<p>Aantal versnellingen</p>
-											<p>Aantal deuren</p>
-											<p>Brandstof</p>
-											<p>Soort voertuig</p>
-											<p>Aantal zitplaatsen</p>
-											<p>Exterieur kleur</p>
-										</div>
+                                    <div class="descAlgemen commDesc">
+                                        <div class="commLeftSpecific">
+                                <?php
+                                $category = "";
+                                foreach($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
 
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-											<p>Handmatig</p>
-											<p>5</p>
-											<p>5</p>
-											<p>Bezine</p>
-											<p>Personenauto</p>
-											<p>4</p>
-											<p>Metallic Ultra Blue</p>
-										</div>
-									</div>
+                                            foreach($options as $key => $option)
+                                            {
+                                                if($key != $category){
+                                                $category = $key;
+                                                ?>
+                                                        </div>
+                                                    </div>
 
-									<hr class="lineAll">
-								</div>
+                                                    <hr class="lineAll">
+                                                </div>
+                                                <div class="descSpecificaties">
+                                                    <div class="algemenTitle commTitleBlue">
+                                                        <?php
+                                                        $spited_title = preg_split('/(?<=\\w)(?=[A-Z])/', $category);
+                                                        $count = 0;
+                                                        foreach($spited_title as $title){
+                                                            if($count == 0){
+                                                                if($title == "geschiedenis"){
+                                                                    echo "Geschiedenis van deze auto";
+                                                                }else{
+                                                                    echo ucfirst($title)." ";
+                                                                }
+                                                            }else{
+                                                                echo strtolower($title)." ";
+                                                            }
 
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Geschiedenis van deze auto
-									</div>
+                                                            $count++;
+                                                        }
 
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-											<p>Transmissie</p>
-											<p>Aantal versnellingen</p>
-											<p>Aantal deuren</p>
-											<p>Brandstof</p>
-											<p>Soort voertuig</p>
-											<p>Aantal zitplaatsen</p>
-											<p>Exterieur kleur</p>
-										</div>
+                                                        ?>
+                                                    </div>
 
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-											<p>Handmatig</p>
-											<p>5</p>
-											<p>5</p>
-											<p>Bezine</p>
-											<p>Personenauto</p>
-											<p>4</p>
-											<p>Metallic Ultra Blue</p>
-										</div>
-									</div>
+                                                    <div class="descAlgemen commDesc">
+                                                        <div class="commLeftSpecific">
 
-									<hr class="lineAll">
-								</div>
+                                                            <?php
+                                                }
+                                                foreach($option as $type =>  $car_option)
+                                                {
+                                                    ?>
+                                                   <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                   <?php
+                                                }
+                                            }
+                                }
 
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Fabrieksgarantie
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-										</div>
-									</div>
-
-									<hr class="lineAll">
-								</div>
-
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Maten en gewichten
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-											<p>Transmissie</p>
-											<p>Aantal versnellingen</p>
-											<p>Aantal deuren</p>
-											<p>Brandstof</p>
-											<p>Soort voertuig</p>
-											<p>Aantal zitplaatsen</p>
-											<p>Exterieur kleur</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-											<p>Handmatig</p>
-											<p>5</p>
-											<p>5</p>
-											<p>Bezine</p>
-											<p>Personenauto</p>
-											<p>4</p>
-											<p>Metallic Ultra Blue</p>
-										</div>
-									</div>
-
-									<hr class="lineAll">
-								</div>
-
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Mileu
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-										</div>
-									</div>
-
-									<hr class="lineAll">
-								</div>
-
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Motor
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-											<p>Transmissie</p>
-											<p>Aantal versnellingen</p>
-											<p>Aantal deuren</p>
-											<p>Brandstof</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-											<p>Handmatig</p>
-											<p>5</p>
-											<p>5</p>
-											<p>Bezine</p>
-										</div>
-									</div>
-
-									<hr class="lineAll">
-								</div>
-
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Motor
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-										</div>
-									</div>
-
-									<hr class="lineAll">
-								</div>
-
-								<div class="descSpecificaties">
-									<div class="algemenTitle commTitleBlue">
-										Onderstel
-									</div>
-
-									<div class="descAlgemen commDesc">
-										<div class="commLeftSpecific">
-											<p>Kenteken</p>
-											<p>Merk</p>
-											<p>Model</p>
-											<p>Uitvoering</p>
-											<p>Carrosserievorm</p>
-											<p>Transmissie</p>
-											<p>Aantal versnellingen</p>
-											<p>Aantal deuren</p>
-										</div>
-
-										<div class="commRightSpecific">
-											<p>01-PVK-2</p>
-											<p>Volvo</p>
-											<p>R-Design</p>
-											<p>122pk 6-speed handgeschakeld</p>
-											<p>Hatchback</p>
-											<p>Handmatig</p>
-											<p>5</p>
-											<p>5</p>
-										</div>
-									</div>
-								</div>
+                                ?>
 							</div>
 
+                        <?php
+                        if(count($ocassion->algemeen->videoUrls) > 0){
+                            ?>
+                            <div class="videoPart">
+                                <div class="titleVideo commTitle26">
+                                    Video
+                                </div>
+                                <div class="desvVideo commDesc">
+                                    <iframe width="560" height="315" src="<?php echo $ocassion->algemeen->videoUrls[0] ?>" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <?php
+                        }
 
-						<div class="garantiePart">
-							<div class="titleOms commTitle26">
-								Garanties
-							</div>
-							<div class="descOms commDesc">
-								<ul class="commList commDesc">
-									<li>AutoPass</li>
-									<li>Onderhoudsboekjes</li>
-								</ul>
-							</div>
-						</div>
-						<hr class="lineAll"> 
-
-						<div class="videoPart">
-							<div class="titleVideo commTitle26">
-								Video
-							</div>
-							<div class="desvVideo commDesc">
-								<iframe width="560" height="315" src="https://www.youtube.com/embed/nh0000VayrA" frameborder="0" allowfullscreen></iframe>
-							</div>
-						</div>
-						<hr class="lineAll"> 
-
-
+                        ?>
+						<hr class="lineAll">
 						<div class="contactFormBottom commForm">
 							<div class="titleOms commTitle26">
 								Je eigen auto inruilen
@@ -496,7 +296,7 @@
 
 								<form action="" class="bottomForm">
 									<div class="plate">
-										<img src="img/plate.png" alt="">
+                                        <img src="<?php echo plugins_url("img/plate.png",__FILE__) ?>" alt="">
 									</div>
 									<p>
 										<label for="km">Kilometerstand</label>
@@ -528,14 +328,11 @@
 								</form>
 							</div>
 						</div>
-						
-
 	        			</div>
 	        		</div>
-
-
-
-
+                    </div>
+                </div>
+            </div>
 
 
 
