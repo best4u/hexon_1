@@ -164,29 +164,29 @@
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="at_sort_price" <?php echo $at_sort_by == 'at_sort_price' ? 'checked="checked"' : '' ?>> Prijs.
+                        <input type="radio" name="at_sort_by" value="prijs" <?php echo $at_sort_by == 'prijs' ? 'checked="checked"' : '' ?>> Prijs.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="at_sort_brand" <?php echo $at_sort_by == 'at_sort_brand' ? 'checked="checked"' : '' ?>> Merk, Model, Uitvoering.
+                        <input type="radio" name="at_sort_by" value="merkModelUitvoering" <?php echo $at_sort_by == 'merkModelUitvoering' ? 'checked="checked"' : '' ?>> Merk, Model, Uitvoering.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="at_sort_mileage" <?php echo $at_sort_by == 'at_sort_mileage' ? 'checked="checked"' : '' ?>> Kilometerstand.
+                        <input type="radio" name="at_sort_by" value="kilometerstand" <?php echo $at_sort_by == 'kilometerstand' ? 'checked="checked"' : '' ?>> Kilometerstand.
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="at_sort_publish" <?php echo $at_sort_by == 'at_sort_publish' ? 'checked="checked"' : '' ?>> Publicatiedatum.
+                        <input type="radio" name="at_sort_by" value="datumGeplaatst" <?php echo $at_sort_by == 'datumGeplaatst' ? 'checked="checked"' : '' ?>> Publicatiedatum.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="at_sort_year" <?php echo $at_sort_by == 'at_sort_year' ? 'checked="checked"' : '' ?>> Bouwjaar.
+                        <input type="radio" name="at_sort_by" value="bouwjaar" <?php echo $at_sort_by == 'bouwjaar' ? 'checked="checked"' : '' ?>> Bouwjaar.
                     </label>
                 </div>
             </div>
@@ -200,12 +200,12 @@
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by_orientation" value="at_sort_asc" <?php echo $at_sort_by_orientation == 'at_sort_asc' ? 'checked="checked"' : '' ?>> Laag naar hoog.
+                        <input type="radio" name="at_sort_by_orientation" value="asc" <?php echo $at_sort_by_orientation == 'asc' ? 'checked="checked"' : '' ?>> Laag naar hoog.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by_orientation" value="at_sort_desc" <?php echo $at_sort_by_orientation == 'at_sort_desc' ? 'checked="checked"' : '' ?>> Hoog naar laag.
+                        <input type="radio" name="at_sort_by_orientation" value="desc" <?php echo $at_sort_by_orientation == 'desc' ? 'checked="checked"' : '' ?>> Hoog naar laag.
                     </label>
                 </div>
             </div>

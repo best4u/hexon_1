@@ -21,4 +21,9 @@ $(document).ready(function(){
 			'max': 100
 		}
 	});
+
+    $("#sortSelect").change(function(){
+        console.log("add");
+        $("#sortFilter").submit();
+    });
 });

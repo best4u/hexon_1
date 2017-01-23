@@ -1,7 +1,7 @@
 <?php
 //
 //echo "<pre>";
-//var_dump($number_of_page);
+//var_dump($_SERVER['QUERY_STRING']);
 //echo "</pre>";
 //?>
 <div class="overview_gridWrapp">
@@ -22,24 +22,29 @@
                     </div>
 
                     <div class="selectorB4uAuto">
-                        <form action="">
-                            <select name="name" id="#" class="selectCustom">
-                                <option value="volvo">Sorteren op...</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                        <form action="" method="GET" id="sortFilter">
+                            <select name="sort" id="sortSelect" class="selectCustom">
+                                <option value>Sorteren op...</option>
+                                <option value="prijs" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'prijs' ? 'selected' : '' ?>>Prijs.</option>
+                                <option value="merkModelUitvoering" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'merkModelUitvoering' ? 'selected' : '' ?>>Merk, Model, Uitvoering.</option>
+                                <option value="kilometerstand" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'kilometerstand' ? 'selected' : '' ?>>Kilometerstand.</option>
+                                <option value="datumGeplaatst" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'datumGeplaatst' ? 'selected' : '' ?>>Publicatiedatum.</option>
+                                <option value="at_sort_by" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'at_sort_by' ? 'selected' : '' ?>>Bouwjaar.</option>
+
                             </select>
                         </form>
+
                     </div>
                 </div>
 
                 <div class="carsContentLeft listType">
+
                     <?php
                         foreach($all_occasions->items as $occasion){
                            ?>
 
                             <div class="caritemB4uList">
-                                <a href="#">
+                                <a href="?overview=<?php echo $occasion->advertentieId ?>">
                                     <div class="imgBlock">
                                         <div class="imgTable">
                                             <div class="imgTableCell">
@@ -104,7 +109,7 @@
                             <?php
                             if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
                                 ?>
-                                <li class="prevPage"><a href="?pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                <li class="prevPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
                                 <?php
                             }else{
 
@@ -114,24 +119,24 @@
                             }
                             if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
                                 ?>
-                                <li><a href="?pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
+                                <li><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
                                 <?php
                             }
                             foreach($pagination as $page){
                             ?>
-                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
                             <?php
                             }
                             if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
                                 ?>
                                 <li><a href="?pagina=<?php echo $_GET['pagina']+3; ?>">...</a></li>
-                                <li class="nextPage"><a href="?pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                <li class="nextPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
 
                                 <?php
                             }elseif(!isset($_GET['pagina'])){
                                 ?>
                                 <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
-                                <li class="nextPage"><a href="?pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                <li class="nextPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
                                 <?php
                             }
                             ?>

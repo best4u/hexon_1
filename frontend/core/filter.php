@@ -28,8 +28,22 @@ class Filter{
         return $result;
     }
 
+    function orderBy(){
+        $sort_query = "";
+        $sort_by = get_option("at_sort_by");
+        $order = get_option("at_sort_by_orientation");
+        if(isset($_GET['sort'])){
+            $sort_query = "&sort%5B".$_GET['sort']."%5D=".$order."";
+        }else{
+            $sort_query = "&sort%5B".$sort_by."%5D=".$order."";
+        }
+        return $sort_query;
+    }
+
     function get_occasions($dealerId,$connection,$page,$perPage){
-        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.'');
+
+        $sort_query = $this->orderBy();
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.'');
         return $all_occasions;
     }
 }
