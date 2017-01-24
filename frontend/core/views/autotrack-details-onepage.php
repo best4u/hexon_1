@@ -1,5 +1,5 @@
 <pre>
-    <?php var_dump($ocassion); ?>
+    <?php //var_dump($ocassion); ?>
 </pre>
         <div class="overview_gridWrapp">
 			<div class="breadCrumbWrapp">
@@ -48,7 +48,7 @@
                                                 foreach($option as $type =>  $car_option)
                                                 {
                                                     ?>
-                                                    <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                    <p><span class="leftType"><?php echo $type; ?>: </span> <span class="rightOption"><?php echo $car_option; ?></span></p>
                                                     <?php
                                                 }
 
@@ -253,14 +253,14 @@
                                                     </div>
 
                                                     <div class="descAlgemen commDesc">
-                                                        <div class="commLeftSpecific">
+                                                        <div class="commLeftSpecific between">
 
                                                             <?php
                                                 }
                                                 foreach($option as $type =>  $car_option)
                                                 {
                                                     ?>
-                                                   <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                   <p> <span class="leftDescSpan"><?php echo $type; ?>: </span> <span class="rightDescSpan"><?php echo $car_option; ?></span></p>
                                                    <?php
                                                 }
                                             }
@@ -322,7 +322,6 @@
 									<p>
 										<textarea rows="10" cols="80" placeholder="Geef een korte beschrijving van de staat van de auto"></textarea>
 									</p>
-									<hr class="lineAll"> 
 
 									<a href="#" class="button_at1">inruilvoorstel aanvragen</a>
 								</form>
