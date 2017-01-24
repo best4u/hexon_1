@@ -40,7 +40,39 @@ class Filter{
         return $sort_query;
     }
 
+    function store_marks($connection,$dealerId){
+
+//        if(!isset($_SESSION['all_marks'])){
+
+            $all_marks_json = $connection->connection_to_api('merken','?pageNumber=1&pageSize=500&sort%5Bnaam%5D=asc');
+            $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'');
+            $marks = [];
+            $dealer_marks = [];
+            foreach($dealer_marks_json->items as $mark){
+                $marks[$mark->algemeen->merkId] = $mark->algemeen->modelId;
+            }
+            foreach($all_marks_json->items as $mark){
+                if(array_key_exists($mark->merkId,$marks)){
+                    $marks[$mark->merkId] = $mark->naam;
+                }
+            }
+
+
+            $_SESSION['all_marks'] = $marks;
+
+
+//        }
+    }
+
     function get_occasions($dealerId,$connection,$page,$perPage){
+
+//        Store mark's
+          $this->store_marks($connection,$dealerId);
+//-----------------------------------------------
+
+//        echo "<pre>";
+//        var_dump($_SESSION['all_marks']);
+//        echo "</pre>";
 
         $sort_query = $this->orderBy();
         $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.'');
