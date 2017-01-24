@@ -24,11 +24,11 @@ select.selectCustom {
   color: #868e96;
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid 1px solid #DEE2E6;
+  border: 1px solid #DEE2E6;
   padding: 0 20px;
   font-size: 15px;
-  height: 40px;
-  line-height: 40px;
+  height: 48px;
+  line-height: 48px;
 }
 
 select.selectCustom option {
@@ -53,22 +53,24 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-style: normal;
   margin-top: 0 !important;
+  color: #212529 !important;
 }
 
 h1, .h1 {
   font-size: 42px !important;
-  font-weight: 700;
-  line-height: 53px;
+  font-weight: 700 !important;
+  line-height: 53px !important;
   margin: 0 !important;
   margin-bottom: 15px !important;
 }
 
 h2, .h2 {
   font-size: 32px !important;
-  font-weight: 700;
+  font-weight: 700 !important;
   line-height: 43px;
   margin: 0 !important;
   margin-bottom: 15px !important;
+  color: #212529 !important;
 }
 
 .centerDiv {
@@ -96,6 +98,7 @@ select {
 
 p {
   margin: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 ul {
@@ -185,8 +188,8 @@ label {
 textarea {
   width: 100%;
   border: 1px solid #DEE2E6;
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 4px !important;
+  padding: 10px 20px !important;
 }
 
 input, textarea {
@@ -249,6 +252,7 @@ input, textarea {
 .singleItemWrapp .detailPage .sliderAndDesc {
   width: 100%;
   overflow: hidden;
+  margin-bottom: 50px;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock {
@@ -300,10 +304,22 @@ input, textarea {
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc {
+  width: 100%;
+  margin-right: 0;
+  float: left;
+  font-weight: 500;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc .leftType {
   width: 45%;
   margin-right: 5%;
   float: left;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc .rightOption {
+  width: 50%;
+  float: left;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .rightDetailDesc {
@@ -344,7 +360,6 @@ input, textarea {
 
 .singleItemWrapp .detailPage ul.commList {
   list-style-type: square;
-  padding-left: 20px;
   margin-bottom: 20px;
 }
 
@@ -397,9 +412,24 @@ input, textarea {
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific {
-  width: 20%;
+  width: 100%;
+}
+
+.singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific p {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific .leftDescSpan {
+  width: 30%;
   float: left;
   margin-right: 5%;
+}
+
+.singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific .rightDescSpan {
+  width: 65%;
+  float: left;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commRightSpecific {
@@ -451,6 +481,12 @@ input, textarea {
   /***END***/
 }
 
+.leftContent_at .titleAndSelect {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
 .leftContent_at .titleAndSelect .titleLeftPart {
   width: 65%;
   float: left;
@@ -461,7 +497,6 @@ input, textarea {
   width: 30%;
   float: right;
   text-align: right;
-  margin-top: 10px;
 }
 
 .leftContent_at .listType .caritemB4uList {
@@ -469,7 +504,7 @@ input, textarea {
   overflow: hidden;
   width: 100%;
   padding-bottom: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   border-bottom: 1px solid #F1F3F5;
 }
 
@@ -528,10 +563,21 @@ input, textarea {
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail {
-  width: 50%;
+  width: 100%;
   float: left;
-  margin-right: 5%;
+  margin-right: 0;
   font-weight: 500;
+}
+
+.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .leftType {
+  width: 48%;
+  float: left;
+  margin-right: 4%;
+}
+
+.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .rightOption {
+  width: 48%;
+  float: left;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .rightPartDetail {
@@ -568,8 +614,10 @@ input, textarea {
   float: left;
   display: block;
   margin-right: 2%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   min-height: 500px;
+  border-right: 1px solid #E9ECEF;
+  padding-right: 20px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
@@ -608,6 +656,7 @@ input, textarea {
   font-style: normal;
   padding-bottom: 10px;
   border-bottom: 1px solid #F1F3F5;
+  min-height: 101px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem {
@@ -651,11 +700,30 @@ input, textarea {
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail {
-  width: 50%;
+  width: 100%;
   float: left;
   font-weight: 500;
   font-size: 15px;
   line-height: 25px;
+  color: #343a40;
+}
+
+.leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail p {
+  width: 100%;
+  overflow: hidden;
+}
+
+.leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .leftType {
+  width: 45%;
+  float: left;
+  margin-right: 5%;
+  font-weight: 600;
+}
+
+.leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .rightOption {
+  width: 50%;
+  float: left;
+  text-align: right;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .rightPartDetail {
@@ -674,6 +742,7 @@ input, textarea {
 
 .leftContent_at .carsContentLeft .caritemB4u:nth-child(3n) {
   margin-right: 0;
+  border-right: 0;
 }
 
 .sidebarContent {
@@ -687,6 +756,13 @@ input, textarea {
   display: block;
   text-align: center;
   margin-bottom: 15px;
+}
+
+.sidebarContent button.button_at1 {
+  display: block;
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
 }
 
 .sidebarContent a.button_atAlt {
@@ -706,6 +782,7 @@ input, textarea {
 
 .sidebarContent .titleSidebar {
   padding-top: 10px;
+  margin-bottom: 34px !important;
 }
 
 .sidebarContent .titleSidebarDetail {
@@ -729,6 +806,7 @@ input, textarea {
 
 .sidebarContent .commSlideCont .noUi-horizontal {
   height: 4px !important;
+  background: #DEE2E6;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-handle {
@@ -738,6 +816,7 @@ input, textarea {
   box-shadow: none;
   background: #5374F5;
   border: 0;
+  top: -7px;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-handle:before {
@@ -750,6 +829,33 @@ input, textarea {
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-connect {
   background: #DEE2E6;
+}
+
+.sidebarContent .yearsInputs, .sidebarContent .pricesInputs {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.sidebarContent .yearsInputs .priceIB, .sidebarContent .pricesInputs .priceIB {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.sidebarContent .yearsInputs .yearsIB, .sidebarContent .pricesInputs .yearsIB {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input {
+  width: 90px;
+  padding: 8px 10px 7px;
+}
+
+.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input {
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #DEE2E6;
 }
 
 .sidebarContent .priceP {
@@ -805,6 +911,8 @@ input, textarea {
 .bottomNPaginationWrapp .ulPagination {
   text-align: center;
   position: relative;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .bottomNPaginationWrapp .ulPagination li {
@@ -864,3 +972,70 @@ input, textarea {
 }
 
 /*END*/
+@media all and (max-width: 1024px) {
+  .overview_gridWrapp {
+    padding: 0 20px;
+  }
+  .leftContent_at {
+    width: 100%;
+    float: none;
+  }
+  .sidebarContent {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+  .button_at1 {
+    margin-top: 0;
+  }
+  .sidebarContent a.button_at1 {
+    display: inline-block;
+  }
+  .sidebarContent a.button_atAlt {
+    display: inline-block;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .leftContent_at .carsContentLeft .caritemB4u {
+    width: 100%;
+    margin-right: 0;
+  }
+  .button_at1, .button_atAlt {
+    display: block;
+    width: 100%;
+  }
+  .leftContent_at .titleAndSelect .titleLeftPart {
+    width: 100%;
+    margin-right: 0;
+  }
+  .leftContent_at .titleAndSelect .selectorB4uAuto {
+    display: none;
+  }
+  .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
+    height: auto;
+  }
+  .leftContent_at .listType .caritemB4uList .imgBlock {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  .leftContent_at .listType .caritemB4uList .carTxtBlock {
+    width: 100%;
+    float: none;
+  }
+  .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
+    width: 100%;
+    float: none;
+  }
+  .tab-links li {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

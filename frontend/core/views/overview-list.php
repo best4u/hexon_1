@@ -70,7 +70,7 @@
                                                         foreach($option as $type =>  $car_option)
                                                         {
                                                             ?>
-                                                            <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                            <p><span class="leftType"><?php echo $type; ?>:</span> <span class="rightOption"><?php echo $car_option; ?></span></p>
                                                             <?php
                                                         }
                                                     }
@@ -196,12 +196,8 @@
                             <div id="slider2" class="bouwjaarSlider"></div>
                         </div>
                         <div class="pricesInputs">
-                            <div class="col-md-6">
-                                van: <input type="text" name="priceFrom" class="priceFrom form-control">
-                            </div>
-                            <div class="col-md-6">
-                                tot: <input type="text" name="priceTo" class="priceTo form-control">
-                            </div>
+                            <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="priceFrom" class="priceFrom form-control"></span>
+                            <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="priceTo" class="priceTo form-control"></span>
                         </div>
 
 
@@ -220,12 +216,8 @@
                             <div id="slider" class="bouwjaarSlider"></div>
                         </div>
                         <div class="yearsInputs">
-                            <div class="col-md-6">
-                                van: <input type="text" name="yearsFrom" class="yearsFrom form-control">
-                            </div>
-                            <div class="col-md-6">
-                                tot: <input type="text" name="yearsTo" class="yearsTo form-control">
-                            </div>
+                            <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="yearsFrom" class="yearsFrom "></span>
+                            <span class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="yearsTo" class="yearsTo"></span>
                         </div>
 
 
