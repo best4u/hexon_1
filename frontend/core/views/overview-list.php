@@ -19,6 +19,7 @@
                 <div class="titleAndSelect">
                     <div class="titleLeftPart">
                         <h1>Occasions</h1>
+                        <span class="urlAjaxFilter" style="display: none"><?php echo plugins_url('ajax_filter.php',dirname(__FILE__)); ?></span>
                     </div>
 
                     <div class="selectorB4uAuto">
@@ -156,15 +157,19 @@
                 </div>
 
                 <div class="sidebarFilters">
-                    <form action="">
+                    <form action="/" method="GET">
                         <p>
                             <label for="a">Merk</label>
                         </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Alle merken</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="name" id="marks" class="selectCustom">
+                            <option value>Alle merken</option>
+                            <?php
+                            foreach($_SESSION['all_marks'] as $key => $mark){
+                                ?>
+                                <option value="<?php echo $key; ?>" class="markOption"><?php echo $mark; ?></option>
+                                <?php
+                            }
+                            ?>
                         </select>
 
                         <p>
@@ -177,13 +182,7 @@
                             <option value="audi">Audi</option>
                         </select>
 
-                        <a href="#" class="button_at1">
-                            toon auto's
-                        </a>
-
-
-
-
+                        <button type="submit" class="button_at1">toon auto's</button>
 
                         <p>
                             <label for="a">Prijs</label>
@@ -195,6 +194,14 @@
                         </p>
                         <div class="priceSliderCont commSlideCont">
                             <div id="slider2" class="bouwjaarSlider"></div>
+                        </div>
+                        <div class="pricesInputs">
+                            <div class="col-md-6">
+                                van: <input type="text" name="priceFrom" class="priceFrom form-control">
+                            </div>
+                            <div class="col-md-6">
+                                tot: <input type="text" name="priceTo" class="priceTo form-control">
+                            </div>
                         </div>
 
 
@@ -211,6 +218,14 @@
                         </p>
                         <div class="yearSliderCont commSlideCont">
                             <div id="slider" class="bouwjaarSlider"></div>
+                        </div>
+                        <div class="yearsInputs">
+                            <div class="col-md-6">
+                                van: <input type="text" name="yearsFrom" class="yearsFrom form-control">
+                            </div>
+                            <div class="col-md-6">
+                                tot: <input type="text" name="yearsTo" class="yearsTo form-control">
+                            </div>
                         </div>
 
 
@@ -251,9 +266,7 @@
                             meer zoekopties
                         </a>
 
-                        <a href="#" class="button_at1">
-                            toon auto's
-                        </a>
+                        <button type="submit" class="button_at1">toon auto's</button>
                     </form>
                 </div>
             </div>
