@@ -74,6 +74,26 @@ function load_custom_wp_admin_style($hook) {
 }
 add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
+function plugin_frontend_scripts() {
+
+
+    wp_enqueue_style( 'fotorama_css', 'http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css' );
+    wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css' );
+    wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+    wp_enqueue_style( 'nouislider', plugins_url('frontend/core/views/plugins/nouislider/nouislider.min.css', __FILE__) );
+    wp_enqueue_style( 'icomoon', plugins_url('frontend/core/views/icomoon/style.css', __FILE__) );
+    wp_enqueue_style( 'styles_plugin', plugins_url('frontend/core/views/styles.css', __FILE__) );
+//
+    wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array('jquery'), '', true );
+    wp_enqueue_script( 'fotorama', 'http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js', array('jquery'), '', true );
+    wp_enqueue_script( 'nouislider_js', plugins_url('frontend/core/views/plugins/nouislider/nouislider.min.js',__FILE__), array('jquery'), '', true );
+    wp_enqueue_script( 'mainAuto_js', plugins_url('frontend/core/views/jsAuto/mainAuto.js',__FILE__), array('jquery'), '', true );
+
+
+}
+
+add_action( 'wp_enqueue_scripts', 'plugin_frontend_scripts' );
+
 require_once('admin/core/db_create.php');
 
 register_activation_hook( __FILE__, 'drop_tables' );
@@ -88,5 +108,6 @@ require_once ("frontend/index.php");
 // Front end ShortCodes
 
 require_once ('frontend/core/occasions_functions.php');
-add_shortcode('occasions_list', 'occasions_list');
+
+add_shortcode('occasions_list', 'occasions_list_overview');
 
