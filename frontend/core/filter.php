@@ -40,7 +40,7 @@ class Filter{
         return $sort_query;
     }
 
-    function store_marks($connection,$dealerId){
+    function store_arg($connection,$dealerId){
 
 //        if(!isset($_SESSION['all_marks'])){
 
@@ -48,8 +48,23 @@ class Filter{
             $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'');
             $marks = [];
             $dealer_marks = [];
+            $all_cars_prices = [];
+            $all_years = [];
+            $fuel = [];
+            $caroserie = [];
+            $power = [];
+
+//                echo "<pre>";
+//                    var_dump($dealer_marks_json->items[0]);
+//                echo "</pre>";
+
             foreach($dealer_marks_json->items as $mark){
                 $marks[$mark->algemeen->merkId] = $mark->algemeen->modelId;
+                $all_cars_prices[] = $mark->prijs->totaal;
+                $all_years[] = $mark->geschiedenis->bouwjaar;
+                $fuel[] = $mark->algemeen->brandstof;
+                $caroserie[] = $mark->algemeen->carrosserievorm;
+                $power[] = $mark->motor->cilinderinhoud;
             }
             foreach($all_marks_json->items as $mark){
                 if(array_key_exists($mark->merkId,$marks)){
@@ -57,8 +72,28 @@ class Filter{
                 }
             }
 
+//                        echo "<pre>";
+//                    var_dump(array_unique($power));
+//                echo "</pre>";
 
             $_SESSION['all_marks'] = $marks;
+            $_SESSION['at_username'] = get_option("at_username");
+            $_SESSION['at_password'] = get_option("at_password");
+            $_SESSION['at_dealer_id'] = get_option("at_dealer_id");
+
+            $_SESSION['max_price'] = max($all_cars_prices);
+            $_SESSION['min_price'] = min($all_cars_prices);
+
+            $_SESSION['max_year'] = max($all_years);
+            $_SESSION['min_year'] = min($all_years);
+
+            $_SESSION['fuel'] = array_unique($fuel);
+
+            $_SESSION['caroserie'] = array_unique($caroserie);
+            $_SESSION['power'] = array_unique($power);
+
+
+
 
 
 //        }
@@ -67,7 +102,7 @@ class Filter{
     function get_occasions($dealerId,$connection,$page,$perPage){
 
 //        Store mark's
-          $this->store_marks($connection,$dealerId);
+          $this->store_arg($connection,$dealerId);
 //-----------------------------------------------
 
 //        echo "<pre>";

@@ -36,5 +36,9 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
 
         }
 
-
     }
+
+if(isset($_POST['mark_id'])){
+    echo $_POST['mark_id'];
+}
+
