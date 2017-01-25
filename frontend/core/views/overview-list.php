@@ -4,7 +4,7 @@
 //var_dump($_SERVER['QUERY_STRING']);
 //echo "</pre>";
 //?>
-<div class="overview_gridWrapp">
+<div class="overview_gridWrapp listMode">
     <div class="breadCrumbWrapp">
         <div class="centerDiv">
             <div class="breadContent">

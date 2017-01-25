@@ -1038,6 +1038,12 @@ input, textarea{
 	@include clearfix();
 }
 
+.gridMode{
+	.selectorB4uAuto{
+		padding-right: 20px;
+	}
+}
+
 
 
 /***BOTTOM PAGINATION STYLES****/
@@ -1117,4 +1123,11 @@ input, textarea{
 
 @media all and (max-width: 767px) {
 	@import "responsive/mobile";
+}
+
+@media all and (min-width: 1025px) and (max-width: 1255px){
+	.overview_gridWrapp{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 }
