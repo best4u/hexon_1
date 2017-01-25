@@ -126,7 +126,7 @@
                                     <?php
                                 }
 
-                            }
+
 
 
                             foreach($pagination as $page){
@@ -135,7 +135,7 @@
                             <?php
                             }
 
-                            if(count($pagination) > 1){
+
                                 if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
 
                                     ?>
@@ -281,7 +281,6 @@
                                     ?>
                                     <option value="<?php echo $caroserie; ?>" class="caroserieOption" <?php if(isset($_GET['carrosserievorm']) && $_GET['carrosserievorm'] == $caroserie){ echo "selected"; } ?>><?php echo ucfirst(strtolower($caroserie)); ?></option>
                                     <?php
-
                                 }
                             }
                             ?>
