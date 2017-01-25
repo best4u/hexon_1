@@ -160,7 +160,67 @@ select.selectCustom {
 /***************END************/
 
 
+/*----- Tab Links -----*/
 
+.tab-links:after {
+  display:block;
+  clear:both;
+  content:'';
+}
+
+.tab-links li {
+  margin:0px 5px;
+  float:left;
+  list-style:none;
+  padding-right: 20px;
+}
+
+.tab-links a {
+  display:inline-block;
+  border-radius:3px 3px 0px 0px;
+  background:transparent;
+  font-size:15px;
+  font-weight:400;
+  color:#868e96;
+  transition:all linear 0.15s;
+  padding-bottom: 5px;
+}
+
+.tab-links .active a{
+  border-bottom: 3px solid #5C7CFA;
+  color: #5c7cfa;
+}
+
+.tab-links a:hover {
+  background:transparent;
+  text-decoration:none;
+  color: #868e96;
+  border-bottom: 3px solid #CED4DA;
+}
+
+li.active a, li.active a:hover {
+  background:#fff;
+  color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+
+.tab-content {
+  padding-top: 20px;
+  // padding:15px;
+  // border-radius:3px;
+  // box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+  background:#fff;
+}
+
+.tab {
+  display:none;
+}
+
+.tab.active {
+  display:block;
+}
+/******************/
 
 
 /*********GLOBAL STYLES*******/
@@ -322,6 +382,10 @@ input, textarea{
 		padding: 10px 0;
 		font-size: 15px;
 		line-height: 24px;
+
+		a{
+			color: #495057;
+		}
 
 		.arrowBread{
 			color: #BFC5CB;
@@ -949,7 +1013,7 @@ input, textarea{
 	}
 
 
-	.yearsInputs, .pricesInputs{
+	.yearsInputs, .pricesInputs, .kmInputs{
 		@include clearfix();
 		margin-bottom: 10px;
 
@@ -1016,6 +1080,23 @@ input, textarea{
 	}
 
 
+	.kmP{
+		@include font();
+		margin-bottom: 15px !important;
+		color: #adb5bd;
+		font-size: 15px;
+		font-weight: 500;
+
+		.kmFrom{
+
+		}
+
+		.kmTo{
+			float: right;
+		}
+	}
+
+
 
 	/////single page sidebar 
 	.sidebarFilters{
@@ -1031,11 +1112,104 @@ input, textarea{
 			}
 		}
 	}
+
+	#hiddenOptions{
+		display: none;
+	}
 }
+
+/*social icons styles*/
+.socialIcons{
+	i{
+		width: 35px;
+		height: 35px;
+		line-height: 35px;
+		text-align: center;
+		border-radius: 4px;
+		color: #fff;
+		display: inline-block;
+		font-size: 20px;
+		margin-right: 5px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		@include transition();
+
+		&:hover{
+			opacity: 0.8;
+		}
+	}
+
+	i.icon-facebook{
+		background-color: #3B5998;
+	}
+
+	i.icon-twitter{
+		background-color: #1DA1F2;
+	}
+
+	i.icon-google-plus{
+		background-color: #DD4B39;
+	}
+
+	i.icon-linkedin{
+		background-color: #0077B5;
+	}
+
+	i.icon-pinterest{
+		background-color: #BD081C;
+	}
+
+	i.icon-email{
+		background-color: #40C057;
+	}
+}
+/*end*/
+
+
+
+/*form styler check button styles*/
+.jq-checkbox{
+	border: 0;
+}
+
+.jq-checkbox.checkboxInput {
+	font-family:'FontAwesome';
+
+	&.checked{
+		.jq-checkbox__div{
+			margin:0;
+			width: 16px;
+			height: 16px;
+			background: #496AF0;
+			box-shadow: none;
+
+			&:before{
+				opacity: 1;
+				color: #fff;
+				font-size: 13px;
+				position: absolute;
+				top:-4px;
+				left: 1px;
+			}
+		}
+	}
+	.jq-checkbox__div{
+		background-color: #496AF0;
+		border: 0;
+
+		&:before{
+			content: '\f00c';
+			opacity: 0;
+		}
+	}
+}
+/*end*/
+
 
 
 .overview_gridWrapp{
-	@include clearfix();
+	//@include clearfix();
+
 }
 
 .gridMode{
@@ -1129,5 +1303,31 @@ input, textarea{
 	.overview_gridWrapp{
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+}
+
+@media all and (max-width: 490px) {
+	.bottomNPaginationWrapp .ulPagination{
+		height: 70px;
+	}
+
+	.bottomNPaginationWrapp .ulPagination li.prevPage{
+		top:35px;
+	}
+
+	.bottomNPaginationWrapp .ulPagination .nextPage{
+		top:35px;
+	}
+}
+
+
+@media all and (max-width: 610px){
+	.breadCrumbWrapp .breadContent .rightBCSpan{
+		display: block;
+		float: none;
+	}
+
+	.breadContent{
+		padding-bottom: 35px;
 	}
 }

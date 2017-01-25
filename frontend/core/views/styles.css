@@ -36,6 +36,63 @@ select.selectCustom option {
 }
 
 /***************END************/
+/*----- Tab Links -----*/
+.tab-links:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.tab-links li {
+  margin: 0px 5px;
+  float: left;
+  list-style: none;
+  padding-right: 20px;
+}
+
+.tab-links a {
+  display: inline-block;
+  border-radius: 3px 3px 0px 0px;
+  background: transparent;
+  font-size: 15px;
+  font-weight: 400;
+  color: #868e96;
+  transition: all linear 0.15s;
+  padding-bottom: 5px;
+}
+
+.tab-links .active a {
+  border-bottom: 3px solid #5C7CFA;
+  color: #5c7cfa;
+}
+
+.tab-links a:hover {
+  background: transparent;
+  text-decoration: none;
+  color: #868e96;
+  border-bottom: 3px solid #CED4DA;
+}
+
+li.active a, li.active a:hover {
+  background: #fff;
+  color: #4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+  padding-top: 20px;
+  background: #fff;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+/******************/
 /*********GLOBAL STYLES*******/
 body {
   font-family: "Roboto", sans-serif;
@@ -216,6 +273,10 @@ input, textarea {
   padding: 10px 0;
   font-size: 15px;
   line-height: 24px;
+}
+
+.breadCrumbWrapp .breadContent a {
+  color: #495057;
 }
 
 .breadCrumbWrapp .breadContent .arrowBread {
@@ -831,28 +892,28 @@ input, textarea {
   background: #DEE2E6;
 }
 
-.sidebarContent .yearsInputs, .sidebarContent .pricesInputs {
+.sidebarContent .yearsInputs, .sidebarContent .pricesInputs, .sidebarContent .kmInputs {
   width: 100%;
   overflow: hidden;
   margin-bottom: 10px;
 }
 
-.sidebarContent .yearsInputs .priceIB, .sidebarContent .pricesInputs .priceIB {
+.sidebarContent .yearsInputs .priceIB, .sidebarContent .pricesInputs .priceIB, .sidebarContent .kmInputs .priceIB {
   position: relative;
   margin-bottom: 10px;
 }
 
-.sidebarContent .yearsInputs .yearsIB, .sidebarContent .pricesInputs .yearsIB {
+.sidebarContent .yearsInputs .yearsIB, .sidebarContent .pricesInputs .yearsIB, .sidebarContent .kmInputs .yearsIB {
   position: relative;
   margin-bottom: 10px;
 }
 
-.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input {
+.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input, .sidebarContent .kmInputs .commInputs input {
   width: 90px;
   padding: 8px 10px 7px;
 }
 
-.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input {
+.sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input, .sidebarContent .kmInputs .commInputs input {
   height: 35px;
   line-height: 35px;
   border: 1px solid #DEE2E6;
@@ -886,6 +947,20 @@ input, textarea {
   float: right;
 }
 
+.sidebarContent .kmP {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 15px !important;
+  color: #adb5bd;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.sidebarContent .kmP .kmTo {
+  float: right;
+}
+
 .sidebarContent .sidebarFilters .sidebarForm input {
   width: 100%;
   height: 40px;
@@ -896,11 +971,92 @@ input, textarea {
   margin-bottom: 10px;
 }
 
-.overview_gridWrapp {
-  width: 100%;
-  overflow: hidden;
+.sidebarContent #hiddenOptions {
+  display: none;
 }
 
+/*social icons styles*/
+.socialIcons i {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.socialIcons i:hover {
+  opacity: 0.8;
+}
+
+.socialIcons i.icon-facebook {
+  background-color: #3B5998;
+}
+
+.socialIcons i.icon-twitter {
+  background-color: #1DA1F2;
+}
+
+.socialIcons i.icon-google-plus {
+  background-color: #DD4B39;
+}
+
+.socialIcons i.icon-linkedin {
+  background-color: #0077B5;
+}
+
+.socialIcons i.icon-pinterest {
+  background-color: #BD081C;
+}
+
+.socialIcons i.icon-email {
+  background-color: #40C057;
+}
+
+/*end*/
+/*form styler check button styles*/
+.jq-checkbox {
+  border: 0;
+}
+
+.jq-checkbox.checkboxInput {
+  font-family: 'FontAwesome';
+}
+
+.jq-checkbox.checkboxInput.checked .jq-checkbox__div {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  background: #496AF0;
+  box-shadow: none;
+}
+
+.jq-checkbox.checkboxInput.checked .jq-checkbox__div:before {
+  opacity: 1;
+  color: #fff;
+  font-size: 13px;
+  position: absolute;
+  top: -4px;
+  left: 1px;
+}
+
+.jq-checkbox.checkboxInput .jq-checkbox__div {
+  background-color: #496AF0;
+  border: 0;
+}
+
+.jq-checkbox.checkboxInput .jq-checkbox__div:before {
+  content: '\f00c';
+  opacity: 0;
+}
+
+/*end*/
 .gridMode .selectorB4uAuto {
   padding-right: 20px;
 }
@@ -996,7 +1152,8 @@ input, textarea {
     display: inline-block;
   }
   .sidebarContent a.button_atAlt {
-    display: inline-block;
+    display: block;
+    width: 100%;
   }
   .leftContent_at .titleAndSelect .selectorB4uAuto {
     padding-right: 0;
@@ -1049,11 +1206,45 @@ input, textarea {
     width: 100%;
     margin-bottom: 15px;
   }
+  .bottomNPaginationWrapp .ulPagination li.prevPage {
+    padding: 0 5px;
+  }
+  .bottomNPaginationWrapp .ulPagination .nextPage {
+    padding: 0 5px;
+  }
+  .bottomNPaginationWrapp .ulPagination li {
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
 }
 
 @media all and (min-width: 1025px) and (max-width: 1255px) {
   .overview_gridWrapp {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+@media all and (max-width: 490px) {
+  .bottomNPaginationWrapp .ulPagination {
+    height: 70px;
+  }
+  .bottomNPaginationWrapp .ulPagination li.prevPage {
+    top: 35px;
+  }
+  .bottomNPaginationWrapp .ulPagination .nextPage {
+    top: 35px;
+  }
+}
+
+@media all and (max-width: 610px) {
+  .breadCrumbWrapp .breadContent .rightBCSpan {
+    display: block;
+    float: none;
+  }
+  .breadContent {
+    padding-bottom: 35px;
   }
 }

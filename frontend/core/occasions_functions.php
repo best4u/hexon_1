@@ -15,8 +15,14 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $layout_mode = get_option("at_overview_layoutmode");
 
         if(isset($_GET['overview'])){
+            $template = get_option("at_details_view_mode");
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
-            require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");
+            if($template == "at_details_view_list"){
+                require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");
+            }else{
+                require_once (plugin_dir_path(__FILE__)."views/autotrack-details-tabs.php");
+            }
+
         }else{
 
             if(isset($_GET['pagina'])){

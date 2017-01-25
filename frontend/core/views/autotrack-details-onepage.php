@@ -80,6 +80,7 @@
 								</div>
 
 								<div class="descOptAcc">
+
                                 <!--    Veiligheid category-->
                                     <?php
                                     $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",$ocassion);
@@ -216,6 +217,7 @@
 
                                     <div class="descAlgemen commDesc">
                                         <div class="commLeftSpecific">
+
                                 <?php
                                 $category = "";
                                 foreach($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
@@ -284,7 +286,6 @@
                         }
 
                         ?>
-						<hr class="lineAll">
 
 	        			</div>
 	        		</div>
@@ -296,14 +297,14 @@
 
 
 					<!-- sidebar -->
-	        		<div class="sidebarContent">
-	        			<div class="titleSidebarDetail">
-	        				Neem contact met ons op
-	        			</div>
+					<div class="sidebarContent">
+						<div class="titleSidebarDetail">
+							Neem contact met ons op
+						</div>
 
-	        			<div class="sidebarFilters">
-	        				<form action="" class="sidebarForm">
-	        					<p>
+						<div class="sidebarFilters">
+							<form action="" class="sidebarForm">
+								<p>
 									<label for="">Uw naam</label>
 								</p>
 								<p>
@@ -325,45 +326,72 @@
 								<p>
 									<input type="tel" placeholder="+31 0000 000 000">
 								</p>
-								
+
 								<p>
 									<label for="km">Bericht</label>
 								</p>
 								<p>
 									<textarea rows="14"  placeholder="Geef een korte beschrijving van de staat van de auto">Goedendag,
-										Ik ben geïnteresseerd in uw 
-										VOLVO V40 R-Design T2 122pk 
+										Ik ben geïnteresseerd in uw
+										VOLVO V40 R-Design T2 122pk
 
 										Wilt u contact met mij opnemen?
 
 										Met vriendelijke groet,
 									</textarea>
 								</p>
-								
+
 								<p>
 									<label for="">Proefrit?</label>
 								</p>
 								<p>
-									<input type="text" placeholder="John Doe">
+									<input type="checkbox" name="u" value="u" class="checkboxInput">Ja ik wil graag een proefrit maken<br>
 								</p>
 
-								<p>
-									<label for="">Wanneer wilt u de proefrit maken??</label>
+								<p class="labelMargTop">
+									<label for="" >Wanneer wilt u de proefrit maken?</label>
 								</p>
 								<p>
 									<input type="text" placeholder="Kies een datum" class="dateInput">
 								</p>
 
+								<hr class="lineAll">
 
+								<p>
+									<label for="" class="bigLabel">Deel deze tweedehands auto</label>
+								</p>
+
+								<p>
+									<span class="socialIcons"><a href="#"><i class="icon-facebook"></i></a></span>
+									<span class="socialIcons"><a href="#"><i class="icon-twitter"></i></a></span>
+									<span class="socialIcons"><a href="#"><i class="icon-google-plus"></i></a></span>
+									<span class="socialIcons"><a href="#"><i class="icon-linkedin"></i></a></span>
+									<span class="socialIcons"><a href="#"><i class="icon-pinterest"></i></a></span>
+									<span class="socialIcons"><a href="#"><i class="icon-email"></i></a></span>
+								</p>
+
+								<hr class="lineAll">
 
 								<a href="#" class="button_at1">
 									verzenden
 								</a>
 
+								<hr class="lineAll">
 
-	        				</form>
-	        			</div>
-	        		</div>
+								<p>
+									<label for="" class="bigLabel">Contactinformatie</label>
+								</p>
+								<p class="commDesc">
+									Zaadmarkt 95 <br>
+									7201 DD Zutphen<br><br>
+									0575-512 125<br>
+									<a href="#" class="blueLink">verkoop@best4u.nl</a>
+								</p>
+
+
+							</form>
+						</div>
+					</div>
 	        		<!-- end sidebar -->
 	        	</div>
         	</div>
