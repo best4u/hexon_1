@@ -47,6 +47,8 @@ if(isset($_POST['mark_id'])){
             }
         }
 
+        asort($dealer_models);
+
         foreach($dealer_models as $key => $model){
 
             $all_models .= "<option value='$key' class='modelOption'>".$model."</option>";

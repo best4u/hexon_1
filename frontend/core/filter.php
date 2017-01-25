@@ -40,6 +40,56 @@ class Filter{
         return $sort_query;
     }
 
+    function sidebarFilter($connection,$dealerId){
+        $filterQuery = "";
+        if(isset($_GET['merkId']) && !$_GET['merkId'] == ""){
+            $filterQuery .= "&filter%5BmerkId%5D=".$_GET['merkId']."";
+
+            $all_models_api = $connection->connection_to_api('merken','/'.$_GET['merkId'].'/modellen');
+            $all_dealers_models_api = $connection->connection_to_api('advertenties',"?pageNumber=1&pageSize=1000000&filter%5BdealerId%5D=".$dealerId."&filter%5BmerkId%5D=".$_GET['merkId']."");
+
+            //    Get dealer models
+            $all_models = "";
+            $dealer_models = [];
+            foreach($all_dealers_models_api->items as $model){
+                $dealer_models[$model->algemeen->modelId] = $model->algemeen->merkId;
+            }
+
+            foreach($all_models_api as $model){
+                if(array_key_exists($model->modelId,$dealer_models)){
+                    $dealer_models[$model->modelId] = $model->naam;
+                }
+            }
+
+            asort($dealer_models);
+            $_SESSION['models'] = $dealer_models;
+
+        }
+        if(isset($_GET['modelId']) && !$_GET['modelId'] == ""){
+            $filterQuery .= "&filter%5BmodelId%5D=".$_GET['modelId']."";
+        }
+
+        if(isset($_GET['prijs_min']) && !$_GET['prijs_min'] == ""){
+            $filterQuery .= "&filter%5Bprijs.min%5D=".$_GET['prijs_min']."";
+            $filterQuery .= "&filter%5Bprijs.max%5D=".$_GET['prijs_max']."";
+        }
+
+        if(isset($_GET['bouwjaar_min']) && !$_GET['bouwjaar_min'] == ""){
+            $filterQuery .= "&filter%5Bbouwjaar.min%5D=".$_GET['bouwjaar_min']."";
+            $filterQuery .= "&filter%5Bbouwjaar.max%5D=".$_GET['bouwjaar_max']."";
+        }
+
+        if(isset($_GET['brandstofsoort']) && !$_GET['brandstofsoort'] == ""){
+            $filterQuery .= "&filter%5Bbrandstofsoort%5D=".$_GET['brandstofsoort']."";
+        }
+        if(isset($_GET['carrosserievorm']) && !$_GET['carrosserievorm'] == ""){
+            $filterQuery .= "&filter%5Bcarrosserievorm%5D=".$_GET['carrosserievorm']."";
+        }
+
+
+        return $filterQuery;
+    }
+
     function store_arg($connection,$dealerId){
 
 //        if(!isset($_SESSION['all_marks'])){
@@ -72,10 +122,14 @@ class Filter{
                 }
             }
 
-//                        echo "<pre>";
-//                    var_dump(array_unique($power));
-//                echo "</pre>";
 
+            asort($marks);
+            asort($fuel);
+            asort($caroserie);
+
+//              echo "<pre>";
+//                    var_dump($marks);
+//              echo "</pre>";
             $_SESSION['all_marks'] = $marks;
             $_SESSION['at_username'] = get_option("at_username");
             $_SESSION['at_password'] = get_option("at_password");
@@ -104,13 +158,16 @@ class Filter{
 //        Store mark's
           $this->store_arg($connection,$dealerId);
 //-----------------------------------------------
+//        Sidebar Filter
+            $filter_query = $this->sidebarFilter($connection,$dealerId);
+
 
 //        echo "<pre>";
 //        var_dump($_SESSION['all_marks']);
 //        echo "</pre>";
 
         $sort_query = $this->orderBy();
-        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.'');
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'');
         return $all_occasions;
     }
 }

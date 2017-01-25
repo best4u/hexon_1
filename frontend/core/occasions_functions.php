@@ -28,6 +28,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,$page,'6');
             $number_of_page = $all_occasions->total;
             $pagination = $filertObj->paginator($number_of_page,'6',$page,'5');
+
             if($layout_mode == "at_layout_overview_table"){
                 require_once (plugin_dir_path(__FILE__)."views/overview-grid.php");
             }else{
