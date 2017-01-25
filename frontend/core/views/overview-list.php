@@ -19,6 +19,10 @@
                 <div class="titleAndSelect">
                     <div class="titleLeftPart">
                         <h1>Occasions</h1>
+<<<<<<< Updated upstream
+=======
+                        <span class="urlAjaxFilter" style="display: none"><?php echo plugins_url('aside_filter_functions.php',dirname(__FILE__)); ?></span>
+>>>>>>> Stashed changes
                     </div>
 
                     <div class="selectorB4uAuto">
@@ -107,38 +111,49 @@
                         <ul class="ulPagination">
 
                             <?php
-                            if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
-                                ?>
-                                <li class="prevPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
-                                <?php
-                            }else{
+                            if(count($pagination) > 1){
+                                if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
+                                    ?>
+                                    <li class="prevPage"><a href="?pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                    <?php
+                                }else{
 
-                                ?>
-                                <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
-                                <?php
+                                    ?>
+                                    <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                    <?php
+                                }
+
+                                if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
+                                    ?>
+                                    <li><a href="?pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
+                                    <?php
+                                }
+
                             }
-                            if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
-                                ?>
-                                <li><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
-                                <?php
-                            }
+
+
                             foreach($pagination as $page){
                             ?>
-                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
                             <?php
                             }
-                            if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
-                                ?>
-                                <li><a href="?pagina=<?php echo $_GET['pagina']+3; ?>">...</a></li>
-                                <li class="nextPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
 
-                                <?php
-                            }elseif(!isset($_GET['pagina'])){
-                                ?>
-                                <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
-                                <li class="nextPage"><a href="?<?php echo $_SERVER['QUERY_STRING']; ?>&pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
-                                <?php
+                            if(count($pagination) > 1){
+                                if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
+
+                                    ?>
+                                    <li><a href="?pagina=<?php echo $_GET['pagina']+3; ?>">...</a></li>
+                                    <li class="nextPage"><a href="?pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+
+                                    <?php
+                                }elseif(!isset($_GET['pagina'])){
+                                    ?>
+                                    <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
+                                    <li class="nextPage"><a href="?pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                    <?php
+                                }
                             }
+
                             ?>
 
                         </ul>
@@ -155,7 +170,9 @@
                     Occasion zoeken
                 </div>
 
+
                 <div class="sidebarFilters">
+<<<<<<< Updated upstream
                     <form action="">
                         <p>
                             <label for="a">Merk</label>
@@ -165,16 +182,39 @@
                             <option value="saab">Saab</option>
                             <option value="mercedes">Mercedes</option>
                             <option value="audi">Audi</option>
+=======
+                    <form action="" method="GET">
+                        <p>
+                            <label for="a">Merk</label>
+                        </p>
+                        <select name="merkId" id="marks" class="selectCustom">
+                            <option value>Alle merken</option>
+                            <?php
+                            foreach($_SESSION['all_marks'] as $key => $mark){
+                                ?>
+                                <option value="<?php echo $key; ?>" <?php if(isset($_GET['merkId']) && $_GET['merkId'] == $key){ echo "selected"; } ?> class="markOption"><?php echo $mark; ?></option>
+                                <?php
+                            }
+                            ?>
+>>>>>>> Stashed changes
                         </select>
 
                         <p>
                             <label for="b">Model</label>
                         </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Selecteer eerst een merk</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="modelId" id="models" class="selectCustom">
+                            <option value>Selecteer eerst een merk</option>
+                            <?php
+                            if(isset($_SESSION['models'])){
+                                foreach($_SESSION['models'] as $key => $model){
+                                    ?>
+                                    <option value="<?php echo $key; ?>"  <?php if(isset($_GET['modelId']) && $_GET['modelId'] == $key){ echo "selected"; } ?> class="modelOption"><?php echo $model; ?></option>
+                                    <?php
+
+                                }
+                            }
+                            unset($_SESSION['models']);
+                            ?>
                         </select>
 
                         <a href="#" class="button_at1">
@@ -190,12 +230,25 @@
                         </p>
 
                         <p class="priceP">
-                            <span class="priceFrom">€ 0,00</span>
-                            <span class="priceTo">€ 10.000,00</span>
+                            <span class="priceFrom">€ <?php echo number_format($_SESSION['min_price'], 2, ",", "."); ?></span>
+                            <span class="priceTo">€ <?php echo number_format($_SESSION['max_price'], 2, ",", "."); ?></span>
+                            <span class="priceHiddenFrom" style="display: none"><?php echo $_SESSION['min_price']; ?></span>
+                            <span class="priceHiddenTo" style="display: none"><?php echo $_SESSION['max_price']; ?></span>
+
+                            <span class="priceFromMin" style="display: none"><?php if(isset($_GET['prijs_min'])){ echo $_GET['prijs_min']; }else{ echo $_SESSION['min_price']; } ?></span>
+                            <span class="priceFromMax" style="display: none"><?php if(isset($_GET['prijs_max'])){ echo $_GET['prijs_max']; }else{ echo $_SESSION['max_price']; } ?></span>
+
                         </p>
                         <div class="priceSliderCont commSlideCont">
                             <div id="slider2" class="bouwjaarSlider"></div>
                         </div>
+<<<<<<< Updated upstream
+=======
+                        <div class="pricesInputs">
+                            <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="prijs_min" class="priceFrom form-control"></span>
+                            <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="prijs_max" class="priceTo form-control"></span>
+                        </div>
+>>>>>>> Stashed changes
 
 
 
@@ -206,12 +259,23 @@
                             <label for="a">Bouwjaar</label>
                         </p>
                         <p class="yearsP">
-                            <span class="yearsFrom">2000</span>
-                            <span class="yearsTo">2017</span>
+                            <span class="yearsFrom"><?php echo $_SESSION['min_year']; ?></span>
+                            <span class="yearsTo"><?php echo $_SESSION['max_year']; ?></span>
                         </p>
+
+                        <span class="yearFromMin" style="display: none"><?php if(isset($_GET['bouwjaar_min'])){ echo $_GET['bouwjaar_min']; }else{ echo $_SESSION['min_year']; } ?></span>
+                        <span class="yearFromMax" style="display: none"><?php if(isset($_GET['bouwjaar_max'])){ echo $_GET['bouwjaar_max']; }else{ echo $_SESSION['max_year']; } ?></span>
+
                         <div class="yearSliderCont commSlideCont">
                             <div id="slider" class="bouwjaarSlider"></div>
                         </div>
+<<<<<<< Updated upstream
+=======
+                        <div class="yearsInputs">
+                            <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="bouwjaar_min" class="yearsFrom "></span>
+                            <span class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="bouwjaar_max" class="yearsTo"></span>
+                        </div>
+>>>>>>> Stashed changes
 
 
 
@@ -220,31 +284,49 @@
                         <p>
                             <label for="b">Brandstof</label>
                         </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Alle brandstof</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="brandstofsoort" id="fuel" class="selectCustom">
+                            <option value>Selecteer brandstof</option>
+                            <?php
+                            foreach($_SESSION['fuel'] as $fuel){
+                                ?>
+                                <option value="<?php echo $fuel; ?>" class='fuelOption' <?php if(isset($_GET['brandstofsoort']) && $_GET['brandstofsoort'] == $fuel){ echo "selected"; } ?>><?php echo ucfirst(strtolower($fuel)); ?></option>
+                                <?php
+
+                            }
+                            ?>
+
                         </select>
 
                         <p>
                             <label for="b">Carrosserie</label>
                         </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Alle brandstof</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="carrosserievorm" id="caroserie" class="selectCustom">
+                            <option value>Selecteer carrosserie</option>
+                            <?php
+                            foreach($_SESSION['caroserie'] as $caroserie){
+                                if($caroserie != ""){
+                                    ?>
+                                    <option value="<?php echo $caroserie; ?>" class="caroserieOption" <?php if(isset($_GET['carrosserievorm']) && $_GET['carrosserievorm'] == $caroserie){ echo "selected"; } ?>><?php echo ucfirst(strtolower($caroserie)); ?></option>
+                                    <?php
+
+                                }
+                            }
+                            ?>
                         </select>
 
                         <p>
                             <label for="b">Motorinhoud</label>
                         </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Alle brandstof</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="cilinderinhoud" id="power" class="selectCustom">
+                            <option value="min">Minimaal</option>
+                            <?php
+                            foreach($_SESSION['power'] as $power){
+                                if($power != ""){
+                                    echo "<option value='$power' class='powerOption'>".ucfirst(strtolower($power))."</option>";
+                                }
+                            }
+                            ?>
+
                         </select>
 
                         <a href="#" class="button_atAlt">
@@ -256,6 +338,8 @@
                         </a>
                     </form>
                 </div>
+
+
             </div>
         </div>
     </div>
