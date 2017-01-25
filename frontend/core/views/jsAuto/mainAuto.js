@@ -4,13 +4,17 @@ $(document).ready(function(){
     //Slider filters
 
 	var slider = document.getElementById('slider');
+    var yearsFrom = $(".yearsFrom").text(),
+        yearsTo = $(".yearsTo").text(),
+        yearFromMin = $(".yearFromMin").text(),
+        yearFromMax = $(".yearFromMax").text();
 
 	noUiSlider.create(slider, {
-		start: [1990, 2017],
+		start: [parseInt(yearFromMin), parseInt(yearFromMax)],
 		step: 1,
 		range: {
-			'min': 1990,
-			'max': 2017
+			'min': parseInt(yearsFrom),
+			'max': parseInt(yearsTo)
 		},
         format: wNumb({
             decimals: 0
@@ -35,12 +39,17 @@ $(document).ready(function(){
 
 	var slider2 = document.getElementById('slider2');
 
+
+    var  priceTo = $(".priceHiddenTo").text();
+    var priceFromMin = $(".priceFromMin").text();
+    var priceFromMax = $(".priceFromMax").text();
+    if(priceFromMin == ""){ priceFromMin = 0; }
 	noUiSlider.create(slider2, {
-		start: [0,33995],
+		start: [parseInt(priceFromMin),parseInt(priceFromMax)],
 		step:500,
 		range: {
 			'min': 0,
-			'max': 33995
+			'max': parseInt(priceTo)
 		},
         format: wNumb({
             decimals: 0
@@ -82,22 +91,43 @@ $(document).ready(function(){
         $("#sortFilter").submit();
     });
 
+    function sort_selects(options){
+        var arr = options.map(function(_, o) {
+            return {
+                t: $(o).text(),
+                v: o.value
+            };
+        }).get();
+        arr.sort(function(o1, o2) {
+            return o1.t > o2.t ? 1 : o1.t < o2.t ? -1 : 0;
+        });
+        options.each(function(i, o) {
+            o.value = arr[i].v;
+            $(o).text(arr[i].t);
+        });
+    }
+
+    function sort_selects_asc(options){
+        var arr = options.map(function(_, o) {
+            return {
+                t: $(o).text(),
+                v: o.value
+            };
+        }).get();
+        arr.sort(function(o1, o2) {
+            return o1.t < o2.t ? 1 : o1.t > o2.t ? -1 : 0;
+        });
+        options.each(function(i, o) {
+            o.value = arr[i].v;
+            $(o).text(arr[i].t);
+        });
+    }
     // Sort select
-    var options = $('#marks .markOption');
-    var arr = options.map(function(_, o) {
-        return {
-            t: $(o).text(),
-            v: o.value
-        };
-    }).get();
-    arr.sort(function(o1, o2) {
-        return o1.t > o2.t ? 1 : o1.t < o2.t ? -1 : 0;
-    });
-    options.each(function(i, o) {
-        console.log(i);
-        o.value = arr[i].v;
-        $(o).text(arr[i].t);
-    });
+    //sort_selects($('#marks .markOption'));
+    //sort_selects($('#models .modelOption'));
+    //sort_selects($('#fuel .fuelOption'));
+    //sort_selects($('#caroserie .caroserieOption'));
+    sort_selects_asc($('#power .powerOption'));
 
 
 function get_models(mark_id){
@@ -111,12 +141,15 @@ function get_models(mark_id){
     };
     $.post(url,data, function(response) {
         console.log(response);
+        $("#models .modelOption").remove();
+        $("#models").append(response);
+
     });
 }
 
     $("#marks").change(function(){
         get_models($(this).val());
-        console.log("suka");
+
     });
 
 });
