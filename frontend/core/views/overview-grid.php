@@ -1,5 +1,5 @@
 
-        <div class="overview_gridWrapp">
+        <div class="overview_gridWrapp gridMode">
             <div class="breadCrumbWrapp">
                 <div class="centerDiv">
                     <div class="breadContent">

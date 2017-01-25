@@ -901,6 +901,10 @@ input, textarea {
   overflow: hidden;
 }
 
+.gridMode .selectorB4uAuto {
+  padding-right: 20px;
+}
+
 /***BOTTOM PAGINATION STYLES****/
 .bottomNPaginationWrapp {
   width: 100%;
@@ -994,6 +998,13 @@ input, textarea {
   .sidebarContent a.button_atAlt {
     display: inline-block;
   }
+  .leftContent_at .titleAndSelect .selectorB4uAuto {
+    padding-right: 0;
+  }
+  .leftContent_at .carsContentLeft .caritemB4u {
+    padding-right: 0;
+    border-right: 0;
+  }
 }
 
 @media all and (max-width: 767px) {
@@ -1037,5 +1048,12 @@ input, textarea {
     display: block;
     width: 100%;
     margin-bottom: 15px;
+  }
+}
+
+@media all and (min-width: 1025px) and (max-width: 1255px) {
+  .overview_gridWrapp {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
