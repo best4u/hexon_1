@@ -1,6 +1,9 @@
 $=jQuery;
 $(document).ready(function(){
 
+    ////fromstyler
+    $('.checkboxInput').styler();
+
     //Slider filters
 
 	var slider = document.getElementById('slider');
@@ -9,68 +12,76 @@ $(document).ready(function(){
         yearFromMin = $(".yearFromMin").text(),
         yearFromMax = $(".yearFromMax").text();
 
-	noUiSlider.create(slider, {
-		start: [parseInt(yearFromMin), parseInt(yearFromMax)],
-		step: 1,
-		range: {
-			'min': parseInt(yearsFrom),
-			'max': parseInt(yearsTo)
-		},
-        format: wNumb({
-            decimals: 0
-        })
-	});
+    if(slider) {
 
-    var yearFrom = $(".yearsFrom");
-    var yearTo = $(".yearsTo");
+        noUiSlider.create(slider, {
+            start: [parseInt(yearFromMin), parseInt(yearFromMax)],
+            step: 1,
+            range: {
+                'min': parseInt(yearsFrom),
+                'max': parseInt(yearsTo)
+            },
+            format: wNumb({
+                decimals: 0
+            })
+        });
 
-    slider.noUiSlider.on('update', function( values, handle ) {
+        var yearFrom = $(".yearsFrom");
+        var yearTo = $(".yearsTo");
 
-        var value = values[handle];
-        console.log(value);
+        slider.noUiSlider.on('update', function( values, handle ) {
 
-        if ( handle ) {
-            yearTo.val(value);
-        } else {
-            yearFrom.val(value);
+            var value = values[handle];
+            console.log(value);
+
+            if ( handle ) {
+                yearTo.val(value);
+            } else {
+                yearFrom.val(value);
+            }
+        });
+    }
+
+
+    var slider2 = document.getElementById('slider2');
+
+    if(slider2) {
+
+        var priceTo = $(".priceHiddenTo").text();
+        var priceFromMin = $(".priceFromMin").text();
+        var priceFromMax = $(".priceFromMax").text();
+        if (priceFromMin == "") {
+            priceFromMin = 0;
         }
-    });
 
+        noUiSlider.create(slider2, {
+            start: [parseInt(priceFromMin), parseInt(priceFromMax)],
+            step: 500,
+            range: {
+                'min': 0,
+                'max': parseInt(priceTo)
+            },
+            format: wNumb({
+                decimals: 0
+            })
 
-	var slider2 = document.getElementById('slider2');
+        });
 
+        var priceFrom = $(".priceFrom");
+        var priceTo = $(".priceTo");
 
-    var  priceTo = $(".priceHiddenTo").text();
-    var priceFromMin = $(".priceFromMin").text();
-    var priceFromMax = $(".priceFromMax").text();
-    if(priceFromMin == ""){ priceFromMin = 0; }
-	noUiSlider.create(slider2, {
-		start: [parseInt(priceFromMin),parseInt(priceFromMax)],
-		step:500,
-		range: {
-			'min': 0,
-			'max': parseInt(priceTo)
-		},
-        format: wNumb({
-            decimals: 0
-        })
+        slider2.noUiSlider.on('update', function (values, handle) {
 
-	});
+            var value = values[handle];
+            console.log(value);
 
-    var priceFrom = $(".priceFrom");
-    var priceTo = $(".priceTo");
-
-    slider2.noUiSlider.on('update', function( values, handle ) {
-
-        var value = values[handle];
-        console.log(value);
-
-        if ( handle ) {
-            priceTo.val(value);
-        } else {
-            priceFrom.val(value);
-        }
-    });
+            if (handle) {
+                priceTo.val(value);
+            } else {
+                priceFrom.val(value);
+            }
+        });
+    }
 
     //slider2.Link('lower').to( $('.priceFrom') );
     //slider2.Link('upper').to( $('.priceTo') );
@@ -149,6 +160,32 @@ function get_models(mark_id){
 
     $("#marks").change(function(){
         get_models($(this).val());
+
+    });
+
+
+    /////Kilometerstand noUi slider
+    var sliderA = document.getElementById('sliderA');
+
+    if(sliderA) {
+        if (sliderA) {
+            noUiSlider.create(sliderA, {
+                start: [0, 100],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
+        }
+    }
+
+    ////////////hide show moree options
+    $("#moreOptions > a").click(function(e) {
+        e.preventDefault();
+        $("#hiddenOptions").slideToggle("fast", function() {
+            $("#moreOptions > a ").toggleClass("");
+        });
 
     });
 

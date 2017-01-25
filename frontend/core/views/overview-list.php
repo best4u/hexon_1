@@ -302,9 +302,60 @@
 
                         </select>
 
-                        <a href="#" class="button_atAlt">
-                            meer zoekopties
-                        </a>
+
+
+
+                        <div id="moreOptions">
+                            <a href="#" class="button_atAlt">
+                                meer zoekopties
+                            </a>
+                        </div>
+
+                        <div id="hiddenOptions">
+                            <p>
+                                <label for="a">Kilometerstand</label>
+                            </p>
+
+
+                            <p class="kmP">
+                                <span class="kmFrom">0</span>
+                                <span class="kmTo">100 000</span>
+                            </p>
+                            <div class="priceSliderCont commSlideCont">
+                                <div id="sliderA" class="bouwjaarSlider"></div>
+                            </div>
+                            <div class="kmInputs">
+                                <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="bouwjaar_min" class="kmFrom "></span>
+                                <span
+                                    class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="bouwjaar_max" class="kmTo"></span>
+                            </div>
+
+                            <p>
+                                <label for="b">Transmissie</label>
+                            </p>
+                            <select name="cilinderinhoud" id="power" class="selectCustom">
+                                <option value="min">Alle transmissies</option>
+                                <option value="min">1</option>
+                                <option value="min">2</option>
+                                <option value="min">3</option>
+
+                            </select>
+
+
+                            <p>
+                                <label for="b">Aantal deuren</label>
+                            </p>
+                            <select name="cilinderinhoud" id="power" class="selectCustom">
+                                <option value="min">Selecteer aantal deuren</option>
+                                <option value="min">1</option>
+                                <option value="min">2</option>
+                                <option value="min">3</option>
+
+                            </select>
+                        </div>
+
+
+
 
                         <button type="submit" class="button_at1">toon auto's</button>
                     </form>
