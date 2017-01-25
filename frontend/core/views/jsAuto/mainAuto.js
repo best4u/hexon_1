@@ -1,6 +1,24 @@
 $=jQuery;
 $(document).ready(function(){
 
+
+    ////fromstyler
+    $('.checkboxInput').styler();
+
+
+    //////tabs single item
+    jQuery('.tabs .tab-links a').on('click', function(e)  {
+        var currentAttrValue = jQuery(this).attr('href');
+
+        // Show/Hide Tabs
+        jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+
+        // Change/remove current tab to active
+        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+
+        e.preventDefault();
+    });
+
     //Slider filters
 
 	var slider = document.getElementById('slider');
@@ -71,6 +89,8 @@ $(document).ready(function(){
             priceFrom.val(value);
         }
     });
+
+
 
     //slider2.Link('lower').to( $('.priceFrom') );
     //slider2.Link('upper').to( $('.priceTo') );

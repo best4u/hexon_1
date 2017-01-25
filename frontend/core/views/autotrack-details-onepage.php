@@ -80,6 +80,7 @@
 								</div>
 
 								<div class="descOptAcc">
+
                                 <!--    Veiligheid category-->
                                     <?php
                                     $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",$ocassion);
@@ -216,6 +217,7 @@
 
                                     <div class="descAlgemen commDesc">
                                         <div class="commLeftSpecific">
+
                                 <?php
                                 $category = "";
                                 foreach($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
