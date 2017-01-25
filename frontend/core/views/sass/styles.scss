@@ -160,7 +160,67 @@ select.selectCustom {
 /***************END************/
 
 
+/*----- Tab Links -----*/
 
+.tab-links:after {
+  display:block;
+  clear:both;
+  content:'';
+}
+
+.tab-links li {
+  margin:0px 5px;
+  float:left;
+  list-style:none;
+  padding-right: 20px;
+}
+
+.tab-links a {
+  display:inline-block;
+  border-radius:3px 3px 0px 0px;
+  background:transparent;
+  font-size:15px;
+  font-weight:400;
+  color:#868e96;
+  transition:all linear 0.15s;
+  padding-bottom: 5px;
+}
+
+.tab-links .active a{
+  border-bottom: 3px solid #5C7CFA;
+  color: #5c7cfa;
+}
+
+.tab-links a:hover {
+  background:transparent;
+  text-decoration:none;
+  color: #868e96;
+  border-bottom: 3px solid #CED4DA;
+}
+
+li.active a, li.active a:hover {
+  background:#fff;
+  color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+
+.tab-content {
+  padding-top: 20px;
+  // padding:15px;
+  // border-radius:3px;
+  // box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+  background:#fff;
+}
+
+.tab {
+  display:none;
+}
+
+.tab.active {
+  display:block;
+}
+/******************/
 
 
 /*********GLOBAL STYLES*******/
