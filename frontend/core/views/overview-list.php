@@ -19,10 +19,7 @@
                 <div class="titleAndSelect">
                     <div class="titleLeftPart">
                         <h1>Occasions</h1>
-<<<<<<< Updated upstream
-=======
                         <span class="urlAjaxFilter" style="display: none"><?php echo plugins_url('aside_filter_functions.php',dirname(__FILE__)); ?></span>
->>>>>>> Stashed changes
                     </div>
 
                     <div class="selectorB4uAuto">
@@ -73,7 +70,7 @@
                                                         foreach($option as $type =>  $car_option)
                                                         {
                                                             ?>
-                                                            <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                            <p><span class="leftType"><?php echo $type; ?>:</span> <span class="rightOption"><?php echo $car_option; ?></span></p>
                                                             <?php
                                                         }
                                                     }
@@ -172,17 +169,6 @@
 
 
                 <div class="sidebarFilters">
-<<<<<<< Updated upstream
-                    <form action="">
-                        <p>
-                            <label for="a">Merk</label>
-                        </p>
-                        <select name="name" id="2" class="selectCustom">
-                            <option value="volvo">Alle merken</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-=======
                     <form action="" method="GET">
                         <p>
                             <label for="a">Merk</label>
@@ -196,7 +182,6 @@
                                 <?php
                             }
                             ?>
->>>>>>> Stashed changes
                         </select>
 
                         <p>
@@ -217,13 +202,7 @@
                             ?>
                         </select>
 
-                        <a href="#" class="button_at1">
-                            toon auto's
-                        </a>
-
-
-
-
+                        <button type="submit" class="button_at1">toon auto's</button>
 
                         <p>
                             <label for="a">Prijs</label>
@@ -242,13 +221,10 @@
                         <div class="priceSliderCont commSlideCont">
                             <div id="slider2" class="bouwjaarSlider"></div>
                         </div>
-<<<<<<< Updated upstream
-=======
                         <div class="pricesInputs">
                             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="prijs_min" class="priceFrom form-control"></span>
                             <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="prijs_max" class="priceTo form-control"></span>
                         </div>
->>>>>>> Stashed changes
 
 
 
@@ -269,13 +245,10 @@
                         <div class="yearSliderCont commSlideCont">
                             <div id="slider" class="bouwjaarSlider"></div>
                         </div>
-<<<<<<< Updated upstream
-=======
                         <div class="yearsInputs">
                             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="bouwjaar_min" class="yearsFrom "></span>
                             <span class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="bouwjaar_max" class="yearsTo"></span>
                         </div>
->>>>>>> Stashed changes
 
 
 
@@ -333,9 +306,7 @@
                             meer zoekopties
                         </a>
 
-                        <a href="#" class="button_at1">
-                            toon auto's
-                        </a>
+                        <button type="submit" class="button_at1">toon auto's</button>
                     </form>
                 </div>
 

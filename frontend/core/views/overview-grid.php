@@ -69,7 +69,7 @@
                                                             foreach($option as $type =>  $car_option)
                                                             {
                                                                 ?>
-                                                                <p><?php echo $type; ?>: <?php echo $car_option; ?></p>
+                                                                <p> <span class="leftType"><?php echo $type; ?>: </span> <span class="rightOption"><?php echo $car_option; ?></span></p>
                                                                 <?php
                                                             }
                                                         }
