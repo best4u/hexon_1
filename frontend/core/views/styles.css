@@ -43,11 +43,19 @@ select.selectCustom option {
   content: '';
 }
 
+ul.tab-links {
+  margin: 0;
+  list-style-type: none;
+}
+
 .tab-links li {
-  margin: 0px 5px;
+  margin: 0px;
   float: left;
   list-style: none;
   padding-right: 20px;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #F2F3F5;
 }
 
 .tab-links a {
@@ -59,6 +67,7 @@ select.selectCustom option {
   color: #868e96;
   transition: all linear 0.15s;
   padding-bottom: 5px;
+  height: 40px;
 }
 
 .tab-links .active a {
@@ -371,6 +380,12 @@ input, textarea {
   font-weight: 500;
 }
 
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc p {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc .leftType {
   width: 45%;
   margin-right: 5%;
@@ -387,17 +402,6 @@ input, textarea {
   width: 50%;
   float: left;
   font-weight: 300;
-}
-
-.singleItemWrapp .detailPage .commTitle26 {
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 26px;
-  line-height: 36px;
-  color: #343a40;
-  font-weight: 700;
-  margin-bottom: 5px;
 }
 
 .singleItemWrapp .detailPage .commTitleBlue {
@@ -532,6 +536,34 @@ input, textarea {
   border-left: 1px solid #DEE2E6;
 }
 
+/*com title  styles*/
+.commTitle26 {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 26px;
+  line-height: 36px;
+  color: #343a40;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+ul.commList {
+  list-style-type: square;
+  margin-bottom: 20px;
+}
+
+.commTitleBlue {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 700;
+  color: #5c7cfa;
+}
+
+/*end*/
 .leftContent_at {
   width: 74.13793%;
   display: block;
@@ -634,6 +666,7 @@ input, textarea {
   width: 48%;
   float: left;
   margin-right: 4%;
+  font-weight: 600;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .rightOption {
@@ -772,6 +805,7 @@ input, textarea {
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail p {
   width: 100%;
   overflow: hidden;
+  display: block;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .leftType {
@@ -1196,6 +1230,7 @@ input, textarea {
     width: 100%;
     float: none;
     margin-right: 0;
+    margin-bottom: 30px;
   }
   .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
     width: 100%;
