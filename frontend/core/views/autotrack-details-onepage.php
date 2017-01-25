@@ -268,7 +268,7 @@
 
                                 ?>
 							</div>
-
+                             <hr class="lineAll">
                         <?php
                         if(count($ocassion->algemeen->videoUrls) > 0){
                             ?>
@@ -285,48 +285,7 @@
 
                         ?>
 						<hr class="lineAll">
-						<div class="contactFormBottom commForm">
-							<div class="titleOms commTitle26">
-								Je eigen auto inruilen
-							</div>
-							<div class="descFormBott commDesc">
-								<div class="contactSubDesc">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sapien orci, blandit quis orci quis, dapibus semper lectus.
-								</div>
 
-								<form action="" class="bottomForm">
-									<div class="plate">
-                                        <img src="<?php echo plugins_url("img/plate.png",__FILE__) ?>" alt="">
-									</div>
-									<p>
-										<label for="km">Kilometerstand</label>
-									</p>
-									<p class="inputRel">
-										<input type="text" placeholder="000.000">
-									</p>
-									<p>
-										<label for="km">E-mailadres</label>
-									</p>
-									<p>
-										<input type="email" placeholder="info@domeinnaam.nl">
-									</p>
-									<p>
-										<label for="km">Telefoonnummer </label><span class="optionel">(optioneel)</span>
-									</p>
-									<p>
-										<input type="tel" placeholder="+31 0000 000 000">
-									</p>
-									<p>
-										<label for="km">Bericht</label>
-									</p>
-									<p>
-										<textarea rows="10" cols="80" placeholder="Geef een korte beschrijving van de staat van de auto"></textarea>
-									</p>
-
-									<a href="#" class="button_at1">inruilvoorstel aanvragen</a>
-								</form>
-							</div>
-						</div>
 	        			</div>
 	        		</div>
                     </div>
