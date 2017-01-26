@@ -168,11 +168,19 @@ select.selectCustom {
   content:'';
 }
 
+ul.tab-links{
+	margin: 0;
+	list-style-type: none;
+}
+
 .tab-links li {
-  margin:0px 5px;
+  margin:0px;
   float:left;
   list-style:none;
   padding-right: 20px;
+  height: 40px;
+  line-height: 40px;
+  border-bottom:1px solid #F2F3F5;
 }
 
 .tab-links a {
@@ -184,6 +192,7 @@ select.selectCustom {
   color:#868e96;
   transition:all linear 0.15s;
   padding-bottom: 5px;
+	height: 40px;
 }
 
 .tab-links .active a{
@@ -473,6 +482,11 @@ input, textarea{
 						margin-right: 0;
 						float: left;
 						font-weight: 500;
+						
+						p{
+							@include clearfix();
+							display: block;
+						}
 
 						.leftType{
 							width: 45%;
@@ -496,14 +510,14 @@ input, textarea{
 			}
 		}
 		
-		.commTitle26{
-			@include fontC();
-			font-size: 26px;
-			line-height: 36px;
-			color: #343a40;
-			font-weight: $bold;
-			margin-bottom: 5px;
-		}
+		//.commTitle26{
+		//	@include fontC();
+		//	font-size: 26px;
+		//	line-height: 36px;
+		//	color: #343a40;
+		//	font-weight: $bold;
+		//	margin-bottom: 5px;
+		//}
 
 		.commTitleBlue{
 			@include fontC();
@@ -656,8 +670,30 @@ input, textarea{
 	}
 }
 
+/*com title  styles*/
+.commTitle26{
+	@include fontC();
+	font-size: 26px;
+	line-height: 36px;
+	color: #343a40;
+	font-weight: $bold;
+	margin-bottom: 5px;
+}
 
+ul.commList{
+	list-style-type: square;
+	//padding-left: 20px;
+	margin-bottom: 20px;
+}
 
+.commTitleBlue{
+	@include fontC();
+	font-size: 20px;
+	line-height: 30px;
+	font-weight: $bold;
+	color: #5c7cfa;
+}
+/*end*/
 
 .leftContent_at{
 	width: 74.13793%;
@@ -749,6 +785,7 @@ input, textarea{
 								width: 48%;
 								float: left;
 								margin-right: 4%;
+								font-weight: 600;
 							}
 
 							.rightOption{
@@ -880,6 +917,7 @@ input, textarea{
 							
 							p{
 								@include clearfix();
+								display: block;
 							}
 
 							.leftType{
@@ -1141,6 +1179,7 @@ input, textarea{
 
 	i.icon-facebook{
 		background-color: #3B5998;
+
 	}
 
 	i.icon-twitter{
