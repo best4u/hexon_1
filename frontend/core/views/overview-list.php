@@ -98,20 +98,19 @@
                             <?php
                         }
                     ?>
-
-
                 </div>
 
                 <!-- Start pargination -->
                 <div class="bottomNPaginationWrapp">
                     <div class="centerDiv">
+
                         <ul class="ulPagination">
 
                             <?php
                             if(count($pagination) > 1){
                                 if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
                                     ?>
-                                    <li class="prevPage"><a href="?pagina=<?php echo $_GET['pagina'] - 1; ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                    <li class="prevPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 1); ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
                                     <?php
                                 }else{
 
@@ -122,7 +121,7 @@
 
                                 if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
                                     ?>
-                                    <li><a href="?pagina=<?php echo $_GET['pagina']-3; ?>">...</a></li>
+                                    <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 3); ?>">...</a></li>
                                     <?php
                                 }
 
@@ -131,7 +130,7 @@
 
                             foreach($pagination as $page){
                             ?>
-                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="?pagina=<?php echo $page; ?>"><?php echo $page; ?></a></li>
+                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="<?php echo $filertObj->get_query_filter_pagination($page); ?>"><?php echo $page; ?></a></li>
                             <?php
                             }
 
@@ -139,8 +138,8 @@
                                 if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
 
                                     ?>
-                                    <li><a href="?pagina=<?php echo $_GET['pagina']+3; ?>">...</a></li>
-                                    <li class="nextPage"><a href="?pagina=<?php echo $_GET['pagina']+1; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                    <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 3); ?>">...</a></li>
+                                    <li class="nextPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 1); ?>">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
 
                                     <?php
                                 }elseif(!isset($_GET['pagina'])){
@@ -286,20 +285,20 @@
                             ?>
                         </select>
 
-                        <p>
-                            <label for="b">Motorinhoud</label>
-                        </p>
-                        <select name="cilinderinhoud" id="power" class="selectCustom">
-                            <option value="min">Minimaal</option>
-                            <?php
-                            foreach($_SESSION['power'] as $power){
-                                if($power != ""){
-                                    echo "<option value='$power' class='powerOption'>".ucfirst(strtolower($power))."</option>";
-                                }
-                            }
-                            ?>
-
-                        </select>
+<!--                        <p>-->
+<!--                            <label for="b">Motorinhoud</label>-->
+<!--                        </p>-->
+<!--                        <select name="cilinderinhoud" id="power" class="selectCustom">-->
+<!--                            <option value="min">Minimaal</option>-->
+<!--                            --><?php
+//                            foreach($_SESSION['power'] as $power){
+//                                if($power != ""){
+//                                    echo "<option value='$power' class='powerOption'>".ucfirst(strtolower($power))."</option>";
+//                                }
+//                            }
+//                            ?>
+<!---->
+<!--                        </select>-->
 
 
 
@@ -317,45 +316,56 @@
 
 
                             <p class="kmP">
-                                <span class="kmFrom">0</span>
-                                <span class="kmTo">100 000</span>
+                                <span class="kmFrom kmFromLabel"><?php echo $_SESSION['km_min']; ?></span>
+                                <span class="kmTo kmToLabel"><?php echo $_SESSION['km_max']; ?></span>
+
+                                <span class="kmFromMin" style="display: none"><?php if(isset($_GET['kilometerstand_min'])){ echo $_GET['kilometerstand_min']; }else{ echo $_SESSION['km_min']; } ?></span>
+                                <span class="kmFromMax" style="display: none"><?php if(isset($_GET['kilometerstand_max'])){ echo $_GET['kilometerstand_max']; }else{ echo $_SESSION['km_max']; } ?></span>
                             </p>
                             <div class="priceSliderCont commSlideCont">
                                 <div id="sliderA" class="bouwjaarSlider"></div>
                             </div>
                             <div class="kmInputs">
-                                <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="bouwjaar_min" class="kmFrom "></span>
+                                <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="kilometerstand_min" class="kmFrom "></span>
                                 <span
-                                    class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="bouwjaar_max" class="kmTo"></span>
+                                    class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="kilometerstand_max" class="kmTo"></span>
                             </div>
 
                             <p>
                                 <label for="b">Transmissie</label>
                             </p>
-                            <select name="cilinderinhoud" id="power" class="selectCustom">
+                            <select name="transmissie" id="power" class="selectCustom">
                                 <option value="min">Alle transmissies</option>
-                                <option value="min">1</option>
-                                <option value="min">2</option>
-                                <option value="min">3</option>
+                                <?php
+                                    if(isset($_SESSION['transmisie'])){
+                                        foreach($_SESSION['transmisie'] as $type){
+                                            ?>
+                                            <option value="<?php echo $type; ?>" <?php if(isset($_GET['transmissie']) && $_GET['transmissie'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
+                                            <?php
+                                        }
 
+                                    }
+                                ?>
                             </select>
 
 
                             <p>
                                 <label for="b">Aantal deuren</label>
                             </p>
-                            <select name="cilinderinhoud" id="power" class="selectCustom">
-                                <option value="min">Selecteer aantal deuren</option>
-                                <option value="min">1</option>
-                                <option value="min">2</option>
-                                <option value="min">3</option>
+                            <select name="aantalDeuren" id="power" class="selectCustom">
+                                <option value>Selecteer aantal deuren</option>
+                                <?php
+                                    foreach($_SESSION['dors'] as $type){
+                                        if($type != ""){
+                                            ?>
+                                            <option value="<?php echo $type; ?>" <?php if(isset($_GET['aantalDeuren']) && $_GET['aantalDeuren'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
+                                            <?php
+                                        }
+                                    }
 
+                                ?>
                             </select>
                         </div>
-
-
-
-
                         <button type="submit" class="button_at1">toon auto's</button>
                     </form>
                 </div>

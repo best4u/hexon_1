@@ -182,21 +182,48 @@ function get_models(mark_id){
     });
 
 
+
     /////Kilometerstand noUi slider
     var sliderA = document.getElementById('sliderA');
+    var kmFrom = $(".kmFrom");
+    var kmto = $(".kmTo");
+
+    var kmFromLabel = $(".kmFromLabel").text();
+    var kmToLabel = $(".kmToLabel").text();
+
+    var kmFromMin = $(".kmFromMin").text();
+    var kmFromMax = $(".kmFromMax").text();
+
+
 
     if(sliderA) {
         if (sliderA) {
             noUiSlider.create(sliderA, {
-                start: [0, 100],
+                start: [parseInt(kmFromMin), parseInt(kmFromMax)],
                 connect: true,
+                step:50,
                 range: {
-                    'min': 0,
-                    'max': 100
+                    'min': parseInt(kmFromLabel),
+                    'max': parseInt(kmToLabel)
+                },
+                format: wNumb({
+                    decimals: 0
+                })
+            });
+
+            sliderA.noUiSlider.on('update', function (values, handle) {
+
+                var value = values[handle];
+
+                if (handle) {
+                    kmto.val(value);
+                } else {
+                    kmFrom.val(value);
                 }
             });
         }
     }
+
 
     ////////////hide show moree options
     $("#moreOptions > a").click(function(e) {

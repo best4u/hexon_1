@@ -28,6 +28,23 @@ class Filter{
         return $result;
     }
 
+    function get_query_filter_pagination($page){
+
+        if(preg_match('/pagina/',$_SERVER['QUERY_STRING'])){
+            $query_string = $_SERVER['QUERY_STRING'];
+            $query_string = explode("&",$query_string);
+            unset($query_string[0]);
+            $query_string = implode("&",$query_string);
+        }else{
+            $query_string = $_SERVER['QUERY_STRING'];
+        }
+
+        $query = "?pagina=".$page."&".$query_string;
+
+        return $query;
+
+    }
+
     function orderBy(){
         $sort_query = "";
         $sort_by = get_option("at_sort_by");
@@ -65,25 +82,36 @@ class Filter{
             $_SESSION['models'] = $dealer_models;
 
         }
-        if(isset($_GET['modelId']) && !$_GET['modelId'] == ""){
+        if(isset($_GET['modelId']) && $_GET['modelId'] != ""){
             $filterQuery .= "&filter%5BmodelId%5D=".$_GET['modelId']."";
         }
 
-        if(isset($_GET['prijs_min']) && !$_GET['prijs_min'] == ""){
+        if(isset($_GET['prijs_min']) && $_GET['prijs_min'] != ""){
             $filterQuery .= "&filter%5Bprijs.min%5D=".$_GET['prijs_min']."";
             $filterQuery .= "&filter%5Bprijs.max%5D=".$_GET['prijs_max']."";
         }
 
-        if(isset($_GET['bouwjaar_min']) && !$_GET['bouwjaar_min'] == ""){
+        if(isset($_GET['bouwjaar_min']) && $_GET['bouwjaar_min'] != ""){
             $filterQuery .= "&filter%5Bbouwjaar.min%5D=".$_GET['bouwjaar_min']."";
             $filterQuery .= "&filter%5Bbouwjaar.max%5D=".$_GET['bouwjaar_max']."";
         }
 
-        if(isset($_GET['brandstofsoort']) && !$_GET['brandstofsoort'] == ""){
+        if(isset($_GET['brandstofsoort']) && $_GET['brandstofsoort'] != ""){
             $filterQuery .= "&filter%5Bbrandstofsoort%5D=".$_GET['brandstofsoort']."";
         }
-        if(isset($_GET['carrosserievorm']) && !$_GET['carrosserievorm'] == ""){
+        if(isset($_GET['carrosserievorm']) && $_GET['carrosserievorm'] != ""){
             $filterQuery .= "&filter%5Bcarrosserievorm%5D=".$_GET['carrosserievorm']."";
+        }
+        if(isset($_GET['transmissie']) && $_GET['transmissie'] != ""){
+            $filterQuery .= "&filter%5Btransmissietype%5D=".$_GET['transmissie']."";
+        }
+
+        if(isset($_GET['kilometerstand_min']) && $_GET['kilometerstand_min'] != ""){
+            $filterQuery .= "&filter%5Bkilometerstand.min%5D=".$_GET['kilometerstand_min']."";
+            $filterQuery .= "&filter%5Bkilometerstand.maz%5D=".$_GET['kilometerstand_max']."";
+        }
+        if(isset($_GET['aantalDeuren']) && $_GET['aantalDeuren'] != ""){
+            $filterQuery .= "&filter%5BaantalDeuren%5D=".$_GET['aantalDeuren']."";
         }
 
 
@@ -103,6 +131,9 @@ class Filter{
             $fuel = [];
             $caroserie = [];
             $power = [];
+            $km = [];
+            $transmisie = [];
+            $dors = [];
 
 //                echo "<pre>";
 //                    var_dump($dealer_marks_json->items[0]);
@@ -115,6 +146,9 @@ class Filter{
                 $fuel[] = $mark->algemeen->brandstof;
                 $caroserie[] = $mark->algemeen->carrosserievorm;
                 $power[] = $mark->motor->cilinderinhoud;
+                $km[] = $mark->geschiedenis->kilometerstand;
+                $transmisie[] = $mark->algemeen->transmissie;
+                $dors[] = $mark->algemeen->aantalDeuren;
             }
             foreach($all_marks_json->items as $mark){
                 if(array_key_exists($mark->merkId,$marks)){
@@ -126,9 +160,11 @@ class Filter{
             asort($marks);
             asort($fuel);
             asort($caroserie);
+            asort($transmisie);
+            asort($dors);
 
 //              echo "<pre>";
-//                    var_dump($marks);
+//                    var_dump(array_unique($transmisie));
 //              echo "</pre>";
             $_SESSION['all_marks'] = $marks;
             $_SESSION['at_username'] = get_option("at_username");
@@ -141,10 +177,16 @@ class Filter{
             $_SESSION['max_year'] = max($all_years);
             $_SESSION['min_year'] = min($all_years);
 
+            $_SESSION['km_min'] = min($km);
+            $_SESSION['km_max'] = max($km);
+
             $_SESSION['fuel'] = array_unique($fuel);
 
             $_SESSION['caroserie'] = array_unique($caroserie);
             $_SESSION['power'] = array_unique($power);
+
+            $_SESSION['transmisie'] = array_unique($transmisie);
+            $_SESSION['dors'] = array_unique($dors);
 
 
 
