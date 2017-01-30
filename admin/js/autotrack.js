@@ -223,6 +223,7 @@ $(document).ready(function(){
     function filter_attr(category,attr_name,home_page,overview,summary_detail,details_total)
     {
         var url = $(".urlAjax").text();
+        console.log(category);
         var data = {
             action: 'filter_attributes',
             name: name,

@@ -44,6 +44,14 @@
                         <option value="30" <?php echo $period == 30 ? 'selected' : ''?>>30</option>
                     </select>
                 </div>
+                    <div class="col-md-8">
+                        <br>
+                        <br>
+                        <h3>Shortcodes</h3>
+                        <p>Show all ocassions: <b>[occasions_list]</b></p>
+                        <p>Show occasions on home: <b>[home_occasions]</b></p>
+                    </div>
+
             </div>
 
         </div>
@@ -138,7 +146,21 @@
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Homepage</div>
+            <p>Number of occasions?</p>
+            <div class="row">
+                <?php
+                $at_number_of_occasions_on_home = get_option("at_number_of_occasions_on_home");
+                ?>
+                <div class="col-md-3">
+                    <div class="row">
+                        <input type="number" class="form-control" name="at_number_of_occasions_on_home" value="<?php echo $at_number_of_occasions_on_home; ?>">
+                    </div>
+                </div>
+            </div>
+            <br>
             <p>Welke advertenties dienen er op de home-page getoond worden?</p>
+
+            <br>
             <?php $at_home_cars = get_option('at_home_cars');
 
             ?>
@@ -287,11 +309,29 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
+
+            <p>Form shortcode </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php $at_form_short_code = get_option('at_form_short_code'); ?>
+                    <textarea id="" cols="30" rows="10" name="at_form_short_code" class="form-control"><?=$at_form_short_code ?></textarea>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="shortDelimeter"></div>
+                </div>
+            </div>
+
+
             <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>
             <?php $receivers = get_option('receiver_emails'); ?>
             <div class="row">
@@ -320,6 +360,8 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
@@ -401,44 +443,25 @@
                     )) ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="shortDelimeter"></div>
-                </div>
-            </div>
-            <p>Geef hier de tekst op van de bedankpagina, de URL hiervan kan niet worden gewijzigd.</p>
-            <div class="row">
-                <div class="col-sm-6">
-                    <?php $thank_you_text = get_option('at_thank_you_text') ?>
-                    <?php wp_editor($thank_you_text, 'thank_you_text', array(
-                        'textarea_name' => 'at_thank_you_text',
-                        'editor_height' => 150
-                    )) ?>
-                </div>
-            </div>
+<!--            <div class="row">-->
+<!--                <div class="col-sm-7">-->
+<!--                    <div class="shortDelimeter"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <p>Geef hier de tekst op van de bedankpagina, de URL hiervan kan niet worden gewijzigd.</p>-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-6">-->
+<!--                    --><?php //$thank_you_text = get_option('at_thank_you_text') ?>
+<!--                    --><?php //wp_editor($thank_you_text, 'thank_you_text', array(
+//                        'textarea_name' => 'at_thank_you_text',
+//                        'editor_height' => 150
+//                    )) ?>
+<!--                </div>-->
+<!--            </div>-->
 
 
         </div>
 
-
-        <?php
-        $ch = curl_init("https://www.autotrack.nl/api/advertenties?pageNumber=50&pageSize=1&sort%5Bprijs%5D=desc");
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_POST, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_USERPWD, "best4u:VZipAyJKHfxe");
-        $output = curl_exec($ch);
-        if(curl_error($ch)){
-            echo '<pre>';
-            var_dump(curl_error($ch));
-            echo '</pre>';
-        }
-        curl_close($ch);
-        echo '<pre>';
-        //                    var_dump(json_decode($output, true));
-        echo '</pre>';
-        //            echo $output;  ?>
         <?php submit_button('Opslaan'); ?>
 
 

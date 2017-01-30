@@ -1,52 +1,53 @@
+<?php
+$text_color = get_option("at_font_color");
+$atribute_label_color = get_option("at_attribute_label");
+$atribute_value_color = get_option("at_attribute_value");
+$header_color = get_option("at_header_color");
+$button_color = get_option("at_button_color");
+$price_color = get_option("at_price_color");
+?>
 <style>
     .text_color{
-        color: #444444 !important;
+        color: <?php echo $text_color; ?> !important;
     }
 
 
     .atribute_label_color{
-        color: #777777 !important;
+        color: <?php echo $atribute_label_color; ?> !important;
     }
     .atribute_value_color{
-        color: #444444 !important;
+        color: <?php echo $atribute_value_color; ?> !important;
     }
 
 
     .header_color{
-        color: #5021FF !important;
+        color: <?php echo $header_color; ?> !important;
     }
 
 
     .button_color{
-        background-color: #F7A404 !important;
+        background-color: <?php echo $button_color; ?> !important;
     }
 
 
     .price_color{
-        color: #FF0000 !important;
+        color: <?php echo $price_color; ?> !important;
     }
 </style>
 
 <pre>
-    <?php //var_dump($ocassion); ?>
+<!--    --><?php //var_dump($ocassion); ?>
 </pre>
         <div class="overview_gridWrapp">
-			<div class="breadCrumbWrapp">
-				<div class="centerDiv">
-					<div class="breadContent">
-						<a href="#"><span>Home</span></a> <span class="arrowBread"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span> <a href="#"><span class="activeBread">Occasions</span></a> <span class="rightBCSpan">Terug naar het overzicht • <a href="#">Print deze pagina</a></span>
-					</div>					
-				</div>
-			</div>
 
 			<div class="leftAndRightWrapp singleItemWrapp">
-	        	<div class="centerDiv">				
+	        	<div class="centerDiv">
 	        		<div class="leftContent_at">
 	        			<div class="detailPage">
 		        			<div class="carTitleTop header_color">
                                 <?php echo $ocassions_obj->get_car_name($ocassion); ?>
-		        			</div>	 
-							
+		        			</div>
+
 							<div class="sliderAndDesc">
 								<div class="leftSlideBlock">
 									<div class="fotorama"  data-nav="thumbs" data-allowfullscreen="true">
@@ -87,7 +88,6 @@
         							</div>
 								</div>
 							</div>
-
 
 							<div class="omschriving">
 								<div class="titleOms commTitle26">
@@ -301,6 +301,7 @@
 							</div>
                              <hr class="lineAll">
                         <?php
+
                         if(count($ocassion->algemeen->videoUrls) > 0){
                             ?>
                             <div class="videoPart">
@@ -322,105 +323,120 @@
                 </div>
             </div>
 
-
-
-
 					<!-- sidebar -->
-					<div class="sidebarContent">
-						<div class="titleSidebarDetail">
-							Neem contact met ons op
-						</div>
+                    <div class="sidebarContent">
+                        <div class="concatFormText" style="display: none">Goedendag,
+Ik ben geïnteresseerd in uw
+<?php echo $ocassions_obj->get_car_name($ocassion); ?>
+Wilt u contact met mij opnemen?
+Met vriendelijke groet,
+                        </div>
+                        <?php
+                        $sidebar_blocks = get_option('at_sidebar_blocks');
+                        $sidebar_blocks = json_decode($sidebar_blocks);
+                        $sidebar_blocks = object_to_array($sidebar_blocks);
+                        ?>
 
-						<div class="sidebarFilters">
-							<form action="" class="sidebarForm">
-								<p>
-									<label for="">Uw naam</label>
-								</p>
-								<p>
-									<input type="text" placeholder="John Doe">
-								</p>
+                        <?php foreach($sidebar_blocks as $block): ?>
+                            <?php
+                            if($block['name'] == "Contactformulier" && $block['state'] == "1"){
+                                $at_form_short_code = get_option('at_form_short_code');
+                                ?>
 
-								<p>
-									<label for="">E-mailadres</label>
-								</p>
-								<p>
-									<input type="email" placeholder="johndoe@gmail.com">
-								</p>
-
-								<p>
-
-								<p>
-									<label for="">Telefoonnummer </label><span class="optionel">(optioneel)</span>
-								</p>
-								<p>
-									<input type="tel" placeholder="+31 0000 000 000">
-								</p>
-
-								<p>
-									<label for="km">Bericht</label>
-								</p>
-								<p>
-									<textarea rows="14"  placeholder="Geef een korte beschrijving van de staat van de auto">Goedendag,
-										Ik ben geïnteresseerd in uw
-										VOLVO V40 R-Design T2 122pk
-
-										Wilt u contact met mij opnemen?
-
-										Met vriendelijke groet,
-									</textarea>
-								</p>
-
-								<p>
-									<label for="">Proefrit?</label>
-								</p>
-								<p>
-									<input type="checkbox" name="u" value="u" class="checkboxInput">Ja ik wil graag een proefrit maken<br>
-								</p>
-
-								<p class="labelMargTop">
-									<label for="" >Wanneer wilt u de proefrit maken?</label>
-								</p>
-								<p>
-									<input type="text" placeholder="Kies een datum" class="dateInput">
-								</p>
-
-								<hr class="lineAll">
-
-								<p>
-									<label for="" class="bigLabel">Deel deze tweedehands auto</label>
-								</p>
-
-								<p>
-									<span class="socialIcons"><a href="#"><i class="icon-facebook"></i></a></span>
-									<span class="socialIcons"><a href="#"><i class="icon-twitter"></i></a></span>
-									<span class="socialIcons"><a href="#"><i class="icon-google-plus"></i></a></span>
-									<span class="socialIcons"><a href="#"><i class="icon-linkedin"></i></a></span>
-									<span class="socialIcons"><a href="#"><i class="icon-pinterest"></i></a></span>
-									<span class="socialIcons"><a href="#"><i class="icon-email"></i></a></span>
-								</p>
-
-								<hr class="lineAll">
-
-								<a href="#" class="button_at1 button_color">
-									verzenden
-								</a>
-
-								<hr class="lineAll">
-
-								<p>
-									<label for="" class="bigLabel">Contactinformatie</label>
-								</p>
-								<p class="commDesc text_color">
-									Zaadmarkt 95 <br>
-									7201 DD Zutphen<br><br>
-									0575-512 125<br>
-									<a href="#" class="blueLink">verkoop@best4u.nl</a>
-								</p>
+                                <!--======================== Contact form  block =========================-->
+                                <div class="titleSidebarDetail">
+                                    Neem contact met ons op
+                                </div>
+                                <?php echo do_shortcode($at_form_short_code); ?>
+                                <!--======================== End contact form block =========================-->
 
 
-							</form>
-						</div>
+                                <?php
+                            }elseif($block['name'] == "Social Media Informatie" && $block['state'] == "1"){
+                                ?>
+
+                                <!--======================== Social media  block =========================-->
+                                <hr class="lineAll">
+
+                                <p>
+                                    <label for="" class="bigLabel">Deel deze tweedehands auto</label>
+                                </p>
+                                <?php
+                                $socials = get_option('at_social_icons');
+                                $socials = json_decode($socials);
+
+                                ?>
+                                <p>
+                                    <?php
+                                    foreach($socials as $item):
+                                        if($item->url != ""){
+                                            ?>
+                                            <span class="socialIcons"><a href="<?=$item->url ?>">
+                                                    <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                                                </a></span>
+                                            <?php
+                                        }
+                                    endforeach;
+                                    ?>
+                                </p>
+
+                                <!--======================== End social media  block =========================-->
+
+                                <?php
+                            }elseif($block['name'] == "Contactinformatie" && $block['state'] == "1"){
+                                ?>
+                                <!--======================== Contact info block =========================-->
+
+                                <div class="contactInfo">
+                                    <hr class="lineAll">
+                                    <?php
+                                    $contact_info = get_option('at_contact_info');
+                                    echo $contact_info;
+                                    ?>
+                                </div>
+
+                                <!--======================== End contact info block =========================-->
+                                <?php
+                            }elseif($block['name'] == "Openingstijden" && $block['state'] == "1"){
+                                ?>
+                                <hr class="lineAll">
+                                <p>
+                                    <label for="" class="bigLabel">Openingstijden</label>
+                                </p>
+                                <table cellspacing="1" cellpadding="1">
+                                    <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><strong></strong></td>
+                                        <td><strong></strong></td>
+                                    </tr>
+                                    <?php
+                                    $shedule = get_option('at_shedule');
+                                    $shedule_days = json_decode($shedule);
+                                    ?>
+                                    <?php foreach($shedule_days as $day): ?>
+                                        <tr>
+                                            <td><strong><?=$day->day ?></strong></td>
+                                            <td><?=$day->time1->from ?> – <?=$day->time1->to ?></td>
+                                            <td>
+                                                <?php
+                                                if(isset($day->time2)){
+                                                    echo $day->time2->from." - ".$day->time2->to;
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                                <?php
+                            }
+                            ?>
+                        <?php endforeach; ?>
+
+                    </div>
 					</div>
+
 	        		<!-- end sidebar -->
 	        	</div>
         	</div>

@@ -234,4 +234,11 @@ function get_models(mark_id){
 
     });
 
+    var sidebarTextArea = $(".sidebarContent textarea");
+    if(sidebarTextArea){
+        var content = $(".sidebarContent .concatFormText").text();
+        content.trim();
+        sidebarTextArea.text(content);
+    }
+
 });

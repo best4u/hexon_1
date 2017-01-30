@@ -1,46 +1,42 @@
+<?php
+$text_color = get_option("at_font_color");
+$atribute_label_color = get_option("at_attribute_label");
+$atribute_value_color = get_option("at_attribute_value");
+$header_color = get_option("at_header_color");
+$button_color = get_option("at_button_color");
+$price_color = get_option("at_price_color");
+?>
 <style>
-    .text_color{
-        color: #444444 !important;
+    .text_color {
+        color: <?php echo $text_color; ?> !important;
     }
 
-
-    .atribute_label_color{
-        color: #777777 !important;
-    }
-    .atribute_value_color{
-        color: #444444 !important;
+    .atribute_label_color {
+        color: <?php echo $atribute_label_color; ?> !important;
     }
 
-
-    .header_color{
-        color: #5021FF !important;
+    .atribute_value_color {
+        color: <?php echo $atribute_value_color; ?> !important;
     }
 
-
-    .button_color{
-        background-color: #F7A404 !important;
+    .header_color {
+        color: <?php echo $header_color; ?> !important;
     }
 
+    .button_color {
+        background-color: <?php echo $button_color; ?> !important;
+    }
 
-    .price_color{
-        color: #FF0000 !important;
+    .price_color {
+        color: <?php echo $price_color; ?> !important;
     }
 </style>
 
-
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
 <![endif]-->
-
-
 <div class="overview_gridWrapp">
-    <div class="breadCrumbWrapp">
-        <div class="centerDiv">
-            <div class="breadContent">
-                <a href="#"><span>Home</span></a> <span class="arrowBread"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span> <a href="#"><span class="activeBread">Occasions</span></a> <span class="rightBCSpan">Terug naar het overzicht • <a href="#">Print deze pagina</a></span>
-            </div>
-        </div>
-    </div>
 
     <div class="leftAndRightWrapp singleItemWrapp">
         <div class="centerDiv">
@@ -52,11 +48,11 @@
 
                     <div class="sliderAndDesc">
                         <div class="leftSlideBlock">
-                            <div class="fotorama"  data-nav="thumbs" data-allowfullscreen="true">
+                            <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
                                 <?php
-                                foreach($ocassions_obj->get_all_images($ocassion) as $foto){
+                                foreach ($ocassions_obj->get_all_images($ocassion) as $foto) {
                                     ?>
-                                    <a href="<?php echo $foto?>"><img src="<?php echo $foto?>" width="75" height="75"></a>
+                                    <a href="<?php echo $foto ?>"><img src="<?php echo $foto ?>" width="75" height="75"></a>
                                     <?php
                                 }
                                 ?>
@@ -65,9 +61,10 @@
 
                         <div class="rightDescBlock">
                             <div class="priceandLogo">
-                                <div class="priceCarItem price_color">€ <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
+                                <div class="priceCarItem price_color">
+                                    € <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
                                 <div class="logoCarItem">
-                                    <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
+                                    <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
                                 </div>
                             </div>
 
@@ -75,12 +72,12 @@
                                 <div class="leftDetailDesc">
                                     <?php
 
-                                    foreach($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $option)
-                                    {
-                                        foreach($option as $type =>  $car_option)
-                                        {
+                                    foreach ($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $option) {
+                                        foreach ($option as $type => $car_option) {
                                             ?>
-                                            <p><span class="leftType atribute_label_color"><?php echo $type; ?>: </span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
+                                            <p><span class="leftType atribute_label_color"><?php echo $type; ?>: </span>
+                                                <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span>
+                                            </p>
                                             <?php
                                         }
 
@@ -90,9 +87,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
 
                 <div class="tabsSingleItem">
                     <div class="tabs">
@@ -102,24 +97,24 @@
                             <?php
                             $category = "";
                             $tab_counter = 3;
-                            foreach($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
-                                foreach($options as $key => $option){
-                                    if($key != $category){
+                            foreach ($ocassions_obj->get_details_total_attr($ocassion) as $key => $options) {
+                                foreach ($options as $key => $option) {
+                                    if ($key != $category) {
                                         $category = $key;
                                         ?>
                                         <li><a href="#tab<?php echo $tab_counter; ?>">
                                                 <?php
                                                 $spited_title = preg_split('/(?<=\\w)(?=[A-Z])/', $category);
                                                 $count = 0;
-                                                foreach($spited_title as $title){
-                                                    if($count == 0){
-                                                        if($title == "geschiedenis"){
+                                                foreach ($spited_title as $title) {
+                                                    if ($count == 0) {
+                                                        if ($title == "geschiedenis") {
                                                             echo "Geschiedenis van deze auto";
-                                                        }else{
-                                                            echo ucfirst($title)." ";
+                                                        } else {
+                                                            echo ucfirst($title) . " ";
                                                         }
-                                                    }else{
-                                                        echo strtolower($title)." ";
+                                                    } else {
+                                                        echo strtolower($title) . " ";
                                                     }
 
                                                     $count++;
@@ -133,9 +128,16 @@
                                 }
                             }
                             ?>
+                            <?php
+                            if (count($ocassion->algemeen->videoUrls) > 0) {
+                                ?>
+                                <li><a href="#tab123456789">Video</a></li>
+                                <?php
+                            }
+
+                            ?>
 
                         </ul>
-
 
                         <div class="tab-content">
 
@@ -147,8 +149,8 @@
                                     <div class="descOms commDesc text_color">
                                         <p>
                                             <?php
-                                            echo str_replace(".",".<br>",$ocassion->mededelingen);
-                                            $description = explode(".",$ocassion->mededelingen);
+                                            echo str_replace(".", ".<br>", $ocassion->mededelingen);
+                                            $description = explode(".", $ocassion->mededelingen);
                                             ?>
                                         </p>
                                     </div>
@@ -165,8 +167,9 @@
 
                                         <!--    Veiligheid category-->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",$ocassion);
-                                        if(count($options_accessories) > 0){
+                                        $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",
+                                                $ocassion);
+                                        if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -174,7 +177,7 @@
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach($options_accessories as $option){
+                                                    foreach ($options_accessories as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -189,8 +192,9 @@
 
                                         <!--       Exterieur category      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a",$ocassion);
-                                        if(count($options_accessories) > 0){
+                                        $options_accessories = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a",
+                                                $ocassion);
+                                        if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -198,7 +202,7 @@
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach($options_accessories as $option){
+                                                    foreach ($options_accessories as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -213,8 +217,9 @@
 
                                         <!--       Veiligheid en Techniek category      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92",$ocassion);
-                                        if(count($options_accessories) > 0){
+                                        $options_accessories = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92",
+                                                $ocassion);
+                                        if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -222,7 +227,7 @@
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach($options_accessories as $option){
+                                                    foreach ($options_accessories as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -237,8 +242,9 @@
 
                                         <!--       Audio / Telefonie category      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",$ocassion);
-                                        if(count($options_accessories) > 0){
+                                        $options_accessories = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",
+                                                $ocassion);
+                                        if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -246,7 +252,7 @@
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach($options_accessories as $option){
+                                                    foreach ($options_accessories as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -261,8 +267,9 @@
 
                                         <!--       Interieur en Comfort      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",$ocassion);
-                                        if(count($options_accessories) > 0){
+                                        $options_accessories = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",
+                                                $ocassion);
+                                        if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -270,7 +277,7 @@
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach($options_accessories as $option){
+                                                    foreach ($options_accessories as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -288,7 +295,7 @@
 
                             </div>
 
-                            <div id="tab1000000000" class="tab active">
+                            <div id="tab1000000000" class="tab">
                                 <div class="omschriving">
                                     <div class="titleOms commTitle26">
 
@@ -299,177 +306,216 @@
                                         </p>
 
 
-                            <?php
-                            $category = "";
-                            $tab_counter = 3;
-                            foreach($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
-                                foreach($options as $key => $option){
+                                        <?php
+                                        $category = "";
+                                        $tab_counter = 3;
+                                        foreach ($ocassions_obj->get_details_total_attr($ocassion) as $key => $options){
+                                        foreach ($options as $key => $option){
 
-                                    if($key != $category){
+                                        if ($key != $category){
                                         $category = $key;
                                         ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                                            <div id="tab<?php echo $tab_counter; ?>" class="tab">
-                                                <div class="garantiePart">
-                                                    <div class="titleOms commTitle26">
-                                                       <?php
-                                                       $spited_title = preg_split('/(?<=\\w)(?=[A-Z])/', $category);
-                                                       $count = 0;
-                                                       foreach($spited_title as $title){
-                                                           if($count == 0){
-                                                               if($title == "geschiedenis"){
-                                                                   echo "Geschiedenis van deze auto";
-                                                               }else{
-                                                                   echo ucfirst($title)." ";
-                                                               }
-                                                           }else{
-                                                               echo strtolower($title)." ";
-                                                           }
-
-                                                           $count++;
-                                                       }
-
-                                                       ?>
-                                                    </div>
-                                                    <div class="descOms commDesc text_color">
-                                                        <ul class="commList commDesc text_color">
+                            <div id="tab<?php echo $tab_counter; ?>" class="tab">
+                                <div class="garantiePart">
+                                    <div class="titleOms commTitle26">
                                         <?php
-                                        $tab_counter++;
+                                        $spited_title = preg_split('/(?<=\\w)(?=[A-Z])/', $category);
+                                        $count = 0;
+                                        foreach ($spited_title as $title) {
+                                            if ($count == 0) {
+                                                if ($title == "geschiedenis") {
+                                                    echo "Geschiedenis van deze auto";
+                                                } else {
+                                                    echo ucfirst($title) . " ";
+                                                }
+                                            } else {
+                                                echo strtolower($title) . " ";
+                                            }
 
-                                    }
-                                    foreach($option as $type =>  $car_option)
-                                    {
-                                        ?>
-                                        <li> <span class="leftDescSpan"><?php echo $type; ?>: </span> <span class="rightDescSpan"><?php echo $car_option; ?></span></li>
-                                        <?php
-                                    }
-                                        ?>
+                                            $count++;
+                                        }
 
-                                       <?php
-                                }
+                                        ?>
+                                    </div>
+                                    <div class="descOms commDesc text_color">
+                                        <ul class="commList commDesc text_color">
+                                            <?php
+                                            $tab_counter++;
+
+                                            }
+                                            foreach ($option as $type => $car_option) {
+                                                ?>
+                                                <li><span class="leftDescSpan"><?php echo $type; ?>: </span> <span
+                                                            class="rightDescSpan"><?php echo $car_option; ?></span></li>
+                                                <?php
+                                            }
+                                            ?>
+
+                                            <?php
+                                            }
+                                            }
+                                            ?>
+                                            <?php
+                                            if (count($ocassion->algemeen->videoUrls) > 0){
+                                            ?>
+                                            </ul>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        <div id="tab123456789" class="tab">
+                                            <div class="omschriving">
+                                                <div class="titleOms commTitle26">
+
+                                                </div>
+                                                <div class="descOms commDesc text_color">
+                                                    <iframe width="560" height="315"
+                                                            src="<?php echo $ocassion->algemeen->videoUrls[0] ?>" frameborder="0"
+                                                            allowfullscreen></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                            <?php
+                            }else{
+                                ?>
+                        </div>
+                    </div>
+                </div>
+                                <?php
                             }
                             ?>
 
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
-                        </div>
-                    </div>
-                    </div>
+
+<!-- tabs section -->
+
+<!-- end -->
 
 
-
-            <!-- tabs section -->
-
-            <!-- end -->
-
-
-
-
-            <!-- sidebar -->
-            <div class="sidebarContent">
-                <div class="titleSidebarDetail">
-                    Neem contact met ons op
-                </div>
-
-                <div class="sidebarFilters">
-                    <form action="" class="sidebarForm">
-                        <p>
-                            <label for="">Uw naam</label>
-                        </p>
-                        <p>
-                            <input type="text" placeholder="John Doe">
-                        </p>
-
-                        <p>
-                            <label for="">E-mailadres</label>
-                        </p>
-                        <p>
-                            <input type="email" placeholder="johndoe@gmail.com">
-                        </p>
-
-                        <p>
-
-                        <p>
-                            <label for="">Telefoonnummer </label><span class="optionel">(optioneel)</span>
-                        </p>
-                        <p>
-                            <input type="tel" placeholder="+31 0000 000 000">
-                        </p>
-
-                        <p>
-                            <label for="km">Bericht</label>
-                        </p>
-                        <p>
-									<textarea rows="14"  placeholder="Geef een korte beschrijving van de staat van de auto">Goedendag,
-										Ik ben geïnteresseerd in uw
-										VOLVO V40 R-Design T2 122pk
-
-										Wilt u contact met mij opnemen?
-
-										Met vriendelijke groet,
-									</textarea>
-                        </p>
-
-                        <p>
-                            <label for="">Proefrit?</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" name="u" value="u" class="checkboxInput">Ja ik wil graag een proefrit maken<br>
-                        </p>
-
-                        <p class="labelMargTop">
-                            <label for="" >Wanneer wilt u de proefrit maken?</label>
-                        </p>
-                        <p>
-                            <input type="text" placeholder="Kies een datum" class="dateInput">
-                        </p>
-
-                        <hr class="lineAll">
-
-                        <p>
-                            <label for="" class="bigLabel">Deel deze tweedehands auto</label>
-                        </p>
-
-                        <p>
-                            <span class="socialIcons"><a href="#"><i class="icon-facebook"></i></a></span>
-                            <span class="socialIcons"><a href="#"><i class="icon-twitter"></i></a></span>
-                            <span class="socialIcons"><a href="#"><i class="icon-google-plus"></i></a></span>
-                            <span class="socialIcons"><a href="#"><i class="icon-linkedin"></i></a></span>
-                            <span class="socialIcons"><a href="#"><i class="icon-pinterest"></i></a></span>
-                            <span class="socialIcons"><a href="#"><i class="icon-email"></i></a></span>
-                        </p>
-
-                        <hr class="lineAll">
-
-                        <a href="#" class="button_at1 button_color">
-                            verzenden
-                        </a>
-
-                        <hr class="lineAll">
-
-                        <p>
-                            <label for="" class="bigLabel">Contactinformatie</label>
-                        </p>
-                        <p class="commDesc text_color">
-                            Zaadmarkt 95 <br>
-                            7201 DD Zutphen<br><br>
-                            0575-512 125<br>
-                            <a href="#" class="blueLink">verkoop@best4u.nl</a>
-                        </p>
-
-
-                    </form>
-                </div>
-            </div>
-            <!-- end sidebar -->
-        </div>
+<!-- sidebar -->
+<div class="sidebarContent">
+    <div class="concatFormText" style="display: none">Goedendag,
+Ik ben geïnteresseerd in uw
+<?php echo $ocassions_obj->get_car_name($ocassion); ?>
+Wilt u contact met mij opnemen?
+Met vriendelijke groet,
     </div>
+    <?php
+    $sidebar_blocks = get_option('at_sidebar_blocks');
+    $sidebar_blocks = json_decode($sidebar_blocks);
+    $sidebar_blocks = object_to_array($sidebar_blocks);
+    ?>
 
+    <?php foreach ($sidebar_blocks as $block): ?>
+        <?php
+        if ($block['name'] == "Contactformulier" && $block['state'] == "1") {
+            $at_form_short_code = get_option('at_form_short_code');
+            ?>
+
+            <!--======================== Contact form  block =========================-->
+            <div class="titleSidebarDetail">
+                Neem contact met ons op
+            </div>
+            <?php echo do_shortcode($at_form_short_code); ?>
+            <!--======================== End contact form block =========================-->
+
+
+            <?php
+        } elseif ($block['name'] == "Social Media Informatie" && $block['state'] == "1") {
+            ?>
+
+            <!--======================== Social media  block =========================-->
+            <hr class="lineAll">
+
+            <p>
+                <label for="" class="bigLabel">Deel deze tweedehands auto</label>
+            </p>
+            <?php
+            $socials = get_option('at_social_icons');
+            $socials = json_decode($socials);
+
+            ?>
+            <p>
+                <?php
+                foreach ($socials as $item):
+                    if ($item->url != "") {
+                        ?>
+                        <span class="socialIcons"><a href="<?= $item->url ?>">
+                                <img src="<?= $item->icon_url ?>" alt="<?= $item->alt ?>">
+                            </a></span>
+                        <?php
+                    }
+                endforeach;
+                ?>
+            </p>
+
+            <!--======================== End social media  block =========================-->
+
+            <?php
+        } elseif ($block['name'] == "Contactinformatie" && $block['state'] == "1") {
+            ?>
+            <!--======================== Contact info block =========================-->
+
+            <div class="contactInfo">
+                <hr class="lineAll">
+                <?php
+                $contact_info = get_option('at_contact_info');
+                echo $contact_info;
+                ?>
+            </div>
+
+            <!--======================== End contact info block =========================-->
+            <?php
+        } elseif ($block['name'] == "Openingstijden" && $block['state'] == "1") {
+            ?>
+            <hr class="lineAll">
+            <p>
+                <label for="" class="bigLabel">Openingstijden</label>
+            </p>
+            <table cellspacing="1" cellpadding="1">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td><strong></strong></td>
+                    <td><strong></strong></td>
+                </tr>
+                <?php
+                $shedule = get_option('at_shedule');
+                $shedule_days = json_decode($shedule);
+                ?>
+                <?php foreach ($shedule_days as $day): ?>
+                    <tr>
+                        <td><strong><?= $day->day ?></strong></td>
+                        <td><?= $day->time1->from ?> – <?= $day->time1->to ?></td>
+                        <td>
+                            <?php
+                            if (isset($day->time2)) {
+                                echo $day->time2->from . " - " . $day->time2->to;
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php
+        }
+        ?>
+    <?php endforeach; ?>
+
+</div>
+
+</div>
+<!-- end sidebar -->
+</div>
+</div>
 
 
 </div>

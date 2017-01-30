@@ -5,6 +5,8 @@
     $setting = new Attributtes();
     ?>
     <span class="urlAjax" style="display: none"><?php echo plugins_url('core/ajax_requests_at.php',__FILE__); ?></span>
+    <pre>
+    </pre>
     <div class="table-responsive">
         <table class="table selectUnselect">
             <form action="/" method="GET">
@@ -13,9 +15,9 @@
                 <th class="transparentColor">
                     <select name="category" id="categoryFilter" class="form-control">
                         <option value>Category..</option>
-                        <option value="ALGEMEEN">ALGEMEEN</option>
-                        <option value="AFLEVERING">AFLEVERING</option>
-                        <option value="GESCHIEDENIS">GESCHIEDENIS</option>
+                        <?php foreach($setting->get_select_options() as $cat): ?>
+                        <option value="<?=$cat->category?>"><?=$cat->category ?></option>
+                        <?php endforeach; ?>
                     </select></th>
                 <th class="transparentColor">
                     <input type="text" class="form-control attribute_name" placeholder="Attribuut..." name="attribute">

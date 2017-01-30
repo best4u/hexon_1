@@ -44,7 +44,7 @@ class AjaxRequests{
 
     function attr_filter($category,$attr_name,$home_page,$overview,$summary_detail,$details_total)
     {
-        htmlspecialchars($category);
+
         htmlspecialchars($attr_name);
         htmlspecialchars($home_page);
         htmlspecialchars($overview);
@@ -60,7 +60,7 @@ class AjaxRequests{
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql="SELECT * FROM wp_at_attributes WHERE type!=''";
+        $sql="SELECT * FROM wp_at_attributes WHERE category!=''";
         if($category != "")
         {
             $sql .= " AND category LIKE '%".$category."%'";

@@ -1,5 +1,5 @@
 <?php
-
+ini_set('max_execution_time', 300);
 /*
 Plugin Name: Autotrack3
 Description: Autotrack API v3.0 plugin
@@ -43,6 +43,7 @@ function autotrack_menu() {
 }
 
 require_once('admin/settings-fields.php');
+
 add_action( 'admin_init', 'setting_fields_setup' );
 
 function instellingen() {
@@ -104,7 +105,78 @@ register_activation_hook( __FILE__, 'db_install' );
 register_activation_hook( __FILE__, 'insert_data_attr' );
 register_activation_hook( __FILE__, 'insert_data_settings' );
 
+// Generate xml
+require_once('frontend/core/occasions_functions.php');
 
+register_activation_hook( __FILE__, 'generate_xml' );
+
+function cron_add_minute( $schedules ) {
+
+    // Adds once every minute to the existing schedules.
+
+    $schedules['everyminute'] = array(
+        'interval' => 60,
+        'display' => __( 'Once Every Minute' )
+    );
+    return $schedules;
+}
+add_filter( 'cron_schedules', 'cron_add_minute' );
+
+function cronstarter_activation() {
+    if( !wp_next_scheduled( 'mycronjob' ) ) {
+        wp_schedule_event( time(), 'daily', 'mycronjob' );
+    }
+}
+add_action('wp', 'cronstarter_activation');
+
+// unschedule event upon plugin deactivation
+function cronstarter_deactivate() {
+
+    $timestamp = wp_next_scheduled ('mycronjob');
+
+    wp_unschedule_event ($timestamp, 'mycronjob');
+}
+register_deactivation_hook (__FILE__, 'cronstarter_deactivate');
+
+
+function my_repeat_function() {
+
+    $ocassions_obj = new Ocassions();
+    $dealerId = get_option("at_dealer_id");
+    $filertObj = new Filter();
+    $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,'1','1000000000');
+
+    if($all_occasions){
+
+        $domen = "http://".$_SERVER['SERVER_NAME'];
+        $page = get_option("at_url_page_adverts");
+
+        $domtree = new DOMDocument('1.0', 'UTF-8');
+
+
+        $xmlRoot = $domtree->createElement("xml");
+
+        $xmlRoot = $domtree->appendChild($xmlRoot);
+
+        $currentTrack = $domtree->createElement("occasion");
+        $currentTrack = $xmlRoot->appendChild($currentTrack);
+
+
+        foreach($all_occasions->items as $item){
+
+            $currentTrack->appendChild($domtree->createElement('name',$ocassions_obj->get_car_name($item)));
+            $currentTrack->appendChild($domtree->createElement('url',''.$domen.'/'.$page."/?overview=".$item->advertentieId.""));
+        }
+
+        $domtree->save('xml_car_sitemap.xml');
+
+    }
+
+}
+
+add_action ('mycronjob', 'my_repeat_function');
+
+// End generate xml
 
 require_once ("frontend/index.php");
 
@@ -113,4 +185,8 @@ require_once ("frontend/index.php");
 require_once ('frontend/core/occasions_functions.php');
 
 add_shortcode('occasions_list', 'occasions_list_overview');
+add_shortcode('home_occasions', 'get_home_occasions');
+
+
+
 

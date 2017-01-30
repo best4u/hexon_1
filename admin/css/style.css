@@ -294,3 +294,15 @@ tbody
     width: 20px;
 
 }
+
+#allAttr .category{
+    text-transform: uppercase;
+}
+
+#allAttr .atribute{
+    text-transform: uppercase;
+}
+
+#categoryFilter option{
+    text-transform: uppercase;
+}

@@ -1,29 +1,37 @@
+<?php
+$text_color = get_option("at_font_color");
+$atribute_label_color = get_option("at_attribute_label");
+$atribute_value_color = get_option("at_attribute_value");
+$header_color = get_option("at_header_color");
+$button_color = get_option("at_button_color");
+$price_color = get_option("at_price_color");
+?>
 <style>
     .text_color{
-        color: #444444 !important;
+        color: <?php echo $text_color; ?> !important;
     }
 
 
     .atribute_label_color{
-        color: #777777 !important;
+        color: <?php echo $atribute_label_color; ?> !important;
     }
     .atribute_value_color{
-        color: #444444 !important;
+        color: <?php echo $atribute_value_color; ?> !important;
     }
 
 
     .header_color{
-        color: #5021FF !important;
+        color: <?php echo $header_color; ?> !important;
     }
 
 
     .button_color{
-        background-color: #F7A404 !important;
+        background-color: <?php echo $button_color; ?> !important;
     }
 
 
     .price_color{
-        color: #FF0000 !important;
+        color: <?php echo $price_color; ?> !important;
     }
 </style>
 
@@ -35,14 +43,6 @@
 //echo "</pre>";
 //?>
 <div class="overview_gridWrapp listMode">
-    <div class="breadCrumbWrapp">
-        <div class="centerDiv">
-            <div class="breadContent">
-                <a href="#"><span>Home</span></a> <span class="arrowBread"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span> <a href="#"><span class="activeBread">Occasions</span></a>
-            </div>
-        </div>
-    </div>
-
     <div class="leftAndRightWrapp">
         <div class="centerDiv">
             <div class="leftContent_at">
@@ -69,7 +69,9 @@
                 </div>
 
                 <div class="carsContentLeft listType">
-
+                    <?php
+                    if($all_occasions){
+                    ?>
                     <?php
                         foreach($all_occasions->items as $occasion){
                            ?>
@@ -127,6 +129,7 @@
 
                             <?php
                         }
+                    }
                     ?>
                 </div>
 
@@ -396,22 +399,13 @@
                                 ?>
                             </select>
                         </div>
-                        <button type="submit" class="button_at1">toon auto's</button>
-
-
-
-
                         <button type="submit" class="button_at1 button_color">toon auto's</button>
+
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 

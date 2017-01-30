@@ -12,6 +12,8 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_password');
     register_setting( 'autotrack-settings-fields', 'at_consumer_id' );
     register_setting( 'autotrack-settings-fields', 'at_dealer_id' );
+    register_setting( 'autotrack-settings-fields', 'at_form_short_code' );
+    register_setting( 'autotrack-settings-fields', 'at_number_of_occasions_on_home' );
     register_setting( 'autotrack-settings-fields', 'at_url_page_adverts' );
     register_setting( 'autotrack-settings-fields', 'at_period_after_sell' );
 //    themes

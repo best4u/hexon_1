@@ -45,7 +45,66 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
 
     }
 
-if(isset($_POST['mark_id'])){
-    echo $_POST['mark_id'];
+function get_home_occasions(){
+    $ocassions_obj = new Ocassions();
+    $dealerId = get_option("at_dealer_id");
+    $filertObj = new Filter();
+    $filter = get_option("at_home_cars");
+    $at_number_of_occasions_on_home = get_option("at_number_of_occasions_on_home");
+    if($at_number_of_occasions_on_home == ""){
+        $at_number_of_occasions_on_home = 10;
+    }
+    $sort_query = "";
+
+    if($filter == "at_newest_cars"){
+        $sort_query .= "&sort%5BdatumGeplaatst%5D=desc";
+    }elseif($filter == "at_newest_cars"){
+        $sort_query .= "&sort%5Bprijs%5D=desc";
+    }elseif($filter == "at_last_cars"){
+        $sort_query .= "&sort%5BdatumGeplaatst%5D=asc";
+    }
+
+    if(isset($_GET['carrosserievorm']) && $_GET['carrosserievorm'] != ""){
+        $sort_query .= "&filter%5Bcarrosserievorm%5D=".$_GET['carrosserievorm']."";
+    }
+    $all_occasions = $ocassions_obj->connection_to_api('advertenties','?pageNumber=1&pageSize='.$at_number_of_occasions_on_home.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.'');
+    require_once (plugin_dir_path(__FILE__)."views/home_template.php");
+}
+
+// Temporaly function
+
+function generate_xml(){
+
+    $ocassions_obj = new Ocassions();
+    $dealerId = get_option("at_dealer_id");
+    $filertObj = new Filter();
+    $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,'1','1000000000');
+
+    if($all_occasions){
+
+        $domen = "http://".$_SERVER['SERVER_NAME'];
+        $page = get_option("at_url_page_adverts");
+
+        $domtree = new DOMDocument('1.0', 'UTF-8');
+
+
+        $xmlRoot = $domtree->createElement("xml");
+
+        $xmlRoot = $domtree->appendChild($xmlRoot);
+
+        $currentTrack = $domtree->createElement("occasion");
+        $currentTrack = $xmlRoot->appendChild($currentTrack);
+
+
+        foreach($all_occasions->items as $item){
+
+            $currentTrack->appendChild($domtree->createElement('name',$ocassions_obj->get_car_name($item)));
+            $currentTrack->appendChild($domtree->createElement('url',''.$domen.'/'.$page."/?overview=".$item->advertentieId.""));
+        }
+
+        $domtree->save('xml_car_sitemap.xml');
+
+    }
+
 }
 

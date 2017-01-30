@@ -17,6 +17,14 @@ class Attributtes
         return $results;
     }
 
+    function get_select_options(){
+        global $wpdb;
+        $table = $wpdb->prefix."at_attributes";
+        $query = "SELECT DISTINCT category FROM ".$table." ORDER BY category ASC";
+        $results = $wpdb->get_results( $query, OBJECT );
+        return $results;
+    }
+
 
 }
 
