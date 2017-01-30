@@ -1,3 +1,32 @@
+<style>
+    .text_color{
+        color: #444444 !important;
+    }
+
+
+    .atribute_label_color{
+        color: #777777 !important;
+    }
+    .atribute_value_color{
+        color: #444444 !important;
+    }
+
+
+    .header_color{
+        color: #5021FF !important;
+    }
+
+
+    .button_color{
+        background-color: #F7A404 !important;
+    }
+
+
+    .price_color{
+        color: #FF0000 !important;
+    }
+</style>
+
 
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -17,7 +46,7 @@
         <div class="centerDiv">
             <div class="leftContent_at">
                 <div class="detailPage">
-                    <div class="carTitleTop">
+                    <div class="carTitleTop header_color">
                         <?php echo $ocassions_obj->get_car_name($ocassion); ?>
                     </div>
 
@@ -36,7 +65,7 @@
 
                         <div class="rightDescBlock">
                             <div class="priceandLogo">
-                                <div class="priceCarItem">€ <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
+                                <div class="priceCarItem price_color">€ <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
                                 <div class="logoCarItem">
                                     <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
                                 </div>
@@ -51,7 +80,7 @@
                                         foreach($option as $type =>  $car_option)
                                         {
                                             ?>
-                                            <p><span class="leftType"><?php echo $type; ?>: </span> <span class="rightOption"><?php echo $car_option; ?></span></p>
+                                            <p><span class="leftType atribute_label_color"><?php echo $type; ?>: </span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
                                             <?php
                                         }
 
@@ -115,7 +144,7 @@
                                     <div class="titleOms commTitle26">
                                         Omschrijving
                                     </div>
-                                    <div class="descOms commDesc">
+                                    <div class="descOms commDesc text_color">
                                         <p>
                                             <?php
                                             echo str_replace(".",".<br>",$ocassion->mededelingen);
@@ -143,7 +172,7 @@
                                                 <div class="titleOptieAcc commTitleBlue">
                                                     Veiligheid
                                                 </div>
-                                                <ul class="commList commDesc">
+                                                <ul class="commList commDesc text_color">
                                                     <?php
                                                     foreach($options_accessories as $option){
                                                         ?>
@@ -167,7 +196,7 @@
                                                 <div class="titleOptieAcc commTitleBlue">
                                                     Exterieur
                                                 </div>
-                                                <ul class="commList commDesc">
+                                                <ul class="commList commDesc text_color">
                                                     <?php
                                                     foreach($options_accessories as $option){
                                                         ?>
@@ -191,7 +220,7 @@
                                                 <div class="titleOptieAcc commTitleBlue">
                                                     Veiligheid en Techniek
                                                 </div>
-                                                <ul class="commList commDesc">
+                                                <ul class="commList commDesc text_color">
                                                     <?php
                                                     foreach($options_accessories as $option){
                                                         ?>
@@ -215,7 +244,7 @@
                                                 <div class="titleOptieAcc commTitleBlue">
                                                     Audio / Telefonie
                                                 </div>
-                                                <ul class="commList commDesc">
+                                                <ul class="commList commDesc text_color">
                                                     <?php
                                                     foreach($options_accessories as $option){
                                                         ?>
@@ -239,7 +268,7 @@
                                                 <div class="titleOptieAcc commTitleBlue">
                                                     Interieur en Comfort
                                                 </div>
-                                                <ul class="commList commDesc">
+                                                <ul class="commList commDesc text_color">
                                                     <?php
                                                     foreach($options_accessories as $option){
                                                         ?>
@@ -264,7 +293,7 @@
                                     <div class="titleOms commTitle26">
 
                                     </div>
-                                    <div class="descOms commDesc">
+                                    <div class="descOms commDesc text_color">
                                         <p>
 
                                         </p>
@@ -305,8 +334,8 @@
 
                                                        ?>
                                                     </div>
-                                                    <div class="descOms commDesc">
-                                                        <ul class="commList commDesc">
+                                                    <div class="descOms commDesc text_color">
+                                                        <ul class="commList commDesc text_color">
                                         <?php
                                         $tab_counter++;
 
@@ -417,7 +446,7 @@
 
                         <hr class="lineAll">
 
-                        <a href="#" class="button_at1">
+                        <a href="#" class="button_at1 button_color">
                             verzenden
                         </a>
 
@@ -426,7 +455,7 @@
                         <p>
                             <label for="" class="bigLabel">Contactinformatie</label>
                         </p>
-                        <p class="commDesc">
+                        <p class="commDesc text_color">
                             Zaadmarkt 95 <br>
                             7201 DD Zutphen<br><br>
                             0575-512 125<br>

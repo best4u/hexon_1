@@ -1,3 +1,33 @@
+<style>
+    .text_color{
+        color: #444444 !important;
+    }
+
+
+    .atribute_label_color{
+        color: #777777 !important;
+    }
+    .atribute_value_color{
+        color: #444444 !important;
+    }
+
+
+    .header_color{
+        color: #5021FF !important;
+    }
+
+
+    .button_color{
+        background-color: #F7A404 !important;
+    }
+
+
+    .price_color{
+        color: #FF0000 !important;
+    }
+</style>
+
+
 <?php
 //
 //echo "<pre>";
@@ -54,11 +84,11 @@
                                         </div>
                                     </div>
                                     <div class="carTxtBlock">
-                                        <div class="titlecarItem">
+                                        <div class="titlecarItem header_color">
                                             <?php echo $ocassions_obj->get_car_name($occasion); ?>
                                         </div>
                                         <div class="descCarItem">
-                                            <div class="priceCarItem">
+                                            <div class="priceCarItem price_color">
                                                 € <?php echo $ocassions_obj->get_car_price($occasion); ?>
                                             </div>
 
@@ -70,7 +100,7 @@
                                                         foreach($option as $type =>  $car_option)
                                                         {
                                                             ?>
-                                                            <p><span class="leftType"><?php echo $type; ?>:</span> <span class="rightOption"><?php echo $car_option; ?></span></p>
+                                                            <p><span class="leftType atribute_label_color"><?php echo $type; ?>:</span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
                                                             <?php
                                                         }
                                                     }
@@ -84,7 +114,7 @@
                                                     <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
                                                 </div>
 
-                                                <a href="?overview=<?php echo $occasion->advertentieId ?>" class="button_at1">
+                                                <a href="?overview=<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
                                                     bekijk deze auto
                                                 </a>
                                             </div>
@@ -201,7 +231,7 @@
                             ?>
                         </select>
 
-                        <button type="submit" class="button_at1">toon auto's</button>
+                        <button type="submit" class="button_at1 button_color">toon auto's</button>
 
                         <p>
                             <label for="a">Prijs</label>
@@ -367,6 +397,11 @@
                             </select>
                         </div>
                         <button type="submit" class="button_at1">toon auto's</button>
+
+
+
+
+                        <button type="submit" class="button_at1 button_color">toon auto's</button>
                     </form>
                 </div>
 
