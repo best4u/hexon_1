@@ -87,10 +87,12 @@ function plugin_frontend_scripts() {
     wp_enqueue_style( 'styles_plugin', plugins_url('frontend/core/views/styles.css', __FILE__) );
 //
     wp_enqueue_script( 'modernizr', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', array('jquery'), '', true );
+//    wp_enqueue_script( 'fotorama', 'http://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.4/numeral.min.js', array('jquery'), '', true );
     wp_enqueue_script( 'fotorama', 'http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js', array('jquery'), '', true );
     wp_enqueue_script( 'formstyler_js', plugins_url('frontend/core/views/plugins/formstyler/jquery.formstyler.js',__FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'nouislider_js', plugins_url('frontend/core/views/plugins/nouislider/nouislider.min.js',__FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'wNumb', plugins_url('frontend/core/views/plugins/wNumb.js',__FILE__), array('jquery'), '', true );
+//    wp_enqueue_script( 'mainAuto_js', plugins_url('frontend/core/views/jsAuto/jquery.number.min.js',__FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'mainAuto_js', plugins_url('frontend/core/views/jsAuto/mainAuto.js',__FILE__), array('jquery'), '', true );
 
 

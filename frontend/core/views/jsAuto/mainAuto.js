@@ -54,8 +54,10 @@ $(document).ready(function(){
 
             if ( handle ) {
                 yearTo.val(value);
+                $(".yearsTo").text(value);
             } else {
                 yearFrom.val(value);
+                $(".yearsFrom").text(value);
             }
         });
     }
@@ -91,12 +93,22 @@ $(document).ready(function(){
         slider2.noUiSlider.on('update', function (values, handle) {
 
             var value = values[handle];
-            console.log(value);
+
+            var Format = wNumb({
+                prefix: '€ ',
+                decimals: 0,
+                thousand: ','
+            });
+
 
             if (handle) {
                 priceTo.val(value);
+
+                $(".priceTo").text(Format.to(parseInt(value)));
             } else {
                 priceFrom.val(value);
+
+                $(".priceFrom").text(Format.to(parseInt(value)));
             }
         });
     }
@@ -217,8 +229,10 @@ function get_models(mark_id){
 
                 if (handle) {
                     kmto.val(value);
+                    $(".kmToLabel").text(value);
                 } else {
                     kmFrom.val(value);
+                    $(".kmFromLabel").text(value);
                 }
             });
         }

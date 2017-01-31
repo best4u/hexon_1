@@ -241,8 +241,8 @@ $price_color = get_option("at_price_color");
                         </p>
 
                         <p class="priceP">
-                            <span class="priceFrom">€ <?php echo number_format($_SESSION['min_price'], 2, ",", "."); ?></span>
-                            <span class="priceTo">€ <?php echo number_format($_SESSION['max_price'], 2, ",", "."); ?></span>
+                            <span class="priceFrom">€ <?php if(isset($_GET['prijs_min'])){ echo number_format($_GET['prijs_min'], 2, ",", "."); }else{ echo number_format($_SESSION['min_price'], 2, ",", "."); } ?></span>
+                            <span class="priceTo">€ <?php if(isset($_GET['prijs_max'])){ echo number_format($_GET['prijs_max'], 2, ",", "."); }else{ echo number_format($_SESSION['max_price'], 2, ",", "."); } ?></span>
                             <span class="priceHiddenFrom" style="display: none"><?php echo $_SESSION['min_price']; ?></span>
                             <span class="priceHiddenTo" style="display: none"><?php echo $_SESSION['max_price']; ?></span>
 
@@ -253,12 +253,10 @@ $price_color = get_option("at_price_color");
                         <div class="priceSliderCont commSlideCont">
                             <div id="slider2" class="bouwjaarSlider"></div>
                         </div>
-                        <div class="pricesInputs">
+                        <div class="pricesInputs" style="display: none">
                             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="prijs_min" class="priceFrom form-control"></span>
                             <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="prijs_max" class="priceTo form-control"></span>
                         </div>
-
-
 
 
 
@@ -277,7 +275,7 @@ $price_color = get_option("at_price_color");
                         <div class="yearSliderCont commSlideCont">
                             <div id="slider" class="bouwjaarSlider"></div>
                         </div>
-                        <div class="yearsInputs">
+                        <div class="yearsInputs" style="display: none">
                             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="bouwjaar_min" class="yearsFrom "></span>
                             <span class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="bouwjaar_max" class="yearsTo"></span>
                         </div>
@@ -358,7 +356,7 @@ $price_color = get_option("at_price_color");
                             <div class="priceSliderCont commSlideCont">
                                 <div id="sliderA" class="bouwjaarSlider"></div>
                             </div>
-                            <div class="kmInputs">
+                            <div class="kmInputs" style="display: none;">
                                 <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="kilometerstand_min" class="kmFrom "></span>
                                 <span
                                     class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="kilometerstand_max" class="kmTo"></span>
