@@ -54,7 +54,7 @@ $price_color = get_option("at_price_color");
                                         <option value="merkModelUitvoering" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'merkModelUitvoering' ? 'selected' : '' ?>>Merk, Model, Uitvoering.</option>
                                         <option value="kilometerstand" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'kilometerstand' ? 'selected' : '' ?>>Kilometerstand.</option>
                                         <option value="datumGeplaatst" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'datumGeplaatst' ? 'selected' : '' ?>>Publicatiedatum.</option>
-                                        <option value="at_sort_by" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'at_sort_by' ? 'selected' : '' ?>>Bouwjaar.</option>
+                                        <option value="bouwjaar" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'at_sort_by' ? 'selected' : '' ?>>Bouwjaar.</option>
 
                                     </select>
                                 </form>
@@ -95,13 +95,15 @@ $price_color = get_option("at_price_color");
                                                 <div class="carOverallDetails">
                                                     <div class="leftPartDetail">
                                                         <?php
-                                                        foreach($ocassions_obj->get_overview_attr($occasion) as $key => $option)
+                                                        foreach($ocassions_obj->get_overview_attr($occasion) as $key => $options)
                                                         {
-                                                            foreach($option as $type =>  $car_option)
-                                                            {
-                                                                ?>
-                                                                <p> <span class="leftType atribute_label_color"><?php echo $type; ?>: </span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
-                                                                <?php
+                                                            foreach($options as $key => $option){
+                                                                foreach($option as $type =>  $car_option)
+                                                                {
+                                                                    ?>
+                                                                    <p><span class="leftType atribute_label_color"><?php echo $type; ?>:</span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
+                                                                    <?php
+                                                                }
                                                             }
                                                         }
                                                         ?>

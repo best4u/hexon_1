@@ -19,10 +19,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
-                    <label for="at_consumer_id">Consumer ID:</label>
-                    <input class="form-control" type="text" name="at_consumer_id" value="<?php echo esc_attr( get_option('at_consumer_id') ); ?>" />
-                </div>
+<!--                <div class="col-sm-3">-->
+<!--                    <label for="at_consumer_id">Consumer ID:</label>-->
+<!--                    <input class="form-control" type="text" name="at_consumer_id" value="--><?php //echo esc_attr( get_option('at_consumer_id') ); ?><!--" />-->
+<!--                </div>-->
                 <div class="col-sm-3">
                     <label for="at_dealer_id">Dealer ID:</label>
                     <input class="form-control" type="text" name="at_dealer_id" value="<?php echo esc_attr( get_option('at_dealer_id') ); ?>" />
@@ -68,17 +68,17 @@
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme1" class="disabled" disabled <?php echo $theme == 'Theme1' ? 'checked="checked"' : '' ?>> Template naam 1.
+                        <input type="radio" name="at_theme" value="theme1" class="disabled" disabled <?php echo $theme == 'Theme1' ? 'checked="checked"' : '' ?>> Pineview Drive.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme2" class="disabled" disabled <?php echo $theme == 'Theme2' ? 'checked="checked"' : '' ?>> Template naam 2.
+                        <input type="radio" name="at_theme" value="theme2" class="disabled" disabled <?php echo $theme == 'Theme2' ? 'checked="checked"' : '' ?>> Expedition off road.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme3" class="disabled" disabled <?php echo $theme == 'Theme3' ? 'checked="checked"' : '' ?>> Template naam 3.
+                        <input type="radio" name="at_theme" value="theme3" class="disabled" disabled <?php echo $theme == 'Theme3' ? 'checked="checked"' : '' ?>> Northern light.
                     </label>
                 </div>
             </div>
@@ -86,17 +86,17 @@
                 <div class="col-sm-2">
 
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme4" class="disabled" disabled <?php echo $theme == 'Theme4' ? 'checked="checked"' : '' ?>> Template naam 4.
+                        <input type="radio" name="at_theme" value="theme4" class="disabled" disabled <?php echo $theme == 'Theme4' ? 'checked="checked"' : '' ?>> Level up.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme5" class="disabled" disabled <?php echo $theme == 'Theme5' ? 'checked="checked"' : '' ?>> Template naam 5.
+                        <input type="radio" name="at_theme" value="theme5" class="disabled" disabled <?php echo $theme == 'Theme5' ? 'checked="checked"' : '' ?>> Beijing winters.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme6" class="disabled" disabled <?php echo $theme == 'Theme6' ? 'checked="checked"' : '' ?>> Template naam 6.
+                        <input type="radio" name="at_theme" value="theme6" class="disabled" disabled <?php echo $theme == 'Theme6' ? 'checked="checked"' : '' ?>> Simple mpdern.
                     </label>
                 </div>
             </div>
@@ -252,11 +252,13 @@
                     <label class="radio-inline">
                         <input type="radio" name="at_overview_layoutmode" value="at_layout_overview_list" <?php echo $at_overview_layoutmode == 'at_layout_overview_list' ? 'checked="checked"' : '' ?>> List.
                     </label>
+                    <i class="fa fa-list-alt" style="font-size: 24px;margin-left: 10px;margin-top: 3px;" aria-hidden="true"></i>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="at_overview_layoutmode" value="at_layout_overview_table" <?php echo $at_overview_layoutmode == 'at_layout_overview_table' ? 'checked="checked"' : '' ?>> Tabel.
                     </label>
+                    <i class="fa fa-table" style="font-size: 24px;margin-left: 10px;margin-top: 3px;" aria-hidden="true"></i>
                 </div>
             </div>
             <div class="row">
@@ -331,42 +333,42 @@
                 </div>
             </div>
 
-
-            <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>
-            <?php $receivers = get_option('receiver_emails'); ?>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="eMailsRepeater">
-                        <?php
-                        if (empty($receivers)): ?>
-                            <div class="eRow">
-                                <div class="erInput">
-                                    <input type="email" class="form-control" name="receiver_emails[]">
-                                </div>
-                                <div class="erButton"></div>
-                            </div>
-                            <?php
-                        else:
-                            foreach ($receivers as $receiver): ?>
-                                <div class="eRow">
-                                    <div class="erInput">
-                                        <input type="email" class="form-control" name="receiver_emails[]"
-                                               value="<?= $receiver ?>">
-                                    </div>
-                                    <div class="erButton"></div>
-                                </div>
-                            <?php endforeach; endif; ?>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="shortDelimeter"></div>
-                </div>
-            </div>
+<!---->
+<!--            <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>-->
+<!--            --><?php //$receivers = get_option('receiver_emails'); ?>
+<!--            <div class="row">-->
+<!--                <div class="col-sm-6">-->
+<!--                    <div class="eMailsRepeater">-->
+<!--                        --><?php
+//                        if (empty($receivers)): ?>
+<!--                            <div class="eRow">-->
+<!--                                <div class="erInput">-->
+<!--                                    <input type="email" class="form-control" name="receiver_emails[]">-->
+<!--                                </div>-->
+<!--                                <div class="erButton"></div>-->
+<!--                            </div>-->
+<!--                            --><?php
+//                        else:
+//                            foreach ($receivers as $receiver): ?>
+<!--                                <div class="eRow">-->
+<!--                                    <div class="erInput">-->
+<!--                                        <input type="email" class="form-control" name="receiver_emails[]"-->
+<!--                                               value="--><?//= $receiver ?><!--">-->
+<!--                                    </div>-->
+<!--                                    <div class="erButton"></div>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; endif; ?>
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!---->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-7">-->
+<!--                    <div class="shortDelimeter"></div>-->
+<!--                </div>-->
+<!--            </div>-->
             <p>Geef hier de openingstijden in van bedrijf / locatie.</p>
             <?php $shedule = get_option('at_shedule');
             ?>
@@ -408,7 +410,7 @@
             ?>
             <input type="hidden" name="at_social_icons" id="at_social_icons" value='<?=$socials ?>'>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <div class="atSocialIcons">
                         <?php $social_rows = json_decode($socials);
                         foreach($social_rows as $row): ?>

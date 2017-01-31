@@ -70,17 +70,18 @@ $price_color = get_option("at_price_color");
 
                             <div class="detailDesc">
                                 <div class="leftDetailDesc">
+
                                     <?php
-
-                                    foreach ($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $option) {
-                                        foreach ($option as $type => $car_option) {
-                                            ?>
-                                            <p><span class="leftType atribute_label_color"><?php echo $type; ?>: </span>
-                                                <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span>
-                                            </p>
-                                            <?php
+                                    foreach($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $options)
+                                    {
+                                        foreach($options as $key => $option){
+                                            foreach($option as $type =>  $car_option)
+                                            {
+                                                ?>
+                                                <p><span class="leftType atribute_label_color"><?php echo $type; ?>:</span> <span class="rightOption atribute_value_color"><?php echo $car_option; ?></span></p>
+                                                <?php
+                                            }
                                         }
-
                                     }
                                     ?>
                                 </div>

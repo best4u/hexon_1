@@ -103,36 +103,72 @@ class Ocassions
         $results = $wpdb->get_results($query, OBJECT);
 
         foreach ($results as $item) {
-
             ${"object"} = $item->category;
             if ($item->type == "merkId") {
                 $mark_object = $this->connection_to_api("merken/", $occasion->${"object"}->merkId);
-                $options[] = [$item->name => $mark_object->naam];
+                $options[] = [$item->category => [$item->name => $mark_object->naam]];
             } elseif ($item->type == "modelId") {
                 $model_object = $this->connection_to_api("merken/",
                     $occasion->${"object"}->merkId . "/modellen/" . $occasion->${"object"}->modelId);
-                $options[] = [$item->name => $model_object->naam];
+                $options[] = [$item->category => [$item->name => $model_object->naam]];
             } elseif ($item->type == "kleur") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => $occasion->${"object"}->${"selector"}->standaard];
+                $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => $occasion->${"selector"}];
+                $options[] = [$item->category => [$item->name => $occasion->${"selector"}]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => number_format($occasion->${"selector"}->totaal, 2, ",", ".")];
+                $options[] = [
+                    $item->category => [
+                        $item->name => number_format($occasion->${"selector"}->totaal, 2, ",", ".")
+                    ]
+                ];
             } else {
                 ${"selector"} = $item->type;
                 if (property_exists($occasion->${"object"}, ${"selector"})) {
                     if ($occasion->${"object"}->${"selector"} === true) {
-                        $options[] = [$item->name => "Ja"];
+                        $options[] = [$item->category => [$item->name => "Ja"]];
                     } elseif ($occasion->${"object"}->${"selector"} === false) {
-                        $options[] = [$item->name => "Nee"];
+                        $options[] = [$item->category => [$item->name => "Nee"]];
                     } else {
-                        $options[] = [$item->name => $occasion->${"object"}->${"selector"}];
+
+                        if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
+                            $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
+                        }elseif($item->name == "Kilometers stand"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                        }elseif($this->isDate($occasion->${"object"}->${"selector"})){
+                            $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
+                        }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ",")." m"]];
+                        }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
+                        }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
+                            || $item->name == "Trekgewicht geremde aanhanger" || $item->name == "Trekgewicht ongeremde aanhanger"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." kg"]];
+                        }elseif($item->name == "VerbruikStad" || $item->name == "Verbruik stad" || $item->name == "Verbruik buitenweg" || $item->name == "Verbruik gecombineerd"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km per liter"]];
+                        }elseif($item->name == "Uitstoot"){
+                            $options[] = [$item->category => ['Co2 uitstoot' => $occasion->${"object"}->${"selector"}." g/km"]];
+                        }elseif($item->name == "Cilinderinhoud"){
+                            $options[] = [$item->category => ['Motorinhoud' => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." cc"]];
+                        }elseif($item->name == "Vermogen Kw" || $item->name == "Vermogen Pk"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." pk"]];
+                        }elseif($item->name == "Koppel Nm"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." Nm"]];
+                        }elseif($item->name == "Koppel Tpm"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." Tpm"]];
+                        }elseif($item->name == "Topsnelheid"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km/u"]];
+                        }elseif($item->name == "Acceleratie Naar 100"){
+                            $options[] = [$item->category => ["Acceleratie" => $occasion->${"object"}->${"selector"}." sec"]];
+                        }else{
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}]];
+                        }
+
                     }
                 } else {
-                    $options[] = [$item->name => "-"];
+                    $options[] = [$item->category => [$item->name => "-"]];
                 }
 
             }
@@ -201,37 +237,72 @@ class Ocassions
         $results = $wpdb->get_results($query, OBJECT);
 
         foreach ($results as $item) {
-
             ${"object"} = $item->category;
             if ($item->type == "merkId") {
                 $mark_object = $this->connection_to_api("merken/", $occasion->${"object"}->merkId);
-                $options[] = [$item->name => $mark_object->naam];
+                $options[] = [$item->category => [$item->name => $mark_object->naam]];
             } elseif ($item->type == "modelId") {
                 $model_object = $this->connection_to_api("merken/",
                     $occasion->${"object"}->merkId . "/modellen/" . $occasion->${"object"}->modelId);
-                $options[] = [$item->name => $model_object->naam];
+                $options[] = [$item->category => [$item->name => $model_object->naam]];
             } elseif ($item->type == "kleur") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => $occasion->${"object"}->${"selector"}->standaard];
+                $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => $occasion->${"selector"}];
+                $options[] = [$item->category => [$item->name => $occasion->${"selector"}]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->name => number_format($occasion->${"selector"}->totaal, 2, ",", ".")];
+                $options[] = [
+                    $item->category => [
+                        $item->name => number_format($occasion->${"selector"}->totaal, 2, ",", ".")
+                    ]
+                ];
             } else {
                 ${"selector"} = $item->type;
                 if (property_exists($occasion->${"object"}, ${"selector"})) {
                     if ($occasion->${"object"}->${"selector"} === true) {
-                        $options[] = [$item->name => "Ja"];
+                        $options[] = [$item->category => [$item->name => "Ja"]];
                     } elseif ($occasion->${"object"}->${"selector"} === false) {
-                        $options[] = [$item->name => "Nee"];
+                        $options[] = [$item->category => [$item->name => "Nee"]];
                     } else {
 
-                        $options[] = [$item->name => $occasion->${"object"}->${"selector"}];
+                        if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
+                            $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
+                        }elseif($item->name == "Kilometers stand"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                        }elseif($this->isDate($occasion->${"object"}->${"selector"})){
+                            $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
+                        }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ",")." m"]];
+                        }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
+                        }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
+                            || $item->name == "Trekgewicht geremde aanhanger" || $item->name == "Trekgewicht ongeremde aanhanger"){
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." kg"]];
+                        }elseif($item->name == "VerbruikStad" || $item->name == "Verbruik stad" || $item->name == "Verbruik buitenweg" || $item->name == "Verbruik gecombineerd"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km per liter"]];
+                        }elseif($item->name == "Uitstoot"){
+                            $options[] = [$item->category => ['Co2 uitstoot' => $occasion->${"object"}->${"selector"}." g/km"]];
+                        }elseif($item->name == "Cilinderinhoud"){
+                            $options[] = [$item->category => ['Motorinhoud' => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." cc"]];
+                        }elseif($item->name == "Vermogen Kw" || $item->name == "Vermogen Pk"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." pk"]];
+                        }elseif($item->name == "Koppel Nm"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." Nm"]];
+                        }elseif($item->name == "Koppel Tpm"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." Tpm"]];
+                        }elseif($item->name == "Topsnelheid"){
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km/u"]];
+                        }elseif($item->name == "Acceleratie Naar 100"){
+                            $options[] = [$item->category => ["Acceleratie" => $occasion->${"object"}->${"selector"}." sec"]];
+                        }else{
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}]];
+                        }
+
                     }
                 } else {
-                    $options[] = [$item->name => "-"];
+                    $options[] = [$item->category => [$item->name => "-"]];
                 }
 
             }
@@ -281,6 +352,7 @@ class Ocassions
                     } elseif ($occasion->${"object"}->${"selector"} === false) {
                         $options[] = [$item->category => [$item->name => "Nee"]];
                     } else {
+
                         if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
                             $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
                         }elseif($item->name == "Kilometers stand"){
