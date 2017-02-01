@@ -194,26 +194,17 @@ $(document).ready(function(){
         if($(this).is(":checked"))
         {
             $("#allAttr ."+$(this).attr('name')).each(function(){
-                if($(this).is(":checked"))
-                {
 
-                }else
-                {
                     $(this).prop('checked', false);
                     $(this).trigger( "click" );
-                }
 
             });
         }else{
             $("#allAttr ."+$(this).attr('name')).each(function(){
-               if($(this).is(":checked"))
-               {
+
                    $(this).prop('checked', true);
                    $(this).trigger( "click" );
-               }else
-               {
 
-               }
 
             });
 
