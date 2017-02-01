@@ -90,11 +90,11 @@ function insert_data_settings(){
     add_option( 'at_button_color', '#f7a404' );
     add_option( 'at_price_color', '#ff0000' );
 //    home cars
-    add_option( 'at_home_cars', 'at_expensive_cars' );
+    add_option( 'at_home_cars', 'at_newest_cars' );
 //    sort by
-    add_option( 'at_sort_by', 'at_sort_brand' );
+    add_option( 'at_sort_by', 'prijs' );
 //    sort orientation
-    add_option( 'at_sort_by_orientation', 'at_sort_desc' );
+    add_option( 'at_sort_by_orientation', 'asc' );
 //    layout mode list / table
     add_option( 'at_overview_layoutmode', 'at_layout_overview_list' );
 //    details mode : list / tabs

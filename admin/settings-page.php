@@ -101,8 +101,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-sm-7">
                     <div class="shortDelimeter"></div>
