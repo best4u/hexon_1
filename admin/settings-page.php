@@ -47,9 +47,9 @@
                     <div class="col-md-8">
                         <br>
                         <br>
-                        <h3>Shortcodes</h3>
-                        <p>Show all ocassions: <b>[occasions_list]</b></p>
-                        <p>Show occasions on home: <b>[home_occasions]</b></p>
+                        <h3>Codes</h3>
+                        <p>Toon alle occasions: <b>[occasions_list]</b></p>
+                        <p>Toon occasions op home-page: <b>[home_occasions]</b></p>
                     </div>
 
             </div>
@@ -146,7 +146,7 @@
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Homepage</div>
-            <p>Number of occasions?</p>
+            <p>Hoeveelheid occasions</p>
             <div class="row">
                 <?php
                 $at_number_of_occasions_on_home = get_option("at_number_of_occasions_on_home");
@@ -318,7 +318,7 @@
                 </div>
             </div>
 
-            <p>Form shortcode </p>
+            <p>Contactformulier code </p>
             <div class="row">
                 <div class="col-sm-6">
                     <?php $at_form_short_code = get_option('at_form_short_code'); ?>

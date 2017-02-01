@@ -260,7 +260,6 @@ class Ocassions
 
         }
 
-
         return $options;
     }
 
