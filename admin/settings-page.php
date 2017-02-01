@@ -166,18 +166,18 @@
             ?>
             <div class="row">
                 <div class="row">
-                <div class="col-sm-2">
+                <div class="col-sm-4">
 
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_newest_cars" <?php echo $at_home_cars == 'at_newest_cars' ? 'checked="checked"' : '' ?>> De nieuwste advertenties.
                     </label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_expensive_cars" <?php echo $at_home_cars == 'at_expensive_cars' ? 'checked="checked"' : '' ?>> De duurste advertenties.
                     </label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_last_cars" <?php echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?>> De laast geplaatste advertenties.
                     </label>
