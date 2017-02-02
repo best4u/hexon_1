@@ -361,10 +361,10 @@ $price_color = get_option("at_price_color");
                                                 if ($title == "geschiedenis") {
                                                     echo "Geschiedenis van deze auto";
                                                 } else {
-                                                    echo ucfirst($title) . " ";
+                                                    echo ucfirst(strtolower($title)) . " ";
                                                 }
                                             } else {
-                                                echo strtolower($title) . " ";
+                                                echo ucfirst(strtolower($title)) . " ";
                                             }
 
                                             $count++;
