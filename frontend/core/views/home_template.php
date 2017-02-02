@@ -20,10 +20,10 @@
                     </div>
                     <div class="descCarItem">
                         <div class="priceandLogo">
-                            <span class="priceCarItem price_color">€ <?php echo $ocassions_obj->get_car_price($occasion); ?></span>
-                                                <span class="logoCarItem">
-                                                    <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
-                                                </span>
+<!--                            <span class="priceCarItem price_color">€ --><?php //echo $ocassions_obj->get_car_price($occasion); ?><!--</span>-->
+<!--                                                <span class="logoCarItem">-->
+<!--                                                    <img src="--><?php //echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?><!--" alt="">-->
+<!--                                                </span>-->
                         </div>
 
                         <div class="carOverallDetails">
