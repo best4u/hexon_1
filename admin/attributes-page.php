@@ -14,7 +14,7 @@
             <tr>
                 <th class="transparentColor">
                     <select name="category" id="categoryFilter" class="form-control">
-                        <option value>Category..</option>
+                        <option value>Categorie..</option>
                         <?php foreach($setting->get_select_options() as $cat): ?>
                         <option value="<?=$cat->category?>"><?=$cat->category ?></option>
                         <?php endforeach; ?>
