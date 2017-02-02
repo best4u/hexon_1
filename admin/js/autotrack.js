@@ -171,10 +171,10 @@ $(document).ready(function(){
             };
             $.post(url,data, function(response) {
                 console.log(event);
-                if(e.isTrigger){
-
-                }else{
+                if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
                     swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+                }else{
+
                 }
 
 
@@ -192,10 +192,10 @@ $(document).ready(function(){
             };
             $.post(url,data, function(response) {
                 console.log(event);
-                if(e.isTrigger){
-
-                }else{
+                if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
                     swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+                }else{
+
                 }
 
             });
@@ -210,17 +210,26 @@ $(document).ready(function(){
         {
             $("#allAttr ."+$(this).attr('name')).each(function(){
 
-                    $(this).prop('checked', false);
-                    $(this).trigger( "click" );
-                    swal.close();
+
+                    if($(this).is(":checked")){
+
+                    }else{
+                        $(this).prop('checked', false);
+                        $(this).trigger( "click" );
+                    }
+
+
 
             });
         }else{
             $("#allAttr ."+$(this).attr('name')).each(function(){
 
-                   $(this).prop('checked', true);
-                   $(this).trigger( "click" );
-                    swal.close();
+                if($(this).is(":checked")){
+                    $(this).prop('checked', true);
+                    $(this).trigger( "click" );
+                }else{
+
+                }
 
 
             });
