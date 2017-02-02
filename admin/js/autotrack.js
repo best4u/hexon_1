@@ -154,11 +154,12 @@ $(document).ready(function(){
             update_ordering();
         }
     });
-    $("#allAttr").on('click','.checkField',function(){
+    $("#allAttr").on('click','.checkField',function(e){
         var url = $(".urlAjax").text();
         var id = $(this).attr('data-id');
         var name = $(this).attr('name');
         var val_point = "0";
+        var event = e;
         if($(this).is(":checked"))
         {
             val_point = "1";
@@ -169,9 +170,16 @@ $(document).ready(function(){
                 val_point: val_point
             };
             $.post(url,data, function(response) {
+                console.log(event);
+                if(e.isTrigger){
+
+                }else{
+                    swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+                }
+
 
             });
-            console.log(val_point);
+
 
         }else
         {
@@ -183,11 +191,18 @@ $(document).ready(function(){
                 val_point: val_point
             };
             $.post(url,data, function(response) {
+                console.log(event);
+                if(e.isTrigger){
+
+                }else{
+                    swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+                }
 
             });
-            console.log(val_point);
+
         }
     });
+
 
 
     $(".selectUnselectField").click(function(){
@@ -197,6 +212,7 @@ $(document).ready(function(){
 
                     $(this).prop('checked', false);
                     $(this).trigger( "click" );
+                    swal.close();
 
             });
         }else{
@@ -204,11 +220,13 @@ $(document).ready(function(){
 
                    $(this).prop('checked', true);
                    $(this).trigger( "click" );
+                    swal.close();
 
 
             });
 
         }
+        swal("De instellingen zijn succesvol opgeslagen.", "", "success");
     });
 
     function filter_attr(category,attr_name,home_page,overview,summary_detail,details_total)
