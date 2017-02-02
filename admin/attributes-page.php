@@ -115,3 +115,6 @@
     </table>
 </div>
 </div>
+    <div class="loader">
+        <img src="<?php echo plugins_url('/autotrack/images/default.gif') ?>" alt="add">
+    </div>

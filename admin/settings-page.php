@@ -145,7 +145,7 @@
         <div class="fieldGroup">
             <div class="fieldGroupName">Homepage</div>
             <p>Hoeveelheid occasions</p>
-            <div class="row">
+
                 <?php
                 $at_number_of_occasions_on_home = get_option("at_number_of_occasions_on_home");
                 ?>
@@ -154,7 +154,7 @@
                         <input type="number" class="form-control" name="at_number_of_occasions_on_home" value="<?php echo $at_number_of_occasions_on_home; ?>">
                     </div>
                 </div>
-            </div>
+
             <br>
             <p>Welke advertenties dienen er op de home-page getoond worden?</p>
 
@@ -162,26 +162,26 @@
             <?php $at_home_cars = get_option('at_home_cars');
 
             ?>
-            <div class="row">
+
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-2">
 
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_newest_cars" <?php echo $at_home_cars == 'at_newest_cars' ? 'checked="checked"' : '' ?>> De nieuwste advertenties.
                     </label>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_expensive_cars" <?php echo $at_home_cars == 'at_expensive_cars' ? 'checked="checked"' : '' ?>> De duurste advertenties.
                     </label>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <label class="radio-inline">
                         <input type="radio" name="at_home_cars" value="at_last_cars" <?php echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?>> De laast geplaatste advertenties.
                     </label>
                 </div>
             </div>
-        </div>
+
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Occasions</div>

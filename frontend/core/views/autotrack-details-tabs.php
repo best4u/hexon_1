@@ -189,17 +189,29 @@ $price_color = get_option("at_price_color");
                             </div>
 
                             <div id="tab2" class="tab">
+
                                 <div class="optionsAccesories">
-                                    <div class="optAccTitle commTitle26">
-                                        Opties en Accessoires
-                                    </div>
+                                    <?php
+                                    $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",$ocassion);
+                                    $options_accessories_ext = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a",$ocassion);
+                                    $options_accessories_vT = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92",$ocassion);
+                                    $options_accessories_aT = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",$ocassion);
+                                    $options_accessories_iC = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",$ocassion);
+
+                                    if(count($options_accessories) >= 0 && count($options_accessories_ext) >= 0 && count($options_accessories_vT) >= 0 && count($options_accessories_aT) >= 0 && count($options_accessories_iC) >= 0){
+                                    ?>
+                                        <div class="optAccTitle commTitle26">
+                                            Opties en Accessoires
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
+
 
                                     <div class="descOptAcc">
 
                                         <!--    Veiligheid category-->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c",
-                                                $ocassion);
                                         if (count($options_accessories) > 0) {
                                             ?>
                                             <div class="optieAccItem">
@@ -222,10 +234,8 @@ $price_color = get_option("at_price_color");
                                         ?>
 
                                         <!--       Exterieur category      -->
-                                        <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a",
-                                                $ocassion);
-                                        if (count($options_accessories) > 0) {
+                                        <?php ;
+                                        if (count($options_accessories_ext) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -233,7 +243,7 @@ $price_color = get_option("at_price_color");
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach ($options_accessories as $option) {
+                                                    foreach ($options_accessories_ext as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -248,9 +258,7 @@ $price_color = get_option("at_price_color");
 
                                         <!--       Veiligheid en Techniek category      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92",
-                                                $ocassion);
-                                        if (count($options_accessories) > 0) {
+                                        if (count($options_accessories_vT) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -258,7 +266,7 @@ $price_color = get_option("at_price_color");
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach ($options_accessories as $option) {
+                                                    foreach ($options_accessories_vT as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -273,9 +281,7 @@ $price_color = get_option("at_price_color");
 
                                         <!--       Audio / Telefonie category      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",
-                                                $ocassion);
-                                        if (count($options_accessories) > 0) {
+                                        if (count($options_accessories_aT) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -283,7 +289,7 @@ $price_color = get_option("at_price_color");
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach ($options_accessories as $option) {
+                                                    foreach ($options_accessories_aT as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php
@@ -298,9 +304,7 @@ $price_color = get_option("at_price_color");
 
                                         <!--       Interieur en Comfort      -->
                                         <?php
-                                        $options_accessories = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",
-                                                $ocassion);
-                                        if (count($options_accessories) > 0) {
+                                        if (count($options_accessories_iC) > 0) {
                                             ?>
                                             <div class="optieAccItem">
                                                 <div class="titleOptieAcc commTitleBlue">
@@ -308,7 +312,7 @@ $price_color = get_option("at_price_color");
                                                 </div>
                                                 <ul class="commList commDesc text_color">
                                                     <?php
-                                                    foreach ($options_accessories as $option) {
+                                                    foreach ($options_accessories_iC as $option) {
                                                         ?>
                                                         <li><?php echo $option; ?></li>
                                                         <?php

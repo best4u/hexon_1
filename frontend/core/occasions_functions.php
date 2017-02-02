@@ -57,9 +57,9 @@ function get_home_occasions(){
     $sort_query = "";
 
     if($filter == "at_newest_cars"){
-        $sort_query .= "&sort%5BdatumGeplaatst%5D=desc";
-    }elseif($filter == "at_newest_cars"){
         $sort_query .= "&sort%5Bprijs%5D=desc";
+    }elseif($filter == "at_newest_cars"){
+        $sort_query .= "&sort%5BdatumGeplaatst%5D=desc";
     }elseif($filter == "at_last_cars"){
         $sort_query .= "&sort%5BdatumGeplaatst%5D=asc";
     }

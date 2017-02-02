@@ -170,7 +170,6 @@ $(document).ready(function(){
                 val_point: val_point
             };
             $.post(url,data, function(response) {
-                console.log(event);
                 if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
                     swal("De instellingen zijn succesvol opgeslagen.", "", "success");
                 }else{
@@ -191,7 +190,6 @@ $(document).ready(function(){
                 val_point: val_point
             };
             $.post(url,data, function(response) {
-                console.log(event);
                 if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
                     swal("De instellingen zijn succesvol opgeslagen.", "", "success");
                 }else{
@@ -204,38 +202,70 @@ $(document).ready(function(){
     });
 
 
+    function selectDeselectAll(id,val_point,name,counter){
+        $(".loader").show();
+
+        var url = $(".urlAjax").text();
+        var data = {
+            action: 'test_response',
+            id_s: id,
+            name: name,
+            val_point: val_point
+        };
+        $.post(url,data, function(response) {
+
+            $(".loader").hide();
+            swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+
+        });
+
+        }
+
+
 
     $(".selectUnselectField").click(function(){
-        if($(this).is(":checked"))
+        if($(this).prop('checked'))
         {
+            var name = $(this).attr('name');
+            var id_s = "";
+            var counter = 0;
             $("#allAttr ."+$(this).attr('name')).each(function(){
 
-
-                    if($(this).is(":checked")){
+                    if($(this).prop('checked')){
 
                     }else{
-                        $(this).prop('checked', false);
-                        $(this).trigger( "click" );
+
+                        $(this).prop('checked', true);
+                        var id = $(this).attr('data-id');
+                        //$(this).trigger( "click" );
+                        id_s = id_s.concat("+"+id);
+                        //console.log(id_s);
+
                     }
-
-
-
             });
+            selectDeselectAll(id_s,'1',name);
         }else{
+            var name = $(this).attr('name');
+            var id_s = "";
             $("#allAttr ."+$(this).attr('name')).each(function(){
 
-                if($(this).is(":checked")){
-                    $(this).prop('checked', true);
-                    $(this).trigger( "click" );
+                if($(this).prop('checked')){
+                    $(this).prop('checked', false);
+                    var id = $(this).attr('data-id');
+                    //$(this).trigger( "click" );
+                    id_s = id_s.concat("+"+id);
+                    //console.log(id_s);
+
                 }else{
 
                 }
 
 
             });
+            selectDeselectAll(id_s,'0',name);
 
         }
-        swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+
     });
 
     function filter_attr(category,attr_name,home_page,overview,summary_detail,details_total)

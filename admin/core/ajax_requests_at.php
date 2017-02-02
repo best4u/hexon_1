@@ -42,6 +42,47 @@ class AjaxRequests{
         $conn->close();
     }
 
+    function attr_ajax_check_uncheck_all($id,$name,$val_point)
+    {
+        htmlspecialchars($id);
+        htmlspecialchars($name);
+        htmlspecialchars($val_point);
+        $host = DB_HOST;
+        $dbname = DB_NAME;
+        $user = DB_USER;
+        $pass = DB_PASSWORD;
+        $conn = new mysqli($host, $user, $pass, $dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $id = explode("+",$id);
+
+        for($i=1;$i < count($id);$i++){
+            if($val_point == "1")
+            {
+                $sql = "UPDATE wp_at_attributes SET ".$name."=1 WHERE id=".$id[$i]." ";
+                if ($conn->query($sql) === TRUE) {
+                    echo $sql."Record updated successfully";
+                } else {
+                    echo $sql."Error updating record: " . $conn->error;
+                }
+            }else
+            {
+                $sql = "UPDATE wp_at_attributes SET ".$name."=0 WHERE id=".$id[$i]." ";
+                if ($conn->query($sql) === TRUE) {
+                    echo $sql."Record updated successfully";
+                } else {
+                    echo $sql."Error updating record: " . $conn->error;
+                }
+            }
+        }
+
+        $conn->close();
+    }
+
+
     function attr_filter($category,$attr_name,$home_page,$overview,$summary_detail,$details_total)
     {
 
@@ -131,6 +172,11 @@ $object = new AjaxRequests();
 
 if ( isset( $_POST["id"] ) && isset( $_POST["name"] ) && isset( $_POST["val_point"] ) ) {
     $object->attr_ajax_check_uncheck($_POST["id"],$_POST["name"],$_POST["val_point"]);
+
+}
+
+if ( isset( $_POST["id_s"] ) && isset( $_POST["name"] ) && isset( $_POST["val_point"] ) ) {
+    $object->attr_ajax_check_uncheck_all($_POST["id_s"],$_POST["name"],$_POST["val_point"]);
 
 }
 
