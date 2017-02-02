@@ -192,15 +192,12 @@ $price_color = get_option("at_price_color");
                 </div>
                 <!-- end pagination -->
 
-
             </div>
-
 
             <div class="sidebarContent">
                 <div class="titleSidebar h2">
                     Occasion zoeken
                 </div>
-
 
                 <div class="sidebarFilters">
                     <form action="" method="GET">
@@ -259,9 +256,6 @@ $price_color = get_option("at_price_color");
                             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="prijs_min" class="priceFrom form-control"></span>
                             <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="prijs_max" class="priceTo form-control"></span>
                         </div>
-
-
-
 
                         <p>
                             <label for="a">Bouwjaar</label>

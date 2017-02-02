@@ -251,6 +251,20 @@ $(document).ready(function(){
         filter_attr(category,attr_name,home_page,overview,summary_detail,details_total);
     });
 
+    $(".attribute_name").keypress(function(e){
+        if(e.keyCode == 13)
+        {
+            e.preventDefault();
+            var category = $("#categoryFilter").val();
+            var attr_name = $(".attribute_name").val();
+            var home_page = $("#home_page_filter").val();
+            var overview = $("#overview_filter").val();
+            var summary_detail = $("#summary_detail_filter").val();
+            var details_total = $("#details_total").val();
+            filter_attr(category,attr_name,home_page,overview,summary_detail,details_total);
+        }
+    });
+
     $("#home_page_filter").change(function(){
         var category = $("#categoryFilter").val();
         var attr_name = $(".attribute_name").val();
