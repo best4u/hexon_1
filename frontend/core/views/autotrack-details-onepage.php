@@ -333,7 +333,7 @@ $price_color = get_option("at_price_color");
                                                 foreach($option as $type =>  $car_option)
                                                 {
                                                     ?>
-                                                   <p> <span class="leftDescSpan"><?php echo $type; ?>: </span> <span class="rightDescSpan"><?php echo $car_option; ?></span></p>
+                                                   <p> <span class="leftDescSpan"><?php echo ucfirst(strtolower($type)); ?>: </span> <span class="rightDescSpan"><?php echo ucfirst(strtolower($car_option)); ?></span></p>
                                                    <?php
                                                 }
                                             }
