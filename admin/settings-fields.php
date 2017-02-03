@@ -47,6 +47,8 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_contact_info' );
 //    thankyou text
     register_setting( 'autotrack-settings-fields', 'at_thank_you_text' );
+//    Social media
+    register_setting( 'autotrack-settings-fields', 'socialShareOnOff' );
 
 }
 
@@ -104,6 +106,6 @@ function insert_data_settings(){
     //    shedule
     add_option('at_shedule', '[{"day":"Maandag"},{"day":"Dinsdag"},{"day":"Woensdag"},{"day":"Donderdag"},{"day":"Vrijdag"},{"day":"Zaterdag"},{"day":"Zondag"}]');
 //    social media icons
-    add_option( 'at_social_icons', '[{"name":"Mail","url":"wordpress@best4u.nl"},{"name":"Facebook","url":"http://facebook.com"},{"name":"Linkedin","url":"http://linkedin.com"},{"name":"Twitter","url":"http://twitter.com"},{"name":"Google Plus","url":"http://plus.google.com"},{"name":"Pinterest","url":"http://pinterest.com"},{"name":"Instagram","url":"http://instagram.com"}]' );
+    add_option( 'at_social_icons', '[{"name":"Mail","active":"0"},{"name":"Facebook","active":"0"},{"name":"Linkedin","active":"0"},{"name":"Twitter","active":"0"},{"name":"Google Plus","active":"0"},{"name":"Pinterest","active":"0"},{"name":"Instagram","active":"0"}]' );
 
 }

@@ -94,13 +94,27 @@ $(document).ready(function(){
     function build_socials(){
         socials = [];
         $('.atSocialIcons .atSIRow').each(function(){
+            state_block = $(this).find('.switch-button-background');
+            state_val = state_block.hasClass('checked') ? '1' : '0';
             socials.push({
                 name: $(this).find('.atSIName').text(),
-                url:$(this).find('.atSIinput').val(),
+                active:state_val,
+                url:$(this).find(".atSIinput").val(),
                 icon_url: $(this).find('.iconHolder img').attr('src')
             });
+            console.log(socials)
         });
         return JSON.stringify(socials);
+    }
+
+    function changeSwitcherSocial(){
+
+        $('.atSocialIcons .atSIRow').each(function(){
+            state_block = $(this).find('.atSIurl .switch-button-background');
+            state_val = state_block.hasClass('checked') ? '1' : '0';
+            $(this).find(".atSIinput").val(state_val);
+            console.log(state_val);
+        });
     }
 
 
@@ -147,13 +161,32 @@ $(document).ready(function(){
         button_width: 25,
         on_callback: function(){
             //console.log('on');
-            update_ordering();
+            build_socials();
         },
         off_callback: function(){
             //console.log('off');
-            update_ordering();
+            build_socials();
         }
     });
+
+    $('.socialSwither input[type="checkbox"]').switchButton({
+        on_label: '',
+        off_label: '',
+        width: 50,
+        height: 25,
+        button_width: 25,
+        on_callback: function(){
+            //console.log('on');
+            $('#at_social_icons').val(build_socials());
+        },
+        off_callback: function(){
+            //console.log('off');
+            $('#at_social_icons').val(build_socials());
+        }
+    });
+
+
+
     $("#allAttr").on('click','.checkField',function(e){
         var url = $(".urlAjax").text();
         var id = $(this).attr('data-id');

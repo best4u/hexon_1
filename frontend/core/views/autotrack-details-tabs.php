@@ -50,7 +50,8 @@ $price_color = get_option("at_price_color");
                         <div class="leftSlideBlock">
                             <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
                                 <?php
-                                foreach ($ocassions_obj->get_all_images($ocassion) as $foto) {
+                                $images = $ocassions_obj->get_all_images($ocassion);
+                                foreach ($images as $foto) {
                                     ?>
                                     <a href="<?php echo $foto ?>"><img src="<?php echo $foto ?>" width="75" height="75"></a>
                                     <?php
@@ -479,12 +480,50 @@ Met vriendelijke groet,
             ?>
             <p>
                 <?php
-                foreach ($socials as $item):
-                    if ($item->url != "") {
+                foreach($socials as $item):
+                    if($item->active == "1"){
+                        if($item->name == "Facebook"){
+                            $site_url = get_site_url();
+                            $page_slug = get_option("at_url_page_adverts");
+                            $occasion_id = $_GET['overview'];
+                            ?>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$occasion_id?>" target="_blank">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }elseif($item->name == "Linkedin"){
+                            ?>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$occasion_id?>&title=<?php echo $ocassions_obj->get_car_name($ocassion); ?>&summary=&source=<?php echo $site_url; ?>" target="_blank">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }elseif($item->name == "Twitter"){
+                            ?>
+                            <a href="https://twitter.com/home?status=<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$occasion_id?>" target="_blank">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }elseif($item->name == "Google Plus"){
+                            ?>
+                            <a href="https://plus.google.com/share?url=<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$occasion_id?>" target="_blank">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }elseif($item->name == "Pinterest"){
+                            ?>
+                            <a href="https://pinterest.com/pin/create/button/?url=<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$occasion_id?>&media=<?php echo $images[0]; ?>&description=<?php $ocassion->mededelingen ?>" target="_blank">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }else{
+                            ?>
+                            <a href="#">
+                                <img src="<?=$item->icon_url ?>" alt="<?=$item->alt ?>">
+                            </a>
+                            <?php
+                        }
                         ?>
-                        <span class="socialIcons"><a href="<?= $item->url ?>">
-                                <img src="<?= $item->icon_url ?>" alt="<?= $item->alt ?>">
-                            </a></span>
+
                         <?php
                     }
                 endforeach;

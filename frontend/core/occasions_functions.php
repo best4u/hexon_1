@@ -8,6 +8,39 @@
 require_once (plugin_dir_path(__FILE__)."occasions_class.php");
 require_once (plugin_dir_path(__FILE__)."filter.php");
 
+    function addGraph(){
+        if(isset($_GET['overview'])){
+            $ocassions_obj = new Ocassions();
+            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
+            $site_url = get_site_url();
+            $page_slug = get_option("at_url_page_adverts");
+            $site_title = get_bloginfo( 'name' );
+            $images = $ocassions_obj->get_all_images($ocassion);
+            $img_src = $images[0];
+            ?>
+            <meta property="og:title" content="<?php echo $ocassions_obj->get_car_name($ocassion); ?>"/>
+            <meta property="og:image" content="<?php echo $img_src; ?>"/>
+            <meta property="og:description" content="<?php $ocassion->mededelingen; ?>"/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:url" content="<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$_GET['overview']?>"/>
+            <meta property="og:site_name" content="<?=$site_title?>"/>
+
+            <meta property="twitter:title" content="<?php echo $ocassions_obj->get_car_name($ocassion); ?>"/>
+            <meta property="twitter:image" content="<?php echo $img_src; ?>"/>
+            <meta property="twitter:description" content="<?php $ocassion->mededelingen; ?>"/>
+
+
+            <meta property="name" content="<?php echo $ocassions_obj->get_car_name($ocassion); ?>"/>
+            <meta property="image" content="<?php echo $img_src; ?>"/>
+            <meta property="description" content="<?php $ocassion->mededelingen; ?>"/>
+
+
+
+
+            <?php
+        }
+    }
+
     function occasions_list_overview(){
         $ocassions_obj = new Ocassions();
         $dealerId = get_option("at_dealer_id");

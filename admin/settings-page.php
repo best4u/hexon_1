@@ -415,7 +415,8 @@
                             <div class="atSIRow">
                                 <div class="atSIName"><?=$row->name ?></div>
                                 <div class="atSIurl">
-                                    <input type="text" class="atSIinput form-control" value="<?=$row->url ?>">
+                                    <div class="socialSwither activeInput"><input type="checkbox"<?=$row->active == 1 ? ' checked':'' ?>></div>
+                                    <input type="text" class="atSIinput form-control" value="<?=$row->active == 1 ? '1':'0' ?>" style="display: none">
                                 </div>
                                 <div class="smIcon">
                                     <div class="iconHolder"><?php if(isset($row->icon_url)) echo '<img src="'.$row->icon_url.'" alt="'.$row->name.'">' ?></div>

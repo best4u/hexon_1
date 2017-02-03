@@ -188,6 +188,7 @@ require_once ("frontend/index.php");
 // Front end ShortCodes
 
 require_once ('frontend/core/occasions_functions.php');
+add_action('wp_head', 'addGraph',1);
 
 add_shortcode('occasions_list', 'occasions_list_overview');
 add_shortcode('home_occasions', 'get_home_occasions');

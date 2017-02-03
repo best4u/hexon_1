@@ -199,7 +199,6 @@ tbody
 }
 .atSIurl{
     float: left;
-    width: 50%;
     border: solid 1px #bbb;
     border-left: 0;
     height: 52px;
@@ -209,6 +208,11 @@ tbody
     border: 0 !important;
     box-shadow: none !important;
     height: 50px !important;
+}
+
+.socialSwither
+{
+    margin-top: 9px;
 }
 .smIcon{
     /*width: 50px;*/
