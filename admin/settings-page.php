@@ -9,15 +9,19 @@
         <div class="fieldGroup">
             <div class="fieldGroupName">Informatie</div>
             <div class="row">
+                <div class="col-sm-12">
+                    <a href="#" class="showUserPassFields">Klik hier om de gebruikersnaam en / of wachtwoord aan te passen.</a>
+                </div>
                 <div class="col-sm-3">
                     <label for="at_username">Gebruikersnaam:</label>
-                    <input class="form-control" type="text" name="at_username" value="<?php echo esc_attr( get_option('at_username') ); ?>" />
+                    <input class="form-control usernameApi" autocomplete="off" style="display: none" type="text" name="at_username" value="<?php echo esc_attr( get_option('at_username') ); ?>" />
                 </div>
                 <div class="col-sm-3">
                     <label for="at_password">Wachtwoord, dit veld wordt het opslaan geleegd:</label>
-                    <input class="form-control" type="password" name="at_password" value="" />
+                    <input class="form-control passwprdApi" autocomplete="off" style="display: none" type="password" name="at_password" value="" />
                 </div>
             </div>
+            <hr>
             <div class="row">
 <!--                <div class="col-sm-3">-->
 <!--                    <label for="at_consumer_id">Consumer ID:</label>-->

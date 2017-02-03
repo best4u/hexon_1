@@ -8,6 +8,22 @@ $(document).ready(function(){
         allowEmpty:true
     });*/
 
+    $(".showUserPassFields").click(function(e){
+        e.preventDefault();
+        //if($(".usernameApi").is(":visible")){
+        //    $(".usernameApi").slideDown();
+        //    $(".passwprdApi").slideDown();
+        //}else{
+        //    $(".usernameApi").slideUp();
+        //    $(".passwprdApi").slideUp();
+        //}
+
+        $(".usernameApi").toggle("linear");
+        $(".passwprdApi").toggle("linear");
+
+
+    });
+
     function update_ordering(){
         block_ordering = [];
         $('#sortable_details li').each(function(){
