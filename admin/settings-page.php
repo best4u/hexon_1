@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-sm-3">
                     <?php $period = get_option('at_period_after_sell'); ?>
-                    <label for="at_period_after_sell">Antaal dagen verkochte tonen (0 - 30):</label>
+                    <label for="at_period_after_sell">Aantal dagen verkochte tonen (0 - 30):</label>
                     <select class="form-control" type="text" name="at_period_after_sell" value="<?php echo esc_attr( get_option('at_period_after_sell') ); ?>" >
                         <option value="0" <?php echo $period == 0 ? 'selected' : ''?>>0</option>
                         <option value="3" <?php echo $period == 3 ? 'selected' : ''?>>3</option>
