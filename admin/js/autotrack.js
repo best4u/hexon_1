@@ -242,10 +242,10 @@ $(document).ready(function(){
                     swal({
                         title: "",
                         text: "De instellingen zijn succesvol opgeslagen.",
-                        //timer: 1000,
+                        timer: 1000,
                         showConfirmButton: false,
                         type:"success",
-                    },"","success");
+                    });
                 }else{
 
                 }
@@ -269,7 +269,13 @@ $(document).ready(function(){
         $.post(url,data, function(response) {
 
             $(".loader").hide();
-            swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+            swal({
+                title: "",
+                text: "De instellingen zijn succesvol opgeslagen.",
+                timer: 1000,
+                showConfirmButton: false,
+                type:"success",
+            });
 
         });
 

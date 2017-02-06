@@ -155,7 +155,7 @@
                 ?>
                 <div class="col-md-3">
                     <div class="row">
-                        <input type="number" class="form-control" name="at_number_of_occasions_on_home" value="<?php echo $at_number_of_occasions_on_home; ?>">
+                        <input type="number" class="form-control" name="at_number_of_occasions_on_home" value="<?php echo $at_number_of_occasions_on_home; ?>" style="height: 33px;">
                     </div>
                 </div>
 
