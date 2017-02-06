@@ -141,8 +141,8 @@ $price_color = get_option("at_price_color");
                             $options_accessories_aT = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae",$ocassion);
                             $options_accessories_iC = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6",$ocassion);
 
-                            if(count($options_accessories) >= 0 && count($options_accessories_ext) >= 0 && count($options_accessories_vT) >= 0 && count($options_accessories_aT) >= 0 && count($options_accessories_iC) >= 0){
-                               ?>
+                            if(count($options_accessories) != 0 || count($options_accessories_ext) != 0 || count($options_accessories_vT) != 0 || count($options_accessories_aT) != 0 || count($options_accessories_iC) != 0){
+                            ?>
                             <hr class="lineAll">
 
                             <div class="optionsAccesories">

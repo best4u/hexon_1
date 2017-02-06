@@ -34,9 +34,6 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             <meta property="image" content="<?php echo $img_src; ?>"/>
             <meta property="description" content="<?php $ocassion->mededelingen; ?>"/>
 
-
-
-
             <?php
         }
     }
@@ -89,7 +86,7 @@ function get_home_occasions(){
     }
     $sort_query = "";
 
-    if($filter == "at_newest_cars"){
+    if($filter == "at_expensive_cars"){
         $sort_query .= "&sort%5Bprijs%5D=desc";
     }elseif($filter == "at_newest_cars"){
         $sort_query .= "&sort%5BdatumGeplaatst%5D=desc";
@@ -111,7 +108,7 @@ function generate_xml(){
     $ocassions_obj = new Ocassions();
     $dealerId = get_option("at_dealer_id");
     $filertObj = new Filter();
-    $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,'1','1000000000');
+    $all_occasions = $filertObj->get_occasions_for_xml_sitemap($dealerId,$ocassions_obj);
 
     if($all_occasions){
 

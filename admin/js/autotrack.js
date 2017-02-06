@@ -10,13 +10,6 @@ $(document).ready(function(){
 
     $(".showUserPassFields").click(function(e){
         e.preventDefault();
-        //if($(".usernameApi").is(":visible")){
-        //    $(".usernameApi").slideDown();
-        //    $(".passwprdApi").slideDown();
-        //}else{
-        //    $(".usernameApi").slideUp();
-        //    $(".passwprdApi").slideUp();
-        //}
 
         $(".usernameApi").toggle("linear");
         $(".passwprdApi").toggle("linear");
@@ -56,12 +49,11 @@ $(document).ready(function(){
         this_row = $(this).parent().index();
 
         if(this_row == last_row && this_row != 0){
-            console.log('last');
 
                 $(this).parent().remove();
 
         }else{
-            console.log('not last');
+
             this_line = $(this).parent();
             new_row = this_line.clone();
             new_row.find('input').val('');
@@ -78,7 +70,7 @@ $(document).ready(function(){
         this_row = click_elem.closest('.atSIRow');
 
         //target = $('.wrap input[name="logo"]');
-        console.log('click');
+
         //If the uploader object has already been created, reopen the dialog
         if (custom_uploader) {
             custom_uploader.open();
@@ -118,7 +110,7 @@ $(document).ready(function(){
                 url:$(this).find(".atSIinput").val(),
                 icon_url: $(this).find('.iconHolder img').attr('src')
             });
-            console.log(socials)
+
         });
         return JSON.stringify(socials);
     }
@@ -129,7 +121,7 @@ $(document).ready(function(){
             state_block = $(this).find('.atSIurl .switch-button-background');
             state_val = state_block.hasClass('checked') ? '1' : '0';
             $(this).find(".atSIinput").val(state_val);
-            console.log(state_val);
+
         });
     }
 
@@ -157,7 +149,7 @@ $(document).ready(function(){
     }
     $(document).on('change, keypress, keyup', '.gRow input', function(){
         $('#shedule').val(JSON.stringify(build_shedule()));
-        console.log('changes');
+
     });
 
     $(document).on('click', '.gOrar1 .gButton', function(){
@@ -220,7 +212,14 @@ $(document).ready(function(){
             };
             $.post(url,data, function(response) {
                 if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
-                    swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+
+                    swal({
+                        title: "",
+                        text: "De instellingen zijn succesvol opgeslagen.",
+                        timer: 1000,
+                        showConfirmButton: false,
+                        type:"success",
+                    });
                 }else{
 
                 }
@@ -240,7 +239,13 @@ $(document).ready(function(){
             };
             $.post(url,data, function(response) {
                 if(event.screenX && event.screenX != 0 && event.screenY && event.screenY != 0){
-                    swal("De instellingen zijn succesvol opgeslagen.", "", "success");
+                    swal({
+                        title: "",
+                        text: "De instellingen zijn succesvol opgeslagen.",
+                        //timer: 1000,
+                        showConfirmButton: false,
+                        type:"success",
+                    },"","success");
                 }else{
 
                 }
@@ -320,7 +325,7 @@ $(document).ready(function(){
     function filter_attr(category,attr_name,home_page,overview,summary_detail,details_total)
     {
         var url = $(".urlAjax").text();
-        console.log(category);
+
         var data = {
             action: 'filter_attributes',
             name: name,

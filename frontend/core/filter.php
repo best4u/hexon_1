@@ -203,4 +203,11 @@ class Filter{
         $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'');
         return $all_occasions;
     }
+
+    function get_occasions_for_xml_sitemap($dealerId,$connection){
+
+
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=1000000&filter%5BdealerId%5D='.$dealerId.'');
+        return $all_occasions;
+    }
 }
