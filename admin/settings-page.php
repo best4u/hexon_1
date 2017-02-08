@@ -1,7 +1,7 @@
 <div class="wrap">
 
 
-    <form method="post" action="options.php">
+    <form method="post" action="options.php" id="settingsForm">
 
         <?php settings_fields( 'autotrack-settings-fields' ); ?>
         <?php do_settings_sections( 'autotrack-settings-fields' ); ?>
@@ -127,7 +127,7 @@
                 </div>
 <!--                <div class="col-sm-3">-->
 <!--                    <label class="radio-inline">-->
-<!--                        <input type="radio" name="at_home_cars" value="at_last_cars" --><?php //echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?><!--> De laatst geplaatste advertenties.-->
+<!--                        <input type="radio" name="at_home_cars" value="at_last_cars" --><?php //echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?><!-->
 <!--                    </label>-->
 <!--                </div>-->
             </div>
@@ -421,7 +421,8 @@
 
         </div>
 
-        <?php submit_button('Opslaan'); ?>
+
+            <input type="submit" name="submit" id="submit" class="button button-primary settingSubmitButton" value="Opslaan">
 
 
     </form>

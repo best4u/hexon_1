@@ -422,6 +422,25 @@ $(document).ready(function(){
         filter_attr(category,attr_name,home_page,overview,summary_detail,details_total);
     });
 
+    $(".settingSubmitButton").click(function(e){
+
+
+        swal({
+            title: "",
+            text: "De instellingen zijn succesvol opgeslagen.",
+            showConfirmButton: false,
+            type:"success",
+            timer: 1000
+        });
+        $("#settingsForm").submit();
+
+
+
+
+
+    });
+
+
 
 
 });
