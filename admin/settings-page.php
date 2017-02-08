@@ -437,7 +437,7 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
-            <p>In get gebied hieronder is de contactinformatie te beheren.</p>
+            <p>In het gebied hieronder is de contactinformatie te beheren.</p>
             <div class="row">
                 <div class="col-sm-6">
                     <?php $contact_info = get_option('at_contact_info') ?>
