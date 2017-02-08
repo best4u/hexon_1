@@ -251,7 +251,7 @@
                 ?>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_overview_layoutmode" value="at_layout_overview_list" <?php echo $at_overview_layoutmode == 'at_layout_overview_list' ? 'checked="checked"' : '' ?>> List.
+                        <input type="radio" name="at_overview_layoutmode" value="at_layout_overview_list" <?php echo $at_overview_layoutmode == 'at_layout_overview_list' ? 'checked="checked"' : '' ?>> Lijst.
                     </label>
                     <i class="fa fa-list-alt" style="font-size: 24px;margin-left: 10px;margin-top: 3px;" aria-hidden="true"></i>
                 </div>
