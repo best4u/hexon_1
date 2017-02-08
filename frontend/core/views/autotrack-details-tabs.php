@@ -571,7 +571,7 @@ Met vriendelijke groet,
                         ?>
                         <tr>
                             <td><strong></strong></td>
-                            <td><?php echo $day->time2->from." - ".$day->time2->to; ?></td>
+                            <td><?=$day->time2->from ?> – <?=$day->time2->to ?></td>
                         </tr>
                         <?php
                     }

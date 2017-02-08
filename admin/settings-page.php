@@ -3,7 +3,6 @@
 
     <form method="post" action="options.php">
 
-
         <?php settings_fields( 'autotrack-settings-fields' ); ?>
         <?php do_settings_sections( 'autotrack-settings-fields' ); ?>
         <div class="fieldGroup">
@@ -18,7 +17,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label for="at_password">Wachtwoord, dit veld wordt het opslaan geleegd:</label>
-                    <input class="form-control passwprdApi" autocomplete="off" style="display: none" type="password" name="at_password" value="" />
+                    <input class="form-control passwprdApi" autocomplete="off" style="display: none" type="text" name="at_password" value="" />
                 </div>
             </div>
             <hr>
@@ -181,7 +180,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label class="radio-inline">
-                        <input type="radio" name="at_home_cars" value="at_last_cars" <?php echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?>> De laast geplaatste advertenties.
+                        <input type="radio" name="at_home_cars" value="at_last_cars" <?php echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?>> De laatst geplaatste advertenties.
                     </label>
                 </div>
             </div>
