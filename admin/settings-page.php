@@ -112,30 +112,30 @@
 
             <p>Geef hier dient er gebruikt te worden?</p>
             <div class="row">
-                <div class="col-sm-2">
-                    <label for="at_font_color">Textkleur:</label>
-                    <input class="form-control" type="color" name="at_font_color" value="<?php echo esc_attr( get_option('at_font_color') ); ?>" />
-                </div>
-                <div class="col-sm-2">
-                    <label for="at_attribute_label">Attribuut-label kleur:</label>
-                    <input class="form-control" type="color" name="at_attribute_label" value="<?php echo esc_attr( get_option('at_attribute_label') ); ?>"/>
-                </div>
-                <div class="col-sm-2">
-                    <label for="at_attribute_value">Attribuut-warde kleur:</label>
-                    <input class="form-control" type="color" name="at_attribute_value" value="<?php echo esc_attr( get_option('at_attribute_value') ); ?>" />
-                </div>
+<!--                <div class="col-sm-2">-->
+<!--                    <label for="at_font_color">Textkleur:</label>-->
+<!--                    <input class="form-control" type="color" name="at_font_color" value="--><?php //echo esc_attr( get_option('at_font_color') ); ?><!--" />-->
+<!--                </div>-->
+<!--                <div class="col-sm-2">-->
+<!--                    <label for="at_attribute_label">Attribuut-label kleur:</label>-->
+<!--                    <input class="form-control" type="color" name="at_attribute_label" value="--><?php //echo esc_attr( get_option('at_attribute_label') ); ?><!--"/>-->
+<!--                </div>-->
+<!--                <div class="col-sm-2">-->
+<!--                    <label for="at_attribute_value">Attribuut-warde kleur:</label>-->
+<!--                    <input class="form-control" type="color" name="at_attribute_value" value="--><?php //echo esc_attr( get_option('at_attribute_value') ); ?><!--" />-->
+<!--                </div>-->
 
 
             </div>
             <div class="row">
-                <div class="col-sm-2">
-                    <label for="at_header_color">Header kleur:</label>
-                    <input class="form-control" type="color" name="at_header_color" value="<?php echo esc_attr( get_option('at_header_color') ); ?>" />
-                </div>
-                <div class="col-sm-2">
-                    <label for="at_button_color">Knoppen kleur:</label>
-                    <input class="form-control" type="color" name="at_button_color" value="<?php echo esc_attr( get_option('at_button_color') ); ?>"/>
-                </div>
+<!--                <div class="col-sm-2">-->
+<!--                    <label for="at_header_color">Header kleur:</label>-->
+<!--                    <input class="form-control" type="color" name="at_header_color" value="--><?php //echo esc_attr( get_option('at_header_color') ); ?><!--" />-->
+<!--                </div>-->
+<!--                <div class="col-sm-2">-->
+<!--                    <label for="at_button_color">Knoppen kleur:</label>-->
+<!--                    <input class="form-control" type="color" name="at_button_color" value="--><?php //echo esc_attr( get_option('at_button_color') ); ?><!--"/>-->
+<!--                </div>-->
                 <div class="col-sm-2">
                     <label for="at_price_color">Prijs kleur:</label>
                     <input class="form-control" type="color" name="at_price_color" value="<?php echo esc_attr( get_option('at_price_color') ); ?>"/>

@@ -1,33 +1,33 @@
 <?php
-$text_color = get_option("at_font_color");
-$atribute_label_color = get_option("at_attribute_label");
-$atribute_value_color = get_option("at_attribute_value");
-$header_color = get_option("at_header_color");
-$button_color = get_option("at_button_color");
+//$text_color = get_option("at_font_color");
+//$atribute_label_color = get_option("at_attribute_label");
+//$atribute_value_color = get_option("at_attribute_value");
+//$header_color = get_option("at_header_color");
+//$button_color = get_option("at_button_color");
 $price_color = get_option("at_price_color");
 ?>
 <style>
-    .text_color{
-        color: <?php echo $text_color; ?> !important;
-    }
-
-
-    .atribute_label_color{
-        color: <?php echo $atribute_label_color; ?> !important;
-    }
-    .atribute_value_color{
-        color: <?php echo $atribute_value_color; ?> !important;
-    }
-
-
-    .header_color{
-        color: <?php echo $header_color; ?> !important;
-    }
-
-
-    .button_color{
-        background-color: <?php echo $button_color; ?> !important;
-    }
+/*    .text_color{*/
+/*        color: */<?php //echo $text_color; ?>/* !important;*/
+/*    }*/
+/**/
+/**/
+/*    .atribute_label_color{*/
+/*        color: */<?php //echo $atribute_label_color; ?>/* !important;*/
+/*    }*/
+/*    .atribute_value_color{*/
+/*        color: */<?php //echo $atribute_value_color; ?>/* !important;*/
+/*    }*/
+/**/
+/**/
+/*    .header_color{*/
+/*        color: */<?php //echo $header_color; ?>/* !important;*/
+/*    }*/
+/**/
+/**/
+/*    .button_color{*/
+/*        background-color: */<?php //echo $button_color; ?>/* !important;*/
+/*    }*/
 
 
     .price_color{
