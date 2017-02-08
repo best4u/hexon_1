@@ -370,7 +370,7 @@
 <!--                    <div class="shortDelimeter"></div>-->
 <!--                </div>-->
 <!--            </div>-->
-            <p>Geef hier de openingstijden in van bedrijf / locatie.</p>
+            <p>Geef hier de openingstijden in van uw bedrijf / locatie.</p>
             <?php $shedule = get_option('at_shedule');
             ?>
             <input type="hidden" id="shedule" value='<?=$shedule ?>' name="at_shedule">
