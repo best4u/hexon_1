@@ -47,67 +47,14 @@
                         <option value="30" <?php echo $period == 30 ? 'selected' : ''?>>30</option>
                     </select>
                 </div>
-                    <div class="col-md-8">
-                        <br>
-                        <br>
-                        <h3>Codes</h3>
-                        <p>Toon alle occasions: <b>[occasions_list]</b></p>
-                        <p>Toon occasions op home-page: <b>[home_occasions]</b></p>
-                    </div>
-
             </div>
 
         </div>
 
 
         <div class="fieldGroup">
-            <div class="fieldGroupName">Opmaak</div>
-            <p>Welk template dient gebruikt te worden?</p>
-
-            <?php
-            $theme = wp_get_theme();
-            $theme = $theme->get('Name');
-            ?>
             <div class="row">
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme1" class="disabled" disabled <?php echo $theme == 'Theme1' ? 'checked="checked"' : '' ?>> Pineview Drive.
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme2" class="disabled" disabled <?php echo $theme == 'Theme2' ? 'checked="checked"' : '' ?>> Expedition off road.
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme3" class="disabled" disabled <?php echo $theme == 'Theme3' ? 'checked="checked"' : '' ?>> Northern light.
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
 
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme4" class="disabled" disabled <?php echo $theme == 'Theme4' ? 'checked="checked"' : '' ?>> Level up.
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme5" class="disabled" disabled <?php echo $theme == 'Theme5' ? 'checked="checked"' : '' ?>> Beijing winters.
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_theme" value="theme6" class="disabled" disabled <?php echo $theme == 'Theme6' ? 'checked="checked"' : '' ?>> Simple mpdern.
-                    </label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="shortDelimeter"></div>
-                </div>
             </div>
 
             <p>Geef hier dient er gebruikt te worden?</p>
@@ -445,6 +392,13 @@
                         'textarea_name' => 'at_contact_info',
                         'editor_height' => 150
                     )) ?>
+                </div>
+                <div class="col-md-8">
+                    <br>
+                    <br>
+                    <h3>Codes</h3>
+                    <p>Toon alle occasions: <b>[occasions_list]</b></p>
+                    <p>Toon occasions op home-page: <b>[home_occasions]</b></p>
                 </div>
             </div>
 <!--            <div class="row">-->
