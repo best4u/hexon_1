@@ -125,11 +125,11 @@
                         <input type="radio" name="at_home_cars" value="at_expensive_cars" <?php echo $at_home_cars == 'at_expensive_cars' ? 'checked="checked"' : '' ?>> De duurste advertenties.
                     </label>
                 </div>
-                <div class="col-sm-3">
-                    <label class="radio-inline">
-                        <input type="radio" name="at_home_cars" value="at_last_cars" <?php echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?>> De laatst geplaatste advertenties.
-                    </label>
-                </div>
+<!--                <div class="col-sm-3">-->
+<!--                    <label class="radio-inline">-->
+<!--                        <input type="radio" name="at_home_cars" value="at_last_cars" --><?php //echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?><!--> De laatst geplaatste advertenties.-->
+<!--                    </label>-->
+<!--                </div>-->
             </div>
 
 
