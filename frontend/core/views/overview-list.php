@@ -135,6 +135,9 @@ $price_color = get_option("at_price_color");
                     ?>
                 </div>
 
+                <?php if(count($all_occasions->items) > 0){
+
+                ?>
                 <!-- Start pargination -->
                 <div class="bottomNPaginationWrapp">
                     <div class="centerDiv">
@@ -147,7 +150,7 @@ $price_color = get_option("at_price_color");
                                     ?>
                                     <li class="prevPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 1); ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
                                     <?php
-                                }else{
+                                }elseif(isset($_GET['pagina']) && $_GET['pagina'] != 1){
 
                                     ?>
                                     <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
@@ -170,7 +173,7 @@ $price_color = get_option("at_price_color");
                             }
 
 
-                                if(isset($_GET['pagina']) && $_GET['pagina'] < $number_of_page){
+                                if(isset($_GET['pagina']) && $_GET['pagina'] < ceil($number_of_page) / 6){
 
                                     ?>
                                     <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 3); ?>">...</a></li>
@@ -190,9 +193,15 @@ $price_color = get_option("at_price_color");
                         </ul>
                     </div>
                 </div>
-                <!-- end pagination -->
+
+                <?php }else{
+                    ?>
+                        <p style="text-align: center;">Er zijn geen zoekresultaten gevonden.</p>
+                    <?php
+                } ?>
 
             </div>
+            <!-- end pagination -->
 
             <div class="sidebarContent">
                 <div class="titleSidebar h2">
