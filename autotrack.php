@@ -192,6 +192,7 @@ add_action('wp_head', 'addGraph',1);
 
 add_shortcode('occasions_list', 'occasions_list_overview');
 add_shortcode('home_occasions', 'get_home_occasions');
+add_shortcode('open_hours_company', 'get_open_company_hours');
 
 
 

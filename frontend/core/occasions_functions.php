@@ -101,6 +101,10 @@ function get_home_occasions(){
     require_once (plugin_dir_path(__FILE__)."views/home_template.php");
 }
 
+function get_open_company_hours(){
+    require_once (plugin_dir_path(__FILE__)."views/open_hours_template.php");
+}
+
 // Temporaly function
 
 function generate_xml(){
