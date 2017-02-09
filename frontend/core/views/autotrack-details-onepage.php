@@ -13,7 +13,7 @@ $price_color = get_option("at_price_color");
 </style>
 
 <pre>
-<!--    --><?php //var_dump($ocassion); ?>
+    <?php var_dump($ocassion); ?>
 </pre>
         <div class="overview_gridWrapp">
 

@@ -64,6 +64,7 @@ $price_color = get_option("at_price_color");
                         <div class="carsContentLeft fghdgfhdgfhdgfh">
 
                         <?php
+                        var_dump($all_occasions->total);
                         if($all_occasions){
                         ?>
 
