@@ -384,6 +384,23 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
+
+            <p>Kies tussen een tekstgebied of informatie uit de API:</p>
+            <?php $at_addres_info = get_option('at_addres_info');
+            ?>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="at_addres_info" value="from_text_area" <?php echo $at_addres_info == 'from_text_area' ? 'checked="checked"' : '' ?>> Tekstgebied.
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="at_addres_info" value="from_api" <?php echo $at_addres_info == 'from_api' ? 'checked="checked"' : '' ?>> API.
+                    </label>
+                </div>
+            </div>
+
             <p>In het gebied hieronder is de contactinformatie te beheren.</p>
             <div class="row">
                 <div class="col-sm-6">

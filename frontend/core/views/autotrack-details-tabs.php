@@ -521,8 +521,13 @@ Met vriendelijke groet,
             <div class="contactInfo">
                 <hr class="lineAll">
                 <?php
-                $contact_info = get_option('at_contact_info');
-                echo $contact_info;
+                if($get_from == "from_text_area"){
+                    $contact_info = get_option('at_contact_info');
+                    echo $contact_info;
+                }else{
+                    echo $ocassions_obj->get_addres_info($ocassion);
+                }
+
                 ?>
             </div>
 

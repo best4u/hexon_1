@@ -49,6 +49,7 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_thank_you_text' );
 //    Social media
     register_setting( 'autotrack-settings-fields', 'socialShareOnOff' );
+    register_setting( 'autotrack-settings-fields', 'at_addres_info' );
 
 }
 
@@ -90,8 +91,9 @@ function insert_data_settings(){
     add_option( 'at_attribute_value', '#444444');
     add_option( 'at_header_color', '#5021ff' );
     add_option( 'at_button_color', '#f7a404' );
-    add_option( 'at_price_color', '#ff0000' );
+    add_option( 'at_addres_info', 'from_text_area' );
 //    home cars
+    add_option( 'at_home_cars', 'at_newest_cars' );
     add_option( 'at_home_cars', 'at_newest_cars' );
 //    sort by
     add_option( 'at_sort_by', 'prijs' );

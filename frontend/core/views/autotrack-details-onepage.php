@@ -453,16 +453,21 @@ Met vriendelijke groet,
 
                                 <?php
                             }elseif($block['name'] == "Contactinformatie" && $block['state'] == "1"){
+                                $get_from = get_option("at_addres_info");
                                 ?>
                                 <!--======================== Contact info block =========================-->
+                                        <div class="contactInfo">
+                                            <hr class="lineAll">
+                                            <?php
+                                            if($get_from == "from_text_area"){
+                                                $contact_info = get_option('at_contact_info');
+                                                echo $contact_info;
+                                            }else{
+                                                echo $ocassions_obj->get_addres_info($ocassion);
+                                            }
 
-                                <div class="contactInfo">
-                                    <hr class="lineAll">
-                                    <?php
-                                    $contact_info = get_option('at_contact_info');
-                                    echo $contact_info;
-                                    ?>
-                                </div>
+                                            ?>
+                                        </div>
 
                                 <!--======================== End contact info block =========================-->
                                 <?php

@@ -59,6 +59,16 @@ class Ocassions
 
     }
 
+    function get_addres_info($occasion){
+
+        $html_structure = '<p style="text-align: left;"><label class="bigLabel">Contactinformatie</label></p>';
+        $html_structure .= '<p style="text-align: left;">'.$occasion->aanbieder->straatnaam.' '.$occasion->aanbieder->huisnummer.'</p>';
+        $html_structure .= '<p style="text-align: left;">'.$occasion->aanbieder->postcode.' '.$occasion->aanbieder->plaatsnaam.'</p>';
+        $html_structure .= '<p style="text-align: left;">'.$occasion->aanbieder->telefoonnummer.'</p>';
+        $html_structure .= '<p style="text-align: left;">'.$occasion->aanbieder->emailadres.'</p>';
+        return $html_structure;
+    }
+
     function isDate($value)
     {
         if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$value))
