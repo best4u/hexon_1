@@ -101,7 +101,7 @@ class Ocassions
     function get_car_price($occasion)
     {
         $price_total = $occasion->prijs->totaal;
-        return number_format($price_total, 2, ",", ".");
+        return number_format($price_total, 0, ",", ".");
     }
 
     function get_image_link($occasion)
@@ -157,7 +157,7 @@ class Ocassions
                         if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
                             $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
                         }elseif($item->name == "Kilometers stand"){
-                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ".")." km"]];
                         }elseif($this->isDate($occasion->${"object"}->${"selector"})){
                             $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
                         }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
@@ -242,7 +242,7 @@ class Ocassions
                         if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
                             $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
                         }elseif($item->name == "Kilometers stand"){
-                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ".")." km"]];
                         }elseif($this->isDate($occasion->${"object"}->${"selector"})){
                             $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
                         }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
@@ -327,7 +327,7 @@ class Ocassions
                         if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
                             $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
                         }elseif($item->name == "Kilometers stand"){
-                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ".")." km"]];
                         }elseif($this->isDate($occasion->${"object"}->${"selector"})){
                             $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
                         }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
@@ -413,7 +413,7 @@ class Ocassions
                         if($item->name == "Catalogus prijs" || $item->name == "Minimale wegenbelasting" || $item->name == "Maximale wegenbelasting"){
                             $options[] = [$item->category => [$item->name => "€ ".number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")]];
                         }elseif($item->name == "Kilometers stand"){
-                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 2, ",", ".")." km"]];
+                            $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ",", ".")." km"]];
                         }elseif($this->isDate($occasion->${"object"}->${"selector"})){
                             $options[] = [$item->category => [$item->name => date("d/m/Y",strtotime($occasion->${"object"}->${"selector"}))]];
                         }elseif($item->name == "Lengte" || $item->name == "Breedte" || $item->name == "Hoogte" || $item->name == "Draaicirkel" || $item->name == "Actieradius"){
