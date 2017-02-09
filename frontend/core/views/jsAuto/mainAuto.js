@@ -255,4 +255,8 @@ function get_models(mark_id){
         sidebarTextArea.text(content);
     }
 
+    $(".b4uPrintButton").click(function(){
+        window.print();
+    });
+
 });

@@ -1,35 +1,14 @@
 <?php
-//$text_color = get_option("at_font_color");
-//$atribute_label_color = get_option("at_attribute_label");
-//$atribute_value_color = get_option("at_attribute_value");
-//$header_color = get_option("at_header_color");
-//$button_color = get_option("at_button_color");
 $price_color = get_option("at_price_color");
 ?>
 <style>
-/*    .text_color {*/
-/*        color: */<?php //echo $text_color; ?>/* !important;*/
-/*    }*/
-/**/
-/*    .atribute_label_color {*/
-/*        color: */<?php //echo $atribute_label_color; ?>/* !important;*/
-/*    }*/
-/**/
-/*    .atribute_value_color {*/
-/*        color: */<?php //echo $atribute_value_color; ?>/* !important;*/
-/*    }*/
-/**/
-/*    .header_color {*/
-/*        color: */<?php //echo $header_color; ?>/* !important;*/
-/*    }*/
-/**/
-/*    .button_color {*/
-/*        background-color: */<?php //echo $button_color; ?>/* !important;*/
-/*    }*/
 
-    .price_color {
-        color: <?php echo $price_color; ?> !important;
-    }
+.subprice{
+    display: block;
+    float: left;
+    clear: both;
+    margin-top: 10px;
+}
 </style>
 
 <!--[if lt IE 8]>
@@ -44,6 +23,9 @@ $price_color = get_option("at_price_color");
                 <div class="detailPage">
                     <div class="carTitleTop header_color">
                         <?php echo $ocassions_obj->get_car_name($ocassion); ?>
+                    </div>
+                    <div class="b4uPrintButton" title="Print Pagina">
+                        <i class="fa fa-print"></i>
                     </div>
 
                     <div class="sliderAndDesc">
@@ -64,6 +46,7 @@ $price_color = get_option("at_price_color");
                             <div class="priceandLogo">
                                 <div class="priceCarItem price_color">
                                     € <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
+                                <div class="subprice">Rijklaarmaakkosten <?php echo $ocassions_obj->get_apkBijAflevering($ocassion); ?></div>
                                 <div class="logoCarItem">
                                     <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
                                 </div>

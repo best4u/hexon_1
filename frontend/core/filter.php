@@ -50,11 +50,10 @@ class Filter{
         $sort_by = get_option("at_sort_by");
         $order = get_option("at_sort_by_orientation");
         if(isset($_GET['sort'])){
-            if($_GET['sort'] == "merkModelUitvoering"){
-                $sort_query = "&sort%5B".$sort_by."%5D=asc";
-            }else{
-                $sort_query = "&sort%5B".$_GET['sort']."%5D=".$order."";
-            }
+
+
+                $sort_query = "&sort%5B".$_GET['sort']."%5D=asc";
+
 
         }else{
             $sort_query = "&sort%5B".$sort_by."%5D=".$order."";

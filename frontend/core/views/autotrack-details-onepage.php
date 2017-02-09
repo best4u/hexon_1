@@ -10,6 +10,12 @@ $price_color = get_option("at_price_color");
     .price_color{
         color: <?php echo $price_color; ?> !important;
     }
+    .subprice{
+        display: block;
+        float: left;
+        clear: both;
+        margin-top: 10px;
+    }
 </style>
 
 <pre>
@@ -24,6 +30,10 @@ $price_color = get_option("at_price_color");
 		        			<div class="carTitleTop header_color">
                                 <?php echo $ocassions_obj->get_car_name($ocassion); ?>
 		        			</div>
+                            <div class="b4uPrintButton" title="Print Pagina">
+                                <i class="fa fa-print"></i>
+                            </div>
+
 
 							<div class="sliderAndDesc">
 								<div class="leftSlideBlock">
@@ -42,6 +52,8 @@ $price_color = get_option("at_price_color");
 								<div class="rightDescBlock">
 									<div class="priceandLogo">
         								<div class="priceCarItem price_color">€ <?php echo $ocassions_obj->get_car_price($ocassion); ?></div>
+                                        <div class="subprice">Rijklaarmaakkosten <?php echo $ocassions_obj->get_apkBijAflevering($ocassion); ?></div>
+
         								<div class="logoCarItem">
                                             <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
         								</div>
