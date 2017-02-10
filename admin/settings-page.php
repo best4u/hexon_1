@@ -257,20 +257,7 @@
                 </div>
             </div>
 
-            <p>Contactformulier code </p>
-            <div class="row">
-                <div class="col-sm-6">
-                    <?php $at_form_short_code = get_option('at_form_short_code'); ?>
-                    <textarea id="" cols="30" rows="10" name="at_form_short_code" class="form-control"><?=$at_form_short_code ?></textarea>
 
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="shortDelimeter"></div>
-                </div>
-            </div>
             <p>Geef hier de openingstijden in van uw bedrijf / locatie.</p>
             <?php $shedule = get_option('at_shedule');
             ?>
@@ -364,6 +351,21 @@
                         'editor_height' => 150
                     )) ?>
                 </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">Geef hier de tekst op van de bedankpagina, de URL hiervant kan niet worden gewijzigd:</div>
+                <br>
+                <br>
+                <div class="col-sm-6">
+                    <?php $contact_info = get_option('at_thank_you_text') ?>
+                    <?php wp_editor($contact_info, 'at_thank_you_text', array(
+                            'textarea_name' => 'at_thank_you_text',
+                            'editor_height' => 150
+                    )) ?>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-8">
                     <br>
                     <br>

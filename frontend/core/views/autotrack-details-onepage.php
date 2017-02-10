@@ -345,17 +345,25 @@ Met vriendelijke groet,
                         <?php foreach($sidebar_blocks as $block): ?>
                             <?php
                             if($block['name'] == "Contactformulier" && $block['state'] == "1"){
+
                                 $at_form_short_code = get_option('at_form_short_code');
+                                if(isset($_SESSION['thx_text'])){
+                                    $text = get_option("at_thank_you_text");
+                                    echo $text;
+                                    unset($_SESSION['thx_text']);
+                                }else{
+                                    ?>
+                                    <!--======================== Contact form  block =========================-->
+                                    <div class="titleSidebarDetail">
+                                        Neem contact met ons op
+                                    </div>
+                                    <?php  do_shortcode($at_form_short_code);
+                                    include ('contact_form.php');
+                                    ?>
+                                    <!--======================== End contact form block =========================-->
+                                    <?php
+                                }
                                 ?>
-
-                                <!--======================== Contact form  block =========================-->
-                                <div class="titleSidebarDetail">
-                                    Neem contact met ons op
-                                </div>
-                                <?php echo do_shortcode($at_form_short_code); ?>
-                                <!--======================== End contact form block =========================-->
-
-
                                 <?php
                             }elseif($block['name'] == "Social Media Informatie" && $block['state'] == "1"){
                                 ?>

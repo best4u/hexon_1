@@ -330,6 +330,15 @@ input, textarea {
     cursor: pointer;
 }
 
+.autotrack_contact_form textarea{
+    height: 169px;
+}
+
+.autotrack_contact_form input{
+    width: 100%;
+}
+
+
 .singleItemWrapp .detailPage .sliderAndDesc {
   width: 100%;
   overflow: hidden;
