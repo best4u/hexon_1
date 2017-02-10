@@ -26,6 +26,6 @@ $url = "http://".$server_name."/".$url_param."";
         </div>
         <input type="hidden" name="occasion_id" value="<?$_GET['overview']?>">
         <input type="hidden" name="redirect_back" value="<?=$url?>">
-        <button class="button_at1 button_color form-control" type="submit">SEND</button>
+        <button class="button_at1 button_color form-control" type="submit">Verzenden</button>
 
     </form>
