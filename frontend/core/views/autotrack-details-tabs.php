@@ -133,40 +133,7 @@ $price_color = get_option("at_price_color");
                                     </div>
                                     <div class="descOms commDesc text_color">
                                         <p>
-                                            <?php
-//                                            echo str_replace(".", ".<br>", $ocassion->mededelingen);
-                                            $description = explode("\.", $ocassion->mededelingen);
-                                            foreach($description as $line){
-                                            $line_explode = explode("*",$line);
-                                            if($line_explode > 1){
-                                                ?>
-                                                    <p><?php echo $line_explode[0] ?></p>
-                                                    <ul>
-                                                <?php
-                                                for($i=1;$i < count($line_explode);$i++){
-                                                    ?>
-                                                        <li><?php echo $line_explode[$i]; ?></li>
-                                                    <?php
-                                                }
-                                                ?>
-                                                    </ul>
-                                               <?php
-                                            }else{
-                                                   ?>
-                                                   <p><?php echo $line; ?></p>
-                                                   <?php
-
-                                               }
-
-
-                                            }
-
-                                            ?>
-                                            <pre>
-                                            <?php
-
-                                            ?>
-                                        </pre>
+                                            <?=$description_text?>
                                         </p>
                                     </div>
                                 </div>

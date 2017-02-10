@@ -369,6 +369,7 @@
                     <br>
                     <h3>Codes</h3>
                     <p>Toon alle occasions: <b>[occasions_list]</b></p>
+                    <p>Toon alle bedrijfswagens: <b>[company_occasions_list]</b></p>
                     <p>Toon occasions op home-page: <b>[home_occasions]</b></p>
                     <p>Openingstijden: <b>[open_hours_company]</b></p>
                     <p>Home filter: <b>[home_filter]</b></p>

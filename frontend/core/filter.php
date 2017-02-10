@@ -194,6 +194,16 @@ class Filter{
 //        }
     }
 
+    function store_arg_copany_cars($connection,$dealerId){
+
+//        if(!isset($_SESSION['all_marks']) && count($_SESSION['all_marks']) <= 0){
+
+        $all_marks_json = $connection->connection_to_api('merken','?pageNumber=1&pageSize=500&sort%5Bnaam%5D=asc');
+        $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
+        $this->set_filter_data($all_marks_json,$dealer_marks_json);
+//        }
+    }
+
     function get_occasions($dealerId,$connection,$page,$perPage){
 
 //        Store mark's
@@ -204,6 +214,18 @@ class Filter{
 
         $sort_query = $this->orderBy();
         $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'');
+        return $all_occasions;
+    }
+
+    function get_all_company_ocassions_and_filter($dealerId,$connection,$page,$perPage){
+        //        Store mark's
+        $this->store_arg_copany_cars($connection,$dealerId);
+//-----------------------------------------------
+//        Sidebar Filter
+        $filter_query = $this->sidebarFilter($connection,$dealerId);
+
+        $sort_query = $this->orderBy();
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
         return $all_occasions;
     }
 

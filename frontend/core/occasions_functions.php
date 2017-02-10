@@ -47,11 +47,12 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         if(isset($_GET['overview'])){
             $template = get_option("at_details_view_mode");
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
-            $description = $ocassions_obj->connection_to_api('dealers/',$dealerId);
-            echo "================";
-            echo "<pre>";
-            var_dump($description);
-            echo "</pre>";
+            $description = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview'].'/aanbieder');
+            $description_text = $description->mededelingen;
+//            echo "================";
+//            echo "<pre>";
+//            var_dump($description->mededelingen);
+//            echo "</pre>";
             if($template == "at_details_view_list"){
                 require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");
             }else{
@@ -67,6 +68,45 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             }
 
             $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,$page,'6');
+            $number_of_page = $all_occasions->total;
+            $pagination = $filertObj->paginator($number_of_page,'6',$page,'5');
+
+            if($layout_mode == "at_layout_overview_table"){
+                require_once (plugin_dir_path(__FILE__)."views/overview-grid.php");
+            }else{
+                require_once (plugin_dir_path(__FILE__)."views/overview-list.php");
+            }
+
+        }
+
+    }
+
+    function company_occasions_list(){
+        $ocassions_obj = new Ocassions();
+        $dealerId = get_option("at_dealer_id");
+        $filertObj = new Filter();
+        $layout_mode = get_option("at_overview_layoutmode");
+
+        if(isset($_GET['overview'])){
+            $template = get_option("at_details_view_mode");
+            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
+            $description = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview'].'/aanbieder');
+            $description_text = $description->mededelingen;
+            if($template == "at_details_view_list"){
+                require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");
+            }else{
+                require_once (plugin_dir_path(__FILE__)."views/autotrack-details-tabs.php");
+            }
+
+        }else{
+
+            if(isset($_GET['pagina'])){
+                $page = $_GET['pagina'];
+            }else{
+                $page = 1;
+            }
+
+            $all_occasions = $filertObj->get_all_company_ocassions_and_filter($dealerId,$ocassions_obj,$page,'6');
             $number_of_page = $all_occasions->total;
             $pagination = $filertObj->paginator($number_of_page,'6',$page,'5');
 
