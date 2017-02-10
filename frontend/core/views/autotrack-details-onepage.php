@@ -18,9 +18,6 @@ $price_color = get_option("at_price_color");
     }
 </style>
 
-<pre>
-    <?php var_dump($ocassion); ?>
-</pre>
         <div class="overview_gridWrapp">
 
 			<div class="leftAndRightWrapp singleItemWrapp">
