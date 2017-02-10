@@ -22,10 +22,6 @@
             </div>
             <hr>
             <div class="row">
-<!--                <div class="col-sm-3">-->
-<!--                    <label for="at_consumer_id">Consumer ID:</label>-->
-<!--                    <input class="form-control" type="text" name="at_consumer_id" value="--><?php //echo esc_attr( get_option('at_consumer_id') ); ?><!--" />-->
-<!--                </div>-->
                 <div class="col-sm-3">
                     <label for="at_dealer_id">Dealer ID:</label>
                     <input class="form-control" type="text" name="at_dealer_id" value="<?php echo esc_attr( get_option('at_dealer_id') ); ?>" />
@@ -125,11 +121,6 @@
                         <input type="radio" name="at_home_cars" value="at_expensive_cars" <?php echo $at_home_cars == 'at_expensive_cars' ? 'checked="checked"' : '' ?>> De duurste advertenties.
                     </label>
                 </div>
-<!--                <div class="col-sm-3">-->
-<!--                    <label class="radio-inline">-->
-<!--                        <input type="radio" name="at_home_cars" value="at_last_cars" --><?php //echo $at_home_cars == 'at_last_cars' ? 'checked="checked"' : '' ?><!-->
-<!--                    </label>-->
-<!--                </div>-->
             </div>
 
 
@@ -280,43 +271,6 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
-
-<!---->
-<!--            <p>Naar welk(e) e-mailadres(sen) dienen de ingevulde contactformulieren verstuurd te worden?</p>-->
-<!--            --><?php //$receivers = get_option('receiver_emails'); ?>
-<!--            <div class="row">-->
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="eMailsRepeater">-->
-<!--                        --><?php
-//                        if (empty($receivers)): ?>
-<!--                            <div class="eRow">-->
-<!--                                <div class="erInput">-->
-<!--                                    <input type="email" class="form-control" name="receiver_emails[]">-->
-<!--                                </div>-->
-<!--                                <div class="erButton"></div>-->
-<!--                            </div>-->
-<!--                            --><?php
-//                        else:
-//                            foreach ($receivers as $receiver): ?>
-<!--                                <div class="eRow">-->
-<!--                                    <div class="erInput">-->
-<!--                                        <input type="email" class="form-control" name="receiver_emails[]"-->
-<!--                                               value="--><?//= $receiver ?><!--">-->
-<!--                                    </div>-->
-<!--                                    <div class="erButton"></div>-->
-<!--                                </div>-->
-<!--                            --><?php //endforeach; endif; ?>
-<!---->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!---->
-<!--            <div class="row">-->
-<!--                <div class="col-sm-7">-->
-<!--                    <div class="shortDelimeter"></div>-->
-<!--                </div>-->
-<!--            </div>-->
             <p>Geef hier de openingstijden in van uw bedrijf / locatie.</p>
             <?php $shedule = get_option('at_shedule');
             ?>
@@ -417,25 +371,9 @@
                     <p>Toon alle occasions: <b>[occasions_list]</b></p>
                     <p>Toon occasions op home-page: <b>[home_occasions]</b></p>
                     <p>Openingstijden: <b>[open_hours_company]</b></p>
+                    <p>Home filter: <b>[home_filter]</b></p>
                 </div>
             </div>
-<!--            <div class="row">-->
-<!--                <div class="col-sm-7">-->
-<!--                    <div class="shortDelimeter"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <p>Geef hier de tekst op van de bedankpagina, de URL hiervan kan niet worden gewijzigd.</p>-->
-<!--            <div class="row">-->
-<!--                <div class="col-sm-6">-->
-<!--                    --><?php //$thank_you_text = get_option('at_thank_you_text') ?>
-<!--                    --><?php //wp_editor($thank_you_text, 'thank_you_text', array(
-//                        'textarea_name' => 'at_thank_you_text',
-//                        'editor_height' => 150
-//                    )) ?>
-<!--                </div>-->
-<!--            </div>-->
-
-
         </div>
 
 

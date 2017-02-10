@@ -47,6 +47,11 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         if(isset($_GET['overview'])){
             $template = get_option("at_details_view_mode");
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
+            $description = $ocassions_obj->connection_to_api('dealers/',$dealerId);
+            echo "================";
+            echo "<pre>";
+            var_dump($description);
+            echo "</pre>";
             if($template == "at_details_view_list"){
                 require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");
             }else{
@@ -103,6 +108,20 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
 
     function get_open_company_hours(){
         require_once (plugin_dir_path(__FILE__)."views/open_hours_template.php");
+    }
+
+    function instert_ajax_link_in_footer(){
+        echo '<span class="urlAjaxFilter" style="display: none">'.plugins_url('core/aside_filter_functions.php',dirname(__FILE__)).'</span>';
+    }
+
+    function get_home_filter(){
+        $filertObj = new Filter();
+        $dealerId = get_option("at_dealer_id");
+        $ocassions_obj = new Ocassions();
+        $filertObj->store_arg($ocassions_obj,$dealerId);
+        add_action('wp_footer', 'instert_ajax_link_in_footer');
+
+        require_once (plugin_dir_path(__FILE__)."views/home_filter.php");
     }
 
     // Temporaly function

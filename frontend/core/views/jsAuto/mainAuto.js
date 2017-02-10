@@ -181,7 +181,6 @@ function get_models(mark_id){
 
     };
     $.post(url,data, function(response) {
-        console.log(response);
         $("#models .modelOption").remove();
         $("#models").append(response);
 

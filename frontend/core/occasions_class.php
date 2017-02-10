@@ -381,7 +381,14 @@ class Ocassions
         foreach ($results as $item) {
 
             ${"object"} = $item->category;
-            if ($item->type == "merkId") {
+
+            if(${"object"} == "garanties"){
+
+                foreach($occasion->${"object"}->garantieIds as $id){
+                    $garanties_item = $this->connection_to_api("garanties/", $id);
+                    $options[] = [$item->category => ['' => $garanties_item->naam]];
+                }
+            }elseif($item->type == "merkId") {
                 $mark_object = $this->connection_to_api("merken/", $occasion->${"object"}->merkId);
                 $options[] = [$item->category => [$item->name => $mark_object->naam]];
             } elseif ($item->type == "modelId") {

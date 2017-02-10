@@ -122,70 +122,75 @@ class Filter{
         return $filterQuery;
     }
 
+    function set_filter_data($all_marks_json,$dealer_marks_json,$mark_y_n=true){
+        $marks = [];
+        $dealer_marks = [];
+        $all_cars_prices = [];
+        $all_years = [];
+        $fuel = [];
+        $caroserie = [];
+        $power = [];
+        $km = [];
+        $transmisie = [];
+        $dors = [];
+
+        foreach($dealer_marks_json->items as $mark){
+            $marks[$mark->algemeen->merkId] = $mark->algemeen->modelId;
+            $all_cars_prices[] = $mark->prijs->totaal;
+            $all_years[] = $mark->geschiedenis->bouwjaar;
+            $fuel[] = $mark->algemeen->brandstof;
+            $caroserie[] = $mark->algemeen->carrosserievorm;
+            $power[] = $mark->motor->cilinderinhoud;
+            $km[] = $mark->geschiedenis->kilometerstand;
+            $transmisie[] = $mark->algemeen->transmissie;
+            $dors[] = $mark->algemeen->aantalDeuren;
+        }
+        foreach($all_marks_json->items as $mark){
+            if(array_key_exists($mark->merkId,$marks)){
+                $marks[$mark->merkId] = $mark->naam;
+            }
+        }
+
+        asort($marks);
+        asort($fuel);
+        asort($caroserie);
+        asort($transmisie);
+        asort($dors);
+
+        session_start();
+        if($mark_y_n == true){
+            $_SESSION['all_marks'] = $marks;
+        }
+        $_SESSION['at_username'] = get_option("at_username");
+        $_SESSION['at_password'] = get_option("at_password");
+        $_SESSION['at_dealer_id'] = get_option("at_dealer_id");
+
+        $_SESSION['max_price'] = max($all_cars_prices);
+        $_SESSION['min_price'] = min($all_cars_prices);
+
+        $_SESSION['max_year'] = max($all_years);
+        $_SESSION['min_year'] = min($all_years);
+
+        $_SESSION['km_min'] = min($km);
+        $_SESSION['km_max'] = max($km);
+
+        $_SESSION['fuel'] = array_unique($fuel);
+
+        $_SESSION['caroserie'] = array_unique($caroserie);
+        $_SESSION['power'] = array_unique($power);
+
+        $_SESSION['transmisie'] = array_unique($transmisie);
+        $_SESSION['dors'] = array_unique($dors);
+
+    }
+
     function store_arg($connection,$dealerId){
 
 //        if(!isset($_SESSION['all_marks']) && count($_SESSION['all_marks']) <= 0){
 
             $all_marks_json = $connection->connection_to_api('merken','?pageNumber=1&pageSize=500&sort%5Bnaam%5D=asc');
             $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'');
-            $marks = [];
-            $dealer_marks = [];
-            $all_cars_prices = [];
-            $all_years = [];
-            $fuel = [];
-            $caroserie = [];
-            $power = [];
-            $km = [];
-            $transmisie = [];
-            $dors = [];
-
-            foreach($dealer_marks_json->items as $mark){
-                $marks[$mark->algemeen->merkId] = $mark->algemeen->modelId;
-                $all_cars_prices[] = $mark->prijs->totaal;
-                $all_years[] = $mark->geschiedenis->bouwjaar;
-                $fuel[] = $mark->algemeen->brandstof;
-                $caroserie[] = $mark->algemeen->carrosserievorm;
-                $power[] = $mark->motor->cilinderinhoud;
-                $km[] = $mark->geschiedenis->kilometerstand;
-                $transmisie[] = $mark->algemeen->transmissie;
-                $dors[] = $mark->algemeen->aantalDeuren;
-            }
-            foreach($all_marks_json->items as $mark){
-                if(array_key_exists($mark->merkId,$marks)){
-                    $marks[$mark->merkId] = $mark->naam;
-                }
-            }
-
-            asort($marks);
-            asort($fuel);
-            asort($caroserie);
-            asort($transmisie);
-            asort($dors);
-
-            session_start();
-            $_SESSION['all_marks'] = $marks;
-            $_SESSION['at_username'] = get_option("at_username");
-            $_SESSION['at_password'] = get_option("at_password");
-            $_SESSION['at_dealer_id'] = get_option("at_dealer_id");
-
-            $_SESSION['max_price'] = max($all_cars_prices);
-            $_SESSION['min_price'] = min($all_cars_prices);
-
-            $_SESSION['max_year'] = max($all_years);
-            $_SESSION['min_year'] = min($all_years);
-
-            $_SESSION['km_min'] = min($km);
-            $_SESSION['km_max'] = max($km);
-
-            $_SESSION['fuel'] = array_unique($fuel);
-
-            $_SESSION['caroserie'] = array_unique($caroserie);
-            $_SESSION['power'] = array_unique($power);
-
-            $_SESSION['transmisie'] = array_unique($transmisie);
-            $_SESSION['dors'] = array_unique($dors);
-
-
+            $this->set_filter_data($all_marks_json,$dealer_marks_json);
 //        }
     }
 
@@ -196,7 +201,6 @@ class Filter{
 //-----------------------------------------------
 //        Sidebar Filter
         $filter_query = $this->sidebarFilter($connection,$dealerId);
-
 
         $sort_query = $this->orderBy();
         $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'');
