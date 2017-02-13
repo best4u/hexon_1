@@ -72,7 +72,7 @@ $price_color = get_option("at_price_color");
                                 ?>
 
                                 <div class="caritemB4u">
-                                    <a href="?overview=<?php echo $occasion->advertentieId ?>">
+                                    <a href="<?php echo $occasion->advertentieId ?>">
                                         <div class="imgBlock">
                                             <div class="imgTable">
                                                 <div class="imgTableCell">
@@ -109,8 +109,8 @@ $price_color = get_option("at_price_color");
                                                         ?>
                                                     </div>
                                                 </div>
-
-                                                <a href="?overview=<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
+                                                <!-- ?overview= -->
+                                                <a href="<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
                                                     bekijk deze auto
                                                 </a>
                                             </div>

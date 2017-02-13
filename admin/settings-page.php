@@ -1,8 +1,5 @@
 <div class="wrap">
-
-
     <form method="post" action="options.php" id="settingsForm">
-
         <?php settings_fields( 'autotrack-settings-fields' ); ?>
         <?php do_settings_sections( 'autotrack-settings-fields' ); ?>
         <div class="fieldGroup">
@@ -23,7 +20,7 @@
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <label for="at_dealer_id">Dealer ID: (Geef meerdere IDs in door te scheiden met een komma.)</label>
+                    <label for="at_dealer_id">Dealer ID: <br>(Geef meerdere IDs in door te scheiden met een komma.)</label>
                     <input class="form-control" type="text" name="at_dealer_id" value="<?php echo esc_attr( get_option('at_dealer_id') ); ?>" />
                 </div>
             </div>
@@ -378,10 +375,6 @@
                 </div>
             </div>
         </div>
-
-
             <input type="submit" name="submit" id="submit" class="button button-primary settingSubmitButton" value="Opslaan">
-
-
     </form>
 </div>

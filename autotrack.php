@@ -170,7 +170,7 @@ function my_repeat_function() {
         foreach($all_occasions->items as $item){
 
             $currentTrack->appendChild($domtree->createElement('name',$ocassions_obj->get_car_name($item)));
-            $currentTrack->appendChild($domtree->createElement('url',''.$domen.'/'.$page."/?overview=".$item->advertentieId.""));
+            $currentTrack->appendChild($domtree->createElement('url',''.$domen.'/'.$page."/".$item->advertentieId.""));
         }
 
         $domtree->save('xml_car_sitemap.xml');

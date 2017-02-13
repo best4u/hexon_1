@@ -6,7 +6,7 @@
         ?>
 
         <div class="caritemB4u">
-            <a href="/<?php echo $occasions_page_url; ?>?overview=<?php echo $occasion->advertentieId ?>">
+            <a href="/<?php echo $occasions_page_url; ?>/<?php echo $occasion->advertentieId ?>">
                 <div class="imgBlock">
                     <div class="imgTable">
                         <div class="imgTableCell">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <a href="/<?php echo $occasions_page_url; ?>?overview=<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
+                        <a href="/<?php echo $occasions_page_url; ?>/<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
                             bekijk deze auto
                         </a>
                     </div>

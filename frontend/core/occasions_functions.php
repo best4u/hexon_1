@@ -44,10 +44,12 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $filertObj = new Filter();
         $layout_mode = get_option("at_overview_layoutmode");
 
-        if(isset($_GET['overview'])){
+        $url_param = $_SERVER['REQUEST_URI'];
+        $url_param = explode('/',$url_param);
+        if(isset($url_param[2]) && $url_param[2] != ""){
             $template = get_option("at_details_view_mode");
-            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
-            $description = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview'].'/aanbieder');
+            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[2]);
+            $description = $ocassions_obj->connection_to_api('advertenties/',$url_param[2].'/aanbieder');
             $description_text = $description->mededelingen;
 //            echo "================";
 //            echo "<pre>";
@@ -86,11 +88,12 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $dealerId = get_option("at_dealer_id");
         $filertObj = new Filter();
         $layout_mode = get_option("at_overview_layoutmode");
-
-        if(isset($_GET['overview'])){
+        $url_param = $_SERVER['REQUEST_URI'];
+        $url_param = explode('/',$url_param);
+        if(isset($url_param[2]) && $url_param[2] != ""){
             $template = get_option("at_details_view_mode");
-            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
-            $description = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview'].'/aanbieder');
+            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[2]);
+            $description = $ocassions_obj->connection_to_api('advertenties/',$url_param[2].'/aanbieder');
             $description_text = $description->mededelingen;
             if($template == "at_details_view_list"){
                 require_once (plugin_dir_path(__FILE__)."views/autotrack-details-onepage.php");

@@ -56,7 +56,6 @@ class Ocassions
             return "-";
         }
 
-
     }
 
     function get_addres_info($occasion){

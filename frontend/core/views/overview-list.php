@@ -77,7 +77,7 @@ $price_color = get_option("at_price_color");
                            ?>
 
                             <div class="caritemB4uList">
-                                <a href="?overview=<?php echo $occasion->advertentieId ?>">
+                                <a href="<?php echo $occasion->advertentieId ?>">
                                     <div class="imgBlock">
                                         <div class="imgTable">
                                             <div class="imgTableCell">
@@ -118,7 +118,7 @@ $price_color = get_option("at_price_color");
                                                     <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
                                                 </div>
 
-                                                <a href="?overview=<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
+                                                <a href="<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
                                                     bekijk deze auto
                                                 </a>
                                             </div>
