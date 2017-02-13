@@ -9,9 +9,11 @@ require_once (plugin_dir_path(__FILE__)."occasions_class.php");
 require_once (plugin_dir_path(__FILE__)."filter.php");
 
     function addGraph(){
-        if(isset($_GET['overview'])){
+        $url_param = $_SERVER['REQUEST_URI'];
+        $url_param = explode('/',$url_param);
+        if(isset($url_param[2]) && $url_param[2] != ""){
             $ocassions_obj = new Ocassions();
-            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$_GET['overview']);
+            $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[2]);
             $site_url = get_site_url();
             $page_slug = get_option("at_url_page_adverts");
             $site_title = get_bloginfo( 'name' );
@@ -22,7 +24,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             <meta property="og:image" content="<?php echo $img_src; ?>"/>
             <meta property="og:description" content="<?php $ocassion->mededelingen; ?>"/>
             <meta property="og:type" content="article"/>
-            <meta property="og:url" content="<?php echo $site_url; ?>/<?=$page_slug?>/?overview=<?=$_GET['overview']?>"/>
+            <meta property="og:url" content="<?php echo $site_url; ?>/<?=$page_slug?>/<?=$url_param[2]?>"/>
             <meta property="og:site_name" content="<?=$site_title?>"/>
 
             <meta property="twitter:title" content="<?php echo $ocassions_obj->get_car_name($ocassion); ?>"/>
@@ -43,10 +45,17 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $dealerId = get_option("at_dealer_id");
         $filertObj = new Filter();
         $layout_mode = get_option("at_overview_layoutmode");
+//
+//        $ocassion_offline = $ocassions_obj->connection_to_api('advertenties/offline','?pageNumber=1&pageSize=25&filter%5BdealerId%5D=46833');
+//
+//        echo "<pre>";
+//        var_dump($ocassion_offline);
+//        echo "</pre>";
 
         $url_param = $_SERVER['REQUEST_URI'];
         $url_param = explode('/',$url_param);
-        if(isset($url_param[2]) && $url_param[2] != ""){
+        (int)$url_param[2];
+        if(isset($url_param[2]) && is_numeric($url_param[2]) && $url_param[2] != ""){
             $template = get_option("at_details_view_mode");
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[2]);
             $description = $ocassions_obj->connection_to_api('advertenties/',$url_param[2].'/aanbieder');
@@ -90,7 +99,8 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $layout_mode = get_option("at_overview_layoutmode");
         $url_param = $_SERVER['REQUEST_URI'];
         $url_param = explode('/',$url_param);
-        if(isset($url_param[2]) && $url_param[2] != ""){
+        (int)$url_param[2];
+        if(isset($url_param[2]) && is_numeric($url_param[2]) && $url_param[2] != ""){
             $template = get_option("at_details_view_mode");
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[2]);
             $description = $ocassions_obj->connection_to_api('advertenties/',$url_param[2].'/aanbieder');
