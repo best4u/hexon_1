@@ -13,6 +13,15 @@ if(isset($_POST['mark_id'])){
     $username = $_SESSION['at_username'];
     $password = $_SESSION['at_password'];
     $dealer_id = $_SESSION['at_dealer_id'];
+    $dealer_id = explode(',',$dealer_id);
+    $dealerIds = '';
+    if(is_array($dealer_id)){
+        foreach($dealer_id as $id){
+            $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+        }
+    }else{
+        $dealerIds .= '&filter%5BdealerId%5D='.$dealer_id.'';
+    }
 
 
     $ch = curl_init("https://www.autotrack.nl/api/merken/".$_POST['mark_id']."/modellen");
@@ -25,7 +34,7 @@ if(isset($_POST['mark_id'])){
     $all_models_api = json_decode($output);
 
 // Get dealer models types
-    $ch = curl_init("https://www.autotrack.nl/api/advertenties?pageNumber=1&pageSize=1000000&filter%5BdealerId%5D=".$dealer_id."&filter%5BmerkId%5D=".$_POST['mark_id']."");
+    $ch = curl_init("https://www.autotrack.nl/api/advertenties?pageNumber=1&pageSize=1000000".$dealerIds."&filter%5BmerkId%5D=".$_POST['mark_id']."");
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_POST, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

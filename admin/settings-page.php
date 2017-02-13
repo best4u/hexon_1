@@ -23,7 +23,7 @@
             <hr>
             <div class="row">
                 <div class="col-sm-3">
-                    <label for="at_dealer_id">Dealer ID:</label>
+                    <label for="at_dealer_id">Dealer ID: (Geef meerdere IDs in door te scheiden met een komma.)</label>
                     <input class="form-control" type="text" name="at_dealer_id" value="<?php echo esc_attr( get_option('at_dealer_id') ); ?>" />
                 </div>
             </div>

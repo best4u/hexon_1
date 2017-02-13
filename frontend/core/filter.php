@@ -63,11 +63,22 @@ class Filter{
 
     function sidebarFilter($connection,$dealerId){
         $filterQuery = "";
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
+
+
+
         if(isset($_GET['merkId']) && !$_GET['merkId'] == ""){
             $filterQuery .= "&filter%5BmerkId%5D=".$_GET['merkId']."";
 
             $all_models_api = $connection->connection_to_api('merken','/'.$_GET['merkId'].'/modellen');
-            $all_dealers_models_api = $connection->connection_to_api('advertenties',"?pageNumber=1&pageSize=1000000&filter%5BdealerId%5D=".$dealerId."&filter%5BmerkId%5D=".$_GET['merkId']."");
+            $all_dealers_models_api = $connection->connection_to_api('advertenties',"?pageNumber=1&pageSize=1000000".$dealerIds."&filter%5BmerkId%5D=".$_GET['merkId']."");
 
             //    Get dealer models
             $all_models = "";
@@ -185,35 +196,63 @@ class Filter{
     }
 
     function store_arg($connection,$dealerId){
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
+
 
 //        if(!isset($_SESSION['all_marks']) && count($_SESSION['all_marks']) <= 0){
 
             $all_marks_json = $connection->connection_to_api('merken','?pageNumber=1&pageSize=500&sort%5Bnaam%5D=asc');
-            $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'');
+            $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000'.$dealerIds.'');
             $this->set_filter_data($all_marks_json,$dealer_marks_json);
 //        }
     }
 
     function store_arg_copany_cars($connection,$dealerId){
 
+        $dealerId = explode(',',$dealerId);
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
+
 //        if(!isset($_SESSION['all_marks']) && count($_SESSION['all_marks']) <= 0){
 
         $all_marks_json = $connection->connection_to_api('merken','?pageNumber=1&pageSize=500&sort%5Bnaam%5D=asc');
-        $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000&filter%5BdealerId%5D='.$dealerId.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
+        $dealer_marks_json = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=100000'.$dealerIds.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
         $this->set_filter_data($all_marks_json,$dealer_marks_json);
 //        }
     }
 
     function get_occasions($dealerId,$connection,$page,$perPage){
+        $dealerId = explode(',',$dealerId);
 
 //        Store mark's
         $this->store_arg($connection,$dealerId);
 //-----------------------------------------------
 //        Sidebar Filter
         $filter_query = $this->sidebarFilter($connection,$dealerId);
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
 
         $sort_query = $this->orderBy();
-        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'');
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.''.$dealerIds.''.$sort_query.''.$filter_query.'');
         return $all_occasions;
     }
 
@@ -224,15 +263,34 @@ class Filter{
 //        Sidebar Filter
         $filter_query = $this->sidebarFilter($connection,$dealerId);
 
+        $dealerId = explode(',',$dealerId);
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
+
         $sort_query = $this->orderBy();
-        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.'&filter%5BdealerId%5D='.$dealerId.''.$sort_query.''.$filter_query.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.''.$dealerIds.''.$sort_query.''.$filter_query.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
         return $all_occasions;
     }
 
     function get_occasions_for_xml_sitemap($dealerId,$connection){
 
+        $dealerId = explode(',',$dealerId);
+        $dealerIds = '';
+        if(is_array($dealerId)){
+            foreach($dealerId as $id){
+                $dealerIds .= '&filter%5BdealerId%5D='.$id.'';
+            }
+        }else{
+            $dealerIds .= '&filter%5BdealerId%5D='.$dealerId.'';
+        }
 
-        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=1000000&filter%5BdealerId%5D='.$dealerId.'');
+        $all_occasions = $connection->connection_to_api('advertenties','?pageNumber=1&pageSize=1000000'.$dealerIds.'');
         return $all_occasions;
     }
 }
