@@ -197,5 +197,18 @@ add_shortcode('open_hours_company', 'get_open_company_hours');
 add_shortcode('home_filter', 'get_home_filter');
 
 
+add_action( 'init', 'wpse26388_rewrites_init' );
 
+function wpse26388_rewrites_init(){
+    $page_slug = get_option("at_url_page_adverts");
+    add_rewrite_rule(
+        ''.$page_slug.'/([^/]+)/?',
+        'index.php?pagename='.$page_slug.'&car_slug=$matches[1]',
+        'top' );
+}
 
+add_filter( 'query_vars', 'wpse26388_query_vars' );
+function wpse26388_query_vars( $query_vars ){
+    $query_vars[] = 'car_slug';
+    return $query_vars;
+}

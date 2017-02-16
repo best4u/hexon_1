@@ -133,7 +133,7 @@ class Filter{
         return $filterQuery;
     }
 
-    function set_filter_data($all_marks_json,$dealer_marks_json,$mark_y_n=true){
+    function set_filter_data($all_marks_json,$dealer_marks_json){
         $marks = [];
         $dealer_marks = [];
         $all_cars_prices = [];
@@ -169,9 +169,9 @@ class Filter{
         asort($dors);
 
         session_start();
-        if($mark_y_n == true){
+
             $_SESSION['all_marks'] = $marks;
-        }
+
         $_SESSION['at_username'] = get_option("at_username");
         $_SESSION['at_password'] = get_option("at_password");
         $_SESSION['at_dealer_id'] = get_option("at_dealer_id");

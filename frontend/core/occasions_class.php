@@ -97,6 +97,14 @@ class Ocassions
         return $mark_object->naam . " " . $model_object->naam . " " . $occasion->algemeen->uitvoering;
     }
 
+    function get_car_slug($occasion)
+    {
+        $mark_object = $this->connection_to_api("merken/", $occasion->algemeen->merkId);
+        $model_object = $this->connection_to_api("merken/",
+            $occasion->algemeen->merkId . "/modellen/" . $occasion->algemeen->modelId);
+        return trim(strtolower($mark_object->naam)) . "-" . trim(strtolower($model_object->naam)). "-" .str_replace(" ","-",strtolower($occasion->algemeen->uitvoering));
+    }
+
     function get_car_price($occasion)
     {
         $price_total = $occasion->prijs->totaal;
@@ -427,7 +435,7 @@ class Ocassions
                         }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
                         }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
-                                || $item->name == "Trekgewicht geremde aanhanger" || $item->name == "Trekgewicht ongeremde aanhanger"){
+                            || $item->name == "Trekgewicht geremde aanhanger" || $item->name == "Trekgewicht ongeremde aanhanger"){
                             $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." kg"]];
                         }elseif($item->name == "VerbruikStad" || $item->name == "Verbruik stad" || $item->name == "Verbruik buitenweg" || $item->name == "Verbruik gecombineerd"){
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km per liter"]];

@@ -7,27 +7,27 @@
 $price_color = get_option("at_price_color");
 ?>
 <style>
-/*    .text_color{*/
-/*        color: */<?php //echo $text_color; ?>/* !important;*/
-/*    }*/
-/**/
-/**/
-/*    .atribute_label_color{*/
-/*        color: */<?php //echo $atribute_label_color; ?>/* !important;*/
-/*    }*/
-/*    .atribute_value_color{*/
-/*        color: */<?php //echo $atribute_value_color; ?>/* !important;*/
-/*    }*/
-/**/
-/**/
-/*    .header_color{*/
-/*        color: */<?php //echo $header_color; ?>/* !important;*/
-/*    }*/
-/**/
-/**/
-/*    .button_color{*/
-/*        background-color: */<?php //echo $button_color; ?>/* !important;*/
-/*    }*/
+    /*    .text_color{*/
+    /*        color: */<?php //echo $text_color; ?>/* !important;*/
+    /*    }*/
+    /**/
+    /**/
+    /*    .atribute_label_color{*/
+    /*        color: */<?php //echo $atribute_label_color; ?>/* !important;*/
+    /*    }*/
+    /*    .atribute_value_color{*/
+    /*        color: */<?php //echo $atribute_value_color; ?>/* !important;*/
+    /*    }*/
+    /**/
+    /**/
+    /*    .header_color{*/
+    /*        color: */<?php //echo $header_color; ?>/* !important;*/
+    /*    }*/
+    /**/
+    /**/
+    /*    .button_color{*/
+    /*        background-color: */<?php //echo $button_color; ?>/* !important;*/
+    /*    }*/
 
 
     .price_color{
@@ -71,13 +71,13 @@ $price_color = get_option("at_price_color");
                 <div class="carsContentLeft listType">
                     <?php
                     if($all_occasions){
-                    ?>
-                    <?php
+                        ?>
+                        <?php
                         foreach($all_occasions->items as $occasion){
-                           ?>
+                            ?>
 
                             <div class="caritemB4uList">
-                                <a href="<?php echo $occasion->advertentieId ?>">
+                                <a href="<?php echo $ocassions_obj->get_car_slug($occasion); ?>/<?php echo $occasion->advertentieId ?>">
                                     <div class="imgBlock">
                                         <div class="imgTable">
                                             <div class="imgTableCell">
@@ -118,7 +118,7 @@ $price_color = get_option("at_price_color");
                                                     <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
                                                 </div>
 
-                                                <a href="<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
+                                                <a href="<?php echo $ocassions_obj->get_car_slug($occasion); ?>/<?php echo $occasion->advertentieId ?>" class="button_at1 button_color">
                                                     bekijk deze auto
                                                 </a>
                                             </div>
@@ -137,66 +137,66 @@ $price_color = get_option("at_price_color");
 
                 <?php if(count($all_occasions->items) > 0){
 
-                ?>
-                <!-- Start pargination -->
-                <div class="bottomNPaginationWrapp">
-                    <div class="centerDiv">
+                    ?>
+                    <!-- Start pargination -->
+                    <div class="bottomNPaginationWrapp">
+                        <div class="centerDiv">
 
-                        <ul class="ulPagination">
+                            <ul class="ulPagination">
 
-                            <?php
-                            if(count($pagination) > 1){
-                                if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
-                                    ?>
-                                    <li class="prevPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 1); ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
-                                    <?php
-                                }elseif(isset($_GET['pagina']) && $_GET['pagina'] != 1){
+                                <?php
+                                if(count($pagination) > 1){
+                                    if(isset($_GET['pagina']) && $_GET['pagina'] > 1){
+                                        ?>
+                                        <li class="prevPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 1); ?>"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                        <?php
+                                    }elseif(isset($_GET['pagina']) && $_GET['pagina'] != 1){
 
-                                    ?>
-                                    <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
-                                    <?php
+                                        ?>
+                                        <li class="prevPage"><a href="#"><span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span> Vorige</a></li>
+                                        <?php
+                                    }
+
+                                    if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
+                                        ?>
+                                        <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 3); ?>">...</a></li>
+                                        <?php
+                                    }
+
+
+
+
+                                    foreach($pagination as $page){
+                                        ?>
+                                        <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="<?php echo $filertObj->get_query_filter_pagination($page); ?>"><?php echo $page; ?></a></li>
+                                        <?php
+                                    }
+
+
+                                    if(isset($_GET['pagina']) && $_GET['pagina'] < ceil($number_of_page) / 6){
+
+                                        ?>
+                                        <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 3); ?>">...</a></li>
+                                        <li class="nextPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 1); ?>">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+
+                                        <?php
+                                    }elseif(!isset($_GET['pagina'])){
+                                        ?>
+                                        <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
+                                        <li class="nextPage"><a href="?pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                                        <?php
+                                    }
                                 }
 
-                                if(isset($_GET['pagina']) && $_GET['pagina'] >= "4"){
-                                    ?>
-                                    <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] - 3); ?>">...</a></li>
-                                    <?php
-                                }
+                                ?>
 
-
-
-
-                            foreach($pagination as $page){
-                            ?>
-                            <li <?php if( isset($_GET['pagina']) && $_GET['pagina'] == $page){  echo 'class="activePage"'; }elseif(!isset($_GET['pagina']) && $page == '1'){ echo 'class="activePage"'; } ?>><a href="<?php echo $filertObj->get_query_filter_pagination($page); ?>"><?php echo $page; ?></a></li>
-                            <?php
-                            }
-
-
-                                if(isset($_GET['pagina']) && $_GET['pagina'] < ceil($number_of_page) / 6){
-
-                                    ?>
-                                    <li><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 3); ?>">...</a></li>
-                                    <li class="nextPage"><a href="<?php echo $filertObj->get_query_filter_pagination($_GET['pagina'] + 1); ?>">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
-
-                                    <?php
-                                }elseif(!isset($_GET['pagina'])){
-                                    ?>
-                                    <li><a href="?pagina=<?php echo '6'; ?>">...</a></li>
-                                    <li class="nextPage"><a href="?pagina=<?php echo '6'; ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
-                                    <?php
-                                }
-                            }
-
-                            ?>
-
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
                 <?php }else{
                     ?>
-                        <p style="text-align: center;">Er zijn geen zoekresultaten gevonden.</p>
+                    <p style="text-align: center;">Er zijn geen zoekresultaten gevonden.</p>
                     <?php
                 } ?>
 
@@ -321,20 +321,20 @@ $price_color = get_option("at_price_color");
                             ?>
                         </select>
 
-<!--                        <p>-->
-<!--                            <label for="b">Motorinhoud</label>-->
-<!--                        </p>-->
-<!--                        <select name="cilinderinhoud" id="power" class="selectCustom">-->
-<!--                            <option value="min">Minimaal</option>-->
-<!--                            --><?php
-//                            foreach($_SESSION['power'] as $power){
-//                                if($power != ""){
-//                                    echo "<option value='$power' class='powerOption'>".ucfirst(strtolower($power))."</option>";
-//                                }
-//                            }
-//                            ?>
-<!---->
-<!--                        </select>-->
+                        <!--                        <p>-->
+                        <!--                            <label for="b">Motorinhoud</label>-->
+                        <!--                        </p>-->
+                        <!--                        <select name="cilinderinhoud" id="power" class="selectCustom">-->
+                        <!--                            <option value="min">Minimaal</option>-->
+                        <!--                            --><?php
+                        //                            foreach($_SESSION['power'] as $power){
+                        //                                if($power != ""){
+                        //                                    echo "<option value='$power' class='powerOption'>".ucfirst(strtolower($power))."</option>";
+                        //                                }
+                        //                            }
+                        //                            ?>
+                        <!---->
+                        <!--                        </select>-->
 
 
 
@@ -364,7 +364,7 @@ $price_color = get_option("at_price_color");
                             <div class="kmInputs" style="display: none;">
                                 <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="kilometerstand_min" class="kmFrom "></span>
                                 <span
-                                    class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="kilometerstand_max" class="kmTo"></span>
+                                        class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="kilometerstand_max" class="kmTo"></span>
                             </div>
 
                             <p>
@@ -373,14 +373,14 @@ $price_color = get_option("at_price_color");
                             <select name="transmissie" id="power" class="selectCustom">
                                 <option value="min">Alle transmissies</option>
                                 <?php
-                                    if(isset($_SESSION['transmisie'])){
-                                        foreach($_SESSION['transmisie'] as $type){
-                                            ?>
-                                            <option value="<?php echo $type; ?>" <?php if(isset($_GET['transmissie']) && $_GET['transmissie'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
-                                            <?php
-                                        }
-
+                                if(isset($_SESSION['transmisie'])){
+                                    foreach($_SESSION['transmisie'] as $type){
+                                        ?>
+                                        <option value="<?php echo $type; ?>" <?php if(isset($_GET['transmissie']) && $_GET['transmissie'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
+                                        <?php
                                     }
+
+                                }
                                 ?>
                             </select>
 
@@ -391,13 +391,13 @@ $price_color = get_option("at_price_color");
                             <select name="aantalDeuren" id="power" class="selectCustom">
                                 <option value>Selecteer aantal deuren</option>
                                 <?php
-                                    foreach($_SESSION['dors'] as $type){
-                                        if($type != ""){
-                                            ?>
-                                            <option value="<?php echo $type; ?>" <?php if(isset($_GET['aantalDeuren']) && $_GET['aantalDeuren'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
-                                            <?php
-                                        }
+                                foreach($_SESSION['dors'] as $type){
+                                    if($type != ""){
+                                        ?>
+                                        <option value="<?php echo $type; ?>" <?php if(isset($_GET['aantalDeuren']) && $_GET['aantalDeuren'] == $type){ echo "selected"; } ?>><?php echo ucfirst(strtolower($type)); ?></option>
+                                        <?php
                                     }
+                                }
 
                                 ?>
                             </select>
