@@ -1,0 +1,352 @@
+.at_page{
+    font-size: 13px;
+}
+.at_page th
+{
+    font-weight: 300;
+}
+.at_page tbody
+{
+    background: #ffffff;
+}
+.at_page  #attr_page td
+{
+    text-align: center;
+    font-size: 12px;
+}
+.at_page .transparentColor
+{
+    border-bottom: none !important;
+    border-top: none !important;
+}
+.at_page #wpwrap
+{
+    font-size: 13px !important;
+    background: #ffffff !important;
+}
+.at_page #wpwrap input[type="text"]
+{
+    font-size: 13px !important;
+    height: 35px !important;
+
+}
+.at_page #wpwrap input[type="password"]
+{
+    font-size: 13px !important;
+    height: 35px !important;
+}
+.at_page #wpwrap select
+{
+    font-size: 13px !important;
+    height: 35px !important;
+}
+
+.at_page .atribute
+{
+    background: #CCCCCC;
+}
+
+.at_page .transparentColor
+{
+    color: transparent;
+}
+
+.at_page .selectUnselect th
+{
+    border: none;
+}
+
+.at_page .selectUnselect td
+{
+    border-top: none !important;
+    border-bottom:none !important;
+}
+
+.at_page .filterFields select{
+    height: 28px !important;
+    font-size: 12px !important;
+}
+
+.at_page .filterFields input{
+    height: 28px !important;
+    font-size: 12px !important;
+}
+
+.at_page .fieldGroup{
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+}
+
+.at_page .fieldGroupName{
+    font-size: 28px;
+    line-height: normal;
+    margin-bottom: 20px;
+
+}
+
+.at_page .form-control{
+    height: 42px;
+}
+.at_page .shortDelimeter{
+    border-bottom: solid 1px #ccc;
+    margin: 20px 0;
+}
+.at_page .lbText{
+    float: left;
+    padding-left: 15px;
+}
+.at_page .lbIcon{
+    float: right;
+    padding: 0 6px;
+}
+.at_page .lbIcon img{
+    width: 30px;
+    opacity: 0.5;
+}
+
+.at_page .lbSwither{
+    float: right;
+    background-color: #fff;
+    padding: 6px 0;
+    border-right: solid 1px #bbb;
+    border-left: solid 1px #bbb;
+}
+.at_page #sortable_details {
+    border: solid 1px #bbb;
+    float: left;
+    width: 100%;
+}
+.at_page #sortable_details li{
+    box-sizing: content-box;
+    float: left;
+    width: 100%;
+    background-color: #ddd;
+    border: solid 1px #bbb;
+    margin: -1px -1px 0 -1px;
+    line-height: 45px;
+    /*padding: 10px 0;*/
+}
+
+.at_page #sortable_details li:last-child{
+    border-bottom: none;
+}
+
+
+.at_page .eMailsRepeater{
+
+}
+.at_page .eRow{
+    display: block;
+    width: 100%;
+    float: left;
+    border: solid 1px #bbb;
+    margin-top: -1px;
+}
+.at_page .eRow .erButton{
+    background: #ddd url("../../images/add.png") no-repeat center;
+    background-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    width: 42px;
+}
+.at_page .eRow:last-child .erButton{
+    background: #ddd url("../../images/remove.png") no-repeat center;
+    background-size: 20px;
+}
+.at_page .eRow:first-child .erButton{
+    background: #ddd url("../../images/add.png") no-repeat center;
+    background-size: 20px;
+}
+.at_page .erInput{
+    float: left;
+    width: calc(100% - 42px);
+
+}
+
+.at_page .atSocialIcon{
+    width: 100%;
+}
+
+.at_page .erInput input{
+    border: 0;
+    box-shadow: none;
+}
+.at_page .erButton{
+    position: relative;
+    float: left;
+    background-color: #eee;
+    height: 42px;
+    width: 42px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.at_page .atSIRow{
+    float: left;
+    width: 100%;
+    margin-bottom: 3px;
+}
+.at_page .atSIName{
+    float: left;
+    width: 20%;
+    line-height: 50px;
+    text-align: center;
+    background-color: #eee;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.at_page .atSIurl{
+    float: left;
+    border: solid 1px #bbb;
+    border-left: 0;
+    height: 52px;
+    margin-right: 10px;
+}
+.at_page #wpwrap .atSIurl input[type="text"]{
+    border: 0 !important;
+    box-shadow: none !important;
+    height: 50px !important;
+}
+
+.at_page .socialSwither
+{
+    margin-top: 9px;
+}
+.at_page .smIcon{
+    /*width: 50px;*/
+    /*max-width: 60px;*/
+    /*padding: 5px;*/
+    float: left;
+    box-sizing: content-box;
+}
+.at_page .smIcon .iconHolder{
+    border: solid 1px #bbb;
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+.at_page .smIcon .iconHolder img{
+    position: relative;
+    top: 6%;
+    left: 6%;
+    width: 88%;
+    height: 88%;
+    object-fit: cover;
+}
+.at_page .smButton{
+    float: left;
+    width: 20%;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.at_page .atSIinput{
+    width: 100%;
+}
+.at_page .geef{
+    width: 100%;
+    float: left;
+}
+.at_page .gRow{
+    float: left;
+    width: 100%;
+    line-height: 42px;
+
+
+}
+.at_page #wpwrap .gRow input[type="text"]{
+    width: 100px;
+    height: 44px !important;
+    box-shadow: none !important;
+    border-color: #bbb !important;
+}
+.at_page .gDay{
+    background-color: #eee;
+    float: left;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    width: 160px;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    border-right: 0;
+}
+.at_page .gOrar1, .gOrar2{
+    float: left;
+}
+.at_page .gOrar2{
+    visibility: hidden;
+    margin-left: -1px;
+}
+.at_page .gButton{
+    float: right;
+    cursor: pointer;
+    height: 44px;
+    background-color: #eee;
+    border: solid 1px #bbb;
+    box-sizing: border-box;
+    width: 40px;
+    text-align: center;
+    margin-left: -1px;
+}
+.at_page .gButton img{
+    vertical-align: top;
+    margin: 10px auto 0;
+    width: 20px;
+
+}
+
+.at_page #allAttr .category{
+    text-transform: uppercase;
+}
+
+.at_page #allAttr .atribute{
+    text-transform: uppercase;
+}
+
+.at_page #categoryFilter option{
+    text-transform: uppercase;
+}
+
+.at_page .loader{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.at_page .loader img{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+
+.at_page .smIcon
+{
+  position: relative;
+}
+
+.at_page .deleteWraper
+{
+    position: absolute;
+    top: -12px;
+    z-index: 999;
+    right:  -9px;
+    font-size: 18px;
+    text-align: right;
+}
+
+.at_page .atSIRow{
+        margin-bottom: 10px !important;
+}

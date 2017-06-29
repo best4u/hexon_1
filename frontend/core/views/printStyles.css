@@ -1,0 +1,144 @@
+.mainHeader{
+    display: none;
+}
+
+a.atGoBackButton{
+    display: none;
+}
+
+.b4uPrintButton{
+    display: none !important;
+}
+
+.fotorama__nav-wrap{
+    margin-left: -110px !important;
+}
+
+
+/*tabs style*/
+.tab-content .tab{
+    display: block !important;
+}
+
+ul.tab-links li{
+    display: none !important;
+}
+/**/
+
+
+.fotorama__nav-wrap {
+    margin: 0;
+}
+.fotorama__nav__shaft.fotorama__grab {
+    margin: 0;
+}
+.fotorama__nav.fotorama__nav--thumbs.fotorama__shadows--right{
+    margin-left: 110px;
+    width: 700px!important;
+
+}
+/*.rightDescBlock {
+    float: right!important;;
+    width: 270px!important;
+    margin: 0 0 0 0;
+}
+.leftSlideBlock {
+    width: 370px!important;;
+    float: left!important;;
+    margin: 0;
+}*/
+
+.optieAccItem{
+    width: 100% !important;
+    float: none !important;
+    margin-right: 0 !important;
+}
+
+
+.sidebarContent,
+.leftContent_at {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sidebarContent {
+    width: 35% !important;
+}
+
+.leftContent_at {
+    width: 60% !important;
+}
+
+/*.sidebarContent,
+.leftContent_at,*/
+.leftContent_at .leftSlideBlock,
+.leftContent_at .rightDescBlock {
+    float: none !important;
+    width: 100% !important;
+    clear: both;
+    margin: 0 0 30px 0 !important;
+    padding: 0 !important;
+}
+
+.sidebarContent .titleSidebarDetail,
+.sidebarContent .autotrack_contact_form,
+.sidebarContent .socialMedia {
+    display: none;
+}
+
+.sidebarContent div.contactInfo {
+    display: block !important;
+    width: 100%;
+}
+
+.leftContent_at .detailPage h1.carTitleTop {
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 30px 0 !important;
+}
+
+#printContent .fotorama__nav {
+    margin: 15px 0;
+    clear: both;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo {
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
+    margin-top: 30px;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .logoCarItem {
+    float: left !important;
+    width: auto !important;
+    max-width: 150px !important;
+    margin-right: 30px;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .logoCarItem img {
+    max-width: 100% !important;
+}
+
+.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo::after {
+    clear: both;
+    display: block;
+    width: 100%;
+    content: '';
+}
+
+.carDetailTitle,
+.singleItemWrapp .detailPage .omschriving .titleOms {
+    margin-bottom:  15px;
+}
+
+.mainFooter
+{
+    display: none !important;
+}
