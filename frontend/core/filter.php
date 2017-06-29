@@ -43,7 +43,11 @@ class Filter{
             $query_string = $_SERVER['QUERY_STRING'];
         }
 
-        $query = "?pagina=".$page."&".$query_string;
+        if($query_string != ""){
+            $query = "?pagina=".$page."&".$query_string;
+        }else{
+            $query = "?pagina=".$page."";
+        }
 
         return $query;
 
