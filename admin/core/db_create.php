@@ -24,15 +24,17 @@ function drop_tables()
 
 function db_install() {
 
-    $host = DB_HOST;
-    $dbname = DB_NAME;
-    $user = DB_USER;
-    $pass = DB_PASSWORD;
-    $conn = new mysqli($host, $user, $pass, $dbname);
+    // $host = DB_HOST;
+    // $dbname = DB_NAME;
+    // $user = DB_USER;
+    // $pass = DB_PASSWORD;
+    // $conn = new mysqli($host, $user, $pass, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // if ($conn->connect_error) {
+    //     die("Connection failed: " . $conn->connect_error);
+    // }
+
+    global $wpdb;
 
     $sql = "CREATE TABLE wp_at_attributes (
               id int(11) NOT NULL AUTO_INCREMENT,
@@ -50,7 +52,10 @@ function db_install() {
               option_category_id varchar(255) DEFAULT NULL,
               PRIMARY KEY (id)
             ) ";
-    $conn->query($sql);
+
+require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+dbDelta( $sql );
+    //$conn->query($sql);
 }
 
 function insert_data_attr()

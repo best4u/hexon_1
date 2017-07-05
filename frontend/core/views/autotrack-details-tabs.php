@@ -457,8 +457,9 @@ $price_color = get_option("at_price_color");
                                             Garanties en zekerheden
                                         </div>
                                         <ul class="commList commDesc text_color">
-                                         <?php foreach ($garanties as $value):?>
-                                            <li><?=$value?></li>
+                                         <?php foreach ($garanties as $key => $value):?>
+                                            <li><?=$key?></li>
+                                            <p> - <?=$value?></p>
                                          <?php endforeach; ?>
                                         
                                         </ul>

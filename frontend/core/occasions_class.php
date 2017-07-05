@@ -130,7 +130,9 @@ class Ocassions
      
         $uitvoering  = str_replace('"','',$occasion->algemeen->uitvoering);
         $uitvoering  = str_replace('/','-',$uitvoering);
-        return trim(strtolower($occasion->algemeen->merkNaam)) . "-" . trim(strtolower($occasion->algemeen->modelNaam)). "-" .str_replace(" ","-",strtolower($uitvoering));
+        $slug = trim(strtolower($occasion->algemeen->merkNaam)) . "-" . trim(strtolower($occasion->algemeen->modelNaam)). "-" .str_replace(" ","-",strtolower($uitvoering));
+        $slug = str_replace("%","", $slug);
+        return $slug;
     }
 
     // Here we get correct car price
@@ -606,7 +608,6 @@ class Ocassions
                 }
 
             }
-
         }
 
         return $options;
@@ -813,8 +814,8 @@ class Ocassions
         foreach ($garanties_ids as $key => $value) {
 
            $garanties_item = $this->connection_to_api("garanties/", $value);
-        
-                $garanties_names[] = $garanties_item->naam;
+
+              $garanties_names[$garanties_item->naam] = $garanties_item->omschrijving;
          
         }
         
