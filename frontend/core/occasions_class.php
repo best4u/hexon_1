@@ -73,11 +73,35 @@ class Ocassions
     // Here we format in the correct way the kenketen value
 
     function kenteken_format($value){
-        $formated_val = substr($value,0,2).'-';
-        $formated_val .= substr($value,2,2).'-';
-        $formated_val .= substr($value,4,4);
-        $formated_val = strtoupper($formated_val);
-        return strtoupper($formated_val);
+        $kenteken_value = $occasion->kenteken;
+        $car_year = $occasion->geschiedenis->bouwjaar;
+        $formated_val = '';
+        if($car_year <= '2004'){
+
+            $formated_val = substr($value,0,2).'-';
+            $formated_val .= substr($value,2,2).'-';
+            $formated_val .= substr($value,4,4);
+            $formated_val = strtoupper($formated_val);
+
+        }elseif($car_year == '2006' || $car_year == '2007'){
+
+            $formated_val = substr($value,0,2).'-';
+            $formated_val .= substr($value,2,3).'-';
+            $formated_val .= substr($value,5,1);
+            $formated_val = strtoupper($formated_val);
+
+        }elseif($car_year >= '2008' && $car_year <= '2014'){
+            $formated_val = substr($value,0,1).'-';
+            $formated_val .= substr($value,2,3).'-';
+            $formated_val .= substr($value,4,5);
+            $formated_val = strtoupper($formated_val);
+        }else{
+            $formated_val = substr($value,0,3).'-';
+            $formated_val .= substr($value,3,2).'-';
+            $formated_val .= substr($value,5,1);
+            $formated_val = strtoupper($formated_val);
+        }
+        return $formated_val;
     }
 
 // Here we store all address information and make html structure

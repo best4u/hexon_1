@@ -8,7 +8,6 @@ $price_color = get_option("at_price_color");
         color: <?php echo $price_color; ?> !important;
     }
 </style>
-
 <div class="overview_gridWrapp gridMode">
             <div class="leftAndRightWrapp">
                 <div class="centerDiv">             
@@ -91,7 +90,7 @@ $price_color = get_option("at_price_color");
                                                     </div>
                                                 </div>
                                                 <!-- ?overview= -->
-                                                <a href="/<?=get_option('at_url_page_adverts')?>/<?php echo $ocassions_obj->get_car_slug($occasion); ?>/<?php echo $occasion->advertentieId ?>/" class="button_at1 button_color button">
+                                                <a href="/<?=get_option('at_url_page_adverts')?>/<?php echo $ocassions_obj->get_car_slug($occasion); ?>/<?php echo $occasion->advertentieId ?>/ " class="button_at1 button_color button">
                                                     Bekijk deze auto
                                                 </a>
                                             </div>

@@ -346,9 +346,13 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
 
         $ocassions_page_slug = get_option("at_url_page_adverts");
         $server_name = $_SERVER['SERVER_NAME'];
+        $protocol = 'http://';
+        if(isset($_SERVER['HTTPS'])){
+            $protocol = 'https://';
+        }
 
         $html = '';
-        $html .= '<form action="http://'.$server_name.'/'.$ocassions_page_slug.'" method="GET" id="merkFilter">
+        $html .= '<form action="'.$protocol.''.$server_name.'/'.$ocassions_page_slug.'" method="GET" id="merkFilter">
                 <p>
                 <label for="a">Merk</label>
                 </p>

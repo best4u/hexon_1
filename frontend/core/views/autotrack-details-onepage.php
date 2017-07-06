@@ -15,8 +15,6 @@ $price_color = get_option("at_price_color");
         margin-top: 10px;
     }
 </style>
-
-
 <div class="overview_gridWrapp">
 
     <div class="leftAndRightWrapp singleItemWrapp">
