@@ -78,7 +78,7 @@ class Ocassions
 
         $formated_val = '';
 
-        if($car_year <= '2002'){
+        if($car_year <= '2008'){
             $formated_val = substr($value,0,2).'-';
             $formated_val .= substr($value,2,2).'-';
             $formated_val .= substr($value,4,4);
