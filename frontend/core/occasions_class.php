@@ -72,9 +72,11 @@ class Ocassions
 
     // Here we format in the correct way the kenketen value
 
-    function kenteken_format($value){
-        $kenteken_value = $occasion->kenteken;
+    function kenteken_format($occasion){
+        $value = $occasion->kenteken;
         $car_year = $occasion->geschiedenis->bouwjaar;
+
+
         $formated_val = '';
         if($car_year <= '2004'){
 
@@ -266,7 +268,7 @@ class Ocassions
                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion->${"selector"})]];
+                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion)]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
                 $options[] = [
@@ -407,7 +409,7 @@ class Ocassions
                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion->${"selector"})]];
+                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion)]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
                 $options[] = [
@@ -547,7 +549,7 @@ class Ocassions
                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion->${"selector"})]];
+                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion)]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
                 $options[] = [
@@ -694,7 +696,7 @@ class Ocassions
                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
                 ${"selector"} = $item->type;
-                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion->${"selector"})]];
+                $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion)]];
             } elseif ($item->type == "prijs") {
                 ${"selector"} = $item->type;
                 $options[] = [
