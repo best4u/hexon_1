@@ -102,7 +102,7 @@ class Ocassions
             $formated_val .= substr($value,5,1);
             $formated_val = strtoupper($formated_val);
         }
-        var_dump($formated_val);
+        
         return $formated_val;
     }
 
