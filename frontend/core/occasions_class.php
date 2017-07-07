@@ -76,23 +76,22 @@ class Ocassions
         $value = $occasion->kenteken;
         $car_year = $occasion->geschiedenis->bouwjaar;
 
-
         $formated_val = '';
-        if($car_year <= '2004'){
+        if($car_year >= '2005' && $car_year <= '2007'){
 
             $formated_val = substr($value,0,2).'-';
             $formated_val .= substr($value,2,2).'-';
             $formated_val .= substr($value,4,4);
             $formated_val = strtoupper($formated_val);
 
-        }elseif($car_year == '2006' || $car_year == '2007'){
+        }elseif($car_year >= '2008' && $car_year <= '2013'){
 
             $formated_val = substr($value,0,2).'-';
             $formated_val .= substr($value,2,3).'-';
             $formated_val .= substr($value,5,1);
             $formated_val = strtoupper($formated_val);
 
-        }elseif($car_year >= '2008' && $car_year <= '2014'){
+        }elseif($car_year >= '2014' && $car_year <= '2015'){
             $formated_val = substr($value,0,1).'-';
             $formated_val .= substr($value,2,3).'-';
             $formated_val .= substr($value,4,5);
@@ -103,6 +102,7 @@ class Ocassions
             $formated_val .= substr($value,5,1);
             $formated_val = strtoupper($formated_val);
         }
+        var_dump($formated_val);
         return $formated_val;
     }
 
