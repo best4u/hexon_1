@@ -77,7 +77,33 @@ class Ocassions
         $car_year = $occasion->geschiedenis->bouwjaar;
 
         $formated_val = '';
-        if($car_year >= '2005' && $car_year <= '2007'){
+
+        if($car_year <= '2002'){
+            $formated_val = substr($value,0,2).'-';
+            $formated_val .= substr($value,2,2).'-';
+            $formated_val .= substr($value,4,4);
+            $formated_val = strtoupper($formated_val);
+        }else{
+            preg_match_all('/([0-9]+|[a-zA-Z]+)/',$value,$matches);
+      
+        foreach ($matches[0] as $key => $val) {
+            if($key == 0 || $key == 1){
+                $formated_val .= $val.'-';
+            }else{
+                $formated_val .= $val;
+            }
+        }
+        }
+    
+        return $formated_val;
+    }
+
+    function test_func(){
+        $value = $occasion->kenteken;
+        $car_year = $occasion->geschiedenis->bouwjaar;
+
+        $formated_val = '';
+        if($car_year >= '2000' && $car_year <= '2007'){
 
             $formated_val = substr($value,0,2).'-';
             $formated_val .= substr($value,2,2).'-';
@@ -229,6 +255,7 @@ class Ocassions
 
         foreach ($results as $item) {
             ${"object"} = $item->category;
+             ${"selector"} = $item->type;
             if(${"object"} == "garanties"){
 
                 foreach($occasion->${"object"}->garantieIds as $id){
@@ -370,6 +397,7 @@ class Ocassions
 
         foreach ($results as $item) {
             ${"object"} = $item->category;
+             ${"selector"} = $item->type;
             if(${"object"} == "garanties"){
 
                 foreach($occasion->${"object"}->garantieIds as $id){
@@ -511,6 +539,7 @@ class Ocassions
 
         foreach ($results as $item) {
             ${"object"} = $item->category;
+             ${"selector"} = $item->type;
             if(${"object"} == "garanties"){
                 foreach($occasion->${"object"}->garantieIds as $id){
                     $garanties_item = $this->connection_to_api("garanties/", $id);
@@ -653,6 +682,7 @@ class Ocassions
         foreach ($results as $item) {
 
             ${"object"} = $item->category;
+             ${"selector"} = $item->type;
 
             if(${"object"} == "garanties"){
 
