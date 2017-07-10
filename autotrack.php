@@ -70,11 +70,14 @@ function load_custom_wp_admin_style($hook) {
     wp_enqueue_style( 'jquery-ui', plugins_url('admin/css/jquery-ui.min.css', __FILE__) );
     wp_enqueue_style( 'shitch-button', plugins_url('admin/css/jquery.switchButton.css', __FILE__) );
 
+    wp_enqueue_style( 'shitch-button', plugins_url('admin/css/tether.css', __FILE__) );
+
     wp_enqueue_script( 'autotrack_admin_js', plugins_url('admin/js/autotrack.js', __FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'autotrack_admin_sweetalert_js', plugins_url('admin/js/sweetalert.min.js', __FILE__), array('jquery'), '', true );
-    wp_enqueue_script( 'autotrack_admin_bootstrap_js', plugins_url('admin/js/bootstrap.js', __FILE__), array('jquery'), '', true );
-    wp_enqueue_script( 'jquery-ui', plugins_url('admin/js/jquery-ui.min.js', __FILE__), array('jquery'), '', true );
+    // wp_enqueue_script( 'autotrack_admin_bootstrap_js', plugins_url('admin/js/bootstrap.js', __FILE__), array('jquery'), '', true );
+    wp_enqueue_script( 'jquery-ui', plugins_url('admin/js/jquery-ui.js', __FILE__), array('jquery'), '', true );
     wp_enqueue_script( 'swithc-button', plugins_url('admin/js/jquery.switchButton.js', __FILE__), array('jquery'), '', true );
+    // wp_enqueue_script( 'tether', plugins_url('admin/js/tether.js', __FILE__), array('jquery'), '', true );
 
 
     wp_enqueue_media();
