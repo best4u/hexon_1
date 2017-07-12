@@ -49,6 +49,7 @@ class Filter{
             $query = "?pagina=".$page."";
         }
 
+
         return $query;
 
     }
@@ -171,13 +172,21 @@ class Filter{
 
         foreach($dealer_marks_json->items as $mark){
             $marks[$mark->algemeen->merkId] = $mark->algemeen->modelId;
+            if(isset($mark->prijs->totaal))
             $all_cars_prices[] = $mark->prijs->totaal;
+        if(isset($mark->geschiedenis->bouwjaar))
             $all_years[] = $mark->geschiedenis->bouwjaar;
+        if(isset($mark->algemeen->brandstof))
             $fuel[] = $mark->algemeen->brandstof;
+        if(isset($mark->algemeen->carrosserievorm))
             $caroserie[] = $mark->algemeen->carrosserievorm;
+        if(isset($mark->motor->cilinderinhoud))
             $power[] = $mark->motor->cilinderinhoud;
+        if(isset($mark->geschiedenis->kilometerstand))
             $km[] = $mark->geschiedenis->kilometerstand;
+        if(isset($mark->algemeen->transmissie))
             $transmisie[] = $mark->algemeen->transmissie;
+        if(isset($mark->algemeen->aantalDeuren))
             $dors[] = $mark->algemeen->aantalDeuren;
         }
         foreach($all_marks_json->items as $mark){

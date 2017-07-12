@@ -15,7 +15,7 @@ $price_color = get_option("at_price_color");
             <div class="leftContent_at">
                 <div class="titleAndSelect">
                     <div class="titleLeftPart">
-                    <?php if($occassions_total): ?>
+                    <?php if(isset($occassions_total)): ?>
                         <h1>Occasions <span class="count"><?=$all_occasions->total?></span></h1>
                     <?php else: ?>
                         <h1>Occasions <span class="count"><?=$all_occasions->total?></span></h1>
@@ -37,8 +37,6 @@ $price_color = get_option("at_price_color");
                                 <option value="bouwjaar" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'at_sort_by' ? 'selected' : '' ?>>Bouwjaar</option>
 
                             </select>
-
-
                     </div>
                 </div>
                         <div class="carsContentLeft fghdgfhdgfhdgfh">

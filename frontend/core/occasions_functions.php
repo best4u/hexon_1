@@ -12,7 +12,10 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
     function addGraph(){
         $url_param = $_SERVER['REQUEST_URI'];
         $url_param = explode('/',$url_param);
-       (int)$url_param[3];
+        if(isset($url_param[3])){
+             (int)$url_param[3];
+        }
+      
         if(isset($url_param[3]) && is_numeric($url_param[3]) && $url_param[3] != ""){
             $ocassions_obj = new Ocassions();
             $ocassion = $ocassions_obj->connection_to_api('advertenties/',$url_param[3]);
@@ -52,7 +55,9 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
 
         $url_param = $_SERVER['REQUEST_URI'];
         $url_param = explode('/',$url_param);
-        (int)$url_param[3];
+        if(isset($url_param[3])){
+             (int)$url_param[3];
+        }
 
         if(isset($url_param[3]) && is_numeric($url_param[3]) && $url_param[3] != ""){
 
@@ -92,7 +97,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             }
 
             
-            if($atts['count']){
+            if(isset($atts['count'])){
                 $count = $atts['count'];
                 
             }else{
@@ -100,9 +105,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
                 
             }
 
-
-
-            if ($atts['carrosserievorm']){
+            if (isset($atts['carrosserievorm'])){
 
                 $all_occasions = $filertObj->get_all_company_ocassions_and_filter($dealerId,$ocassions_obj,$page,$count);
 
@@ -111,7 +114,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
                 $all_occasions = $filertObj->get_occasions($dealerId,$ocassions_obj,$page,$count);
             }
 
-            if($atts['count']){
+            if(isset($atts['count'])){
                 $number_of_page = $all_occasions->pageSize;
             }else{
                 $number_of_page = $all_occasions->total;

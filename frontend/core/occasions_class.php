@@ -208,7 +208,7 @@ class Ocassions
     // Check if car have NapLogo
     function get_nap_logo($occasion){
      
-         if($occasion->geschiedenis->kilometerstandCorrect === true){
+         if(isset($occasion->geschiedenis->kilometerstandCorrect) && $occasion->geschiedenis->kilometerstandCorrect === true){
             return true;
         }else{
             return false;
@@ -704,6 +704,7 @@ class Ocassions
 
                    
                 }else{
+                    if(isset($occasion->${"object"}->${"selector"}))
                     $options[] = [$item->category => [$item->type => $occasion->${"object"}->${"selector"} != "" ? $occasion->${"object"}->${"selector"} : "-"]];
                 }
             }elseif($item->type == "btwVerrekenbaar"){
@@ -716,7 +717,6 @@ class Ocassions
             
                     
             }elseif($item->type == "merkId") {
-                
                 $options[] = [$item->category => [$item->name => $occasion->algemeen->merkNaam]];
             } elseif ($item->type == "modelId") {
                
