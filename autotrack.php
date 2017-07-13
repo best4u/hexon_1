@@ -145,7 +145,7 @@ add_shortcode('home_filter', 'get_home_filter');
 // Shortcode for sold cars 
 add_shortcode('sold_occasions', 'sold_cars');
 // Shortcodes are activated
-add_action( 'init', 'register_shortcodes');
+
 
 // Permalinks for detail page START
 add_action( 'init', 'wpse26388_rewrites_init' );
@@ -159,6 +159,7 @@ function wpse26388_rewrites_init(){
 }
 
 add_filter( 'query_vars', 'wpse26388_query_vars' );
+
 function wpse26388_query_vars( $query_vars ){
     $query_vars[] = 'car_slug';
     return $query_vars;
