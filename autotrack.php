@@ -148,7 +148,7 @@ add_shortcode('sold_occasions', 'sold_cars');
 
 
 // Permalinks for detail page START
-add_action( 'init', 'wpse26388_rewrites_init' );
+
 
 function wpse26388_rewrites_init(){
     $page_slug = get_option("at_url_page_adverts");
@@ -157,13 +157,15 @@ function wpse26388_rewrites_init(){
         'index.php?pagename='.$page_slug.'&car_slug=$matches[1]',
         'top' );
 }
+add_action( 'init', 'wpse26388_rewrites_init' );
 
-add_filter( 'query_vars', 'wpse26388_query_vars' );
+
 
 function wpse26388_query_vars( $query_vars ){
     $query_vars[] = 'car_slug';
     return $query_vars;
 }
+add_filter( 'query_vars', 'wpse26388_query_vars' );
 // Permalinks for detail page END
 
 

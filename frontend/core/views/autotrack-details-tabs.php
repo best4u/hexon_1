@@ -73,9 +73,15 @@ $price_color = get_option("at_price_color");
                         <div class="rightDescBlock">
                             <div class="priceandLogo">
                                 <div class="priceCarItem price_color">
-                                    € <?php echo $ocassions_obj->get_car_price($ocassion); ?><span class="btw_val">
-                                           <?php echo $ocassions_obj->get_btw($ocassion); ?>
-                                        </span></div>
+                                     <?php if($ocassions_obj->get_car_price($occasion) == '0'): ?>
+                                                Prijs op aanvraag
+                                            <?php else: ?>
+                                                € <?php echo $ocassions_obj->get_car_price($occasion); ?>
+                                                 <span class="btw_val">
+                                                    <?php echo $ocassions_obj->get_btw($occasion); ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
                                 <div class="subprice">Rijklaarmaakkosten <?php echo $ocassions_obj->get_apkBijAflevering($ocassion); ?></div>
                                 <div class="logoCarItem">
                                     <?php if($ocassions_obj->get_nap_logo($ocassion)): ?>

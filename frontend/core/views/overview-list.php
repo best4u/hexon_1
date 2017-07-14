@@ -8,7 +8,6 @@ $price_color = get_option("at_price_color");
     }
 </style>
 
-
 <div class="overview_gridWrapp listMode">
     <div class="leftAndRightWrapp">
         <div class="centerDiv">
@@ -66,10 +65,14 @@ $price_color = get_option("at_price_color");
                                         </div>
                                         <div class="descCarItem">
                                             <div class="priceCarItem price_color">
+                                           <?php if($ocassions_obj->get_car_price($occasion) == '0'): ?>
+                                                Prijs op aanvraag
+                                            <?php else: ?>
                                                 € <?php echo $ocassions_obj->get_car_price($occasion); ?>
-                                                <span class="btw_val">
-                                            <?php echo $ocassions_obj->get_btw($occasion); ?>
-                                        </span>
+                                                 <span class="btw_val">
+                                                    <?php echo $ocassions_obj->get_btw($occasion); ?>
+                                                </span>
+                                            <?php endif; ?>
                                             </div>
 
                                             <div class="carOverallDetails">

@@ -62,9 +62,17 @@ $price_color = get_option("at_price_color");
                                             </div>
                                             <div class="descCarItem">
                                                 <div class="priceandLogo">
-                                                    <span class="priceCarItem price_color">€ <?php echo $ocassions_obj->get_car_price($occasion); ?><span class="btw_val">
-                                            <?php echo $ocassions_obj->get_btw($occasion); ?>
-                                        </span></span>
+                                                    <span class="priceCarItem price_color">
+                                                       <?php if($ocassions_obj->get_car_price($occasion) == '0'): ?>
+                                                Prijs op aanvraag
+                                            <?php else: ?>
+                                                € <?php echo $ocassions_obj->get_car_price($occasion); ?>
+                                                 <span class="btw_val">
+                                                    <?php echo $ocassions_obj->get_btw($occasion); ?>
+                                                </span>
+                                            <?php endif; ?>
+  
+                                                </span>
                                                 <span class="logoCarItem">
                                                     <?php if($ocassions_obj->get_nap_logo($occasion)): ?>
                                         <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">

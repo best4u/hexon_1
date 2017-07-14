@@ -345,7 +345,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
         $dealerId = explode(',',$dealerId);
         $ocassions_obj = new Ocassions();
         $filertObj->store_arg($ocassions_obj,$dealerId);
-        add_action('wp_footer', 'instert_ajax_link_in_footer');
+     
 
         $ocassions_page_slug = get_option("at_url_page_adverts");
         $server_name = $_SERVER['SERVER_NAME'];
