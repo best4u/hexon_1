@@ -73,12 +73,12 @@ $price_color = get_option("at_price_color");
                         <div class="rightDescBlock">
                             <div class="priceandLogo">
                                 <div class="priceCarItem price_color">
-                                     <?php if($ocassions_obj->get_car_price($occasion) == '0'): ?>
+                                     <?php if($ocassions_obj->get_car_price($ocassion) == '0'): ?>
                                                 Prijs op aanvraag
                                             <?php else: ?>
-                                                € <?php echo $ocassions_obj->get_car_price($occasion); ?>
+                                                € <?php echo $ocassions_obj->get_car_price($ocassion); ?>
                                                  <span class="btw_val">
-                                                    <?php echo $ocassions_obj->get_btw($occasion); ?>
+                                                    <?php echo $ocassions_obj->get_btw($ocassion); ?>
                                                 </span>
                                             <?php endif; ?>
                                         </div>
