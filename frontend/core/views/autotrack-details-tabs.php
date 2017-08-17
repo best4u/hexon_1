@@ -447,6 +447,11 @@ $price_color = get_option("at_price_color");
 
                             <?php $at_iframe = get_option('at_iframe'); ?>
                             <?php if($at_iframe != ""): ?>
+                                <?php
+                                  $at_iframe = str_replace('{prijs}',$ocassion->prijs->totaal, $at_iframe);
+                                $at_iframe = str_replace('{bouwjaar}',$ocassion->geschiedenis->bouwjaar, $at_iframe);
+                                $at_iframe = str_replace('{voertuig}',substr($ocassion->algemeen->voertuigsoort, 0, 1), $at_iframe);
+                                ?>
                                 <div id="tab4" class="tab">
                                     <div class="iframeWraper">
                                     <div class="iframe_title">Financiering</div>

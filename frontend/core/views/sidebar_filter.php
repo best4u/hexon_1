@@ -145,7 +145,7 @@
                                 <label for="b">Transmissie</label>
                             </p>
                             <select name="transmissie" id="power" class="selectCustom">
-                                <option value="min">Alle transmissies</option>
+                                <option value>Alle transmissies</option>
                                 <?php
                                     if(isset($_SESSION['transmisie'])){
                                         foreach($_SESSION['transmisie'] as $type){
