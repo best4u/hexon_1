@@ -371,9 +371,7 @@ $price_color = get_option("at_price_color");
                             $at_go_back_status = get_option('at_go_back_status');
                             $at_go_back_text = get_option('at_go_back_text');
                             ?>
-                            <?php if ($at_go_back_status == '1'): ?>
-                                <a href="#" class="atGoBackButton atGoBackButtonBottom"><?= $at_go_back_text ?></a>
-                            <?php endif; ?>
+                            
                             <!-- Iframe start -->
                             <?php $at_iframe = get_option('at_iframe'); ?>
                             <?php if($at_iframe != ""): ?>
@@ -390,6 +388,10 @@ $price_color = get_option("at_price_color");
                             </div>
                             <?php endif; ?>
                             <!-- Iframe end -->
+
+                            <?php if ($at_go_back_status == '1'): ?>
+                                <a href="#" class="atGoBackButton atGoBackButtonBottom"><?= $at_go_back_text ?></a>
+                            <?php endif; ?>
                         </div>
                         <!-- /.specificatiesBlock -->
                     </div>
