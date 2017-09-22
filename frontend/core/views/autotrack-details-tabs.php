@@ -421,7 +421,13 @@ $price_color = get_option("at_price_color");
                                 $video_link = end($video_link);
                                 $video_link = explode('=',$video_link);
                                 $video_link = end($video_link);
-                                $full_link = str_replace('http','https', $ocassion->algemeen->videoUrls[0]);
+                                if(strrpos($ocassion->algemeen->videoUrls[0], 'http')){
+                                    $full_link = str_replace('http','https', $ocassion->algemeen->videoUrls[0]);
+                                }else{
+                                    $full_link = $ocassion->algemeen->videoUrls[0];
+                                }
+                                
+                               
 
                                 if(strpos($ocassion->algemeen->videoUrls[0], 'youtube') !== false){
                                         ?>

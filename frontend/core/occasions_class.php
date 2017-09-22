@@ -12,12 +12,11 @@ class Ocassions
 
     // Connection to AT API
 
+    
     function connection_to_api($type, $filter)
     {
-
         $username = get_option("at_username");
         $password = get_option("at_password");
-
         if($username !== "" && $password !== ""){
         
                     $ch = curl_init("https://www.autotrack.nl/api/" . $type . "" . $filter . "");
@@ -32,7 +31,6 @@ class Ocassions
                     curl_close($ch);
             
         }
-
         
     }
 
