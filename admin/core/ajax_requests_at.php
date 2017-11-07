@@ -16,6 +16,10 @@ function attr_ajax_check_uncheck_all()
         $id = $_POST["id"];
         $name = $_POST["name"];
         $val_point = $_POST["val_point"];
+
+        // mysql_real_escape_string($id);
+        // mysql_real_escape_string($name);
+        // mysql_real_escape_string($val_point);
   
         if ( isset( $_POST["id"] ) && isset( $_POST["name"] ) && isset( $_POST["val_point"] ) ) {
             $id = explode("+",$id);
@@ -32,6 +36,10 @@ function attr_ajax_check_uncheck_all()
         $name = $_POST["name"];
         $val_point = $_POST["val_point"];
 
+        mysql_real_escape_string($id);
+        mysql_real_escape_string($name);
+        mysql_real_escape_string($val_point);
+
         $id = explode("+",$id);
         foreach ($id as $i) {
             $result = $wpdb->update('wp_at_attributes',array($name => $val_point),array('id' => $i));
@@ -47,6 +55,13 @@ function attr_ajax_check_uncheck_all()
         $overview = $_POST["overview"];
         $summary_detail = $_POST["summary_detail"];
         $details_total = $_POST["details_total"];
+
+        // mysql_real_escape_string($attr_name);
+        // mysql_real_escape_string($home_page);
+        // mysql_real_escape_string($overview);
+        // mysql_real_escape_string($summary_detail);
+        // mysql_real_escape_string($details_total);
+      
 
 
         $sql="SELECT * FROM wp_at_attributes WHERE category!=''";

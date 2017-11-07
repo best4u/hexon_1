@@ -393,7 +393,7 @@ input, textarea {
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .logoCarItem img {
   width: 100%;
       width: 82px;
-    height: 34px;
+    
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc {
@@ -1521,7 +1521,7 @@ bottom: 0;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .logoCarItem img, .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .logoCarItem img {
-max-width:90px;
+max-width:69px;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {

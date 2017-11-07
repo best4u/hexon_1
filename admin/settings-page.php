@@ -253,7 +253,7 @@
             <?php
             $sidebar_blocks = get_option('at_sidebar_blocks');
             $sidebar_blocks = json_decode($sidebar_blocks);
-            $sidebar_blocks = object_to_array($sidebar_blocks);
+            $sidebar_blocks = at_object_to_array($sidebar_blocks);
             ?>
       
 

@@ -45,12 +45,13 @@
                         
 
                         <p class="priceP">
-                            <span class="priceFrom">€ <?php if(isset($_GET['prijs_min'])){ echo number_format($_GET['prijs_min'], 2, ",", "."); }else{ echo number_format($_SESSION['min_price'], 2, ",", "."); } ?></span>
+                            <span class="priceFrom">€ <?php if(isset($_GET['prijs_min'])){ echo number_format($_GET['prijs_min'], 2, ",", "."); }else{ echo ''; } ?></span>
                             <span class="priceTo">€ <?php if(isset($_GET['prijs_max'])){ echo number_format($_GET['prijs_max'], 2, ",", "."); }else{ echo number_format($_SESSION['max_price'], 2, ",", "."); } ?></span>
+
                             <span class="priceHiddenFrom" style="display: none"><?php echo $_SESSION['min_price']; ?></span>
                             <span class="priceHiddenTo" style="display: none"><?php echo $_SESSION['max_price']; ?></span>
 
-                            <span class="priceFromMin" style="display: none"><?php if(isset($_GET['prijs_min'])){ echo $_GET['prijs_min']; }else{ echo $_SESSION['min_price']; } ?></span>
+                            <span class="priceFromMin" style="display: none"><?php if(isset($_GET['prijs_min'])){ echo $_GET['prijs_min']; }else{ echo ''; } ?></span>
                             <span class="priceFromMax" style="display: none"><?php if(isset($_GET['prijs_max'])){ echo $_GET['prijs_max']; }else{ echo $_SESSION['max_price']; } ?></span>
 
                         </p>

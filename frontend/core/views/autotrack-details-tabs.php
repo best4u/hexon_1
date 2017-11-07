@@ -85,7 +85,8 @@ $price_color = get_option("at_price_color");
                                 <div class="subprice">Rijklaarmaakkosten <?php echo $ocassions_obj->get_apkBijAflevering($ocassion); ?></div>
                                 <div class="logoCarItem">
                                     <?php if($ocassions_obj->get_nap_logo($ocassion)): ?>
-                                        <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
+                                      <img src="<?php echo plugins_url("img/auto-tr.png", __FILE__) ?>" alt="">
+                                         <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
                                     <?php endif ;?>
                                 </div>
                             </div>
@@ -523,7 +524,7 @@ Met vriendelijke groet,
     <?php
     $sidebar_blocks = get_option('at_sidebar_blocks');
     $sidebar_blocks = json_decode($sidebar_blocks);
-    $sidebar_blocks = object_to_array($sidebar_blocks);
+    $sidebar_blocks = at_object_to_array($sidebar_blocks);
     ?>
 
     <?php foreach ($sidebar_blocks as $block): ?>

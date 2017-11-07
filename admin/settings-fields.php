@@ -77,14 +77,14 @@ function myplugin_init() {
 
 add_action( 'init', 'myplugin_init' );
 
-function object_to_array($data)
+function at_object_to_array($data)
 {
     if (is_array($data) || is_object($data))
     {
         $result = array();
         foreach ($data as $key => $value)
         {
-            $result[$key] = object_to_array($value);
+            $result[$key] = at_object_to_array($value);
         }
         return $result;
     }

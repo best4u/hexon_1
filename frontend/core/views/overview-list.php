@@ -100,7 +100,8 @@ $price_color = get_option("at_price_color");
                                             <div class="rightButtonandLogo">
                                                 <div class="logoCarItem">
                                                     <?php if($ocassions_obj->get_nap_logo($occasion)): ?>
-                                        <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
+                                        <img src="<?php echo plugins_url("img/auto-tr.png", __FILE__) ?>" alt="">
+                                         <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
                                     <?php endif ;?>
                                                 </div>
 
