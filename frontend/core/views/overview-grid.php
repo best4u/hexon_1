@@ -8,6 +8,7 @@ $price_color = get_option("at_price_color");
         color: <?php echo $price_color; ?> !important;
     }
 </style>
+<form action="" method="GET" id="sortFilter">
 <div class="overview_gridWrapp gridMode">
             <div class="leftAndRightWrapp">
                 <div class="centerDiv">             
@@ -23,7 +24,7 @@ $price_color = get_option("at_price_color");
                             </div>                          
                             
                             <div class="selectorB4uAuto">
-                                <form action="" method="GET" id="sortFilter">
+                                
                                     <select name="sort" id="sortSelect" class="selectCustom">
                                         <option value>Sorteren op...</option>
                                          <option value="prijs_laag_naar_hoog" <?php echo isset($_GET['sort']) && $_GET['sort'] == 'prijs_laag_naar_hoog' ? 'selected' : '' ?>>Prijs, laag naar hoog</option>

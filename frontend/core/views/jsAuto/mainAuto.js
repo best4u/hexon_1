@@ -2,6 +2,11 @@ $=jQuery;
 $(document).ready(function(){
 
 
+    $(".allCarsButton").click(function(e){
+        e.preventDefault();
+        $("#sortFilter").submit();
+    });
+
 
     //Slider filters
 
@@ -37,6 +42,8 @@ $(document).ready(function(){
         var priceFrom = $(".priceFrom");
         var priceTo = $(".priceTo");
 
+        var priceFromField = $(".priceFromField");
+
         slider2.noUiSlider.on('update', function (values, handle) {
 
             var value = values[handle];
@@ -53,8 +60,10 @@ $(document).ready(function(){
 
                 $(".priceTo").text(Format.to(parseInt(value)));
             } else {
-                priceFrom.val(value);
-
+                if(parseInt(value) != 0){
+                    priceFrom.val(value);
+                }
+                
                 $(".priceFrom").text(Format.to(parseInt(value)));
             }
         });
@@ -346,5 +355,7 @@ function get_models(mark_id){
           }   
 
     });
+
+
 
 });

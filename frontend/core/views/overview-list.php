@@ -7,7 +7,7 @@ $price_color = get_option("at_price_color");
         color: <?php echo $price_color; ?> !important;
     }
 </style>
-
+<form action="" method="GET" id="sortFilter">
 <div class="overview_gridWrapp listMode">
     <div class="leftAndRightWrapp">
         <div class="centerDiv">
@@ -24,7 +24,7 @@ $price_color = get_option("at_price_color");
                     </div>
 
                     <div class="selectorB4uAuto">
-                        <form action="" method="GET" id="sortFilter">
+                        
                             <select name="sort" id="sortSelect" class="selectCustom">
                                 <option value>Sorteren op...</option>
 
@@ -191,6 +191,7 @@ $price_color = get_option("at_price_color");
 
             </div>
             </div>
+    
             <!-- end pagination -->
             <?php include_once('sidebar_filter.php'); ?>
             

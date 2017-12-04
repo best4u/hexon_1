@@ -4,7 +4,7 @@
                 </div>
 
                 <div class="sidebarFilters">
-                   <form action="" method="GET" id="rightSearchFilter">
+            
                         <p>
                             <label for="a">Merk</label>
                         </p>
@@ -58,8 +58,10 @@
                         <div class="priceSliderCont commSlideCont">
                             <div id="slider2" class=""></div>
                         </div>
-                        <div class="pricesInputs" style="display: none">
-                            <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="prijs_min" class="priceFrom form-control"></span>
+                        <div class="pricesInputs" style="display: none;">
+                            <span class="comLeftTitle">van: </span> <span class="commInputs">
+                                <input type="text" value name="prijs_min" class="priceFrom priceFromField form-control">
+                            </span>
                             <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="prijs_max" class="priceTo form-control"></span>
                         </div>
 
