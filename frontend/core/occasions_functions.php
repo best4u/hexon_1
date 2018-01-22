@@ -48,6 +48,7 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
     // In this function we get all cars for 1 page the count of cars per page is setted like attributes "count", and also we get detail page for specific car (by car id)
 
     function occasions_list_overview($atts = array()){
+  
         $ocassions_obj = new Ocassions();
         $dealerId = get_option("at_dealer_id");
         $filertObj = new Filter();

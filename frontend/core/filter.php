@@ -124,10 +124,7 @@ class Filter{
             $filterQuery .= "&filter%5BmodelId%5D=".$_GET['modelId']."";
         }
 
-        if(isset($_GET['prijs_min']) && $_GET['prijs_min'] != ""){
-            $filterQuery .= "&filter%5Bprijs.min%5D=".$_GET['prijs_min']."";
-            $filterQuery .= "&filter%5Bprijs.max%5D=".$_GET['prijs_max']."";
-        }
+    
 
         if(isset($_GET['bouwjaar_min']) && $_GET['bouwjaar_min'] != ""){
             $filterQuery .= "&filter%5Bbouwjaar.min%5D=".$_GET['bouwjaar_min']."";
@@ -152,6 +149,17 @@ class Filter{
         if(isset($_GET['aantalDeuren']) && $_GET['aantalDeuren'] != ""){
             $filterQuery .= "&filter%5BaantalDeuren%5D=".$_GET['aantalDeuren']."";
         }
+
+         if(isset($_GET['prijs_min']) && $_GET['prijs_min'] != ""){
+              $filterQuery .= "&filter%5Bprijs.min%5D=".$_GET['prijs_min']."";
+            
+         }
+
+        if(isset($_GET['prijs_max']) && $_GET['prijs_max'] != ''){
+          $filterQuery .= "&filter%5Bprijs.max%5D=".$_GET['prijs_max']."";  
+        }
+        
+        
 
         return $filterQuery;
     }
@@ -269,6 +277,7 @@ class Filter{
 //-----------------------------------------------
 //        Sidebar Filter
         $filter_query = $this->sidebarFilter($connection,$dealerId);
+    
         $dealerIds = '';
         if(is_array($dealerId)){
             foreach($dealerId as $id){
@@ -328,11 +337,13 @@ class Filter{
     // Here we get all company cars 
 
     function get_all_company_ocassions_and_filter($dealerId,$connection,$page,$perPage){
+        die();
         //        Store mark's
         $this->store_arg_copany_cars($connection,$dealerId);
 //-----------------------------------------------
 //        Sidebar Filter
         $filter_query = $this->sidebarFilter($connection,$dealerId);
+        
 
         $dealerId = explode(',',$dealerId);
         $dealerIds = '';
@@ -346,6 +357,7 @@ class Filter{
 
         $sort_query = $this->orderBy();
         $all_occasions = $connection->connection_to_api('advertenties','?pageNumber='.$page.'&pageSize='.$perPage.''.$dealerIds.''.$sort_query.''.$filter_query.'&filter%5Bcarrosserievorm%5D=BEDRIJFSWAGEN');
+
         return $all_occasions;
     }
 // Here we get all sold cars
