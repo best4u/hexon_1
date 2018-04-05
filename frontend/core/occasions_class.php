@@ -173,6 +173,17 @@ class Ocassions
         return $occasion->algemeen->merkNaam . " " . $occasion->algemeen->modelNaam . " " . $occasion->algemeen->uitvoering;
     }
 
+    function getAutoTrustGarantie($occasion)
+    {
+        /** 233 is Autotrust Garantie ID **/
+        
+            if(in_array(233, $occasion->garanties->garantieIds)){
+                return true;
+            }else{
+                return false;
+            }
+    }
+
     // Here we get correct slug to show car detail
 
     function get_car_slug($occasion)

@@ -75,6 +75,12 @@ require_once (plugin_dir_path(__FILE__)."filter.php");
             
             $ocassion = $ocassions_obj->connection_to_api('advertenties','?pageNumber=1&pageSize=25&filter%5BadvertentieId%5D='.$url_param[3].''.$dealerIds);
             $ocassion = $ocassion->items[0];
+
+            $garanties = $ocassions_obj->connection_to_api('garanties','?pageNumber=1&pageSize=25');
+
+            // echo "<pre>";
+            //     var_dump($ocassion->garanties); die();
+            // echo "</pre>";
             
             $description_text = $ocassion->mededelingen;
 
