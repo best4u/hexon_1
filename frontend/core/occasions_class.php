@@ -353,6 +353,16 @@ class Ocassions
 
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km"]];
 
+                        }elseif($item->name == "Brandstof"){
+
+                            if(isset($occasion->${"object"}->brandstofSecundair)) {
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." / ".$occasion->${"object"}->brandstofSecundair]];
+                            }else{
+                                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}]];
+                            }
+
+                    
+
                         }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
                         }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
@@ -495,6 +505,16 @@ class Ocassions
 
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." km"]];
 
+                        }elseif($item->name == "Brandstof"){
+
+                            if(isset($occasion->${"object"}->brandstofSecundair)) {
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." / ".$occasion->${"object"}->brandstofSecundair]];
+                            }else{
+                                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}]];
+                            }
+
+                    
+
                         }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
                         }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
@@ -586,6 +606,7 @@ class Ocassions
                 ${"selector"} = $item->type;
                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}->standaard]];
             } elseif ($item->type == "kenteken") {
+
                 ${"selector"} = $item->type;
                 $options[] = [$item->category => [$item->name => $this->kenteken_format($occasion)]];
             } elseif ($item->type == "prijs") {
@@ -639,6 +660,17 @@ class Ocassions
 
                         }elseif($item->name == "Tankinhoud" || $item->name == "Minimuminhoud kofferbak" || $item->name == "Maximuminhoud kofferbak"){
                             $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." liter"]];
+
+                        }elseif($item->name == "Brandstof"){
+
+                            if(isset($occasion->${"object"}->brandstofSecundair)) {
+                            $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}." / ".$occasion->${"object"}->brandstofSecundair]];
+                            }else{
+                                 $options[] = [$item->category => [$item->name => $occasion->${"object"}->${"selector"}]];
+                            }
+
+                    
+
                         }elseif($item->name == "Ledig gewicht" || $item->name == "Rijklaar gewicht" || $item->name == "Toelaatbaar gewicht"
                             || $item->name == "Trekgewicht geremde aanhanger" || $item->name == "Trekgewicht ongeremde aanhanger"){
                             $options[] = [$item->category => [$item->name => number_format($occasion->${"object"}->${"selector"}, 0, ".", ".")." kg"]];
