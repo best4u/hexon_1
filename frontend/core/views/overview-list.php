@@ -62,7 +62,6 @@ $price_color = get_option("at_price_color");
                     <div class="carsContentLeft fghdgfhdgfhdgfh">
                         <?php the_content(); ?>
                         <div class="carsContentLeft listType">
-
                             <?php
                             if ($cars->data) {
                                 ?>
