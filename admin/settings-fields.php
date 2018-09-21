@@ -28,6 +28,8 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_price_color' );
 //    Home page cars
     register_setting( 'autotrack-settings-fields', 'at_home_cars' );
+
+    register_setting( 'autotrack-settings-fields', 'show_btw' );
 //    Ocasions sort by
     register_setting( 'autotrack-settings-fields', 'at_sort_by' );
 //    Ascending/Descending ()
@@ -100,12 +102,13 @@ function insert_data_settings(){
     add_option( 'at_header_color', '#5021ff' );
     add_option( 'at_button_color', '#f7a404' );
     add_option( 'at_addres_info', 'from_text_area' );
+    add_option( 'show_btw', '1' );
 //    home cars
     add_option( 'at_home_cars', 'at_newest_cars' );
     add_option( 'at_home_cars', 'at_newest_cars' );
     add_option( 'at_name_of_button_on_home', 'Meer info' );
 //    sort by
-    add_option( 'at_sort_by', 'prijs' );
+    add_option( 'at_sort_by', 'total_price' );
 //    sort orientation
     add_option( 'at_sort_by_orientation', 'asc' );
 //    layout mode list / table

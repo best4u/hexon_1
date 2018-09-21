@@ -16,7 +16,7 @@
                     <select name="category" id="categoryFilter" class="form-control">
                         <option value>Categorie..</option>
                         <?php foreach($setting->get_select_options() as $cat): ?>
-                        <option value="<?=$cat->category?>"><?=$cat->category ?></option>
+                        <option value="<?=$cat->category?>"><?=strtoupper($cat->category) ?></option>
                         <?php endforeach; ?>
                     </select></th>
                 <th class="transparentColor">

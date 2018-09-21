@@ -16,18 +16,16 @@ $price_color = get_option("at_price_color");
     }
 </style>
 <div class="overview_gridWrapp">
-
     <div class="leftAndRightWrapp singleItemWrapp">
-
         <div class="centerDiv">
             <div class="leftContent_at" id="printContent">
-
-                <?php if ($ocassion): ?>
+               
+                <?php if ($car): ?>
 
                     <div class="detailPage">
                         <div class="detailPageTop">
                             <h1 class="carTitleTop header_color">
-                                <?php echo $ocassions_obj->get_car_name($ocassion); ?>
+                                <?=$car->data->advertise->title?>
                             </h1>
                             <?php
                             $at_go_back_status = get_option('at_go_back_status');
@@ -35,7 +33,7 @@ $price_color = get_option("at_price_color");
                             ?>
 
                             <?php if ($at_go_back_status == '1'): ?>
-                                <a href="#" class="atGoBackButton atGoBackButtonTop"><?= $at_go_back_text ?></a>
+                                <a href="#" class="atGoBackButton atGoBackButtonTop"><?=$at_go_back_text?></a>
                             <?php endif; ?>
 
                             <div class="b4uPrintButton" title="Print Pagina">
@@ -47,11 +45,10 @@ $price_color = get_option("at_price_color");
                         <div class="sliderAndDesc">
                             <div class="leftSlideBlock">
                                 <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true" data-width="452" data-height="301">
-                                    <?php $images = $ocassions_obj->get_small_images($ocassion); ?>
-                                    <?php if ($images) : ?>
-                                        <?php foreach ($images as $key => $foto) : ?>
-                                            <a href="<?php echo $foto ?>">
-                                                <img src="<?php echo $key ?>">
+                                    <?php if ($car->data->images) : ?>
+                                        <?php foreach ($car->data->images as $key => $image) : ?>
+                                            <a href="<?=$image->url?>">
+                                                <img src="<?=$image->thumbs->{'340_240'}?>">
                                             </a>
                                         <?php endforeach; ?>
                                     <?php else: ?>
@@ -67,53 +64,65 @@ $price_color = get_option("at_price_color");
                             <div class="rightDescBlock">
                                 <div class="priceandLogo">
                                     <div class="priceCarItem price_color">
-                                   
-                                   
-                                         <?php 
-                                         if($ocassions_obj->get_car_price($ocassion) == '0'): ?>
-                                                Prijs op aanvraag
-                                            <?php else: ?>
-                                                € <?php echo $ocassions_obj->get_car_price($ocassion); ?>
-                                                 <span class="btw_val">
-                                                    <?php echo $ocassions_obj->get_btw($ocassion); ?>
-                                                </span>
-                                            <?php endif; ?>
+                                    <?php if ($car->data->advertise->total_price == '0'): ?>
+                                        Prijs op aanvraag
+                                    <?php else: ?>
+                                        <?php echo $car->data->advertise->total_price; ?>
+
+                                        <?php if(get_option('show_btw') == '1'): ?>
+                                            <span class="btw_val">
+                                             <?php if($car->data->advertise->incl_vat == '1'): ?>
+                                                ( Inc. Btw )
+                                            <?php else: ?> 
+                                                ( Ex. Btw )
+                                            <?php endif; ?>  
+                                            </span>
+                                        <?php endif; ?>
+                                         <?php endif; ?>
   
                                     </div>
 
                                     <div class="subprice">
-                                        Rijklaarmaakkosten <?php echo $ocassions_obj->get_apkBijAflevering($ocassion); ?>
+                                        <?php if($car->data->advertise->government_costs): ?>
+                                            Rijklaarmaakkosten - € <?=$car->data->advertise->government_costs?>
+                                        <?php endif; ?>
                                     </div>
 
-                                    <div class="logoCarItem">
-                                    <?php if($ocassions_obj->getAutoTrustGarantie($ocassion)): ?>
-                                      <img src="<?php echo plugins_url("img/auto-tr.png", __FILE__) ?>" alt="">
-                                    <?php endif ;?>
+                                 <div class="logoCarItem">
+                                    <?php if ($car->data->guarantees->guarantee_auto_trust && $car->data->guarantees->guarantee_auto_trust == 'Ja'): ?>
+                                        <img src="<?php echo plugins_url("img/auto-tr.png", __FILE__) ?>" alt="">
+                                    <?php endif; ?>
 
-                                    <?php if($ocassions_obj->get_nap_logo($ocassion)): ?>
-                            
-                                         <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
-                                    <?php endif ;?>
-                                    </div>
+                                    <?php if ($car->data->guarantees->guarantee_nap  && $car->data->guarantees->guarantee_nap == 'Ja'): ?>
+                                        <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
+                                    <?php endif; ?>
+                                </div>
                                 </div>
                                 <!-- /.priceandLogo -->
 
                                 <div class="detailDesc">
                                     <div class="leftDetailDesc">
-                                        <?php foreach ($ocassions_obj->get_sumary_detail_attr($ocassion) as $key => $options) :
-                                            foreach ($options as $key => $option) :
-                                                foreach ($option as $type => $car_option) : ?>
-                                                    <span class="optionsWrap">
-                                                    <span class="leftType atribute_label_color">
-                                                        <?php echo ucfirst(strtolower($type)); ?>:
-                                                    </span>
-                                                    <span class="rightOption atribute_value_color">
-                                                        <?php echo $car_option; ?>
-                                                    </span>
+                                        <span class="optionsWrap">
+
+                                            <?php foreach($carsService->getSumaryDetailAttr() as $attr): ?>
+                                                <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                                <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                                    
+                                                <span class="leftType atribute_label_color">
+                                                    <?=$attr->attribute?>:
                                                 </span>
-                                                <?php endforeach; ?>
+                                                <span class="rightOption atribute_value_color">
+                                                    <?php if(eval("?> $compare <?php ")): ?>
+                                                        <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                    <?php else: ?>
+                                                        -
+                                                    <?php endif; ?>
+
+                                                </span>
+
                                             <?php endforeach; ?>
-                                        <?php endforeach; ?>
+
+                                         </span>
                                     </div>
                                 </div>
                                 <!-- /.detailDesc -->
@@ -123,65 +132,23 @@ $price_color = get_option("at_price_color");
 
                         <div class="omschriving">
                             <div class="titleOms commTitle26">Omschrijving</div>
-
-                            <?php require_once('markdown_extended.php'); ?>
-                            <?php $html = MarkdownExtended($description_text); ?>
-
                             <div class="descOms commDesc text_color">
-
-                                <?php if (count($ocassion->algemeen->videoUrls) > 0) : ?>
-
-                                    <?php
-                                    $video_link = explode('/', $ocassion->algemeen->videoUrls[0]);
-                                    $video_link = end($video_link);
-                                    $video_link = explode('=', $video_link);
-                                    $video_link = end($video_link);
-                                    if(strrpos($ocassion->algemeen->videoUrls[0], 'http')){
-                                        $full_link = str_replace('http','https', $ocassion->algemeen->videoUrls[0]);
-                                    }else{
-                                        $full_link = $ocassion->algemeen->videoUrls[0];
-                                    }
-                                    
-                               
-                                    ?>
-
-                                    <?php if (strpos($ocassion->algemeen->videoUrls[0], 'youtube') !== false) : ?>
-                                        <div class="video-wrapper">
-                                            <iframe width="560" height="315"
-                                                    src="https://www.youtube.com/embed/<?php echo $video_link; ?>"
-                                                    frameborder="0"
-                                                    allowfullscreen></iframe>
-                                        </div>
-                                    <?php else: ?>
-                                        <div>
-                                            <iframe width="560" height="315"
-                                                    src="<?php echo $full_link; ?>" frameborder="0"
-                                                    allowfullscreen></iframe>
-                                        </div>
-                                    <?php endif; // (strpos($ocassion->algemeen->videoUrls[0], 'youtube') !== false) ?>
-                                <?php endif; // (count($ocassion->algemeen->videoUrls) > 0) ?>
-
-                                <div class="extendedDescription"><?php echo $html ?></div>
-
+                                <?=$car->data->advertise->description?>
                             </div>
+                            <?php if(count($car->data->options) > 0 && isset($car->data->options->general)  &&  count($car->data->options->general) > 0): ?>
+                            <h2>Meer opties</h2>                          
+                            <ul>
+                                <?php foreach($car->data->options->general as $option): ?>
+                                    <li><?=$option->name?></li>
+                                <?php endforeach; ?>
+                                 
+                            </ul>
+                            <?php endif; ?>  
                             <!-- /.descOms.commDesc -->
                         </div>
                         <!-- /.omschriving -->
 
-                        <?php
-                        $options_accessories = $ocassions_obj->get_car_safety_attr("188c3d8d-cbb6-4916-ab1b-32796e618c5c", $ocassion);
-                        $options_accessories_ext = $ocassions_obj->get_car_safety_attr("4121e7b2-af4c-432b-97de-9bec8b97e31a", $ocassion);
-                        $options_accessories_vT = $ocassions_obj->get_car_safety_attr("f9eb02f8-8f59-4272-99d4-eeacb98e1d92", $ocassion);
-                        $options_accessories_aT = $ocassions_obj->get_car_safety_attr("a826980c-9064-4e33-800a-7ace75e182ae", $ocassion);
-                        $options_accessories_iC = $ocassions_obj->get_car_safety_attr("de6c3b5f-4abf-4c70-afb1-1642953fa2e6", $ocassion);
-                        ?>
 
-                        <?php
-                        if (count($options_accessories) != 0 || count($options_accessories_ext) != 0 ||
-                            count($options_accessories_vT) != 0 || count($options_accessories_aT) != 0 ||
-                            count($options_accessories_iC) != 0
-                        ) :
-                            ?>
                             <hr class="lineAll">
 
                             <div class="optionsAccesories">
@@ -191,18 +158,16 @@ $price_color = get_option("at_price_color");
 
                                 <?php //endif; # ???
                                 ?>
-
                                 <div class="descOptAcc">
-
                                     <?php #Veiligheid category
                                     ?>
-                                    <?php if (count($options_accessories) > 0) : ?>
+                                    <?php if (count($car->data->options) > 0 && isset($car->data->options->lightning) &&  count($car->data->options->lightning) > 0) : ?>
                                         <div class="optieAccItem">
                                             <h4 class="carDetailSubtitle">Verlichting</h4>
                                             <ul class="commList commDesc text_color">
-                                                <?php foreach ($options_accessories as $option) : ?>
-                                                    <li><?php echo $option; ?></li>
-                                                <?php endforeach; ?>
+                                            <?php foreach($car->data->options->lightning as $option): ?>
+                                                <li><?=$option->name?></li>
+                                            <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     <?php endif; // (count($options_accessories) > 0)
@@ -210,13 +175,13 @@ $price_color = get_option("at_price_color");
 
                                     <?php #Exterieur category
                                     ?>
-                                    <?php if (count($options_accessories_ext) > 0) : ?>
+                                    <?php if (count($car->data->options) > 0 && isset($car->data->options->exterior) && count($car->data->options->exterior) > 0) : ?>
                                         <div class="optieAccItem">
                                             <h4 class="carDetailSubtitle">Exterieur</h4>
                                             <ul class="commList commDesc text_color">
-                                                <?php foreach ($options_accessories_ext as $option) : ?>
-                                                    <li><?php echo $option; ?></li>
-                                                <?php endforeach; ?>
+                                            <?php foreach($car->data->options->exterior as $option): ?>
+                                                <li><?=$option->name?></li>
+                                            <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     <?php endif; // (count($options_accessories_ext) > 0)
@@ -224,13 +189,13 @@ $price_color = get_option("at_price_color");
 
                                     <?php # Veiligheid en Techniek category
                                     ?>
-                                    <?php if (count($options_accessories_vT) > 0) : ?>
+                                    <?php if (count($car->data->options) > 0 && isset($car->data->options->safety_technology) && count($car->data->options->safety_technology) > 0) : ?>
                                         <div class="optieAccItem">
                                             <h4 class="carDetailSubtitle">Veiligheid en Techniek</h4>
                                             <ul class="commList commDesc text_color">
-                                                <?php foreach ($options_accessories_vT as $option) : ?>
-                                                    <li><?php echo $option; ?></li>
-                                                <?php endforeach; ?>
+                                            <?php foreach($car->data->options->safety_technology as $option): ?>
+                                                <li><?=$option->name?></li>
+                                            <?php endforeach; ?>                                            
                                             </ul>
                                         </div>
                                     <?php endif; // (count($options_accessories_vT) > 0)
@@ -238,13 +203,13 @@ $price_color = get_option("at_price_color");
 
                                     <?php # Audio / Telefonie category
                                     ?>
-                                    <?php if (count($options_accessories_aT) > 0) : ?>
+                                    <?php if (count($car->data->options) > 0 && isset($car->data->options->audio_telephony) &&  count($car->data->options->audio_telephony) > 0) : ?>
                                         <div class="optieAccItem">
                                             <h4 class="carDetailSubtitle">Audio / Telefonie</h4>
                                             <ul class="commList commDesc text_color">
-                                                <?php foreach ($options_accessories_aT as $option) : ?>
-                                                    <li><?php echo $option; ?></li>
-                                                <?php endforeach; ?>
+                                             <?php foreach($car->data->options->audio_telephony as $option): ?>
+                                                <li><?=$option->name?></li>
+                                            <?php endforeach; ?>   
                                             </ul>
                                         </div>
                                     <?php endif; // (count($options_accessories_aT) > 0)
@@ -252,13 +217,13 @@ $price_color = get_option("at_price_color");
 
                                     <?php #Interieur en Comfort
                                     ?>
-                                    <?php if (count($options_accessories_iC) > 0) : ?>
+                                    <?php if (count($car->data->options) > 0 && isset($car->data->options->interior_comfort)  && count($car->data->options->interior_comfort) > 0) : ?>
                                         <div class="optieAccItem">
                                             <h4 class="carDetailSubtitle">Interieur en Comfort</h4>
                                             <ul class="commList commDesc text_color">
-                                                <?php foreach ($options_accessories_iC as $option) : ?>
-                                                    <li><?php echo $option; ?></li>
-                                                <?php endforeach; ?>
+                                               <?php foreach($car->data->options->interior_comfort as $option): ?>
+                                                <li><?=$option->name?></li>
+                                                <?php endforeach; ?>   
                                             </ul>
                                         </div>
                                     <?php endif; // (count($options_accessories_iC) > 0)
@@ -267,27 +232,17 @@ $price_color = get_option("at_price_color");
                                 <!-- /.descOptAcc -->
                             </div>
                             <!-- /.optionsAccesories -->
-
                         <?php endif; ?>
 
                         <hr class="lineAll">
-
                         <div class="specificatiesBlock">
-
                             <h3 class="carDetailTitle titleSpecificaties">Specificaties</h3>
                             <div class="descSpecificaties">
                                 <div class="carDetailSubtitle"></div>
 
                                 <div class="descAlgemen commDesc text_color">
                                     <div class="commLeftSpecific">
-                                        <?php
-                                      
-                                        $category = "";
-                                        foreach ($ocassions_obj->get_details_total_attr($ocassion) as $key => $options) :
-                                            foreach ($options as $key => $option) :
-                                                if ($key != $category) :
-                                                $category = $key;
-                                        ?>
+                                    
                                     </div>
                                 </div>
 
@@ -297,87 +252,279 @@ $price_color = get_option("at_price_color");
 
                             <div class="descSpecificaties">
                                 <h4 class="carDetailSubtitle">
-                                    <?php
-                                    $spited_title = preg_split('/(?<=\\w)(?=[A-Z])/', $category);
-                                    $count = 0;
-                                    ?>
-
-                                    <?php foreach ($spited_title as $title) : ?>
-                                        <?php if ($count == 0) : ?>
-                                            <?php echo ($title == "geschiedenis") ? "Geschiedenis van deze auto" : (ucfirst(strtolower($title)) . " "); ?>
-                                        <?php else: ?>
-                                            <?php echo ucfirst(strtolower($title)) . " "; ?>
-                                        <?php endif; ?>
-                                        <?php $count++; endforeach; ?>
+                                    Algemeen
                                 </h4>
 
                                 <div class="descAlgemen commDesc text_color">
                                     <div class="commLeftSpecific between">
 
-                                        <?php endif; ?>
-                                        <?php foreach ($option as $type => $car_option) : ?>
-                                            <?php if ($category == "garanties") : ?>
-                                                <span class="optionsWrap">
-                                                <span class="leftDescSpan">
-                                                    <?php echo ucfirst(strtolower($car_option)); ?>
-                                                </span>
-                                            </span>
-                                            <?php else: ?>
-                                                <span class="optionsWrap">
-                                                <span class="leftDescSpan"><?php echo ucfirst(strtolower($type)); ?>
-                                                    :
-                                                </span>
-                                                <span class="rightDescSpan">
-                                                    <?php echo ucfirst(strtolower($car_option)); ?>
-                                                </span>
-                                            </span>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                        <?php endforeach; ?>
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <!-- /.commLeftSpecific -->
-
-                                    <hr class="lineAll">
-
-                                </div>
-                                <!-- /.descAlgemen -->
-                            </div>
-                            <!-- /.descSpecificaties -->
-
-                            <?php $garanties = $ocassions_obj->get_garanties($ocassion); ?>
-                            <?php if(!empty($garanties)): ?>
-                              <!-- Garanties -->
-                            <div class="descSpecificaties">
-                                <h4 class="carDetailSubtitle">
-                                    Garanties en zekerheden
-                                </h4>
-
-                                <div class="descAlgemen commDesc text_color">
-                                    <div class="commLeftSpecific between">
-                                    <?php foreach ($garanties as $key => $value):?>
+                                        <?php foreach($carsService->getDetailsTotalAttr('algemeen') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
                                             <span class="optionsWrap">
-                                                <span class="leftDescSpan">
-                                                    <b><?=$key?></b>
-                                                    <p> - <?=$value?></p>
-                                                </span>
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
                                                 <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
                                                 </span>
-                                            </span>
+                                            </span>    
 
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?> 
                                            
                                     </div>
                                     <!-- /.commLeftSpecific -->
 
-                                    <hr class="lineAll">
+                                 <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    AFLEVERING
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('aflevering') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>  
+
+                                        <?php endforeach; ?> 
+
+                                    </div>
+                                </div>
+
+                                <h4 class="carDetailSubtitle">
+                                    GESCHIEDENIS VAN DEZE AUTO
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('geschiedenis') as $attr): ?>
+                                             <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>  
+
+                                        <?php endforeach; ?> 
+
+                                    </div>
+                                </div>
+
+                                <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    MATEN EN GEWICHTEN
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('matenEnGewichten') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>    
+
+                                        <?php endforeach; ?> 
+
+                                         
+
+                                    </div>
+                                </div>
+
+                                 <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    MILIEU
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('milieu') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>    
+
+                                        <?php endforeach; ?> 
+
+                                    </div>
+                                </div>
+
+                                <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    MOTOR
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('motor') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>    
+
+                                        <?php endforeach; ?> 
+
+                                    </div>
+                                </div>
+
+                                <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    PRESTATIES
+                                </h4>
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('prestaties') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>    
+
+                                        <?php endforeach; ?> 
+
+                                    </div>
+                                </div>
+
+                                 <hr class="lineAll">
+
+                                <h4 class="carDetailSubtitle">
+                                    ONDERSTEL
+                                </h4>
+
+
+                                <div class="descAlgemen commDesc text_color">
+                                    <div class="commLeftSpecific between">
+
+                                        <?php foreach($carsService->getDetailsTotalAttr('onderstel') as $attr): ?>
+                                            <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
+                                            <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
+                                              
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(eval("?> $compare <?php ")): ?>
+                                                     <?php eval("?> $value <?php ") ?> <?=$attr->measurement?>
+                                                <?php else: ?>
+                                                    -
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>    
+
+                                        <?php endforeach; ?> 
+
+                                        
+
+                                    </div>
+                                </div>
+
+                                <?php if(count($car->data->guarantees->items) > 0): ?>
+
+                                     <hr class="lineAll">
+
+                                    <h4 class="carDetailSubtitle">
+                                        Garanties en zekerheden
+                                    </h4>
+
+                                    <div class="descAlgemen commDesc text_color">
+                                        <div class="commLeftSpecific between">
+                                            <ul class="commList commDesc text_color">
+                                            <?php foreach($car->data->guarantees->items as $item): ?>
+                                                <li><?=$item->title?></li>
+                                                <p><?=$item->text?></p>
+                                            <?php endforeach; ?>                                  
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                <?php endif; ?>
 
                                 </div>
                                 <!-- /.descAlgemen -->
                             </div>
                             <!-- /.descSpecificaties -->
-
-                            <?php endif; ?>
 
                             <?php
                             $at_go_back_status = get_option('at_go_back_status');
@@ -391,10 +538,19 @@ $price_color = get_option("at_price_color");
                             <div class="iframe_title">Financiering</div>
                       
                             <?php
+
+                          
+
+                            $price = str_replace('€','', $car->data->advertise->total_price);
+                            $price = str_replace('.','', $price);
+                            $price = str_replace(',','', $price);
                             
-                                $at_iframe = str_replace('{prijs}',$ocassion->prijs->totaal, $at_iframe);
-                                $at_iframe = str_replace('{bouwjaar}',$ocassion->geschiedenis->bouwjaar, $at_iframe);
-                                $at_iframe = str_replace('{voertuig}',substr($ocassion->algemeen->voertuigsoort, 0, 1), $at_iframe);
+                            
+                                $at_iframe = str_replace('{prijs}',(float)$price, $at_iframe);
+                                $at_iframe = str_replace('{bouwjaar}',$car->data->construction_year, $at_iframe);
+                                $at_iframe = str_replace('{voertuig}',substr($car->data->advertise->title, 0, 1), $at_iframe);
+
+
                             ?>
                                 <?=$at_iframe?>
                             </div>
@@ -407,17 +563,13 @@ $price_color = get_option("at_price_color");
                         </div>
                         <!-- /.specificatiesBlock -->
                     </div>
-
-                <?php else: ?>
-                    <p style="text-align: center;">Er is geen occasion gevonden.</p>
-                <?php endif; ?>
             </div>
 
             <?php # sidebar ?>
             <div class="sidebarContent">
-<div class="concatFormText" style="display: none">Goedendag,
+                   <div class="concatFormText" style="display: none">Goedendag,
 Ik ben geïnteresseerd in uw
-<?php echo $ocassions_obj->get_car_name($ocassion); ?>
+<?php echo $car->data->advertise->title; ?>
 
 Wilt u contact met mij opnemen?
 Met vriendelijke groet,
@@ -485,7 +637,7 @@ Met vriendelijke groet,
                                             <?php # LINKED-IN ?>
                                             <?php
                                             $inShareUrl = $site_url . '/' . $page_slug . '/?overview=' . $occasion_id .
-                                                '&title=' . $ocassions_obj->get_car_name($ocassion) .
+                                                '&title=' . $car->data->brand->title." ".$car->data->model->title." ".$car->data->advertise->title .
                                                 '&summary=&source=' . $site_url;
                                             ?>
                                             <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $inShareUrl ?>"
@@ -512,10 +664,10 @@ Met vriendelijke groet,
 
                                         <?php elseif ($item->name == "Pinterest") : ?>
                                             <?php # PINTEREST ?>
-                                            <a href="https://pinterest.com/pin/create/button/?url=<?php echo $site_url; ?>/<?= $page_slug ?>/?overview=<?= $occasion_id ?>&media=<?php echo $images[0]; ?>&description=<?php $ocassion->mededelingen ?>"
+                                            <a href="https://pinterest.com/pin/create/button/?url=<?php echo $site_url; ?>/<?= $page_slug ?>/?overview=<?= $occasion_id ?>&media=<?php echo $images[0]; ?>&description=<?php $car->mededelingen ?>"
                                                target="_blank">
                                                 <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/pinterest.png', __FILE__); ?>"
-                                                     alt="<?= $item->alt ?>">
+                                                     alt="">
                                             </a>
 
                                         <?php elseif ($item->name == "Mail") : ?>
@@ -532,7 +684,7 @@ Met vriendelijke groet,
                                                     echo $item->icon_url;
                                                 } else {
                                                     echo plugins_url('img/instagram-icon.png', __FILE__);
-                                                } ?>" alt="<?= $item->alt ?>">
+                                                } ?>" alt="">
                                             </a>
 
                                         <?php else: ?>
@@ -554,10 +706,11 @@ Met vriendelijke groet,
 
                     <?php elseif ($block['name'] == "Contactinformatie" && $block['state'] == "1") : ?>
                         <?php $get_from = get_option("at_addres_info"); ?>
+
                         <?php #======================== Contact info block ========================= ?>
                         <div class="contactInfo">
                             <hr class="lineAll">
-                            <?php echo ($get_from == "from_text_area") ? get_option('at_contact_info') : $ocassions_obj->get_addres_info($ocassion); ?>
+                                 <?php echo ($get_from == "from_text_area") ? get_option('at_contact_info') : $carsService->get_addres_info($car); ?>
                         </div>
                         <?php #======================== End contact info block ========================= ?>
                     <?php elseif ($block['name'] == "Openingstijden" && $block['state'] == "1") : ?>

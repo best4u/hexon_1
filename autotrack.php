@@ -1,9 +1,9 @@
 <?php
 ini_set('max_execution_time', 300);
 /*
-Plugin Name: Autotrack3
-Description: Autotrack API v3.0 plugin
-Version: 3.01
+Plugin Name: Best4u Cars API
+Description: Best4u Cars API "Hexon"
+Version: 1.0
 Author: Best4u
 Author URI: http://best4u.nl
 Text Domain: atBest4u
@@ -15,7 +15,7 @@ function autotrack_admin_menu() {
 
     add_menu_page(
         '',                     // No need to have this
-        'AutoTrack',            // Menu Label
+        'Best4u Cars API',            // Menu Label
         'manage_options',
         'instellingen',   // (*) Shared slug
         'instellingen',
@@ -25,7 +25,7 @@ function autotrack_admin_menu() {
 
     add_submenu_page(
         'instellingen',   // (*) Shared slug
-        'Autotrack instellingen',   // Subpage Title
+        'API instellingen',   // Subpage Title
         'Instellingen',             // Submenu Label
         'manage_options',
         'instellingen',   // (*) Shared slug
@@ -33,7 +33,7 @@ function autotrack_admin_menu() {
     );
     add_submenu_page(
         'instellingen',   // (*) Shared slug
-        'Autotrack attributen',   // Subpage Title
+        'API attributen',   // Subpage Title
         'Attributen',             // Submenu Label
         'manage_options',
         'attributen',   // (*) Shared slug
@@ -120,15 +120,15 @@ register_activation_hook( __FILE__, 'insert_data_attr' );
 register_activation_hook( __FILE__, 'insert_data_settings' );
 
 
-require_once('frontend/core/occasions_functions.php');
+require_once('frontend/core/CarsController.php');
 
 require_once ("frontend/index.php");
 
 // Front end ShortCodes
 
-require_once ('frontend/core/occasions_functions.php');
+require_once ('frontend/core/CarsController.php');
 add_action('wp_head', 'addGraph',0,0);
-//The functions which is used in shortcodes you can find in occasions_functions.php the second attribute of add_shortcode is name of function
+//The functions which is used in shortcodes you can find in CarsController.php the second attribute of add_shortcode is name of function
 
 // Shortcode to list all cars with pagination , here we can use attributes "count" - count of cars for pagination and "carrosserievorm" -- Body shape
 add_shortcode('occasions_list', 'occasions_list_overview');
@@ -192,8 +192,8 @@ add_action('wp_head', 'add_ajax_head');
 require_once ('frontend/core/aside_filter_functions.php');
 require_once('admin/core/ajax_requests_at.php');
 
-add_action('wp_ajax_test_ajax_action','test_ajax_callback');
-add_action('wp_ajax_nopriv_test_ajax_action','test_ajax_callback');
+add_action('wp_ajax_models_ajax_action','get_ajax_models');
+add_action('wp_ajax_nopriv_models_ajax_action','get_ajax_models');
 
 add_action('wp_ajax_test_response','attr_ajax_check_uncheck_all');
 add_action('wp_ajax_test_response_sel_des','selectDeselectAll');

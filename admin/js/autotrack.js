@@ -456,6 +456,26 @@ $(document).ready(function(){
     });
 
 
+    $(".thxPage").change(function(){
+        console.log($(this).val());
+
+        if($(this).val() == 'thx_page'){
+            $(".at_thank_you_textLabel").slideUp();
+            $(".at_thank_you_text").slideUp();
+
+            $(".at_link_to_thx_pageLabel").slideDown();
+            $(".at_link_to_thx_page").slideDown();
+
+        }else{
+        $(".at_thank_you_textLabel").slideDown();
+            $(".at_thank_you_text").slideDown();
+
+            $(".at_link_to_thx_pageLabel").slideUp();
+            $(".at_link_to_thx_page").slideUp();
+        }
+    });
+
+
 
 
 });

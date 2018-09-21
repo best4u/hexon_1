@@ -32,6 +32,7 @@ $(document).ready(function(){
             range: {
                 'min': 0,
                 'max': parseInt(priceTo)
+              
             },
             format: wNumb({
                 decimals: 0
@@ -85,8 +86,9 @@ $(document).ready(function(){
                 start: [parseInt(yearFromMin), parseInt(yearFromMax)],
                 step: 1,
                 range: {
-                    'min': parseInt(yearsFrom),
-                    'max': parseInt(yearsTo)
+                     'min': parseInt(yearsFrom),
+                     'max': parseInt(yearsTo)
+
                 },
                 format: wNumb({
                     decimals: 0
@@ -200,22 +202,23 @@ $(document).ready(function(){
     sort_selects_asc($('#power .powerOption'));
 
 
-function get_models(mark_id){
-
-    var url = $(".urlAjaxFilter").text();
+function get_models(brand_id){
+   
+     var url = $(".urlAjaxFilter").text();
 
     var data = {
-        action: 'test_ajax_action',
-        mark_id: mark_id,
+        action: 'models_ajax_action',
+        brand_id: brand_id,
 
     };
- 
+
     $.ajax({
     url: ajaxurl,
     data: data,
     type: 'POST',
     success: function(response) {
-       
+   
+        console.log(response);
        $("#models .modelOption").remove();
         $("#models").append(response);
        
@@ -225,6 +228,7 @@ function get_models(mark_id){
 }
 
     $("#marks").change(function(){
+
         get_models($(this).val());
 
     });
@@ -258,11 +262,13 @@ function get_models(mark_id){
                     connect: true,
                     step:50,
                     range: {
-                        'min': parseInt(kmFromLabel),
-                        'max': parseInt(kmToLabel)
+                         'min': parseInt(kmFromLabel),
+                         'max': parseInt(kmToLabel)
+                       
                     },
                     format: wNumb({
-                        decimals: 0
+                        decimals: 0,
+                        thousand: '.'
                     })
                 });
 
@@ -270,9 +276,16 @@ function get_models(mark_id){
 
                     var value = values[handle];
 
+                    var Format = wNumb({
+                        
+                        decimals: 0,
+                        thousand: '.'
+                    });
+
                     if (handle) {
                         kmto.val(value);
                         $(".kmToLabel").text(value);
+                
                     } else {
                         kmFrom.val(value);
                         $(".kmFromLabel").text(value);

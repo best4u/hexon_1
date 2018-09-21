@@ -13,7 +13,7 @@
                     <input class="form-control usernameApi" autocomplete="off" style="display: none" type="text" name="at_username" value="<?php echo esc_attr( get_option('at_username') ); ?>" />
                 </div>
                 <div class="col-sm-3">
-                    <label for="at_password">Wachtwoord, dit veld wordt het opslaan geleegd:</label>
+                    <label for="at_password">Wachtwoord (wordt na het opslaan geleegd):</label>
                     <input class="form-control passwprdApi" autocomplete="off" style="display: none" type="text" name="at_password" value="" />
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
             </div>
 
-            <p>Geef hier dient er gebruikt te worden?</p>
+            <p>Stel de gewenste kleur in voor de prijzen weergave.</p>
             <div class="row">
 <!--                <div class="col-sm-2">-->
 <!--                    <label for="at_font_color">Textkleur:</label>-->
@@ -81,14 +81,39 @@
                     <label for="at_price_color">Prijs kleur:</label>
                     <input class="form-control" type="color" name="at_price_color" value="<?php echo esc_attr( get_option('at_price_color') ); ?>"/>
                 </div>
+
+                
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="show_btw">Excl btw:</label>
+                </div>
+            </div>
+
+            <div class="row">
+     
+                    <?php $show_btw = get_option('show_btw'); ?>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="show_btw" value="1" <?php echo $show_btw == '1' ? 'checked="checked"' : '' ?>> Ja.
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="show_btw" value="0" <?php echo $show_btw == '0' ? 'checked="checked"' : '' ?>> Nee.
+                    </label>
+                </div>
+            
             </div>
 
         </div>
 
 
         <div class="fieldGroup">
-            <div class="fieldGroupName">Homepage</div>
-            <p>Hoeveelheid occasions</p>
+            <div class="fieldGroupName">Homepagina</div>
+            <p>Toon de volgende hoeveelheid occasions op de home-pagina:</p>
 
                 <?php
                 $at_number_of_occasions_on_home = get_option("at_number_of_occasions_on_home");
@@ -100,7 +125,7 @@
                     </div>
                 </div>
                 <br>
-                <p>Meer lezen knop label op home-pagina:</p>
+                <p>Meer lezen knop label op homepagina:</p>
 
                  <div class="col-md-3">
                     <div class="row">
@@ -109,7 +134,7 @@
                 </div>
 
             <br>
-            <p>Welke advertenties dienen er op de home-page getoond worden?</p>
+            <p>Welke advertenties dienen er op de homepagina getoond worden?</p>
 
             <br>
             <?php $at_home_cars = get_option('at_home_cars');
@@ -133,35 +158,35 @@
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Occasions</div>
-            <p>Hoe dienen de occasions standaart gesorteerd te zijn? Kies een waarde en vervolgens van hoog naar laag of laag naar hoog.</p>
+            <p>Hoe dienen de occasions standaard gesorteerd te zijn? Kies een waarde en vervolgens van hoog naar laag of laag naar hoog.</p>
             <?php $at_sort_by  = get_option('at_sort_by');
             ?>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="prijs" <?php echo $at_sort_by == 'prijs' ? 'checked="checked"' : '' ?>> Prijs.
+                        <input type="radio" name="at_sort_by" value="total_price" <?php echo $at_sort_by == 'total_price' ? 'checked="checked"' : '' ?>> Prijs.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="merkModelUitvoering" <?php echo $at_sort_by == 'merkModelUitvoering' ? 'checked="checked"' : '' ?>> Merk, Model, Uitvoering.
+                        <input type="radio" name="at_sort_by" value="brand" <?php echo $at_sort_by == 'brand' ? 'checked="checked"' : '' ?>> Merk, Model, Uitvoering.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="kilometerstand" <?php echo $at_sort_by == 'kilometerstand' ? 'checked="checked"' : '' ?>> Kilometerstand.
+                        <input type="radio" name="at_sort_by" value="mileage" <?php echo $at_sort_by == 'mileage' ? 'checked="checked"' : '' ?>> Kilometerstand.
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="datumGeplaatst" <?php echo $at_sort_by == 'datumGeplaatst' ? 'checked="checked"' : '' ?>> Publicatiedatum.
+                        <input type="radio" name="at_sort_by" value="date_posted" <?php echo $at_sort_by == 'date_posted' ? 'checked="checked"' : '' ?>> Publicatiedatum.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="at_sort_by" value="bouwjaar" <?php echo $at_sort_by == 'bouwjaar' ? 'checked="checked"' : '' ?>> Bouwjaar.
+                        <input type="radio" name="at_sort_by" value="construction_year" <?php echo $at_sort_by == 'construction_year' ? 'checked="checked"' : '' ?>> Bouwjaar.
                     </label>
                 </div>
             </div>
@@ -207,7 +232,7 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
-            <p>Hoe moet het overzicht weergegeven worden aan de bezoekers? Als eenlijst of juist als tabel?</p>
+            <p>Hoe moet het overzicht weergegeven worden aan de bezoekers? Als een lijst of juist als tabel?</p>
             <div class="row">
                 <?php $at_overview_layoutmode = get_option('at_overview_layoutmode');
                 ?>
@@ -229,7 +254,7 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
-            <p>Geef aan hoe de volledige van de occasion getoond dienen te worden aan de bezoeker.</p>
+            <p>Hoe wil je op de detailpagina de informatie van een occasion tonen?</p>
             <div class="row">
                 <?php $at_details_view_mode = get_option('at_details_view_mode');
                 ?>
@@ -249,7 +274,7 @@
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Detailpagina</div>
-            <p>Beheer de volgorde van het contactformulier, de social media informatie en contactinformatie of schakel deze desgewenst uit.</p>
+            <p>Hier kan de volgorde van de hieronder genoemde pagina's worden bepaald. Desgewenst zijn ze ook uit te schakelen.</p>
             <?php
             $sidebar_blocks = get_option('at_sidebar_blocks');
             $sidebar_blocks = json_decode($sidebar_blocks);
@@ -282,7 +307,7 @@
                 </div>
             </div>
 
-            <div class="fieldGroupName">Contact form</div>
+            <div class="fieldGroupName">Contact formulier</div>
             <div class="row">
                 <div class="col-md-6">
                 <?php $at_form_short_code = get_option('at_form_short_code');?>
@@ -333,7 +358,7 @@
                     <div class="shortDelimeter"></div>
                 </div>
             </div>
-            <p>Geef hieronder per social media de locatie op, indien deze niet getoond moet worden laat het veld dan leeg.</p>
+            <p>Hier kan per social media kanaal een logo naar wens worden ingesteld.<br>Daarnaast is het ook mogelijk om eventuele kanalen te verbergen.</p>
             <?php $socials = get_option('at_social_icons');
             ?>
             <input type="hidden" name="at_social_icons" id="at_social_icons" value='<?=$socials ?>'>
@@ -405,38 +430,38 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-12">Bedank pagina of Badank bericht:</div>
+                <div class="col-md-12">Toon na het invullen van het contactformulier een bedankpagina of bericht:</div>
                 <?php $page_text = get_option('thx_mess');
                 ?>
                 <br>
                 <br>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="thx_mess" value="thx_page" <?php echo $page_text == 'thx_page' ? 'checked="checked"' : '' ?>> Bedankt pagina.
+                        <input type="radio" name="thx_mess" class="thxPage" value="thx_page" <?php echo $page_text == 'thx_page' ? 'checked="checked"' : '' ?>> Bedankpagina.
                     </label>
                 </div>
                 <div class="col-sm-2">
                     <label class="radio-inline">
-                        <input type="radio" name="thx_mess" value="thx_text" <?php echo $page_text == 'thx_text' ? 'checked="checked"' : '' ?>> Bedankt bericht.
+                        <input type="radio" name="thx_mess" class="thxPage" value="thx_text" <?php echo $page_text == 'thx_text' ? 'checked="checked"' : '' ?>> Bedankbericht.
                     </label>
                 </div>
             
                 <br>
                 <br>
-                <div class="col-md-12">URL van de bedank pagina:</div>
+                <div class="col-md-12 at_link_to_thx_pageLabel"  style="<?php if($page_text == 'thx_page'){ echo "display:block;";  }else{  echo "display:none;"; } ?>">URL van de bedankpagina:</div>
                 <br>
                 <br>
-                <div class="col-md-6">
+                <div class="col-md-6 at_link_to_thx_page" style="<?php if($page_text == 'thx_page'){ echo "display:block;";  }else{  echo "display:none;"; } ?>">
                 <?php $at_link_to_thx_page = get_option('at_link_to_thx_page'); ?>
                     <input type="text" name="at_link_to_thx_page" class="form-control" value="<?=$at_link_to_thx_page?>">
                 </div>
                 <br>
                 <br>
                 
-                <div class="col-md-12">Geef hier de tekst op van de bedankpagina, de URL hiervan kan niet worden gewijzigd:</div>
+                <div class="col-md-12 at_thank_you_textLabel" style="<?php if($page_text == 'thx_text'){ echo "display:block;";  }else{  echo "display:none;"; } ?>" >Geef hier de tekst op van het bedankbericht:</div>
                 <br>
                 <br>
-                <div class="col-sm-6">
+                <div class="col-sm-6 at_thank_you_text" style="<?php if($page_text == 'thx_text'){ echo "display:block;";  }else{  echo "display:none;"; } ?>">
                     <?php $contact_info = get_option('at_thank_you_text') ?>
                     <?php wp_editor($contact_info, 'at_thank_you_text', array(
                             'textarea_name' => 'at_thank_you_text',
@@ -448,7 +473,7 @@
                 <div class="col-md-6">
                 <br>
                 <br>
-                 <h3>Financial lease Iframe</h3>
+                 <h3>Financial Lease iFrame</h3>
                  <?php $at_iframe = get_option('at_iframe'); ?>
                 <textarea name="at_iframe" class="form-control" style="height: 200px;">
                     <?=$at_iframe?>
