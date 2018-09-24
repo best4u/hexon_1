@@ -98,10 +98,10 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
             $cars = $carsService->getAllCars(null, $count);
 
 
-            $brands = $_SESSION['brands'] ? $_SESSION['brands'] : $carsService->getBrands();
-            $fuels = $_SESSION['fuels'] ? $_SESSION['fuels'] : $carsService->getFuels();
-            $bodyStyles = $_SESSION['bodyStyles'] ? $_SESSION['bodyStyles'] : $carsService->getBodyStyles();
-            $transmissions = $_SESSION['transmissions'] ? $_SESSION['transmissions'] : $carsService->getTransmissions();
+            $brands = $carsService->getBrands();
+            $fuels = $carsService->getFuels();
+            $bodyStyles = $carsService->getBodyStyles();
+            $transmissions = $carsService->getTransmissions();
             $pricesMaxMin = $carsService->getLimits('price');
             $yearsMaxMin = $carsService->getLimits('years');
             $mileagesMaxMin = $carsService->getLimits('mileages');

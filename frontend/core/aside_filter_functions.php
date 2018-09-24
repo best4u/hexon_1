@@ -23,11 +23,11 @@
 
          var_dump($brandId);
         
-        $json = file_get_contents("http://carsapi.best4utech.nl/" . $dealerId . "/brand/".$brandId."/models/");
+        $json = file_get_contents("http://auto.best4u.nl/" . $dealerId . "/brand/".$brandId."/models/");
 
         var_dump($json);
 
-        var_dump("http://carsapi.best4utech.nl/" . $dealerId . "/brand/".$brandId."/models/");
+        var_dump("http://auto.best4u.nl/" . $dealerId . "/brand/".$brandId."/models/");
 
         $all_models = '';
         foreach (json_decode($json)->data as $key => $model) {

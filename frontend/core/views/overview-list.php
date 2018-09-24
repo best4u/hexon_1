@@ -62,6 +62,7 @@ $price_color = get_option("at_price_color");
                     <div class="carsContentLeft fghdgfhdgfhdgfh">
                         <?php the_content(); ?>
                         <div class="carsContentLeft listType">
+
                             <?php
                             if ($cars->data) {
                                 ?>
@@ -73,7 +74,7 @@ $price_color = get_option("at_price_color");
                                         <a href="/<?= get_option('at_url_page_adverts') ?>/<?php echo $carsService->get_car_slug($car); ?>/<?php echo $car->id ?>/">
                                             <div class="imgBlock">
                                                 <div class="imgTable">
-                                                   
+
                                                     <div class="imgTableCell">
                                                         <img src="<?php if ($car->images->{'image-1'}->thumbs->{'320_240'} != '') {
                                                             echo $car->images->{'image-1'}->thumbs->{'320_240'};

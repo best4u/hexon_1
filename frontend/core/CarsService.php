@@ -16,7 +16,7 @@ class CarsService
       
         $ch = curl_init();
 
-       $url = "http://auto.best4u.nl/" . $dealerId . "/".$type."/".$filter;
+        $url = "http://auto.best4u.nl/" . $dealerId . "/".$type."/".$filter;
 
         curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, 0);
