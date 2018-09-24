@@ -102,7 +102,7 @@ function insert_data_settings(){
     add_option( 'at_header_color', '#5021ff' );
     add_option( 'at_button_color', '#f7a404' );
     add_option( 'at_addres_info', 'from_text_area' );
-    add_option( 'show_btw', '1' );
+    add_option( 'show_btw', '0' );
 //    home cars
     add_option( 'at_home_cars', 'at_newest_cars' );
     add_option( 'at_home_cars', 'at_newest_cars' );

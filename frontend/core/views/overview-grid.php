@@ -89,7 +89,11 @@ $price_color = get_option("at_price_color");
                                             <?php if ($car->advertise->total_price == '0'): ?>
                                                 Prijs op aanvraag
                                             <?php else: ?>
-                                                 <?php echo $car->advertise->total_price; ?>
+                                                <span class="priceCarItem price_color">
+                                                    <?php echo $car->advertise->total_price; ?>                                      
+                                        
+                                            </span>
+                                                 
                                            <?php if(get_option('show_btw') == '1'): ?>
                                                 <span class="btw_val">
                                                     <?php if($car->advertise->incl_vat == '1'): ?>

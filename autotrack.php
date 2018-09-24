@@ -19,7 +19,7 @@ function autotrack_admin_menu() {
         'manage_options',
         'instellingen',   // (*) Shared slug
         'instellingen',
-        plugins_url('autotrack/images/icon.png'),
+        plugins_url(plugins_url('/'.explode('/', plugin_basename( __FILE__ ))[0]'/images/icon.png'),
         1
     );
 
