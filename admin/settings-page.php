@@ -274,6 +274,7 @@
 
         <div class="fieldGroup">
             <div class="fieldGroupName">Detailpagina</div>
+   
             <p>Hier kan de volgorde van de hieronder genoemde pagina's worden bepaald. Desgewenst zijn ze ook uit te schakelen.</p>
             <?php
             $sidebar_blocks = get_option('at_sidebar_blocks');
@@ -292,7 +293,7 @@
                             <li data-order="<?=$key ?>">
                                 <div class="lBlock">
                                     <div class="lbText"><?=$block['name']; ?></div>
-                                    <div class="lbIcon"><img src="<?php echo plugins_url() ?>/autotrack/images/move.png"></div>
+                                    <div class="lbIcon"><img src="<?php echo plugins_url() ?>/<?php echo isset(explode('/', plugin_basename( __FILE__ ))[0]) ? explode('/', plugin_basename( __FILE__ ))[0] : 'autotrack'; ?>/images/move.png"></div>
                                     <div class="lbSwither"><input type="checkbox"<?=$block['state'] == 1 ? ' checked':'' ?>> </div>
                                 </div>
                             </li>
@@ -338,14 +339,14 @@
                                 <input type="text" class="from" placeholder="Van.." value="<?=isset($day->time1)? $day->time1->from : '' ?>">
                                 <input type="text" class="to" placeholder="Tot .." value="<?=isset($day->time1)? $day->time1->to : '' ?>">
                                 <div class="gButton">
-                                    <img src="<?php echo plugins_url('/autotrack/images/add.png') ?>" alt="add">
+                                    <img src="<?php echo plugins_url('/'.explode('/', plugin_basename( __FILE__ ))[0].'/images/add.png') ?>" alt="add">
                                 </div>
                             </div>
                             <div class="gOrar2" <?php echo isset($day->time2) ? 'style="visibility: visible"' : '' ?> >
                                 <input type="text" class="from" placeholder="Van.." value="<?=isset($day->time2)? $day->time2->from : '' ?>">
                                 <input type="text" class="to" placeholder="Tot .." value="<?=isset($day->time2)? $day->time2->to : '' ?>">
                                 <div class="gButton">
-                                    <img src="<?php echo plugins_url('/autotrack/images/remove.png') ?>" alt="remove">
+                                    <img src="<?php echo plugins_url('/'.explode('/', plugin_basename( __FILE__ ))[0].'/images/remove.png') ?>" alt="remove">
                                 </div>
                             </div>
                         </div>
