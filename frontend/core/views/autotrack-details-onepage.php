@@ -596,8 +596,7 @@ Met vriendelijke groet,
                             <div class="titleSidebarDetail">Neem contact met ons op</div>
                             <?php if ($at_form_short_code != "") : ?>
                                 <?php echo do_shortcode($at_form_short_code); ?>
-                            <?php else: ?>
-                                <?php include('contact_form.php'); ?>
+                        
                             <?php endif; // ($at_form_short_code != "") ?>
                             <?php #======================== End contact form block ========================= ?>
 

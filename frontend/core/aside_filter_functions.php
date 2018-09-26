@@ -17,17 +17,18 @@
     {
 
          $dealerId = get_option("at_dealer_id");
+         $dealers = explode(',', $dealerId);
         
         if(isset($_POST['brand_id'])){
          $brandId = $_POST['brand_id'];
 
          var_dump($brandId);
         
-        $json = file_get_contents("http://auto.best4u.nl/" . $dealerId . "/brand/".$brandId."/models/");
+        $json = file_get_contents("http://auto.best4u.nl/" . $dealers[0] . "/brand/".$brandId."/models/?dealers=".$dealerId."");
 
         var_dump($json);
 
-        var_dump("http://auto.best4u.nl/" . $dealerId . "/brand/".$brandId."/models/");
+        var_dump("http://auto.best4u.nl/" . $dealers[0] . "/brand/".$brandId."/models/?dealers=".$dealerId."");
 
         $all_models = '';
         foreach (json_decode($json)->data as $key => $model) {

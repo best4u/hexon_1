@@ -13,10 +13,12 @@ class CarsService
     public function connection ($type, $filter = null)
     {
         $dealerId = get_option("at_dealer_id");
-      
+
+        $dealers = explode(',', $dealerId);
+
         $ch = curl_init();
 
-        $url = "http://auto.best4u.nl/" . $dealerId . "/".$type."/".$filter;
+        $url = "http://auto.best4u.nl/" . $dealers[0] . "/".$type."/?dealers=".$dealerId."".$filter;
 
         curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -42,7 +44,7 @@ class CarsService
     public function filterCars($count)
     {
 
-        $filter = '?limit=' . $count;
+        $filter = '&limit=' . $count;
 
         if (isset($_GET['orderBy'])) {
             if ($_GET['orderBy'] == 'catalog_price') {
