@@ -141,7 +141,9 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
             $at_number_of_occasions_on_home = 10;
         }
 
-        $filter = '?limit='.$at_number_of_occasions_on_home;
+
+
+        $filter = '&limit='.$at_number_of_occasions_on_home;
 
         if($settings == "at_expensive_cars"){
             $filter .= "&orderBy=catalog_price&direction=DESC";
