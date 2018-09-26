@@ -33,10 +33,11 @@ class CarsService
     }
 
 
-    public function getAllCars($filter = null, $count)
+    public function getAllCars($filter, $count)
     {
        
-        $filter = $this->filterCars($count);
+        $filter .= $this->filterCars($count);
+       
         $allCars = $this->connection('cars', $filter);
         return $allCars;
     }

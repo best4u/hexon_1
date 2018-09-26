@@ -94,8 +94,17 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
                 $count = '6';
             }
 
+            
 
-            $cars = $carsService->getAllCars(null, $count);
+            $filter = null;
+
+            if (isset($atts['carrosserievorm']) && $atts['carrosserievorm'] == 'bedrijfswagen') {
+                
+                $filter = '&company=1';
+            }
+
+
+            $cars = $carsService->getAllCars($filter, $count);
 
 
             $brands = $carsService->getBrands();
