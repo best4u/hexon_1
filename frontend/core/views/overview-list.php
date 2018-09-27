@@ -71,6 +71,7 @@ $price_color = get_option("at_price_color");
                                 foreach ($cars->data as $car) {
                                     ?>
                                         <div class="caritemB4uList">
+                                           
                                         <a href="/<?= get_option('at_url_page_adverts') ?>/<?php echo $carsService->get_car_slug($car); ?>/<?php echo $car->id ?>/">
                                             <div class="imgBlock">
                                                 <div class="imgTable">
