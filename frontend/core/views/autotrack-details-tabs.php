@@ -50,7 +50,7 @@ $price_color = get_option("at_price_color");
                                         <?php foreach ($car->data->images as $key => $image) : ?>
                                         
                                             <a href="<?=$image->url?>">
-                                                <img src="<?=$image->thumbs->{'340_240'}?>">
+                                                <img src="<?=$image->thumbs->{'320_'}?>">
                                             </a>
                                         <?php endforeach; ?>
                                     <?php else: ?>

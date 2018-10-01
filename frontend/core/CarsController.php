@@ -63,12 +63,12 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
         }
 
         $carId = $carsService->getUrlParam(3);
+        $car = $carsService->getCarDetails($carId);
 
-        if ($carId && $carId != "") {
+        if ($carId && $carId != "" && $car->status != 'error') {
             $template = get_option("at_details_view_mode");
 
-            $car = $carsService->getCarDetails($carId);
-
+      
             if ($template == "at_details_view_list") {
                 require_once(plugin_dir_path(__FILE__) . "views/autotrack-details-onepage.php");
             } else {

@@ -19,7 +19,7 @@ $price_color = get_option("at_price_color");
     <div class="leftAndRightWrapp singleItemWrapp">
         <div class="centerDiv">
             <div class="leftContent_at" id="printContent">
-               
+            
                 <?php if ($car): ?>
 
                     <div class="detailPage">
@@ -48,7 +48,7 @@ $price_color = get_option("at_price_color");
                                     <?php if ($car->data->images) : ?>
                                         <?php foreach ($car->data->images as $key => $image) : ?>
                                             <a href="<?=$image->url?>">
-                                                <img src="<?=$image->thumbs->{'340_240'}?>">
+                                                <img src="<?=$image->thumbs->{'320_'}?>">
                                             </a>
                                         <?php endforeach; ?>
                                     <?php else: ?>

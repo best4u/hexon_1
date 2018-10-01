@@ -275,8 +275,6 @@ class CarsService
     function get_car_slug($occasion)
     {
 
-       
-     
         $slug = trim(strtolower($occasion->advertise->title));
         $slug = str_replace("%","-", $slug);
         $slug = str_replace(" ","-", $slug);
