@@ -111,7 +111,6 @@ class CarsService
     {
 
         $brands = $this->connection('brands/', null);
-         $_SESSION['brands'] = $brands;
         return $brands;
     }
 
@@ -124,21 +123,18 @@ class CarsService
     public function getFuels()
     {
         $fuels = $this->connection('fuels/', null);
-        $_SESSION['fuels'] = $fuels;
         return $fuels;
     }
 
     public function getBodyStyles()
     {
         $fuels = $this->connection('body-styles/', null);
-        $_SESSION['bodyStyles'] = $fuels;
         return $fuels;
     }
 
     public function getTransmissions()
     {
         $transmissions = $this->connection('transmissions/', null);
-        $_SESSION['transmissions'] = $transmissions;
         return $transmissions;
     }
 
