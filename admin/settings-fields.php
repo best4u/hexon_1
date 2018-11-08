@@ -30,6 +30,7 @@ function setting_fields_setup() {
     register_setting( 'autotrack-settings-fields', 'at_home_cars' );
 
     register_setting( 'autotrack-settings-fields', 'show_btw' );
+    register_setting( 'autotrack-settings-fields', 'taxable' );
 //    Ocasions sort by
     register_setting( 'autotrack-settings-fields', 'at_sort_by' );
 //    Ascending/Descending ()
@@ -103,6 +104,7 @@ function insert_data_settings(){
     add_option( 'at_button_color', '#f7a404' );
     add_option( 'at_addres_info', 'from_text_area' );
     add_option( 'show_btw', '0' );
+    add_option( 'taxable', '0' );
 //    home cars
     add_option( 'at_home_cars', 'at_newest_cars' );
     add_option( 'at_home_cars', 'at_newest_cars' );

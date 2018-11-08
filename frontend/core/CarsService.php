@@ -197,6 +197,17 @@ class CarsService
         return $results;
     }
 
+    function getBtwMargeAttr()
+    {
+        global $wpdb;
+        $options = [];
+        $table = "wp_at_attributes";
+        $query = "SELECT * FROM " . $table . " WHERE type='marge' ORDER BY attr_order ASC";
+        $results = $wpdb->get_results($query, OBJECT);
+
+        return $results;
+    }
+
 
 
 
@@ -264,8 +275,6 @@ class CarsService
 
     }
 
-  
-
     // Here we get correct slug to show car detail
 
     function get_car_slug($occasion)
@@ -277,7 +286,6 @@ class CarsService
         $slug = str_replace("|","-", $slug);
         $slug = str_replace("/","-", $slug);
         $slug = str_replace('"',"", $slug);
-
 
         return $slug;
     }

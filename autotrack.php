@@ -32,11 +32,11 @@ function autotrack_admin_menu() {
         'instellingen'
     );
     add_submenu_page(
-        'instellingen',   // (*) Shared slug
+        'instellingen',     // (*) Shared slug
         'API attributen',   // Subpage Title
-        'Attributen',             // Submenu Label
+        'Attributen',      // Submenu Label
         'manage_options',
-        'attributen',   // (*) Shared slug
+        'attributen',       // (*) Shared slug
         'attributen'
     );
 
@@ -59,7 +59,7 @@ function load_custom_wp_admin_style($hook) {
 
     wp_enqueue_style( 'autotrack_admin_css', plugins_url('admin/css/style.css', __FILE__) );
 
-    if(isset($_GET['page']) && $_GET['page'] == 'attributen' || $_GET['page'] == 'instellingen'){
+    if(isset($_GET['page']) && ($_GET['page'] == 'attributen' || $_GET['page'] == 'instellingen')){
         wp_enqueue_style( 'autotrack_admin_bootstrap', plugins_url('admin/css/bootstrap.css', __FILE__) );
     }
 

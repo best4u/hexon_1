@@ -4,7 +4,7 @@
         <?php do_settings_sections( 'autotrack-settings-fields' ); ?>
         <div class="fieldGroup">
             <div class="fieldGroupName">Informatie</div>
-            <div class="row">
+       <!--      <div class="row">
                 <div class="col-sm-12">
                     <a href="#" class="showUserPassFields">Klik hier om de gebruikersnaam en / of wachtwoord aan te passen.</a>
                 </div>
@@ -17,7 +17,7 @@
                     <input class="form-control passwprdApi" autocomplete="off" style="display: none" type="text" name="at_password" value="" />
                 </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="row">
                 <div class="col-sm-3">
                     <label for="at_dealer_id">Dealer ID: <br>(Geef meerdere IDs in door te scheiden met een komma.)</label>
@@ -30,7 +30,7 @@
                     <label for="at_url_page_adverts">URL naar pagina occasions:</label>
                     <input class="form-control" type="text" name="at_url_page_adverts" value="<?php echo esc_attr( get_option('at_url_page_adverts') ); ?>" />
                 </div>
-                <div class="col-sm-3">
+         <!--        <div class="col-sm-3">
                     <?php $period = get_option('at_period_after_sell'); ?>
                     <label for="at_period_after_sell">Aantal dagen verkochte tonen (0 - 30):</label>
                     <select class="form-control" type="text" name="at_period_after_sell" value="<?php echo esc_attr( get_option('at_period_after_sell') ); ?>" >
@@ -40,7 +40,7 @@
                         <option value="14" <?php echo $period == 14 ? 'selected' : ''?>>14</option>
                         <option value="30" <?php echo $period == 30 ? 'selected' : ''?>>30</option>
                     </select>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -82,8 +82,7 @@
                     <input class="form-control" type="color" name="at_price_color" value="<?php echo esc_attr( get_option('at_price_color') ); ?>"/>
                 </div>
 
-                
-
+    
             </div>
             <br>
             <div class="row">
@@ -103,6 +102,29 @@
                 <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="show_btw" value="0" <?php echo $show_btw == '0' ? 'checked="checked"' : '' ?>> Nee.
+                    </label>
+                </div>
+            
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="show_btw">Marge:</label>
+                </div>
+            </div>
+
+            <div class="row">
+     
+                    <?php $taxable = get_option('taxable'); ?>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="taxable" value="1" <?php echo $taxable == '1' ? 'checked="checked"' : '' ?>> Ja.
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="taxable" value="0" <?php echo $taxable == '0' ? 'checked="checked"' : '' ?>> Nee.
                     </label>
                 </div>
             

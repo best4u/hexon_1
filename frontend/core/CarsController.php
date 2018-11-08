@@ -9,6 +9,7 @@ require_once (plugin_dir_path(__FILE__)."CarsService.php");
 require_once (plugin_dir_path(__FILE__)."FilterService.php");
 
 
+
 // HEre we add all meta values what we need
     function addGraph(){
         $url_param = $_SERVER['REQUEST_URI'];
@@ -65,7 +66,9 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
         $carId = $carsService->getUrlParam(3);
         $car = $carsService->getCarDetails($carId);
 
-        if ($carId && $carId != "" && $car->status != 'error') {
+       
+
+        if ($carId && $carId != "") {
             $template = get_option("at_details_view_mode");
 
       
@@ -150,8 +153,6 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
             $at_number_of_occasions_on_home = 10;
         }
 
-
-
         $filter = '&limit='.$at_number_of_occasions_on_home;
 
         if($settings == "at_expensive_cars"){
@@ -182,7 +183,7 @@ require_once (plugin_dir_path(__FILE__)."FilterService.php");
         echo '<span class="urlAjaxFilter" style="display: none">'.plugins_url('core/aside_filter_functions.php',dirname(__FILE__)).'</span>';
     }
 
-    // This function generate home filter - this unction is used by shortcode [home_filter]
+    // This function generate home filter - this function is used by shortcode [home_filter]
 
     function get_home_filter(){
         $filterService = new FilterService();

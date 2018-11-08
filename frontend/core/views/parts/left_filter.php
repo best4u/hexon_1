@@ -44,11 +44,6 @@
             <span class="comLeftTitle">tot: </span> <span class="commInputs"><input type="text" name="priceTo" class="priceTo form-control"></span>
         </div>
 
-
-
-
-
-
         <p>
             <label for="a">Bouwjaar</label>
         </p>
@@ -63,10 +58,6 @@
             <span class="comLeftTitle">van: </span> <span class="commInputs"><input type="text" name="yearsFrom" class="yearsFrom "></span>
             <span class="comLeftTitle"> tot: </span> <span class="commInputs"><input type="text" name="yearsTo" class="yearsTo"></span>
         </div>
-
-
-
-
 
         <p>
             <label for="b">Brandstof</label>

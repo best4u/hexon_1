@@ -42,6 +42,9 @@ function insert_data_attr()
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Model','5', '0', '0', '1', '1', 'model->title','')",
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Kenteken','5', '0', '0', '1', '1', 'licence_plate', '')",
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Prijs','5', '0', '0', '0', '1', 'advertise->total_price', '')",
+
+         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'BTW/marge','5', '0', '0', '0', '0','marge','')",
+        
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Uitvoering','5', '0', '0', '0', '1', 'advertise->title', '')",
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Carrosserievorm','5', '0', '0', '1', '1', 'body_style->title','')",
         "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('algemeen', 'Transmissie','1', '1', '1', '1', '1', 'transmission->title','')",
@@ -107,6 +110,9 @@ function insert_data_attr()
          "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('onderstel', 'Aandrijving','5', '0', '0', '0', '1','chassis->drive','')",
         
          "INSERT INTO `wp_at_attributes` (category, attribute, attr_order, home_page, overview, summary_detail, details_total, type, measurement) VALUES ('onderstel', 'Remmen achter','5', '0', '0', '0', '1','chassis->back_brakes','')",
+
+
+        
 
   
 

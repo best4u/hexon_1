@@ -25,9 +25,7 @@ $price_color = get_option("at_price_color");
         <div class="centerDiv">
             <div class="leftContent_at" id="printContent">
 
-                <?php
-                    if($car){
-                            ?>
+                <?php if($car): ?>
                             <div class="detailPage">
                     <h1 class="carTitleTop header_color">
                          <?=$car->data->advertise->title?>
@@ -46,9 +44,7 @@ $price_color = get_option("at_price_color");
                         <div class="leftSlideBlock">
                             <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true" data-width="452" data-height="301">
                                  <?php if ($car->data->images) : ?>
-                                      
                                         <?php foreach ($car->data->images as $key => $image) : ?>
-                                        
                                             <a href="<?=$image->url?>">
                                                 <img src="<?=$image->thumbs->{'320_'}?>">
                                             </a>
@@ -69,15 +65,20 @@ $price_color = get_option("at_price_color");
                                         Prijs op aanvraag
                                     <?php else: ?>
                                          <?php echo $car->data->advertise->total_price; ?>
-                                         <?php if(get_option('show_btw') == '1'): ?>
+                                         
                                             <span class="btw_val">
-                                                <?php if($car->data->advertise->incl_vat == '1'): ?>
-                                                    ( Inc. Btw )
-                                                <?php else: ?> 
-                                                    ( Ex. Btw )
-                                                <?php endif; ?>  
+                                                <?php if(get_option('show_btw') == '1'): ?>
+                                                    <?php if($car->data->advertise->incl_vat == 'Ja'): ?>
+                                                        ( Inc. Btw )
+                                                    <?php else: ?> 
+                                                        ( Ex. Btw )
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                                <?php if(get_option('taxable') == '1' && $car->data->advertise->taxable == 'Nee'): ?>
+                                                    ( Marge )
+                                                <?php endif; ?>
                                             </span>
-                                        <?php endif; ?>  
+                                       
                                          <?php endif; ?>
                                 </div>
                                 <div class="subprice">
@@ -91,7 +92,11 @@ $price_color = get_option("at_price_color");
                                     <?php endif; ?>
 
                                     <?php if ($car->data->guarantees->guarantee_nap  && $car->data->guarantees->guarantee_nap == 'Ja'): ?>
-                                        <img src="<?php echo plugins_url("img/NAP_Logo.jpg",__FILE__) ?>" alt="">
+                                        <img src="<?php echo plugins_url("img/NAP_Logo.jpg", __FILE__) ?>" alt="">
+                                    <?php endif; ?>
+
+                                    <?php if ($car->data->guarantees->guarantee_bovag  && $car->data->guarantees->guarantee_bovag == 'Ja'): ?>
+                                        <img src="<?php echo plugins_url("img/Logo-BOVAG-Garantie.jpg", __FILE__) ?>" alt="">
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -134,6 +139,11 @@ $price_color = get_option("at_price_color");
                             <li>
                                 <a href="#tab2">Extra gegevens</a>
                             </li>
+                            <?php if(count($car->data->videos) > 0): ?>
+                                <li>
+                                <a href="#video">Video</a>
+                            </li>
+                            <?php endif; ?>
                             <?php if(count($car->data->guarantees->items) > 0): ?>
                                 <li>
                                     <a href="#tab5">Garanties</a>
@@ -153,6 +163,23 @@ $price_color = get_option("at_price_color");
                                     <div class="titleOptieAcc commTitleBlue">Algemeen</div>
 
                                       <?php foreach($carsService->getDetailsTotalAttr('algemeen') as $attr): ?>
+                                            <?php if($attr->type == 'marge'): ?>
+
+                                            <span class="optionsWrap">
+                                                <span class="leftDescSpan"><?=$attr->attribute?> :</span>
+                                                <span class="rightDescSpan">
+                                                   
+                                                <?php if(get_option('taxable') == '1'  && $car->data->advertise->taxable == 'Ja'): ?>
+                                                     BTW verrekenbaar
+                                                <?php else: ?>
+                                                    BTW niet verrekenbaar (margeregeling)
+                                                <?php endif; ?>
+ 
+                                                </span>
+                                            </span>  
+
+                                            <?php else: ?>
+
                                             <?php $value = '<?php echo @$car->data->'.$attr->type.'?>';?>
                                             <?php $compare = '<?php return @$car->data->'.$attr->type.'?>';?>
                                               
@@ -167,7 +194,9 @@ $price_color = get_option("at_price_color");
                                                 <?php endif; ?>
  
                                                 </span>
-                                            </span>    
+                                            </span>  
+
+                                            <?php endif; ?>   
 
                                         <?php endforeach; ?> 
 
@@ -190,11 +219,11 @@ $price_color = get_option("at_price_color");
 
                             <div id="tab2" class="tab">
                                 <div class="optionsAccesories">
-
-                                     
+                            <?php if((count($car->data->options) > 0 && isset($car->data->options->lightning) &&  count($car->data->options->lightning) > 0) || (count($car->data->options) > 0 && isset($car->data->options->exterior) && count($car->data->options->exterior) > 0) || (count($car->data->options) > 0 && isset($car->data->options->safety_technology) && count($car->data->options->safety_technology) > 0) || (count($car->data->options) > 0 && isset($car->data->options->audio_telephony) &&  count($car->data->options->audio_telephony) > 0) || (count($car->data->options) > 0 && isset($car->data->options->interior_comfort)  && count($car->data->options->interior_comfort) > 0)): ?>
                                 <h3 class="optAccTitle commTitle26">    
                                     Opties en Accessoires
                                 </h3>
+                            <?php endif; ?>
 
                                 <?php //endif; # ???
                                 ?>
@@ -270,7 +299,7 @@ $price_color = get_option("at_price_color");
                                     ?>
                                 </div>
                                 <!-- /.descOptAcc -->
-                            
+                            <?php if(count($carsService->getDetailsTotalAttr('aflevering')) > 0): ?>
 
                                    <div class="optionWrapper">       
                                         <hr class="lineAll">
@@ -296,8 +325,10 @@ $price_color = get_option("at_price_color");
                                         <?php endforeach; ?> 
                                     </div>
 
-                                    <!-- End block -->
+                                <?php endif; ?>    
 
+                                    <!-- End block -->
+                                <?php if(count($carsService->getDetailsTotalAttr('geschiedenis')) > 0): ?>
                                     <div class="optionWrapper">       
                                         <hr class="lineAll">
                                         <div class="titleOptieAcc commTitleBlue">Geschiedenis van deze auto</div>
@@ -320,9 +351,10 @@ $price_color = get_option("at_price_color");
 
                                         <?php endforeach; ?>          
                                     </div>
+                                <?php endif; ?>
 
                                     <!-- end block -->
-
+                                <?php if(count($carsService->getDetailsTotalAttr('matenEnGewichten')) > 0): ?>
                                     <div class="optionWrapper">       
                                         <hr class="lineAll">
                                         <div class="titleOptieAcc commTitleBlue">Maten En Gewichten</div>
@@ -346,9 +378,10 @@ $price_color = get_option("at_price_color");
 
                                         <?php endforeach; ?>                 
                                     </div>
+                                <?php endif; ?>
 
-                                    <!-- End block  -->
-
+                               <!-- End block  -->
+                                <?php if(count($carsService->getDetailsTotalAttr('milieu')) > 0): ?>
                                     <div class="optionWrapper">       
                                         <hr class="lineAll">
                                         <div class="titleOptieAcc commTitleBlue">Milieu</div>
@@ -373,9 +406,10 @@ $price_color = get_option("at_price_color");
                                         <?php endforeach; ?> 
                                                         
                                     </div>
+                                <?php endif; ?>
 
                                     <!-- End block -->
-
+                                <?php if(count($carsService->getDetailsTotalAttr('motor')) > 0): ?>
                                      <div class="optionWrapper">       
                                         <hr class="lineAll">
                                         <div class="titleOptieAcc commTitleBlue">Motor</div>
@@ -401,8 +435,10 @@ $price_color = get_option("at_price_color");
                                         <?php endforeach; ?> 
                                                         
                                     </div>
-
+                                <?php endif; ?>
                                     <!-- End block -->
+
+                                 <?php if(count($carsService->getDetailsTotalAttr('prestaties')) > 0): ?>    
 
                                     <div class="optionWrapper">       
                                         <hr class="lineAll">
@@ -427,8 +463,10 @@ $price_color = get_option("at_price_color");
                                         <?php endforeach; ?>           
                                     </div>
 
-                                    <!-- End block -->
+                                <?php endif; ?>
 
+                                    <!-- End block -->
+                                <?php if(count($carsService->getDetailsTotalAttr('onderstel')) > 0): ?>
                                     <div class="optionWrapper">       
                                         <hr class="lineAll">
                                         <div class="titleOptieAcc commTitleBlue">Onderstel</div>
@@ -452,10 +490,17 @@ $price_color = get_option("at_price_color");
                                         <?php endforeach; ?>            
                                     </div>
 
+                                <?php endif; ?>    
+
                                     <!-- End block -->
 
                                 </div>
                             </div>
+                        <?php if(count($car->data->videos) > 0): ?>
+                            <div id="video" class="tab">
+                                <?php include('parts/video_part.php') ?>
+                            </div>
+                        <?php endif; ?>
 
                             <?php $at_iframe = get_option('at_iframe'); ?>
                             <?php if($at_iframe != ""): ?>
@@ -482,8 +527,8 @@ $price_color = get_option("at_price_color");
                                         <ul class="commList commDesc text_color">
 
                                         <?php foreach($car->data->guarantees->items as $item): ?>
-                                            <li><?=$item->title?></li>
-                                            <p><?=$item->text?></p>
+                                            <li><?=$item->title?> <p><?=$item->text?></p></li>
+                                            
                                         <?php endforeach; ?>
                                                       
                                         </ul>
@@ -506,204 +551,18 @@ $price_color = get_option("at_price_color");
 <!-- tabs section -->
 
 <!-- end -->
-
-                            <?php
-                    }else{
-                        ?>
-                        <p style="text-align: center;">Er is geen occasion gevonden.</p>
+            <?php else: ?>
+                    <p style="text-align: center;">Er is geen occasion gevonden.</p>
                         </div>
-                        <?php
-                    }
-                ?>
+            <?php endif; ?>
+
                 
 
 <!-- sidebar -->
-<div class="sidebarContent">
-                   <div class="concatFormText" style="display: none">Goedendag,
-Ik ben geïnteresseerd in uw
-<?php echo $car->data->advertise->title; ?>
-
-Wilt u contact met mij opnemen?
-Met vriendelijke groet,
-</div>
-
-                <?php
-                $sidebar_blocks = get_option('at_sidebar_blocks');
-                $sidebar_blocks = json_decode($sidebar_blocks);
-                $sidebar_blocks = at_object_to_array($sidebar_blocks);
-                ?>
-
-                <?php foreach ($sidebar_blocks as $block): ?>
-                    <?php if ($block['name'] == "Contactformulier" && $block['state'] == "1") : ?>
-                        <?php $at_form_short_code = get_option('at_form_short_code'); ?>
-                        <?php if (isset($_SESSION['thx_text'])) : ?>
-                            <?php
-                            $text = get_option("at_thank_you_text");
-                            echo $text;
-                            unset($_SESSION['thx_text']);
-                            ?>
-                        <?php else: ?>
-
-                            <?php # ======================== Contact form  block ========================= ?>
-                            <div class="titleSidebarDetail">Neem contact met ons op</div>
-                            <?php if ($at_form_short_code != "") : ?>
-                                <?php echo do_shortcode($at_form_short_code); ?>
-                            <?php else: ?>
-                                <?php include('contact_form.php'); ?>
-                            <?php endif; // ($at_form_short_code != "") ?>
-                            <?php #======================== End contact form block ========================= ?>
-
-                        <?php endif; // (isset($_SESSION['thx_text'])) ?>
-
-                    <?php elseif ($block['name'] == "Social Media Informatie" && $block['state'] == "1") : ?>
-
-                        <?php #======================== Social media  block ========================= ?>
-                        <hr class="lineAll">
-                        <div class="socialMedia">
-                            <p><label for="" class="bigLabel">Deel deze tweedehands auto</label></p>
-                            <?php
-                            $socials = get_option('at_social_icons');
-                            $socials = json_decode($socials);
-                            ?>
-
-                            <p>
-                                <?php
-                                $site_url = get_site_url();
-                                $page_slug = get_option("at_url_page_adverts");
-                                $url_param = $_SERVER['REQUEST_URI'];
-                                $url_param = explode('/', $url_param);
-                                $occasion_id = (int)$url_param[3];
-                                ?>
-                                <?php foreach ($socials as $item): ?>
-                                    <?php if ($item->active == "1") : ?>
-                                        <?php if ($item->name == "Facebook") : ?>
-                                            <?php # FACEBOOK ?>
-                                            <?php $fbShareUrl = $site_url . '/' . $page_slug . '/?overview=' . $occasion_id; ?>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $fbShareUrl ?>"
-                                               target="_blank">
-                                                <img src="<?php echo $item->icon_url ? $item->icon_url : plugins_url('img/fbIcon.png', __FILE__); ?>"
-                                                     alt="<?= $item->alt ?>"/>
-                                            </a>
-
-                                        <?php elseif ($item->name == "Linkedin") : ?>
-                                            <?php # LINKED-IN ?>
-                                            <?php
-                                            $inShareUrl = $site_url . '/' . $page_slug . '/?overview=' . $occasion_id .
-                                                '&title=' . $car->data->brand->title." ".$car->data->model->title." ".$car->data->advertise->title .
-                                                '&summary=&source=' . $site_url;
-                                            ?>
-                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $inShareUrl ?>"
-                                               target="_blank">
-                                                <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/linkedin.png', __FILE__); ?>"
-                                                     alt="<?= $item->alt ?>">
-                                            </a>
-
-                                        <?php elseif ($item->name == "Twitter") : ?>
-                                            <? # TWITTER ?>
-                                            <a href="https://twitter.com/home?status=<?php echo $site_url; ?>/<?= $page_slug ?>/?overview=<?= $occasion_id ?>"
-                                               target="_blank">
-                                                <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/twitter.png', __FILE__); ?>"
-                                                     alt="<?= $item->alt ?>">
-                                            </a>
-
-                                        <?php elseif ($item->name == "Google Plus") : ?>
-                                            <?php # GOOGLE PLUS ?>
-                                            <a href="https://plus.google.com/share?url=<?php echo $site_url; ?>/<?= $page_slug ?>/?overview=<?= $occasion_id ?>"
-                                               target="_blank">
-                                                <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/gplus.png', __FILE__) ?>"
-                                                     alt="<?= $item->alt ?>">
-                                            </a>
-
-                                        <?php elseif ($item->name == "Pinterest") : ?>
-                                            <?php # PINTEREST ?>
-                                            <a href="https://pinterest.com/pin/create/button/?url=<?php echo $site_url; ?>/<?= $page_slug ?>/?overview=<?= $occasion_id ?>&media=<?php echo $images[0]; ?>&description=<?php $car->mededelingen ?>"
-                                               target="_blank">
-                                                <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/pinterest.png', __FILE__); ?>"
-                                                     alt="">
-                                            </a>
-
-                                        <?php elseif ($item->name == "Mail") : ?>
-                                            <?php # MAIL ?>
-                                            <a href="#">
-                                                <img src="<?php echo ($item->icon_url) ? $item->icon_url : plugins_url('img/mail.png', __FILE__); ?>"
-                                                     alt="<?= $item->alt ?>">
-                                            </a>
-
-                                        <?php elseif ($item->name == "Instagram") : ?>
-                                            <?php # INSTAGRAM ?>
-                                            <a href="#">
-                                                <img src="<?php if ($item->icon_url) {
-                                                    echo $item->icon_url;
-                                                } else {
-                                                    echo plugins_url('img/instagram-icon.png', __FILE__);
-                                                } ?>" alt="">
-                                            </a>
-
-                                        <?php else: ?>
-                                            <a href="#">
-                                                <img src="<?php if ($item->icon_url) {
-                                                    echo $item->icon_url;
-                                                } else {
-                                                    echo plugins_url('img/gplus.png', __FILE__);
-                                                } ?>" alt="<?= $item->alt ?>">
-                                            </a>
-                                        <?php endif; ?>
-
-                                    <?php endif; // ($item->active == "1") ?>
-                                <?php endforeach; // ($socials as $item) ?>
-                            </p>
-                        </div>
-
-                        <?php #======================== End social media  block ========================= ?>
-
-                    <?php elseif ($block['name'] == "Contactinformatie" && $block['state'] == "1") : ?>
-                        <?php $get_from = get_option("at_addres_info"); ?>
-                        <?php #======================== Contact info block ========================= ?>
-                        <div class="contactInfo">
-                            <hr class="lineAll">
-                             <?php echo ($get_from == "from_text_area") ? get_option('at_contact_info') : $carsService->get_addres_info($car); ?>
-                        </div>
-                        <?php #======================== End contact info block ========================= ?>
-                    <?php elseif ($block['name'] == "Openingstijden" && $block['state'] == "1") : ?>
-                        <div class="openingstijden">
-                            <hr class="lineAll">
-                            <p><label for="" class="bigLabel">Openingstijden</label></p>
-                            <table cellspacing="1" cellpadding="1">
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td><strong></strong></td>
-                                </tr>
-                                <?php
-                                $shedule = get_option('at_shedule');
-                                $shedule_days = json_decode($shedule);
-                                ?>
-                                <?php foreach ($shedule_days as $day): ?>
-                                    <?php if (isset($day->time1)) : ?>
-                                        <tr>
-                                            <td><strong><?= $day->day ?></strong></td>
-                                            <td><?= $day->time1->from ?> – <?= $day->time1->to ?></td>
-                                        </tr>
-                                    <?php endif; ?>
-
-                                    <?php if (isset($day->time2)) : ?>
-                                        <tr>
-                                            <td><strong></strong></td>
-                                            <td><?= $day->time2->from ?> – <?= $day->time2->to ?></td>
-                                        </tr>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.openingstijden -->
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                <?php if (is_active_sidebar('at_sidebar')) dynamic_sidebar('at_sidebar'); ?>
-            </div>
-
-</div>
+    <?php include('parts/detail_sidebar.php') ?>
 <!-- end sidebar -->
+</div>
+
 </div>
 </div>
 </div>
