@@ -71,6 +71,8 @@ $price_color = get_option("at_price_color");
                                         <?php else: ?>
                                             <?php echo $car->data->advertise->total_price; ?>
 
+                                       <!--  <?php var_dump($car->data->advertise->taxable); ?> -->
+
                                                 <span class="btw_val">
                                                 <?php if(get_option('show_btw') == '1'): ?>
                                                     <?php if($car->data->advertise->incl_vat == 'Ja'): ?>
