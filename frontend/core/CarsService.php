@@ -6,45 +6,92 @@
  * Time: 5:03 PM
  */
 
-
+/**
+ * Class CarsService
+ */
 class CarsService
 {
+    public $dealerId;
 
+    public function __construct()
+    {
+        $this->dealerId = get_option("at_dealer_id");
+    }
+
+    /**
+     * @param $type
+     * @param null $filter
+     * @return array|mixed|object
+     */
     public function connection ($type, $filter = null)
     {
-        $dealerId = get_option("at_dealer_id");
-
-        $dealers = explode(',', $dealerId);
-
         $ch = curl_init();
-
-        $url = "http://auto.best4u.nl/" . $dealers[0] . "/".$type."/?dealers=".$dealerId."".$filter;
 
         curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);       
+        curl_setopt($ch, CURLOPT_URL, $this->getUrl($type, $filter));
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 
         $data = curl_exec($ch);
-        curl_close($ch);
 
         return json_decode($data);
     }
 
+    /**
+     * @param $type
+     * @param null $filter
+     * @return string
+     */
+    public function getUrl($type, $filter = null)
+    {
+        $dealers = explode(',', $this->dealerId);
+        $dealers_url = $type === 'cars' ? "/?dealers=" . $this->dealerId . "" . $filter : "?dealers=" . $this->dealerId;
 
+        return "http://auto.best4u.nl/" . $dealers[0] . "/".$type.$dealers_url;
+    }
+
+    /**
+     * @param $filter
+     * @param $count
+     * @return array
+     */
+    public function getOverviewUrls($filter, $count)
+    {
+        $filter .= $this->filterCars($count);
+
+        return [
+            "cars" => $this->getUrl('cars', $filter),
+            "brands" => $this->getUrl('brands/', null),
+            "fuels" => $this->getUrl('fuels/', null),
+            "body-styles" => $this->getUrl('body-styles/', null),
+            "transmissions" => $this->getUrl('transmissions/', null),
+            "price" => $this->getUrl('limits/price/', null),
+            "years" => $this->getUrl('limits/years/', null),
+            "mileages" => $this->getUrl('limits/mileages/', null)
+        ];
+    }
+
+
+    /**
+     * @param $filter
+     * @param $count
+     * @return array|mixed|object
+     */
     public function getAllCars($filter, $count)
     {
-       
         $filter .= $this->filterCars($count);
-       
         $allCars = $this->connection('cars', $filter);
+
         return $allCars;
     }
 
+    /**
+     * @param $count
+     * @return string
+     */
     public function filterCars($count)
     {
-
         $filter = '&limit=' . $count;
 
         if (isset($_GET['orderBy'])) {
@@ -75,7 +122,7 @@ class CarsService
         unset($getParams['orderBy']);
         unset($getParams['pagina']);
 
-        if (count($getParams) > 0) {
+        if (!empty($getParams)) {
             foreach ($getParams as $key => $value) {
                 if ($value && $value != '') {
                     $filter .= '&' . $key . '=' . $value;
@@ -87,13 +134,20 @@ class CarsService
     }
 
 
+    /**
+     * @param $carId
+     * @return array|mixed|object
+     */
     public function getCarDetails($carId)
     {
-       
        $carDetail = $this->connection('car/'.$carId, null);
        return $carDetail;
     }
 
+    /**
+     * @param $position
+     * @return bool|int
+     */
     public function getUrlParam($position)
     {
         $url_param = $_SERVER['REQUEST_URI'];
@@ -106,7 +160,9 @@ class CarsService
         }
     }
 
-
+    /**
+     * @return array|mixed|object
+     */
     public function getBrands()
     {
 
@@ -114,36 +170,57 @@ class CarsService
         return $brands;
     }
 
+    /**
+     * @param $brandId
+     * @return array|mixed|object
+     */
     public function getModels($brandId)
     {
          $models = $this->connection('brand/'.$brandId.'/models', null);
          return $models;
     }
 
+    /**
+     * @return array|mixed|object
+     */
     public function getFuels()
     {
         $fuels = $this->connection('fuels/', null);
         return $fuels;
     }
 
+    /**
+     * @return array|mixed|object
+     */
     public function getBodyStyles()
     {
         $fuels = $this->connection('body-styles/', null);
         return $fuels;
     }
 
+    /**
+     * @return array|mixed|object
+     */
     public function getTransmissions()
     {
         $transmissions = $this->connection('transmissions/', null);
         return $transmissions;
     }
 
+    /**
+     * @param $limit
+     * @return array|mixed|object
+     */
     public function getLimits($limit)
     {
         $limits = $this->connection('limits/'.$limit.'/', null);
         return $limits;
     }
 
+    /**
+     * @param $filter
+     * @return array|mixed|object
+     */
     public function getHomeCars($filter)
     {
         $homeCars = $this->connection('cars', $filter);
@@ -151,8 +228,10 @@ class CarsService
     }
 
 
-    // Here we get overview attributes which are checked in admin settings
-
+    /**
+     * Here we get overview attributes which are checked in admin settings
+     * @return array|null|object
+     */
     function getOverviewAttr()
     {
         global $wpdb;
@@ -164,6 +243,9 @@ class CarsService
         return $results;
     }
 
+    /**
+     * @return array|null|object
+     */
     function getSumaryDetailAttr()
     {
         global $wpdb;
@@ -175,6 +257,9 @@ class CarsService
         return $results;
     }
 
+    /**
+     * @return array|null|object
+     */
     function getHomeOverviewAttr()
     {
         global $wpdb;
@@ -186,6 +271,10 @@ class CarsService
         return $results;
     }
 
+    /**
+     * @param $category
+     * @return array|null|object
+     */
     function getDetailsTotalAttr($category)
     {
         global $wpdb;
@@ -197,6 +286,9 @@ class CarsService
         return $results;
     }
 
+    /**
+     * @return array|null|object
+     */
     function getBtwMargeAttr()
     {
         global $wpdb;
@@ -208,14 +300,11 @@ class CarsService
         return $results;
     }
 
-
-
-
-    // Old methods 
-
-
-    // Connection to wordpress DB
-
+    /**
+     * Connection to wordpress DB
+     * @param $sql
+     * @return array|string
+     */
     function db_connect_sql($sql)
     {
         $host = DB_HOST;
@@ -238,12 +327,13 @@ class CarsService
         $conn->close();
     }
 
-
-
-// Here we store all address information and make html structure
-
-    function get_addres_info($car){
-
+    /**
+     * Here we store all address information and make html structure
+     * @param $car
+     * @return string
+     */
+    function get_addres_info($car)
+    {
         $html_structure = '<p style="text-align: left;"><label class="bigLabel">Contactinformatie</label></p>';
         $html_structure .= '<p style="text-align: left;">'.$car->data->advertise->street.' '.$car->data->advertise->house_number.'</p>';
         $html_structure .= '<p style="text-align: left;">'.$car->data->advertise->postcode.' '.$car->data->advertise->place_name.'</p>';
@@ -252,8 +342,11 @@ class CarsService
         return $html_structure;
     }
 
-    // Here we have function which check if the value is date
-
+    /**
+     * Here we have function which check if the value is date
+     * @param $value
+     * @return bool
+     */
     function isDate($value)
     {
         if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$value))
@@ -263,8 +356,14 @@ class CarsService
             return false;
         }
     }
-// Here we have the function which check in the user is on overview page
-    function check_overview($show_id=null){
+
+    /**
+     * Here we have the function which check in the user is on overview page
+     * @param null $show_id
+     * @return bool
+     */
+    function check_overview($show_id=null)
+    {
         $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url_str = explode("/",$url);
         if($show_id == null){
@@ -272,11 +371,13 @@ class CarsService
         }else{
             return $url_str[4];
         }
-
     }
 
-    // Here we get correct slug to show car detail
-
+    /**
+     * Here we get correct slug to show car detail
+     * @param $occasion
+     * @return mixed|string
+     */
     function get_car_slug($occasion)
     {
 
@@ -289,8 +390,5 @@ class CarsService
 
         return $slug;
     }
-
-
 }
-
 
