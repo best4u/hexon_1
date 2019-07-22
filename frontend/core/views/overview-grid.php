@@ -14,9 +14,9 @@ $price_color = get_option("at_price_color");
                 <div class="leftContent_at">
                     <div class="titleAndSelect">
                         <div class="titleLeftPart">
-
+                           
                             <h1>Occasions <span class="count"><?= $cars->total ?></span></h1>
-
+                        
                             <span class="urlAjaxFilter" style="display: none"><?php echo plugins_url('aside_filter_functions.php',dirname(__FILE__)); ?></span>
                         </div>
 
@@ -24,7 +24,7 @@ $price_color = get_option("at_price_color");
                            <?php include_once('parts/order_by_select.php'); ?>
                         </div>
                     </div>
-                    <div class="carsContentLeft">
+                    <div class="carsContentLeft fghdgfhdgfhdgfh">
                         <?php the_content(); ?>
 
                         <?php if ($cars->data): ?>
@@ -44,28 +44,28 @@ $price_color = get_option("at_price_color");
                                                         Prijs op aanvraag
                                                     <?php else: ?>
                                                     <span class="priceCarItem price_color">
-                                                        <?php echo $car->advertise->total_price; ?>
+                                                        <?php echo $car->advertise->total_price; ?>                                      
                                                     </span>
-
-
+                                                         
+                                                   
                                                         <span class="btw_val">
                                                             <?php if(get_option('show_btw') == '1'): ?>
                                                                 <?php if($car->advertise->incl_vat == 'Ja'): ?>
                                                                     ( Inc. Btw )
-                                                                <?php else: ?>
+                                                                <?php else: ?> 
                                                                     (  Ex. Btw )
-                                                                <?php endif; ?>
+                                                                <?php endif; ?>  
                                                             <?php endif; ?>
 
                                                             <?php if(get_option('taxable') == '1' && $car->advertise->taxable == 'Nee'): ?>
                                                                 ( Marge )
                                                             <?php endif; ?>
                                                         </span>
-
+                                                    
                                                     <?php endif; ?>
                                                     <span class="logoCarItem">
                                                         <?php include('parts/guarantee_logos.php') ?>
-                                                    </span>
+                                                    </span> 
                                                 </div>
 
                                                 <div class="carOverallDetails">

@@ -9,9 +9,9 @@
              <?php else: ?>
                  BTW niet verrekenbaar (margeregeling)
              <?php endif; ?>
-
+                
             </span>
-        </p>
+        </p> 
     <?php else: ?>
         <?php $value = '<?php echo @$car->'.$attr->type.'?>';?>
         <?php $compare = '<?php return @$car->'.$attr->type.'?>';?>
@@ -24,9 +24,9 @@
              <?php else: ?>
                 -
             <?php endif; ?>
-
+            
         </span>
-    </p>
-<?php endif; ?>
+    </p> 
+<?php endif; ?>   
 
-<?php endforeach; ?>
+<?php endforeach; ?> 
