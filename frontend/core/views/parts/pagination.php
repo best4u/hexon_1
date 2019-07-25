@@ -42,7 +42,7 @@
                         }elseif(!isset($_GET['pagina'])){
                             ?>
                             <li><a href="?pagina=<?php echo '2'; ?>">...</a></li>
-                            <li class="nextPage"><a href="<?php echo $filterService->get_query_filter_pagination(2); ?>"">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
+                            <li class="nextPage"><a href="<?php echo $filterService->get_query_filter_pagination(2); ?>">Volgende <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span></a></li>
                             <?php
                         }
                     }

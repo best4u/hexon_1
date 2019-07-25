@@ -1,119 +1,111 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
-/*VARIABLES*/
-/*END*/
-/*********MIXINS START*******/
-/***buttons mixins***/
-/*END*/
 select.selectCustom {
-  box-sizing: border-box;
-  background: #000 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAMAAADJ2y/JAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTIyRTQzNTBEQkQzMTFFNjgyNTVEN0NENTdCM0I5Q0UiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTIyRTQzNTFEQkQzMTFFNjgyNTVEN0NENTdCM0I5Q0UiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMjJFNDM0RURCRDMxMUU2ODI1NUQ3Q0Q1N0IzQjlDRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMjJFNDM0RkRCRDMxMUU2ODI1NUQ3Q0Q1N0IzQjlDRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Po+yRiwAAAAwUExURa21vcPIzsPJz9ve4trd4bK6wcvQ1bG5wLO6ws7T2Pb3+LK5wePl6Pf3+OXn6v///1p2kv8AAAAQdFJOU////////////////////wDgI10ZAAAALklEQVR42iTGxwEAIAzDQNE73n9bCPghH4O3QviIyNl7oZ6grgtN2DIot5sjwAAVAgE85LaeSAAAAABJRU5ErkJggg==");
-  background-position: 95% 50%;
-  background-repeat: no-repeat;
-  width: 100%;
-  line-height: 20px;
-  color: #868e96;
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid #DEE2E6;
-  padding: 0 20px;
-  font-size: 15px;
-  height: 48px;
-  line-height: 48px;
+    box-sizing: border-box;
+    background: #000 url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAMAAADJ2y/JAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTIyRTQzNTBEQkQzMTFFNjgyNTVEN0NENTdCM0I5Q0UiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTIyRTQzNTFEQkQzMTFFNjgyNTVEN0NENTdCM0I5Q0UiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMjJFNDM0RURCRDMxMUU2ODI1NUQ3Q0Q1N0IzQjlDRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMjJFNDM0RkRCRDMxMUU2ODI1NUQ3Q0Q1N0IzQjlDRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Po+yRiwAAAAwUExURa21vcPIzsPJz9ve4trd4bK6wcvQ1bG5wLO6ws7T2Pb3+LK5wePl6Pf3+OXn6v///1p2kv8AAAAQdFJOU////////////////////wDgI10ZAAAALklEQVR42iTGxwEAIAzDQNE73n9bCPghH4O3QviIyNl7oZ6grgtN2DIot5sjwAAVAgE85LaeSAAAAABJRU5ErkJggg==");
+    background-position: 95% 50%;
+    background-repeat: no-repeat;
+    width: 100%;
+    color: #868e96;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #DEE2E6;
+    padding: 0 20px;
+    font-size: 15px;
+    height: 48px;
+    line-height: 48px;
 }
 
 select.selectCustom option {
-  background: transparent;
+    background: transparent;
 }
 
-/***************END************/
-/*----- Tab Links -----*/
+
 .tab-links:after {
-  display: block;
-  clear: both;
-  content: '';
+    display: block;
+    clear: both;
+    content: '';
 }
 
 ul.tab-links {
-  margin: 0;
-  list-style-type: none;
+    margin: 0;
+    list-style-type: none;
 }
 
 .tab-links li {
-  margin: 0px;
-  float: left;
-  list-style: none;
-  padding-right: 20px;
-  height: 40px;
-  line-height: 40px;
-  border-bottom: 1px solid #F2F3F5;
+    margin: 0px;
+    float: left;
+    list-style: none;
+    padding-right: 20px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #F2F3F5;
 }
 
 .tab-links a {
-  display: inline-block;
-  border-radius: 3px 3px 0px 0px;
-  background: transparent;
-  font-size: 15px;
-  font-weight: 400;
-  color: #868e96;
-  transition: all linear 0.15s;
-  padding-bottom: 5px;
-  height: 40px;
+    display: inline-block;
+    border-radius: 3px 3px 0px 0px;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 400;
+    color: #868e96;
+    transition: all linear 0.15s;
+    padding-bottom: 5px;
+    height: 40px;
 }
 
 .tab-links .active a {
-  border-bottom: 3px solid #5C7CFA;
+    border-bottom: 3px solid #5C7CFA;
 }
 
 .tab-links a:hover {
-  background: transparent;
-  text-decoration: none;
-  color: #868e96;
-  border-bottom: 3px solid #CED4DA;
+    background: transparent;
+    text-decoration: none;
+    color: #868e96;
+    border-bottom: 3px solid #CED4DA;
 }
 
 li.active a, li.active a:hover {
-  background: #fff;
-  color: #4c4c4c;
+    background: #fff;
+    color: #4c4c4c;
 }
 
 /*----- Content of Tabs -----*/
 .tab-content {
-  padding-top: 20px;
-  background: #fff;
+    padding-top: 20px;
+    background: #fff;
 }
 
 .tab {
-  display: none;
+    display: none;
 }
 
 .tab.active {
-  display: block;
+    display: block;
 }
 
 /******************/
 /*********GLOBAL STYLES*******/
 body {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
 }
 
 a {
-  text-decoration: none;
-  color: #495057;
+    text-decoration: none;
+    color: #495057;
 }
+
 /*
 h1, h2, h3, h4, h5, h6 {
-  /*font-family: "Roboto Condensed", sans-serif;*/
   font-weight: 400;
   font-style: normal;
   margin-top: 0 !important;
@@ -142,1223 +134,1166 @@ span.optionsWrap {
     width: 100%;
     overflow: hidden;
 }
+
 .centerDiv {
-  max-width: 1200px;
-  width: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: 1200px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .centerDiv:after {
-  display: table;
-  content: '';
-  width: 100%;
-  clear: both;
+    display: table;
+    content: '';
+    width: 100%;
+    clear: both;
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  cursor: pointer;
-}
-
-p {
- /* margin: 0 !important;
-  padding-bottom: 0 !important;*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    cursor: pointer;
 }
 
 ul {
-  margin: 0;
-  list-style-type: none;
-  padding: 0;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .optionel {
-  color: #adb5bd;
+    color: #adb5bd;
 }
 
 .button_at1 {
-  color: #fff;
-  background-color: #5C7CFA;
-  border-radius: 4px;
-  font-size: 15px;
-  transition: all 0.3s;
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  text-transform: uppercase;
-  padding: 0 40px;
-  height: 40px;
-  line-height: 40px;
-  text-decoration: none;
-  /*/*font-family: "Roboto Condensed", sans-serif;*/*/
-  font-weight: 400;
-  font-style: normal;
-  font-weight: 700;
-  margin-top: 10px;
-  box-shadow: 0px 3px 19px -2px #eeeeee;
-  display: inline-block;
-  vertical-align: top;
+    color: #fff;
+    background-color: #5C7CFA;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: all 0.3s;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    margin-top: 10px;
+    box-shadow: 0 3px 19px -2px #eeeeee;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .button_at1:hover {
-  background-color: #516CDB;
+    background-color: #516CDB;
 }
 
 .button_atAlt {
-  color: #fff;
-  background-color: #495057;
-  border-radius: 4px;
-  font-size: 15px;
-  transition: all 0.3s;
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  text-transform: uppercase;
-  padding: 0 40px;
-  height: 40px;
-  line-height: 40px;
-  text-decoration: none;
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-weight: 700;
-  margin-top: 10px;
-  box-shadow: 0px 3px 19px -2px #eeeeee;
-  display: inline-block;
+    color: #fff;
+    background-color: #495057;
+    border-radius: 4px;
+    font-size: 15px;
+    transition: all 0.3s;
+    font-style: normal;
+    text-transform: uppercase;
+    padding: 0 40px;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 10px;
+    box-shadow: 0 3px 19px -2px #eeeeee;
+    display: inline-block;
 }
 
 .button_atAlt:hover {
-  background-color: #3C4147;
+    background-color: #3C4147;
 }
 
 label {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  color: #495057;
-  font-size: 15px;
-  font-weight: 600;
+    font-weight: 400;
+    font-style: normal;
+    color: #495057;
+    font-size: 15px;
 }
 
 .lineAll {
-  width: 100%;
-  height: 1px;
-  border: 0;
-  background-color: #F2F3F5;
-  overflow: hidden;
-  margin-top: 15px;
-  margin-bottom: 10px;
+    width: 100%;
+    height: 1px;
+    border: 0;
+    background-color: #F2F3F5;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 textarea {
-  width: 100%;
-  border: 1px solid #DEE2E6;
-  border-radius: 4px !important;
-  padding: 10px 20px !important;
+    width: 100%;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
 }
 
 input, textarea {
-  color: #343a40;
-  font-size: 15px;
+    color: #343a40;
+    font-size: 15px;
 }
 
-/*END*/
-/****HEADER STYLES****/
 .headerMain {
-  height: 366px;
-  width: 100%;
-  overflow: hidden;
+    height: 366px;
+    width: 100%;
+    overflow: hidden;
 }
 
-/*END*/
-/*breadcrumps styles*/
 .breadCrumbWrapp .breadContent {
-  color: #495057;
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  border-bottom: 1px solid #DEE2E6;
-  padding: 10px 0;
-  font-size: 15px;
-  line-height: 24px;
+    color: #495057;
+    font-weight: 400;
+    font-style: normal;
+    border-bottom: 1px solid #DEE2E6;
+    padding: 10px 0;
+    font-size: 15px;
+    line-height: 24px;
 }
 
 .breadCrumbWrapp .breadContent a {
-  color: #495057;
+    color: #495057;
 }
 
 .breadCrumbWrapp .breadContent .arrowBread {
-  color: #BFC5CB;
-  padding-left: 15px;
+    color: #BFC5CB;
+    padding-left: 15px;
 }
 
 .breadCrumbWrapp .breadContent .activeBread {
-  color: #5c7cfa;
-  padding-left: 15px;
+    color: #5c7cfa;
+    padding-left: 15px;
 }
 
 .breadCrumbWrapp .breadContent .rightBCSpan {
-  float: right;
+    float: right;
 }
 
 /*END*/
 .leftAndRightWrapp {
-  margin-top: 20px;
-  margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .singleItemWrapp .detailPage .carTitleTop {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 24px!important;
-  line-height: 32px;
-  font-weight: 700;
-/*  color: #3b5bdb;*/
-  padding-bottom: 20px;
-  display: inline-block;
+    font-style: normal;
+    font-size: 24px !important;
+    line-height: 32px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    display: inline-block;
 }
 
-.b4uPrintButton{
+.b4uPrintButton {
     display: inline-block;
     float: right;
     font-size: 32px;
     margin-top: 8px;
 }
-.b4uPrintButton:hover{
+
+.b4uPrintButton:hover {
     cursor: pointer;
 }
 
-.autotrack_contact_form textarea{
-   /* height: 169px;*/
-}
-
-.autotrack_contact_form input{
+.autotrack_contact_form input {
     width: 100%;
 }
 
-..detailPage .commList {
-    margin-left:0!important;
+.detailPage .commList {
+    margin-left: 0 !important;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock {
-  width: 50%;
-  float: left;
-  margin-right: 5%;
+    width: 50%;
+    float: left;
+    margin-right: 5%;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock .fotorama {
-  width: 100%;
+    width: 100%;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
-  width: 45%;
-  float: left;
+    width: 45%;
+    float: left;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo {
-  margin-bottom: 20px;
-  width: 100%;
-  overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .priceCarItem {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 32px;
-  font-weight: 700;
-  color: #495057;
-  width: 70%;
-  float: left;
-  margin-right: 5%;
+    font-style: normal;
+    font-size: 32px;
+    font-weight: 700;
+    color: #495057;
+    width: 70%;
+    float: left;
+    margin-right: 5%;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .logoCarItem {
-  width: 25%;
-  float: right;
-  padding-top: 5px;
+    width: 25%;
+    float: right;
+    padding-top: 5px;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo .logoCarItem img {
-  width: 100%;
-      width: 82px;
-    
+    width: 82px;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 15px;
-  line-height: 25px;
-  color: #343a40;
+    /*font-family: "Roboto", sans-serif;*/
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 25px;
+    color: #343a40;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc {
-  width: 100%;
-  margin-right: 0;
-  float: left;
-  font-weight: 500;
+    width: 100%;
+    margin-right: 0;
+    float: left;
+    font-weight: 500;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc p {
-  width: 100%;
-  overflow: hidden;
-  display: block;
+    width: 100%;
+    overflow: hidden;
+    display: block;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc .leftType {
-  width: 45%;
-  margin-right: 5%;
-  float: left;
-  font-weight: 600;
+    width: 45%;
+    margin-right: 5%;
+    float: left;
+    font-weight: 600;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .leftDetailDesc .rightOption {
-  width: 50%;
-  float: left;
+    width: 50%;
+    float: left;
 }
 
 .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .detailDesc .rightDetailDesc {
-  width: 50%;
-  float: left;
-  font-weight: 300;
+    width: 50%;
+    float: left;
+    font-weight: 300;
 }
 
 .singleItemWrapp .detailPage .commTitleBlue {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 700;
-  color: #5c7cfa;
-}
-
-.singleItemWrapp .detailPage .commDesc {
-  /*font-family: "Roboto", sans-serif;*/
-  /*font-weight: 400;
-  font-style: normal;
-  font-size: 15px;
-  line-height: 23px;
-  color: #343a40;*/
+    font-style: normal;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #5c7cfa;
 }
 
 .singleItemWrapp .detailPage ul.commList {
-  list-style-type: square;
-  margin-bottom: 20px;
+    list-style-type: square;
+    margin-bottom: 20px;
 }
 
 .singleItemWrapp .detailPage .omschriving .titleOms {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 26px;
-  line-height: 36px;
-/*  color: #343a40;*/
-  font-weight: 700;
-  margin-bottom: 5px;
+    font-style: normal;
+    font-size: 26px;
+    line-height: 36px;
+    /*  color: #343a40;*/
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 .singleItemWrapp .detailPage .moreOptions {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .singleItemWrapp .detailPage .moreOptions .descmoreOptions {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 15px;
-  line-height: 23px;
-  color: #343a40;
+    /*font-family: "Roboto", sans-serif;*/
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 23px;
+    color: #343a40;
 }
 
 .singleItemWrapp .detailPage .moreOptions .descmoreOptions p {
-  margin-bottom: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .singleItemWrapp .detailPage .optionsAccesories .descOptAcc .optieAccItem {
-  float: left;
- 
+    float: left;
+
 }
 
 .singleItemWrapp .detailPage .optionsAccesories .descOptAcc .optieAccItem:nth-child(3n) {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific {
-  width: 100%;
+    width: 100%;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific p {
-  width: 100%;
-  overflow: hidden;
-  display: block;
+    width: 100%;
+    overflow: hidden;
+    display: block;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific .leftDescSpan {
-  width: 50%;
-  float: left;
-  margin-right: 5%;
+    width: 50%;
+    float: left;
+    margin-right: 5%;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commLeftSpecific .rightDescSpan {
-  width: 45%;
-  float: left;
+    width: 45%;
+    float: left;
 }
 
 .singleItemWrapp .detailPage .specificatiesBlock .descSpecificaties .descAlgemen .commRightSpecific {
-  width: 75%;
-  float: left;
+    width: 75%;
+    float: left;
 }
 
 .singleItemWrapp .detailPage .garantiePart {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .singleItemWrapp .detailPage .contactFormBottom .descFormBott .contactSubDesc {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .singleItemWrapp .detailPage .commForm .bottomForm input {
-  border: 1px solid #DEE2E6;
-  border-radius: 4px;
-  padding: 0 20px;
-  height: 40px;
-  line-height: 40px;
-  width: 260px;
-  margin-bottom: 10px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 260px;
+    margin-bottom: 10px;
 }
 
 .singleItemWrapp .detailPage .commForm .bottomForm textarea {
-  border: 1px solid #DEE2E6;
-  border-radius: 4px;
-  padding: 10px 20px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    padding: 10px 20px;
 }
 
 .singleItemWrapp .detailPage .commForm .inputRel:after {
-  content: 'km';
-  position: absolute;
-  top: 0;
-  right: 0;
-  line-height: 40px;
-  background-color: #F8F9FA;
-  border-left: 1px solid #DEE2E6;
+    content: 'km';
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 40px;
+    background-color: #F8F9FA;
+    border-left: 1px solid #DEE2E6;
 }
 
 /*com title  styles*/
 .commTitle26, .descOms h2 {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-    font-size: 20px!important;
+    font-style: normal;
+    font-size: 20px !important;
     line-height: 23px;
-    /* color: #343a40; */
-    font-weight: 700!important;
+    font-weight: 700 !important;
     margin-bottom: 0;
-    margin-top: 15px!important;
+    margin-top: 15px !important;
 }
 
 ul.commList {
-  list-style-type: square;
-  margin-bottom: 20px;
+    list-style-type: square;
+    margin-bottom: 20px;
 }
 
 .commTitleBlue {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 700;
-  color: #5c7cfa;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #5c7cfa;
 }
 
-/*end*/
 .leftContent_at {
-  width: 70.13793%;
-  display: block;
-  float: left;
-  /***LIST TYPE***/
-  /***END***/
-  /***GRID TYPE****/
-  /***END***/
+    width: 70.13793%;
+    display: block;
+    float: left;
 }
 
 .leftContent_at .titleAndSelect {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .leftContent_at .titleAndSelect .titleLeftPart {
-  width: 65%;
-  float: left;
-  margin-right: 5%;
+    width: 65%;
+    float: left;
+    margin-right: 5%;
 }
 
 .leftContent_at .titleAndSelect .selectorB4uAuto {
-  width: 30%;
-  float: right;
-  text-align: right;
+    width: 30%;
+    float: right;
+    text-align: right;
 }
 
 .leftContent_at .listType .caritemB4uList {
-  width: 100%;
-  overflow: hidden;
-  width: 100%;
-  padding-bottom: 30px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid #F1F3F5;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #F1F3F5;
 }
 
-
-
-
-
 .leftContent_at .listType .caritemB4uList .carTxtBlock .titlecarItem {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 22px;
-  line-height: 30px;
-/*  color: #4263eb;*/
-  padding-bottom: 10px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 30px;
+    padding-bottom: 10px;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .priceCarItem {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
-  font-weight: 700;
-  color: #495057;
-  margin-bottom: 10px;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 700;
+    color: #495057;
+    margin-bottom: 10px;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails {
-  width: 65%;
-  float: left;
-  margin-right: 5%;
-  font-size: 15px;
-  line-height: 25px;
-  color: #343a40;
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
+    width: 65%;
+    float: left;
+    margin-right: 5%;
+    font-size: 15px;
+    line-height: 25px;
+    color: #343a40;
+    /*font-family: "Roboto", sans-serif;*/
+    font-weight: 400;
+    font-style: normal;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail {
-  width: 100%;
-  float: left;
-  margin-right: 0;
-  font-weight: 500;
+    width: 100%;
+    float: left;
+    margin-right: 0;
+    font-weight: 500;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .leftType {
-  width: 48%;
-  float: left;
-  margin-right: 4%;
-  font-weight: 600;
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+    font-weight: 600;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .rightOption {
-  width: 48%;
-  float: left;
+    width: 48%;
+    float: left;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails .rightPartDetail {
-  width: 45%;
-  float: left;
-  font-weight: 300;
+    width: 45%;
+    float: left;
+    font-weight: 300;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo {
-  width: 30%;
-  float: left;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+    width: 30%;
+    float: left;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .logoCarItem {
-  text-align: right;
-  width: 50%;
-  float: right;
+    text-align: right;
+    width: 50%;
+    float: right;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .logoCarItem img {
-  width: 100%;
+    width: 100%;
 }
 
 .leftContent_at .carsContentLeft {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u {
-  width: 32%;
-  float: left;
-  display: block;
-  margin-right: 2%;
-  margin-bottom: 40px;
-  min-height: 500px;
-  border-right: 1px solid #E9ECEF;
-  padding-right: 20px;
+    width: 32%;
+    float: left;
+    display: block;
+    margin-right: 2%;
+    margin-bottom: 40px;
+    min-height: 500px;
+    border-right: 1px solid #E9ECEF;
+    padding-right: 20px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
-  height: 180px;
-  width: 100%;
-  overflow: hidden;
+    height: 180px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .imgBlock .imgTable {
-  display: table;
-  width: 100%;
-  height: 100%;
+    display: table;
+    width: 100%;
+    height: 100%;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .imgBlock .imgTable .imgTableCell {
-  display: table-cell;
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .imgBlock .imgTable .imgTableCell img {
-  width: 100%;
-    max-width:100%;
-  height: auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .titlecarItem {
-  font-size: 22px;
-  line-height: 30px;
- 
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #F1F3F5;
-  min-height: 101px;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F1F3F5;
+    min-height: 101px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .priceCarItem {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
-  color: #495057;
-  font-weight: 700;
-  display: block;
-  width: 75%;
-  float: left;
+    font-style: normal;
+    font-size: 20px;
+    color: #495057;
+    font-weight: 700;
+    display: block;
+    width: 75%;
+    float: left;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .logoCarItem {
-  display: block;
-  width: 25%;
-  text-align: right;
-  float: right;
+    display: block;
+    width: 25%;
+    text-align: right;
+    float: right;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .logoCarItem img {
-  width: 100%;
-  width: 82px;
-  height: 34px;
+    width: 100%;
+    width: 82px;
+    height: 34px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  width: 100%;
-  overflow: hidden;
+    /*font-family: "Roboto", sans-serif;*/
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+    overflow: hidden;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail {
-  width: 100%;
-  float: left;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 25px;
-  color: #343a40;
+    width: 100%;
+    float: left;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 25px;
+    color: #343a40;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail p {
-  width: 100%;
-  overflow: hidden;
-  display: block;
+    width: 100%;
+    overflow: hidden;
+    display: block;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .leftType {
-  width: 45%;
-  float: left;
-  margin-right: 5%;
-  font-weight: 600;
+    width: 45%;
+    float: left;
+    margin-right: 5%;
+    font-weight: 600;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail .rightOption {
-  width: 50%;
-  float: left;
-  text-align: right;
+    width: 50%;
+    float: left;
+    text-align: right;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .rightPartDetail {
-  width: 48%;
-  margin-left: 2%;
-  float: left;
-  text-align: right;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 25px;
+    width: 48%;
+    margin-left: 2%;
+    float: left;
+    text-align: right;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 25px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem a.button {
-  display: inline-block;
+    display: inline-block;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u:nth-child(3n) {
-  margin-right: 0;
-  border-right: 0;
+    margin-right: 0;
+    border-right: 0;
 }
 
 .sidebarContent {
-  width: 22.41379%;
-  display: block;
-  float: left;
-  margin-left: 3.44828%;
+    width: 22.41379%;
+    display: block;
+    float: left;
+    margin-left: 3.44828%;
 }
 
 .sidebarContent a.button_at1 {
-  display: block;
-  text-align: center;
-  margin-bottom: 15px;
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .sidebarContent button.button_at1 {
-  display: block;
-  text-align: center;
-  margin-bottom: 15px;
-  width: 100%;
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
 .sidebarContent a.button_atAlt {
-  display: block;
-  text-align: center;
-  margin-bottom: 15px;
-  margin-top: 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 0;
 }
 
 .sidebarContent p {
-  margin-bottom: 5px !important;
+    margin-bottom: 5px !important;
 }
 
 .sidebarContent select.selectCustom {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .sidebarContent .titleSidebar {
-  padding-top: 10px;
-  margin-bottom: 34px !important;
+    padding-top: 10px;
+    margin-bottom: 34px !important;
 }
 
 .sidebarContent .titleSidebarDetail {
-  /*font-family: "Roboto Condensed", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  font-size: 24px!important;
-  line-height: 32px;
-  font-weight: 700;
-  color: #212529;
-  margin-bottom: 15px;
+    font-style: normal;
+    font-size: 24px !important;
+    line-height: 32px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 15px;
 }
 
 .sidebarContent .commSlideCont {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .sidebarContent .commSlideCont .noUi-target {
-  border: 0;
+    border: 0;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal {
-  height: 4px !important;
-  background: #DEE2E6;
+    height: 4px !important;
+    background: #DEE2E6;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-handle {
-  width: 16px;
-  height: 16px;
-  left: -7px;
-  box-shadow: none;
-/*  background: #5374F5;*/
-  border: 0;
-  top: -7px;
+    width: 16px;
+    height: 16px;
+    left: -7px;
+    box-shadow: none;
+    border: 0;
+    top: -7px;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-handle:before {
-  background: transparent;
+    background: transparent;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-handle:after {
-  background: transparent;
+    background: transparent;
 }
 
 .sidebarContent .commSlideCont .noUi-horizontal .noUi-connect {
-  background: #DEE2E6;
+    background: #DEE2E6;
 }
 
 .sidebarContent .yearsInputs, .sidebarContent .pricesInputs, .sidebarContent .kmInputs {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .sidebarContent .yearsInputs .priceIB, .sidebarContent .pricesInputs .priceIB, .sidebarContent .kmInputs .priceIB {
-  position: relative;
-  margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
 }
 
 .sidebarContent .yearsInputs .yearsIB, .sidebarContent .pricesInputs .yearsIB, .sidebarContent .kmInputs .yearsIB {
-  position: relative;
-  margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
 }
 
 .sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input, .sidebarContent .kmInputs .commInputs input {
-  width: 90px;
-  padding: 8px 10px 7px;
+    width: 90px;
+    padding: 8px 10px 7px;
 }
 
 .sidebarContent .yearsInputs .commInputs input, .sidebarContent .pricesInputs .commInputs input, .sidebarContent .kmInputs .commInputs input {
-  height: 35px;
-  line-height: 35px;
-  border: 1px solid #DEE2E6;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #DEE2E6;
 }
 
 .sidebarContent .priceP {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  margin-bottom: 15px !important;
-  color: #adb5bd;
-  font-size: 15px;
-  font-weight: 500;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 15px !important;
+    color: #adb5bd;
+    font-size: 15px;
 }
 
 .sidebarContent .priceP .priceTo {
-  float: right;
+    float: right;
 }
 
 .sidebarContent .yearsP {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  margin-bottom: 15px !important;
-  color: #adb5bd;
-  font-size: 15px;
-  font-weight: 500;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 15px !important;
+    color: #adb5bd;
+    font-size: 15px;
 }
 
 .sidebarContent .yearsP .yearsTo {
-  float: right;
+    float: right;
 }
 
 .sidebarContent .kmP {
-  /*font-family: "Roboto", sans-serif;*/
-  font-weight: 400;
-  font-style: normal;
-  margin-bottom: 15px !important;
-  color: #adb5bd;
-  font-size: 15px;
-  font-weight: 500;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 15px !important;
+    color: #adb5bd;
+    font-size: 15px;
 }
 
 .sidebarContent .kmP .kmTo {
-  float: right;
+    float: right;
 }
 
 .sidebarContent .sidebarFilters .sidebarForm input {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid #DEE2E6;
-  border-radius: 4px;
-  padding: 0 20px;
-  margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    padding: 0 20px;
+    margin-bottom: 10px;
 }
 
 .sidebarContent .sidebarFilters .button {
-  width: 100%;
+    width: 100%;
 }
 
 .sidebarContent .sidebarFilters .allCarsButton1 {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .sidebarContent #hiddenOptions {
-  display: none;
+    display: none;
 }
 
 /*social icons styles*/
 .socialIcons i {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  border-radius: 4px;
-  color: #fff;
-  display: inline-block;
-  font-size: 20px;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  transition: all 0.3s;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
 }
 
 .socialIcons i:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .socialIcons i.icon-facebook {
-  background-color: #3B5998;
+    background-color: #3B5998;
 }
 
 .socialIcons i.icon-twitter {
-  background-color: #1DA1F2;
+    background-color: #1DA1F2;
 }
 
 .socialIcons i.icon-google-plus {
-  background-color: #DD4B39;
+    background-color: #DD4B39;
 }
 
 .socialIcons i.icon-linkedin {
-  background-color: #0077B5;
+    background-color: #0077B5;
 }
 
 .socialIcons i.icon-pinterest {
-  background-color: #BD081C;
+    background-color: #BD081C;
 }
 
 .socialIcons i.icon-email {
-  background-color: #40C057;
+    background-color: #40C057;
 }
 
 /*end*/
 /*form styler check button styles*/
 .jq-checkbox {
-  border: 0;
+    border: 0;
 }
 
 .jq-checkbox.checkboxInput {
-  font-family: 'FontAwesome';
+    font-family: 'FontAwesome';
 }
 
 .jq-checkbox.checkboxInput.checked .jq-checkbox__div {
-  margin: 0;
-  width: 16px;
-  height: 16px;
-  background: #496AF0;
-  box-shadow: none;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    background: #496AF0;
+    box-shadow: none;
 }
 
 .jq-checkbox.checkboxInput.checked .jq-checkbox__div:before {
-  opacity: 1;
-  color: #fff;
-  font-size: 13px;
-  position: absolute;
-  top: -4px;
-  left: 1px;
+    opacity: 1;
+    color: #fff;
+    font-size: 13px;
+    position: absolute;
+    top: -4px;
+    left: 1px;
 }
 
 .jq-checkbox.checkboxInput .jq-checkbox__div {
-  background-color: #496AF0;
-  border: 0;
+    background-color: #496AF0;
+    border: 0;
 }
 
 .jq-checkbox.checkboxInput .jq-checkbox__div:before {
-  content: '\f00c';
-  opacity: 0;
+    content: '\f00c';
+    opacity: 0;
 }
 
 /*end*/
 .gridMode .selectorB4uAuto {
-  padding-right: 20px;
+    padding-right: 20px;
 }
 
 /***BOTTOM PAGINATION STYLES****/
 .bottomNPaginationWrapp {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .bottomNPaginationWrapp .ulPagination {
-  text-align: center;
-  position: relative;
-  margin-left: 0;
-  padding-left: 0;
+    text-align: center;
+    position: relative;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .bottomNPaginationWrapp .ulPagination li {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  background-color: transparent;
-  border: 1px solid #E9ECEF;
-  border-radius: 4px;
-  margin-right: 10px;
-  text-align: center;
-  color: #495057;
-  transition: all 0.3s;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: transparent;
+    border: 1px solid #E9ECEF;
+    border-radius: 4px;
+    margin-right: 10px;
+    text-align: center;
+    color: #495057;
+    transition: all 0.3s;
 }
 
 .bottomNPaginationWrapp .ulPagination li a {
-  display: block;
-  color: #495057;
+    display: block;
+    color: #495057;
 }
 
 .bottomNPaginationWrapp .ulPagination li:hover {
-  background-color: #4263EB;
+    background-color: #4263EB;
 }
 
 .bottomNPaginationWrapp .ulPagination li:hover a {
-  color: #fff;
+    color: #fff;
 }
 
 .bottomNPaginationWrapp .ulPagination li.activePage {
-/*  background-color: #4263EB;*/
-  color: #fff;
+    /*  background-color: #4263EB;*/
+    color: #fff;
 }
 
 .bottomNPaginationWrapp .ulPagination li.activePage a {
-  color: #fff;
+    color: #fff;
 }
 
 .bottomNPaginationWrapp .ulPagination li.prevPage {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: auto;
-  padding: 0 25px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    padding: 0 25px;
 }
 
 .bottomNPaginationWrapp .ulPagination .nextPage {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-  padding: 0 25px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    padding: 0 25px;
 }
 
 .bottomNPaginationWrapp .ulPagination li:last-child {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 /*END*/
 @media all and (max-width: 1024px) {
-/*  .overview_gridWrapp {
-    padding: 0 20px;
-  }*/
-  .leftContent_at {
-    width: 100%;
-    float: none;
-  }
-  .sidebarContent {
-    width: 100%;
-    float: none;
-    margin-left: 0;
-  }
-  .button_at1 {
-    margin-top: 0;
-  }
-  .sidebarContent a.button_at1 {
-    display: inline-block;
-  }
-  .sidebarContent a.button_atAlt {
-    display: block;
-    width: 100%;
-  }
-  .leftContent_at .titleAndSelect .selectorB4uAuto {
-    padding-right: 0;
-  }
-  .leftContent_at .carsContentLeft .caritemB4u {
-    padding-right: 0;
-    border-right: 0;
-  }
+    /*  .overview_gridWrapp {
+        padding: 0 20px;
+      }*/
+    .leftContent_at {
+        width: 100%;
+        float: none;
+    }
+
+    .sidebarContent {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+    }
+
+    .button_at1 {
+        margin-top: 0;
+    }
+
+    .sidebarContent a.button_at1 {
+        display: inline-block;
+    }
+
+    .sidebarContent a.button_atAlt {
+        display: block;
+        width: 100%;
+    }
+
+    .leftContent_at .titleAndSelect .selectorB4uAuto {
+        padding-right: 0;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u {
+        padding-right: 0;
+        border-right: 0;
+    }
 }
 
 @media all and (max-width: 767px) {
-  .leftContent_at .carsContentLeft .caritemB4u {
-    width: 100%;
-    margin-right: 0;
-  }
-  .button_at1, .button_atAlt {
-    display: block;
-    width: 100%;
-  }
-  .leftContent_at .titleAndSelect .titleLeftPart {
-    width: 100%;
-    margin-right: 0;
-  }
-  .leftContent_at .titleAndSelect .selectorB4uAuto {
-    display: none;
-  }
-  .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
-    height: auto;
-  }
-  .leftContent_at .listType .caritemB4uList .imgBlock {
-    width: 100%;
-    float: none;
-    margin-right: 0;
-  }
-  .leftContent_at .listType .caritemB4uList .carTxtBlock {
-    width: 100%;
-    float: none;
-  }
-  .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock {
-    width: 100%;
-    float: none;
-    margin-right: 0;
-    margin-bottom: 30px;
-  }
-  .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
-    width: 100%;
-    float: none;
-  }
-  .tab-links li {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  .bottomNPaginationWrapp .ulPagination li.prevPage {
-    padding: 0 5px;
-  }
-  .bottomNPaginationWrapp .ulPagination .nextPage {
-    padding: 0 5px;
-  }
-  .bottomNPaginationWrapp .ulPagination li {
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
-    margin-right: 5px;
-  }
+    .leftContent_at .carsContentLeft .caritemB4u {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .button_at1, .button_atAlt {
+        display: block;
+        width: 100%;
+    }
+
+    .leftContent_at .titleAndSelect .titleLeftPart {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .leftContent_at .titleAndSelect .selectorB4uAuto {
+        display: none;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
+        height: auto;
+    }
+
+    .leftContent_at .listType .caritemB4uList .imgBlock {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+
+    .leftContent_at .listType .caritemB4uList .carTxtBlock {
+        width: 100%;
+        float: none;
+    }
+
+    .singleItemWrapp .detailPage .sliderAndDesc .leftSlideBlock {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock {
+        width: 100%;
+        float: none;
+    }
+
+    .tab-links li {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .bottomNPaginationWrapp .ulPagination li.prevPage {
+        padding: 0 5px;
+    }
+
+    .bottomNPaginationWrapp .ulPagination .nextPage {
+        padding: 0 5px;
+    }
+
+    .bottomNPaginationWrapp .ulPagination li {
+        height: 30px;
+        line-height: 30px;
+        width: 30px;
+        margin-right: 5px;
+    }
 }
 
 @media all and (min-width: 1025px) and (max-width: 1255px) {
-  .overview_gridWrapp {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+    .overview_gridWrapp {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 @media all and (max-width: 490px) {
-  .bottomNPaginationWrapp .ulPagination {
-    height: 70px;
-  }
-  .bottomNPaginationWrapp .ulPagination li.prevPage {
-    top: 35px;
-  }
-  .bottomNPaginationWrapp .ulPagination .nextPage {
-    top: 35px;
-  }
+    .bottomNPaginationWrapp .ulPagination {
+        height: 70px;
+    }
+
+    .bottomNPaginationWrapp .ulPagination li.prevPage {
+        top: 35px;
+    }
+
+    .bottomNPaginationWrapp .ulPagination .nextPage {
+        top: 35px;
+    }
 }
 
 @media all and (max-width: 610px) {
-  .breadCrumbWrapp .breadContent .rightBCSpan {
-    display: block;
-    float: none;
-  }
-  .breadContent {
-    padding-bottom: 35px;
-  }
+    .breadCrumbWrapp .breadContent .rightBCSpan {
+        display: block;
+        float: none;
+    }
+
+    .breadContent {
+        padding-bottom: 35px;
+    }
 }
 
+a.atGoBackButton {
 
-a.atGoBackButton{
-
-  font-weight: 700;
+    font-weight: 700;
 }
 
-.autotrack_contact_form input{
-  width: 100%;
+.autotrack_contact_form input {
+    width: 100%;
 }
 
-.submitButton
-{
-  margin-top: 15px;
+.submitButton {
+    margin-top: 15px;
 }
 
 /** Styling TABS CORRECTLY **/
 .descOptAcc .optieAccItem, .descOptAcc .optieAccItem .commList {
-  width:100%;
+    width: 100%;
 }
 
 .leftDescSpan, .descOptAcc .optieAccItem .commList li {
-  font-weight:600;
-  display:inline-block;
-  width:50%;
+    font-weight: 600;
+    display: inline-block;
+    width: 50%;
 }
 
-@media(max-width:480px) {
-.leftDescSpan {
-  width:100%;
+@media (max-width: 480px) {
+    .leftDescSpan {
+        width: 100%;
+    }
 }
-}
+
 /** Styling TABS CORRECTLY END **/
 
 /** Styling FORM CORRECTLY **/
-.sidebarContent input { 
-width:100%;
-  margin-bottom:7px;
+.sidebarContent input {
+    width: 100%;
+    margin-bottom: 7px;
 }
-
 
 /** Styling FORM CORRECTLY **/
 
-.atGoBackButton { <-------- Different BGcolor for every website 
+.atGoBackButton {
     line-height: 20px;
     font-size: 14px;
     color: #fff;
@@ -1372,88 +1307,85 @@ width:100%;
     border-radius: 3px;
     display: inline-block;
     margin-bottom: 20px;
-  float:right;
+    float: right;
 }
 
 select::-ms-expand {
     display: none;
 }
-.atGoBackButtonBottom
-{
-      float: left;
+
+.atGoBackButtonBottom {
+    float: left;
     margin-left: 0;
     margin-top: 10px;
 }
 
-.error_input
-{
-  border:1px solid red !important;
+.error_input {
+    border: 1px solid red !important;
 }
 
 .detailPage .b4uPrintButton {
-position: absolute;
-top: 0;
-right: 0;
-padding: 8px;
-border: 1px solid #4e4e4e;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    border: 1px solid #4e4e4e;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 @media (max-width: 640px) {
-.leftDescSpan, .rightDescSpan {
-   width:100%!important;
-}
+    .leftDescSpan, .rightDescSpan {
+        width: 100% !important;
+    }
 }
 
 #main h1 {
-padding-right: 10%;
+    padding-right: 10%;
 }
+
 @media screen and (max-width: 690px) {
-#main h1 {
-padding-right: 18%;
-}
+    #main h1 {
+        padding-right: 18%;
+    }
 }
 
-.descOptAcc .optieAccItem, .singleItemWrapp .detailPage .optionsAccesories .descOptAcc .optieAccItem, .descOptAcc .optieAccItem, .descOptAcc .optieAccItem .commList{
+.descOptAcc .optieAccItem, .singleItemWrapp .detailPage .optionsAccesories .descOptAcc .optieAccItem, .descOptAcc .optieAccItem, .descOptAcc .optieAccItem .commList {
     width: 100%;
     float: left;
     min-height: auto;
 }
-@media(min-width:640px) {
-.descOptAcc .optieAccItem ul li, .descOptAcc .optieAccItem .commList li{
-    width: calc(49.5% - 35px);
-    float: left;
-    margin-left:35px;
-}
-.descOptAcc .optieAccItem ul li:first-child, .descOptAcc .optieAccItem ul li:nth-child(2n+1) {
-    margin-left: 0;
-}
+
+@media (min-width: 640px) {
+    .descOptAcc .optieAccItem ul li, .descOptAcc .optieAccItem .commList li {
+        width: calc(49.5% - 35px);
+        float: left;
+        margin-left: 35px;
+    }
+
+    .descOptAcc .optieAccItem ul li:first-child, .descOptAcc .optieAccItem ul li:nth-child(2n+1) {
+        margin-left: 0;
+    }
 }
 
 .descOptAcc .optieAccItem {
-    margin-bottom:5px!important;
+    margin-bottom: 5px !important;
 }
 
-
-
-/*New styles*/
-
-// 
 /* Home Filter*/
 #merkFilter label {
-display:none;
+    display: none;
 }
 
 #merkFilter button {
-width:100%;
-margin-top:16px;
+    width: 100%;
+    margin-top: 16px;
 }
 
 .home #merkFilter p {
-  padding-top:20px;
-  padding-bottom:0;
+    padding-top: 20px;
+    padding-bottom: 0;
 }
 
 /*------------------------------------*/
@@ -1461,300 +1393,323 @@ margin-top:16px;
 /* Home slider */
 
 .home .carOverallDetails .leftPartDetail p {
-  margin-bottom:1px!important;
+    margin-bottom: 1px !important;
 }
 
-.home  .carTxtBlock {
-  padding:10px 15px;
+.home .carTxtBlock {
+    padding: 10px 15px;
 }
 
 .home .titlecarItem.header_color {
-  margin-bottom:10px;
-  font-weight: 600;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.home  .button_at1 {
-  width:100%;
-  text-align:center;
+.home .button_at1 {
+    width: 100%;
+    text-align: center;
 }
 
 /*------------------------------------*/
 
 /* Occasions List & Grid */
 .carOverallDetails .leftPartDetail p .leftType {
-font-weight: 400!important;
-font-style: normal;
-font-size: 14px;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-size: 14px;
 }
 
 .carOverallDetails .leftPartDetail p .rightOption {
-font-weight: 600!important;
-font-style: normal;
-font-size: 14px;
+    font-weight: 600 !important;
+    font-style: normal;
+    font-size: 14px;
 }
 
 .leftContent_at .listType .caritemB4uList .imgBlock {
     width: 32%;
     margin-right: 2%;
     float: left;
-  display:inline-block;
-}
-.leftContent_at .listType.caritemB4uList .imgBlock img {
-width: 100%;
-max-width: 100%;
-height: auto;
+    display: inline-block;
 }
 
+.leftContent_at .listType.caritemB4uList .imgBlock img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock {
-width: 66%;
+    width: 66%;
     float: left;
-  display:inline-block;
+    display: inline-block;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo {
-width:auto;
-float: left;
-position: absolute;
-right: 0;
-bottom: 0;
+    width: auto;
+    float: left;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .logoCarItem img, .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .logoCarItem img {
-max-width:69px;
+    max-width: 69px;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {
-margin-right: 0;
+    margin-right: 0;
 }
 
 .leftContent_at .listType .caritemB4uList .carTxtBlock .titlecarItem, .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .titlecarItem {
-font-weight: 400;
-font-style: normal;
-font-size: 20px;
-line-height: 25px;
-padding-bottom: 10px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 25px;
+    padding-bottom: 10px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .titlecarItem {
-min-height: 55px!important;
-word-break: break-word;
+    min-height: 55px !important;
+    word-break: break-word;
 }
 
 .leftContent_at .listType .caritemB4uList {
-padding-bottom: 20px;
-margin-bottom: 25px;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .carOverallDetails .leftPartDetail p {
-padding-bottom:0;
+    padding-bottom: 0;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .logoCarItem {
-width: 36%;
+    width: 36%;
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem .priceandLogo .priceCarItem {
-width: 63%;
+    width: 63%;
 
 }
 
 .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .descCarItem a.button {
-width:100%;
-text-align:center;
-}
-
-.leftContent_at .carsContentLeft .caritemB4u {
-width: 31%;
-margin-right: 2%;
-padding-right:0;
-border-right:0;
-}
-
-@media(min-width:1024px){
-.leftContent_at .listType .caritemB4uList .carButton {
-  float:right;
-}
-}
-
-@media(max-width:1024px) {
-.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails {
-width:100%;
-box-sizing:border-box;
-}
-.leftContent_at .listType .caritemB4uList .carTxtBlock {
-width: 57.5%!important;
-}
-.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo {
-position:relative;
-width:100%;
-}
-.leftContent_at .listType .caritemB4uList .imgBlock img {
-max-width:100%;
-}
-.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {
-width:100%;
-text-align:center;
-}
-.leftContent_at .carsContentLeft .caritemB4u {
-width: 46%!important;
-margin-right:0;
-padding-right:0;
-}
-.leftContent_at .carsContentLeft .caritemB4u:nth-child(1n+1) {
-margin-right:2%;
-}
-.leftContent_at .carsContentLeft .caritemB4u .imgBlock {
-min-height: 235px;
-}
-.leftContent_at .carsContentLeft .caritemB4u .imgBlock .imgTable .imgTableCell img {
-width: 100%;
-height: auto;
-}
-}
-
-@media(max-width:768px) {
-.leftContent_at .listType .caritemB4uList .carTxtBlock {
-width:100%!important;
-box-sizing:border-box;
-}
-.leftContent_at .listType .caritemB4uList .imgBlock img {
-width:100%;
-}
-.leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {
-float:left;
-}
-.leftContent_at .listType .caritemB4uList .imgBlock {
-float:none;
     width: 100%;
-    margin-right: 0;
+    text-align: center;
 }
+
 .leftContent_at .carsContentLeft .caritemB4u {
-width: 100%!important;
-margin-right: 0;
-padding-right:0;
+    width: 31%;
+    margin-right: 2%;
+    padding-right: 0;
+    border-right: 0;
 }
-.leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .titlecarItem {
-min-height: auto!important;
+
+@media (min-width: 1024px) {
+    .leftContent_at .listType .caritemB4uList .carButton {
+        float: right;
+    }
 }
-.leftContent_at .carsContentLeft .caritemB4u .imgBlock {
-min-height: 100px;
+
+@media (max-width: 1024px) {
+    .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .carOverallDetails {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .leftContent_at .listType .caritemB4uList .carTxtBlock {
+        width: 57.5% !important;
+    }
+
+    .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo {
+        position: relative;
+        width: 100%;
+    }
+
+    .leftContent_at .listType .caritemB4uList .imgBlock img {
+        max-width: 100%;
+    }
+
+    .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {
+        width: 100%;
+        text-align: center;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u {
+        width: 46% !important;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u:nth-child(1n+1) {
+        margin-right: 2%;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
+        min-height: 235px;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u .imgBlock .imgTable .imgTableCell img {
+        width: 100%;
+        height: auto;
+    }
 }
+
+@media (max-width: 768px) {
+    .leftContent_at .listType .caritemB4uList .carTxtBlock {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .leftContent_at .listType .caritemB4uList .imgBlock img {
+        width: 100%;
+    }
+
+    .leftContent_at .listType .caritemB4uList .carTxtBlock .descCarItem .rightButtonandLogo .carButton {
+        float: left;
+    }
+
+    .leftContent_at .listType .caritemB4uList .imgBlock {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u {
+        width: 100% !important;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u .carTxtBlock .titlecarItem {
+        min-height: auto !important;
+    }
+
+    .leftContent_at .carsContentLeft .caritemB4u .imgBlock {
+        min-height: 100px;
+    }
 }
 
 /*------------------------------------*/
 
 /* Occasions overview sidebar */
 .sidebarContent .titleSidebar {
-font-weight: 700;
-font-style: normal;
-font-size: 1.25rem;
-padding-bottom: 0.575rem;
-border-bottom: 0.125rem solid #C2C2C2;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.25rem;
+    padding-bottom: 0.575rem;
+    border-bottom: 0.125rem solid #C2C2C2;
 }
 
 .sidebarContent .sidebarFilters p {
-padding-bottom:0px;
+    padding-bottom: 0px;
 }
 
 .sidebarContent .sidebarFilters {
-padding-bottom:30px;
+    padding-bottom: 30px;
 }
 
 /* Occasions detail sidebar */
 .sidebarContent input {
-width:100%!important;
-max-width:none!important;
+    width: 100% !important;
+    max-width: none !important;
 }
 
 .sidebarContent #merkFilter p {
-display:none;
-padding-bottom:0;
+    display: none;
+    padding-bottom: 0;
 }
 
 .sidebarContent #merkFilter button {
-margin-top:16px;
+    margin-top: 16px;
 }
 
 .sidebarContent .gform_wrapper ul li, .sidebarContent .gform_wrapper ul li .ginput_container {
-margin-top:0!important;
+    margin-top: 0 !important;
 }
+
 .sidebarContent {
-width: 26.41379%;
-display: block;
-float: left;
+    width: 26.41379%;
+    display: block;
+    float: left;
 }
 
 /*------------------------------------*/
 
 /* Occasions Detail list*/
 .detailPage, .sidebarContent, .tab-links, .tab-content, .leftContent_at {
-position:relative;
-padding:20px;
-background:white;
-box-sizing: border-box;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-}
-.detailPage .b4uPrintButton {
-position: absolute;
-top: 13px;
-right: 20px;
-}
-.detailPage h1 {
-padding-right:15%;
-}
-.singleItemWrapp .carTitleTop {
-    width:100%!important;
-    padding-right:15%;
-}
-@media(max-width:1024px) {
-.atGoBackButton, .sidebarContent{
-width:100%;
-margin-left:0;
-float:none;
-}
-.singleItemWrapp .carTitleTop {
-    width:68%!important;
-    padding-right:32%;
-}
-.sidebarContent{
-margin-top:25px;
-}
+    position: relative;
+    padding: 20px;
+    background: white;
+    box-sizing: border-box;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
-@media(max-width:1160px) {
-.singleItemWrapp .carTitleTop {
-    padding-right:10%!important;
-}
+.detailPage .b4uPrintButton {
+    position: absolute;
+    top: 13px;
+    right: 20px;
 }
 
-@media(max-width:768px) {
-.singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo {
-padding-top: 20px;
-}
-.detailPage, .sidebarContent, .tab-links, .tab-content, .leftContent_at {
-padding:10px;
-}
-.detailPage .b4uPrintButton {
-position: absolute;
-top: 4px;
-right: 10px;
-}
 .detailPage h1 {
-padding-right:20%;
+    padding-right: 15%;
 }
+
+.singleItemWrapp .carTitleTop {
+    width: 100% !important;
+    padding-right: 15%;
+}
+
+@media (max-width: 1024px) {
+    .atGoBackButton, .sidebarContent {
+        width: 100%;
+        margin-left: 0;
+        float: none;
+    }
+
+    .singleItemWrapp .carTitleTop {
+        width: 68% !important;
+        padding-right: 32%;
+    }
+
+    .sidebarContent {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 1160px) {
+    .singleItemWrapp .carTitleTop {
+        padding-right: 10% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .singleItemWrapp .detailPage .sliderAndDesc .rightDescBlock .priceandLogo {
+        padding-top: 20px;
+    }
+
+    .detailPage, .sidebarContent, .tab-links, .tab-content, .leftContent_at {
+        padding: 10px;
+    }
+
+    .detailPage .b4uPrintButton {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+    }
+
+    .detailPage h1 {
+        padding-right: 20%;
+    }
 }
 
 .singleItemWrapp {
-box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .home .titlecarItem.header_color {
-  font-weight:600;
+    font-weight: 600;
 }
-
 
 .detailPage .b4uPrintButton {
     max-height: 50px;
@@ -1763,49 +1718,52 @@ box-sizing:border-box;
 }
 
 #printContent h2.carDetailSubtitle {
-    font-weight:400;
+    font-weight: 400;
     font-size: 1.5rem;
     line-height: 1.625rem;
     margin-bottom: 1.375rem;
 }
 
 .carDetailSubtitle {
-    margin-bottom:0!important;
+    margin-bottom: 0 !important;
 }
 
 @media all and (max-width: 767px) {
-.b4uPrintButton, #print_button, .atGoBackButtonTop {
-display: none!important;
-}
-.leftContent_at .detailPage h1, #main h1 {
-    width: 100% !important;
-    padding: 10px 0 !important;
-    border-left: none !important;
-}
-}
+    .b4uPrintButton, #print_button, .atGoBackButtonTop {
+        display: none !important;
+    }
 
+    .leftContent_at .detailPage h1, #main h1 {
+        width: 100% !important;
+        padding: 10px 0 !important;
+        border-left: none !important;
+    }
+}
 
 .optionsAccesories ul li {
-  font-weight:300!important;
+    font-weight: 300 !important;
 }
 
 .optionsAccesories .carDetailSubtitle {
-  margin-bottom:0!important;
+    margin-bottom: 0 !important;
 }
 
 .optionsAccesories ul li:first-child, .optionsAccesories ul li:nth-child(1n+1) {
-    margin-left: 0!important;
+    margin-left: 0 !important;
 }
+
 .optionsAccesories ul {
-  margin:0!important;
+    margin: 0 !important;
 }
+
 .atGoBackButtonTop {
-    display:none!important;
+    display: none !important;
 }
-.leftContent_at h2, .leftContent_a h3, .leftContent_at h4, .leftContent_at h5,  .leftContent_at h6 {
-  font-size:20px!important;
+
+.leftContent_at h2, .leftContent_a h3, .leftContent_at h4, .leftContent_at h5, .leftContent_at h6 {
+    font-size: 20px !important;
 }
-.btw_val
-{
-  font-size: 15px;
+
+.btw_val {
+    font-size: 15px;
 }

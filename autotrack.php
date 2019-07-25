@@ -119,14 +119,8 @@ register_activation_hook( __FILE__, 'db_install' );
 register_activation_hook( __FILE__, 'insert_data_attr' );
 register_activation_hook( __FILE__, 'insert_data_settings' );
 
-
 require_once('frontend/core/CarsController.php');
-
-require_once ("frontend/index.php");
-
 // Front end ShortCodes
-
-require_once ('frontend/core/CarsController.php');
 add_action('wp_head', 'addGraph',0,0);
 //The functions which is used in shortcodes you can find in CarsController.php the second attribute of add_shortcode is name of function
 
@@ -138,18 +132,15 @@ add_shortcode('occasions_list_all', 'occasions_list_overview_all');
 add_shortcode('company_occasions_list', 'company_occasions_list');
 // The latest cars to be displayed on home page (the count of cars we can set from admin settings)
 add_shortcode('home_occasions', 'get_home_occasions');
-// The Shortcode for the work graph 
+// The Shortcode for the work graph
 add_shortcode('open_hours_company', 'get_open_company_hours');
-// Shortcode for home filter 
+// Shortcode for home filter
 add_shortcode('home_filter', 'get_home_filter');
-// Shortcode for sold cars 
+// Shortcode for sold cars
 add_shortcode('sold_occasions', 'sold_cars');
 // Shortcodes are activated
 
-
 // Permalinks for detail page START
-
-
 function wpse26388_rewrites_init(){
     $page_slug = get_option("at_url_page_adverts");
     add_rewrite_rule(
@@ -198,9 +189,3 @@ add_action('wp_ajax_nopriv_models_ajax_action','get_ajax_models');
 add_action('wp_ajax_test_response','attr_ajax_check_uncheck_all');
 add_action('wp_ajax_test_response_sel_des','selectDeselectAll');
 add_action('wp_ajax_filter_attributes','attr_filter');
-
-
-
-session_start();
-
-

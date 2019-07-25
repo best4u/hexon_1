@@ -6,12 +6,21 @@
  * Time: 6:46 PM
  */
 
+/**
+ * Class FilterService
+ */
 class FilterService{
 
-// Pagination function
-
-    public function paginator($data, $limit = null, $current = null, $adjacents = null){
-
+    /**
+     * Pagination function
+     * @param $data
+     * @param null $limit
+     * @param null $current
+     * @param null $adjacents
+     * @return array
+     */
+    public function paginator($data, $limit = null, $current = null, $adjacents = null)
+    {
         $result = array();
 
         if (isset($data, $limit) === true)
@@ -30,10 +39,13 @@ class FilterService{
         return $result;
     }
 
-    // Get all get variables from url for next page 
-
-    public function get_query_filter_pagination($page){
-
+    /**
+     * Get all get variables from url for next page
+     * @param $page
+     * @return string
+     */
+    public function get_query_filter_pagination($page)
+    {
         if(preg_match('/pagina/',$_SERVER['QUERY_STRING'])){
             $query_string = $_SERVER['QUERY_STRING'];
             $query_string = explode("&",$query_string);
@@ -49,10 +61,6 @@ class FilterService{
             $query = "?pagina=".$page."";
         }
 
-
         return $query;
-
     }
-
-
 }
